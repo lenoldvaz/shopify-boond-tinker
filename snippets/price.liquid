@@ -41,17 +41,27 @@
   endif
 -%}
 
-<div ref="priceContainer" class="custom-price-block" style="display: flex; align-items: center; gap: 0.5em;">
-  <span class="custom-price-title" style="font-weight: bold; color: #8c837a; font-size: 1.3em;">BEST PRICE:</span>
-  <span class="custom-price-value" style="color: #1ca000; font-weight: bold; font-size: 2em;">{{ price | default: '&nbsp;' }}</span>
-  {% if show_compare_price %}
-    <s class="custom-compare-at-price" style="color: #b71c1c; font-size: 1.5em; margin-left: 0.3em;">{{ compare_at_price }}</s>
-    {% assign percent_off = 0 %}
-    {% if compare_at_price > 0 and compare_at_price > price %}
-      {% assign percent_off = ((compare_at_price | minus: price) | times: 100.0 | divided_by: compare_at_price) | round %}
-    {% endif %}
-    {% if percent_off > 0 %}
-      <span class="custom-percent-off-tag" style="background: #b71c1c; color: #fff; font-weight: bold; font-size: 1em; padding: 0.2em 0.7em; border-radius: 4px; margin-left: 0.5em; transform: rotate(-8deg); display: inline-block;">{{ percent_off }}% off</span>
-    {% endif %}
+<div ref="priceContainer">
+  {% if show_sale_price_first == false and show_compare_price %}
+    <s class="compare-at-price">{{ compare_at_price }}</s>
   {% endif %}
+
+  <span class="price">{{ price | default: '&nbsp;' }}</span>
+
+  {% if show_sale_price_first == true and show_compare_price %}
+    <s class="compare-at-price">{{ compare_at_price }}</s>
+  {% endif %}
+
+  {%- if selected_variant.unit_price and show_unit_price %}
+    {%- liquid
+      if product.handle == closest.product.handle and settings.currency_code_enabled_product_pages
+        assign unit_price = selected_variant.unit_price | money_with_currency
+      elsif product.handle != closest.product.handle and settings.currency_code_enabled_product_cards
+        assign unit_price = selected_variant.unit_price | money_with_currency
+      else
+        assign unit_price = selected_variant.unit_price | money
+      endif
+    -%}
+    {% render 'unit-price', variant: selected_variant, price: unit_price %}
+  {%- endif -%}
 </div>
