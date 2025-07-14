@@ -48,7 +48,8 @@
     <s class="custom-compare-at-price" style="color: #b71c1c; font-size: 1.5em; margin-left: 0.3em;">{{ compare_at_price }}</s>
     {% assign percent_off = 0 %}
     {% if compare_at_price > 0 and compare_at_price > price %}
-      {% assign percent_off = ((compare_at_price | minus: price) | times: 100.0 | divided_by: compare_at_price) | round %}
+      {% assign percent_off_raw = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price %}
+      {% assign percent_off = percent_off_raw | round %}
     {% endif %}
     {% if percent_off > 0 %}
       <span class="custom-percent-off-tag" style="background: #b71c1c; color: #fff; font-weight: bold; font-size: 1em; padding: 0.2em 0.7em; border-radius: 4px; margin-left: 0.5em; transform: rotate(-8deg); display: inline-block;">{{ percent_off }}% off</span>
