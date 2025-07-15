@@ -1,27 +1,71 @@
 
 
-<div
-  class="product-badges product-badges--{{ settings.badge_position }}"
-  style="
-    --badge-border-radius: {{ settings.badge_corner_radius }}px;
-    --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
-  "
->
-  {%- if product.available == false or product.compare_at_price > product.price and product.available -%}
-    <div
-      class="
-        product-badges__badge product-badges__badge--rectangle
-        {% if product.available == false %} color-{{ settings.badge_sold_out_color_scheme }}{% elsif product.compare_at_price > product.price %} color-{{ settings.badge_sale_color_scheme }}{% endif %}
-      "
-    >
-      {%- if product.available == false -%}
-        {{ 'content.product_badge_sold_out' | t }}
-      {%- elsif product.compare_at_price > product.price -%}
-        {{ 'content.product_badge_sale' | t }}
-      {%- endif -%}
-    </div>
-  {%- endif -%}
-</div>
+{%- comment -%}
+  Badge priority
+  1. Out of stock → sold_out
+  2. Metafield override → metafield value (percent, coming_soon, etc.)
+  3. Discounted price → sale
+{%- endcomment -%}
+
+{% assign mf_badge  = product.metafields.custom.badge_type | downcase %}
+{% assign badge_text = product.metafields.custom.badge_text %}
+{% assign badge_type = '' %}
+
+{%- if product.available == false -%}
+  {% assign badge_type = 'sold_out' %}
+{%- elsif mf_badge != blank -%}
+  {% assign badge_type = mf_badge %}
+{%- elsif product.compare_at_price > product.price -%}
+  {% assign badge_type = 'sale' %}
+{%- endif -%}
+
+{%- unless badge_type == '' -%}
+  <div
+    class="product-badges product-badges--{{ settings.badge_position }}"
+    style="
+      --badge-border-radius: {{ settings.badge_corner_radius }}px;
+      --badge-font-family: var(--font-{{ settings.badge_font_family }}--family);
+      --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight);
+      --badge-text-transform: {{ settings.badge_text_transform }};
+    "
+  >
+    {%- case badge_type -%}
+
+      {%- when 'sold_out' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sold_out_color_scheme }}">
+          {{ 'content.product_badge_sold_out' | t }}
+        </div>
+
+      {%- when 'coming_soon' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+          Coming&nbsp;soon
+        </div>
+
+      {%- when 'limited_edition' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+          Limited&nbsp;edition
+        </div>
+
+      {%- when 'percent' -%}
+        {%- assign discount = 100 | times: product.price | divided_by: product.compare_at_price | minus: 100 | abs -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+          {{ discount }}%&nbsp;off
+        </div>
+
+      {%- when 'sale' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+          {{ 'content.product_badge_sale' | t }}
+        </div>
+
+      {%- when 'custom' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+          {{ badge_text | default: 'New' }}
+        </div>
+
+    {%- endcase -%}
+  </div>
+{%- endunless -%}
+
 
 {% stylesheet %}
   .product-badges {
