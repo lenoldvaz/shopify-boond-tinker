@@ -1300,7 +1300,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "padding-block-start": 0,
+            "padding-block-start": 100,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -1336,7 +1336,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>New arrivals</h2>",
+                "text": "<h2>Why Choose बूँद | Boond?</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1362,11 +1362,11 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
+                "text": "<p>With बूँद | Boond, our mission is to revive the ancient art of Indian perfume making, support the artisans and take Indian fragrances to the world.</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "rte",
+                "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
                 "line_height": "normal",
@@ -1389,7 +1389,7 @@
               "name": "t:names.product_buy_buttons",
               "settings": {
                 "product": "{{  closest.product }}",
-                "stacking": false,
+                "stacking": true,
                 "show_pickup_availability": true,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -1438,10 +1438,11 @@
           "type": "image",
           "name": "t:names.image",
           "settings": {
+            "image": "shopify://shop_images/Frame_279.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "custom",
-            "custom_width": 100,
+            "custom_width": 70,
             "width_mobile": "custom",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -1451,8 +1452,8 @@
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-start": 32,
+            "padding-inline-end": 32
           },
           "blocks": {}
         }
@@ -1466,11 +1467,11 @@
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
+        "vertical_alignment": "flex-start",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap": 24,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -1486,7 +1487,7 @@
         "overlay_color": "#fefbff",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
+        "padding-block-start": 80,
         "padding-block-end": 0
       }
     },
