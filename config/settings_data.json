@@ -22,6 +22,7 @@
     "type_size_h4": "24",
     "type_size_h5": "18",
     "type_case_h6": "none",
+    "button_border_radius_primary": 4,
     "secondary_button_border_width": 0,
     "cart_type": "drawer",
     "popover_border": "none",
