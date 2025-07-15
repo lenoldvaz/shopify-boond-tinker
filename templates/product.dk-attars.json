@@ -112,8 +112,8 @@
               "settings": {
                 "product": "{{ closest.product }}",
                 "price_title": "BEST PRICE:",
-                "price_title_font": "inherit",
-                "price_title_size": "1.3em",
+                "price_title_font": "var(--font-body--family)",
+                "price_title_size": "1em",
                 "price_title_color": "#8c837a",
                 "show_discount_tag": true,
                 "discount_tag_type": "percent",
@@ -200,7 +200,7 @@
                   "static": true,
                   "settings": {
                     "product": "{{ closest.product }}",
-                    "style_class": "button"
+                    "style_class": "button-secondary"
                   },
                   "blocks": {}
                 },
