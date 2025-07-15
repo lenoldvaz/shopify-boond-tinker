@@ -1,0 +1,185 @@
+<div class="sales-points">
+  {% for i in (1..5) %}
+    {% assign bullet_text = block.settings["bullet_text_" | append: i] %}
+    {% assign bullet_icon = block.settings["bullet_icon_" | append: i] %}
+    {% assign bullet_svg = block.settings["bullet_svg_" | append: i] %}
+    {% assign bullet_text_color = block.settings["bullet_text_color_" | append: i] %}
+    {% assign bullet_metafield = product.metafields.custom["product_bullets_" | append: i] | default: product.metafields.custom["product_bullet_" | append: i] %}
+    {% if bullet_text != empty %}
+      <div class="selluxe-points">
+        {% if bullet_icon.preview_image != blank %}
+          <img class="selluxe-icon-image" src="{% if bullet_icon.preview_image != null %}{{ bullet_icon | img_url }}{% else %}https://cdn-icons-png.flaticon.com/128/2769/2769339.png{% endif %}">
+        {% else %}
+          {{ bullet_svg }}
+        {% endif %}
+        <div style="color:{{ bullet_text_color }}" class="selluxe-text-container">
+          {{ bullet_metafield | metafield_tag }}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<style>
+    .sales-points  svg.icon rect{
+     stroke: #000;
+   }
+         .sales-points {
+           display: flex;
+           flex-direction: column;
+           margin-top: 20px;
+       }
+       .sales-points svg.icon{
+            color: #fff !important;
+             width: 17px !important;
+           margin-right: 13px;
+           margin-left: 5px;
+       }
+      .sales-points   svg.icon line{
+           fill: #fff;
+       stroke: #000;
+         }
+       .selluxe-points {
+           display:flex;
+           align-items:center;
+           margin-bottom:10px;
+       }
+       .selluxe-points .selluxe-text-container {
+           width: 100%;
+           align-items: center;
+           font-size: {{ block.settings.bullet_font_size }}px;
+           font-weight: 400;
+       }
+       .selluxe-points .selluxe-icon-image {
+           width: {{ block.settings.icon_size }}px !important;
+           margin-right: 10px;
+           margin-left: 0px;
+       }
+         @media(min-width:769px){
+           .metafield-rich_text_field p{
+               margin-bottom: 0em;
+           }
+         }
+   
+       </style>
+               
+
+
+
+{% schema %}
+{
+  "name": "Selluxe Icons With Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bullet_text_1",
+      "label": "Bullet Text 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_1",
+      "label": "Bullet Icon 1"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_1",
+      "label": "Bullet SVG 1 (if no image)"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_1",
+      "label": "Bullet Text Color 1",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_2",
+      "label": "Bullet Text 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_2",
+      "label": "Bullet Icon 2"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_2",
+      "label": "Bullet SVG 2 (if no image)"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_2",
+      "label": "Bullet Text Color 2",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_3",
+      "label": "Bullet Text 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_3",
+      "label": "Bullet Icon 3"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_3",
+      "label": "Bullet SVG 3 (if no image)"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_3",
+      "label": "Bullet Text Color 3",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_4",
+      "label": "Bullet Text 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_4",
+      "label": "Bullet Icon 4"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_4",
+      "label": "Bullet SVG 4 (if no image)"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_4",
+      "label": "Bullet Text Color 4",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_5",
+      "label": "Bullet Text 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_5",
+      "label": "Bullet Icon 5"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_5",
+      "label": "Bullet SVG 5 (if no image)"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_5",
+      "label": "Bullet Text Color 5",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Selluxe Icons With Text"
+    }
+  ]
+}
+{% endschema %}
