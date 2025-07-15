@@ -106,9 +106,9 @@
               "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
               "settings": {}
             },
-            "dk_price_XKTU9h": {
+            "dk_price_DakaxW": {
               "type": "dk-price",
-              "name": "t:names.product_price",
+              "name": "DK Custom Price",
               "settings": {
                 "product": "{{ closest.product }}",
                 "price_title": "BEST PRICE:",
@@ -139,6 +139,7 @@
             },
             "price_a7krng": {
               "type": "price",
+              "disabled": true,
               "settings": {
                 "product": "{{ closest.product }}",
                 "show_sale_price_first": false,
@@ -807,7 +808,7 @@
             "heading_m7KmQQ",
             "reviews",
             "judge_me_reviews_preview_badge_qPH6jY",
-            "dk_price_XKTU9h",
+            "dk_price_DakaxW",
             "price_a7krng",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
