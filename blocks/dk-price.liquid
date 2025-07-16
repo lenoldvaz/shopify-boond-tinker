@@ -66,10 +66,10 @@
         {% if block.settings.discount_tag_type == 'percent' %}
           {% assign discount_raw = selected_variant.compare_at_price | minus: selected_variant.price | times: 100.0 | divided_by: selected_variant.compare_at_price %}
           {% assign discount = discount_raw | round %}
-          <span style="background: {{ block.settings.discount_tag_color | default: '#b71c1c' }}; color: #fff; font-weight: bold; font-size: 1em; padding: 0.2em 0.7em; border-radius: 4px; margin-left: 0.5em; transform: rotate(-8deg); display: inline-block;">{{ discount }}% off</span>
+          <span style="background: {{ block.settings.discount_tag_color | default: '#b71c1c' }}; color: #fff; font-weight: bold; font-size: .8em; padding: 0.2em 0.7em; border-radius: 4px; margin-left: 0.5em;  display: inline-block;">{{ discount }}% off</span>
         {% else %}
           {% assign discount = selected_variant.compare_at_price | minus: selected_variant.price | money %}
-          <span style="background: {{ block.settings.discount_tag_color | default: '#b71c1c' }}; color: #fff; font-weight: bold; font-size: 1em; padding: 0.2em 0.7em; border-radius: 4px; margin-left: 0.5em; transform: rotate(-8deg); display: inline-block;">{{ discount }} off</span>
+          <span style="background: {{ block.settings.discount_tag_color | default: '#b71c1c' }}; color: #fff; font-weight: bold; font-size: .8em; padding: 0.2em 0.7em; border-radius: 4px; margin-left: 0.5em;  display: inline-block;">{{ discount }} off</span>
         {% endif %}
       {% endif %}
     </div>
