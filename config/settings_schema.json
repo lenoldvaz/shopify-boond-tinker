@@ -1457,6 +1457,10 @@
         "label": "Limited Edition Text",
         "default": "#fff"
       },
+       {
+        "type": "header",
+        "content": "Coming Soon"
+      },
       {
         "type": "color",
         "id": "badge_coming_soon_color_background",
