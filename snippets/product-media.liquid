@@ -21,8 +21,10 @@
   style="--ratio: {{ media.aspect_ratio }}"
   data-media-id="{{ media.id }}"
 >
-  {% if product.media.first.id == media.id %}
-  {% render 'product-card-badges', product: product %}
+ {% if product.media.first.id == media.id %}
+  <div class="product-media-badge-wrapper">
+    {% render 'product-card-badges', product: product %}
+  </div>
 {% endif %}
  
   {% liquid
@@ -128,6 +130,10 @@
 </div>
 
 {% stylesheet %}
+  .product-media-badge-wrapper{
+    margin-top: 1em;
+    margin-left: 1em;
+  }
   .product-media {
     aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
     min-height: 0;
