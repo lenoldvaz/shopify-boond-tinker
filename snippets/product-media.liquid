@@ -21,6 +21,7 @@
   style="--ratio: {{ media.aspect_ratio }}"
   data-media-id="{{ media.id }}"
 >
+  {% render 'product-card-badges', product: product %}
   {% liquid
     assign high_res_url = media.preview_image | image_url: width: 3840
   %}
