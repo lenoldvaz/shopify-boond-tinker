@@ -1458,6 +1458,18 @@
         "default": "#fff"
       },
       {
+        "type": "color",
+        "id": "badge_coming_soon_color_background",
+        "label": "Coming Soon BG",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "badge_coming_soon_color_text",
+        "label": "Coming Soon Text",
+        "default": "#fff"
+      },
+      {
         "type": "header",
         "content": "t:names.typography"
       },
