@@ -51,7 +51,7 @@
       {%- when 'percent' -%}
         {%- assign discount = 100 | times: product.price | divided_by: product.compare_at_price | minus: 100 | abs -%}
         <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
-          {{ discount }}%&nbsp;OFF
+         <strong>{{ discount }}%&nbsp;OFF</strong> 
         </div>
 
       {%- when 'sale' -%}
