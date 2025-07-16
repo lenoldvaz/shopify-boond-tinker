@@ -1439,6 +1439,22 @@
         "label": "t:settings.badge_sale_color_scheme",
         "default": "scheme-4"
       },
+      {
+        "type": "header",
+        "content": "Percent OFF"
+      },
+      {
+        "type": "color",
+        "id": "badge_percent_color_background",
+        "label": "Percent off BG",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "badge_percent_color_text",
+        "label": "Percent off Text",
+        "default": "#fff"
+      },
        {
         "type": "header",
         "content": "Sold Out"
