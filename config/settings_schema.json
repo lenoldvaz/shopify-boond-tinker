@@ -1447,9 +1447,15 @@
       },
       {
         "type": "color",
-        "id": "badge_limited_edition_color_scheme",
-        "label": "Limited Edition",
+        "id": "badge_limited_edition_color_background",
+        "label": "Limited Edition BG",
         "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "badge_limited_edition_color_text",
+        "label": "Limited Edition Text",
+        "default": "#fff"
       },
       {
         "type": "header",
