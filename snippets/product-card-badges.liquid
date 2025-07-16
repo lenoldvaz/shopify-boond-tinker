@@ -37,7 +37,8 @@
         </div>
 
       {%- when 'coming_soon' -%}
-        <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+        <div class="product-badges__badge product-badges__badge--rectangle 
+          style="background-color: {{ settings.badge_coming_soon_color_background }}; color: {{ settings.badge_coming_soon_color_text }};">">
           Coming&nbsp;soon
         </div>
 
@@ -50,7 +51,7 @@
       {%- when 'percent' -%}
         {%- assign discount = 100 | times: product.price | divided_by: product.compare_at_price | minus: 100 | abs -%}
         <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
-          {{ discount }}%&nbsp;off
+          {{ discount }}%&nbsp;OFF
         </div>
 
       {%- when 'sale' -%}
