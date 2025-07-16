@@ -1481,6 +1481,22 @@
         "label": "Coming Soon Text",
         "default": "#fff"
       },
+       {
+        "type": "header",
+        "content": "Custom"
+      },
+      {
+        "type": "color",
+        "id": "badge_custom_color_background",
+        "label": "Custom BG",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "badge_custom_color_text",
+        "label": "Custom Text",
+        "default": "#fff"
+      },
       {
         "type": "header",
         "content": "t:names.typography"
