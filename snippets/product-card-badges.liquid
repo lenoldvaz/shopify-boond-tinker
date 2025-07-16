@@ -15,8 +15,12 @@
   {% assign badge_type = 'sold_out' %}
 {%- elsif mf_badge != blank -%}
   {% assign badge_type = mf_badge %}
-{%- elsif product.compare_at_price > product.price -%}
+{%- elsif product.compare_at_price > product.price and settings.show_sale_badge -%}
+  {% if settings.sale_badge_type == 'percent' %}
+     {% assign badge_type = 'percent' %} 
+    {% else %}
   {% assign badge_type = 'sale' %}
+    {% endif %}
 {%- endif -%}
 
 {%- unless badge_type == '' -%}
