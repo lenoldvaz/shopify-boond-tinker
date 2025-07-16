@@ -2127,7 +2127,29 @@
         "label": "t:settings.mobile_quick_add",
         "default": false,
         "visible_if": "{{ settings.quick_add == true }}"
-      }
+      },
+      {
+  "type": "checkbox",
+  "id": "show_sale_badge",
+  "label": "Show Sale Badge",
+  "default": true
+},
+{
+  "type": "select",
+  "id": "sale_badge_type",
+  "label": "Sale Badge Type",
+  "options": [
+    {
+      "value": "sale",
+      "label": "Sale Text"
+    },
+    {
+      "value": "percent",
+      "label": "Percent Off"
+    }
+  ],
+  "default": "sale"
+}
     ]
   },
   {
