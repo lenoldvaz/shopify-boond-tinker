@@ -151,6 +151,26 @@
           </li>
         {% endfor %}
       </ol>
+    {% when 'hint_and_dots' %}
+    <scroll-hint class="slideshow-controls__hint"></scroll-hint>
+    <ol class="slideshow-controls__dots">
+      {% for i in (1..item_count) %}
+        <li>
+          <button
+              class="slideshow-control button button-unstyled"
+              style="animation-timeline: --slide-{{ forloop.index }}"
+              aria-label="{{ 'accessibility.slide_status' | t: index: forloop.index, length: forloop.length }}"
+              on:click="/select/{{ forloop.index0 }}"
+              ref="dots[]"
+              {% if forloop.first %}
+                aria-selected="true"
+              {% endif %}
+            >
+              {{ forloop.index }}
+            </button>
+        </li>
+      {% endfor %}
+    </ol>
   {% endcase %}
 
   {% if show_arrows_separately == false and show_arrows and pagination_position != 'right' %}
