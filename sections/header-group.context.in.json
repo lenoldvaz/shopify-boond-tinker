@@ -12,5 +12,18 @@
   "context": {
     "market": "in"
   },
-  "sections": {}
+  "sections": {
+    "header_section": {
+      "settings": {
+        "show_country": false
+      },
+      "blocks": {
+        "header-menu": {
+          "settings": {
+            "menu_style": "text"
+          }
+        }
+      }
+    }
+  }
 }
