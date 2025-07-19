@@ -72,7 +72,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h2",
+                "type_preset": "h3",
                 "font": "var(--font-primary--family)",
                 "font_size": "",
                 "line_height": "normal",
@@ -727,14 +727,14 @@
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Details",
+                    "heading": "How to use",
                     "open_by_default": false
                   },
                   "blocks": {
                     "text_McjMWz": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>This product is crafted with quality materials to ensure durability and performance. Designed with your convenience in mind, it seamlessly fits into your everyday life.</p>",
+                        "text": "<p></p>{{ closest.product.metafields.custom.how_to_use | metafield_tag }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -764,14 +764,14 @@
                 "accordion_row_aaFerA": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping & Returns",
+                    "heading": "How its made",
                     "open_by_default": false
                   },
                   "blocks": {
                     "text_DNPAct": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We strive to process and ship all orders in a timely manner, working diligently to ensure that your items are on their way to you as soon as possible. </p><p>We are committed to ensuring a positive shopping experience for all our customers. If for any reason you wish to return an item, we invite you to reach out to our team for assistance, and we will evaluate every return request with care and consideration.</p>",
+                        "text": "<p></p>{{ closest.product.metafields.custom.how_it_s_made | metafield_tag }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
