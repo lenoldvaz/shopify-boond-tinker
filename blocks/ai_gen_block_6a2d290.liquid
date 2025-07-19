@@ -20,13 +20,13 @@
   }
 
   .ai-logo-carousel__title-{{ ai_gen_id }} {
-    font-size: {{ block.settings.title_size }}px;
+    font-size: {{ block.settings.heading_title_size }}px;
     text-align: {{ block.settings.title_align }};
     margin: 0 0 8px;
   }
 
   .ai-logo-carousel__subtitle-{{ ai_gen_id }} {
-    font-size: {{ block.settings.subtitle_size }}px;
+    font-size: {{ block.settings.heading_subtitle_size }}px;
     text-align: {{ block.settings.subtitle_align }};
     opacity: 0.8;
     margin: 0;
@@ -115,13 +115,13 @@
     <div class="ai-logo-carousel__header-{{ ai_gen_id }}">
       {% if block.settings.title != blank %}
         <h2 class="ai-logo-carousel__title-{{ ai_gen_id }}"
-            style="font-size: {{ block.settings.title_size }}px; text-align: {{ block.settings.title_align }};">
+            style="font-size: {{ block.settings.heading_title_size }}px; text-align: {{ block.settings.title_align }};">
           {{ block.settings.title }}
         </h2>
       {% endif %}
       {% if block.settings.subtitle != blank %}
         <p class="ai-logo-carousel__subtitle-{{ ai_gen_id }}"
-           style="font-size: {{ block.settings.subtitle_size }}px; text-align: {{ block.settings.subtitle_align }};">
+           style="font-size: {{ block.settings.heading_subtitle_size }}px; text-align: {{ block.settings.subtitle_align }};">
           {{ block.settings.subtitle }}
         </p>
       {% endif %}
@@ -210,10 +210,10 @@
   "settings": [
     { "type": "header", "content": "Heading" },
     { "type": "text", "id": "title", "label": "Title", "default": "As Featured In" },
-    { "type": "range", "id": "title_size", "label": "Title Size", "min": 16, "max": 48, "step": 2, "unit": "px", "default": 32 },
+    { "type": "range", "id": "heading_title_size", "label": "Title Size", "min": 16, "max": 48, "step": 2, "unit": "px", "default": 32 },
     { "type": "select", "id": "title_align", "label": "Title Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Trusted by leading publications" },
-    { "type": "range", "id": "subtitle_size", "label": "Subtitle Size", "min": 12, "max": 24, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "heading_subtitle_size", "label": "Subtitle Size", "min": 12, "max": 24, "step": 2, "unit": "px", "default": 16 },
     { "type": "select", "id": "subtitle_align", "label": "Subtitle Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
     { "type": "header", "content": "Publication Logos" },
     { "type": "image_picker", "id": "logo_1", "label": "Logo 1" },
@@ -246,10 +246,7 @@
     { "type": "header", "content": "Style" },
     { "type": "color", "id": "logo_background", "label": "Logo background", "default": "#f8f8f8" },
     { "type": "range", "id": "logo_border_radius", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Logo border radius", "default": 8 },
-    { "type": "select", "id": "logo_filter", "label": "Logo filter", "options": [ { "value": "none", "label": "None" }, { "value": "grayscale(100%)", "label": "Grayscale" }, { "value": "opacity(0.7)", "label": "Faded" } ], "default": "grayscale(100%)" },
-    { "type": "header", "content": "Typography" },
-    { "type": "range", "id": "title_size", "min": 16, "max": 48, "step": 2, "unit": "px", "label": "Title size", "default": 32 },
-    { "type": "range", "id": "subtitle_size", "min": 12, "max": 24, "step": 2, "unit": "px", "label": "Subtitle size", "default": 16 }
+    { "type": "select", "id": "logo_filter", "label": "Logo filter", "options": [ { "value": "none", "label": "None" }, { "value": "grayscale(100%)", "label": "Grayscale" }, { "value": "opacity(0.7)", "label": "Faded" } ], "default": "grayscale(100%)" }
   ],
   "presets": [
     { "name": "Logo Carousel" }
