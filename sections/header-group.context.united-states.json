@@ -12,5 +12,15 @@
   "context": {
     "market": "united-states"
   },
-  "sections": {}
+  "sections": {
+    "header_section": {
+      "settings": {
+        "section_width": "full-width",
+        "section_height": "compact",
+        "color_scheme_transparent": "scheme-6",
+        "enable_transparent_header_home": false
+      },
+      "blocks": {}
+    }
+  }
 }
