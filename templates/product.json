@@ -92,6 +92,7 @@
             },
             "reviews": {
               "type": "review",
+              "disabled": true,
               "settings": {
                 "product": "{{ closest.product }}",
                 "stars_style": "shaded",
