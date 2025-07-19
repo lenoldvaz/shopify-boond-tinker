@@ -433,6 +433,7 @@
         "text_znqP4K",
         "group_H8UmkU"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
@@ -442,7 +443,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap": 40,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -460,6 +461,64 @@
         "gradient_direction": "to top",
         "padding-block-start": 60,
         "padding-block-end": 60
+      }
+    },
+    "section_YGqMm4": {
+      "type": "section",
+      "blocks": {
+        "ai_gen_block_6a2d290_YWywjE": {
+          "type": "ai_gen_block_6a2d290",
+          "settings": {
+            "title": "As Featured In",
+            "subtitle": "Trusted by leading publications",
+            "color_scheme": "scheme-1",
+            "logo_width": 120,
+            "logo_height": 80,
+            "logo_spacing": 40,
+            "logo_padding": 15,
+            "section_padding": 40,
+            "header_spacing": 30,
+            "scroll_speed": 30,
+            "hover_scale": 1.1,
+            "logo_background": "#f8f8f8",
+            "logo_border_radius": 8,
+            "logo_filter": "grayscale(100%)",
+            "title_size": 32,
+            "subtitle_size": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_6a2d290_YWywjE"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-e96a76ca-5672-4555-a4f6-6a372768393b",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "product_list_EDUBdR": {
@@ -583,8 +642,8 @@
                 "custom_width": 100,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
+                "height": "fill",
+                "custom_height": 50,
                 "inherit_color_scheme": true,
                 "color_scheme": "",
                 "background_media": "none",
@@ -682,11 +741,55 @@
                 "price_anAima",
                 "swatches_eYcKAz"
               ]
+            },
+            "buy_buttons_Pm3hHE": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "product": "{{  closest.product }}",
+                "stacking": false,
+                "show_pickup_availability": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "product": "{{ closest.product }}"
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "product": "{{ closest.product }}",
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "product": "{{ closest.product }}"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": []
             }
           },
           "block_order": [
             "product_card_gallery_hpki3q",
-            "group_jHUdWN"
+            "group_jHUdWN",
+            "buy_buttons_Pm3hHE"
           ]
         }
       },
@@ -972,38 +1075,16 @@
           "type": "_content-without-appearance",
           "static": true,
           "settings": {
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 24
           },
           "blocks": {
-            "image_y4ApqF": {
-              "type": "image",
-              "name": "t:names.image",
-              "settings": {
-                "link": "",
-                "image_ratio": "adapt",
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "text_Hf79zK": {
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>Productivity Essentials</h2>",
+                "text": "<p>Reviving Indian perfume making</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1028,7 +1109,7 @@
             "text_jxGhdJ": {
               "type": "text",
               "settings": {
-                "text": "<p>Objects that partner with your digital tools so you can focus on your most important work.</p>",
+                "text": "<ul><li>Employing 15+ local artisans to handcraft the fragrances and package them.</li><li>Made using traditional art forms like the Deg-Bhapka technique, handmade paper making and screen-printing.</li><li>Chemical and alcohol free fragrances made from pure, natural and locally sourced raw materials.</li><li>Conferred with the Geographical Indicator (GI) Tag by the Government of India for authentic Kannauj Perfume.</li></ul>",
                 "width": "fit-content",
                 "max_width": "narrow",
                 "alignment": "left",
@@ -1066,7 +1147,6 @@
             }
           },
           "block_order": [
-            "image_y4ApqF",
             "text_Hf79zK",
             "text_jxGhdJ",
             "button_zg4nUF"
@@ -1252,6 +1332,7 @@
   "order": [
     "hero_iLBwPd",
     "section_Hga4z4",
+    "section_YGqMm4",
     "product_list_EDUBdR",
     "product_list_iMHf73",
     "media_with_content_LfPdEJ",
