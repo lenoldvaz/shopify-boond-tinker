@@ -1,4 +1,4 @@
-
+{% assign visibility = section.settings.visibility_option %}
 
 {% if section.blocks.size > 1 %}
   {% capture controls %}
@@ -32,7 +32,7 @@
 %}
 
 <div
-  class="spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} disable-section-top-offset"
+  class="visibility-{{ visibility }}-{{ section.id }} spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} disable-section-top-offset"
   style="{% render 'spacing-padding', settings: section.settings %}"
 >
   {% render 'slideshow',
@@ -48,6 +48,21 @@
   %}
 </div>
 
+
+    <style>
+  @media screen and (min-width: 768px) {
+    .visibility-mobile-{{section.id}} {
+      display:none !important;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .visibility-desktop-{{section.id}} {
+      display: none !important;
+    }
+  }
+  
+</style>
+
 {% schema %}
 {
   "name": "t:names.slideshow",
@@ -61,6 +76,17 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "select",
+      "id": "visibility_option",
+      "label": "Display on",
+      "default": "both",
+      "options": [
+        {"value": "desktop", "label": "Desktop only"},
+        {"value": "mobile", "label": "Mobile only"},
+        {"value": "both", "label": "Mobile & Desktop both"}
+      ]
+    },
     {
       "type": "select",
       "id": "icons_style",
