@@ -1,6 +1,151 @@
+<div class="mega-menu">
+  <div class="mega-menu__column mega-menu__main">
+    <a href="{{ block.settings.main_category_1_link }}">{{ block.settings.main_category_1 }}</a>
+    <a href="{{ block.settings.main_category_2_link }}">{{ block.settings.main_category_2 }}</a>
+    <a href="{{ block.settings.main_category_3_link }}">{{ block.settings.main_category_3 }}</a>
+  </div>
+  <div class="mega-menu__column">
+    <div class="mega-menu__heading">{{ block.settings.skincare_heading }}</div>
+    <a href="{{ block.settings.skincare_1_link }}">{{ block.settings.skincare_1 }}</a>
+    <a href="{{ block.settings.skincare_2_link }}">{{ block.settings.skincare_2 }}</a>
+    <a href="{{ block.settings.skincare_3_link }}">{{ block.settings.skincare_3 }}</a>
+    <a href="{{ block.settings.skincare_4_link }}">{{ block.settings.skincare_4 }}</a>
+    <a href="{{ block.settings.skincare_5_link }}">{{ block.settings.skincare_5 }}</a>
+    <a href="{{ block.settings.skincare_all_link }}">{{ block.settings.skincare_all }}</a>
+  </div>
+  <div class="mega-menu__column">
+    <div class="mega-menu__heading">{{ block.settings.haircare_heading }}</div>
+    <a href="{{ block.settings.haircare_1_link }}">{{ block.settings.haircare_1 }}</a>
+    <a href="{{ block.settings.haircare_2_link }}">{{ block.settings.haircare_2 }}</a>
+    <a href="{{ block.settings.haircare_3_link }}">{{ block.settings.haircare_3 }}</a>
+    <a href="{{ block.settings.haircare_4_link }}">{{ block.settings.haircare_4 }}</a>
+    <a href="{{ block.settings.haircare_5_link }}">{{ block.settings.haircare_5 }}</a>
+    <a href="{{ block.settings.haircare_all_link }}">{{ block.settings.haircare_all }}</a>
+  </div>
+  <div class="mega-menu__column mega-menu__featured">
+    <div class="mega-menu__heading">{{ block.settings.featured_heading }}</div>
+    {% for i in (1..3) %}
+      {% capture img_key %}featured_image_{{ i }}{% endcapture %}
+      {% assign img = block.settings[img_key] %}
+      {% capture badge_key %}featured_badge_{{ i }}{% endcapture %}
+      {% assign badge = block.settings[badge_key] %}
+      {% capture title_key %}featured_title_{{ i }}{% endcapture %}
+      {% assign title = block.settings[title_key] %}
+      {% capture desc_key %}featured_desc_{{ i }}{% endcapture %}
+      {% assign desc = block.settings[desc_key] %}
+      {% capture link_key %}featured_link_{{ i }}{% endcapture %}
+      {% assign link = block.settings[link_key] %}
+      {% if img != blank or title != blank %}
+      <div class="mega-menu__product">
+        {% if img != blank %}
+          <a href="{{ link }}"><img src="{{ img | img_url: 'medium' }}" alt="{{ title }}" width="120" height="120" /></a>
+        {% endif %}
+        {% if badge != blank %}<div class="mega-menu__badge">{{ badge }}</div>{% endif %}
+        <div class="mega-menu__title">{{ title }}</div>
+        <div class="mega-menu__desc">{{ desc }}</div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.mega-menu {
+  display: flex;
+  background: #fff;
+  padding: 2em;
+  gap: 2em;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+.mega-menu__column { flex: 1; }
+.mega-menu__main a {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.mega-menu__heading {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+.mega-menu__product {
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+.mega-menu__badge {
+  background: #1ca000;
+  color: #fff;
+  padding: 0.2em 0.6em;
+  border-radius: 6px;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+  display: inline-block;
+}
+.mega-menu__title { font-weight: bold; margin-bottom: 0.2em; }
+.mega-menu__desc { font-size: 0.95em; color: #666; }
+</style>
+
 {% schema %}
-  {
-    "name": "Block name",
-    "settings": []
-  }
-{% endschema %}
+{
+  "name": "Mega Menu",
+  "settings": [
+    {"type": "header", "content": "Main Categories"},
+    {"type": "text", "id": "main_category_1", "label": "Main Category 1", "default": "Best Sellers"},
+    {"type": "url", "id": "main_category_1_link", "label": "Main Category 1 Link"},
+    {"type": "text", "id": "main_category_2", "label": "Main Category 2", "default": "Build Your Own Bundle"},
+    {"type": "url", "id": "main_category_2_link", "label": "Main Category 2 Link"},
+    {"type": "text", "id": "main_category_3", "label": "Main Category 3", "default": "Subscribe & Save"},
+    {"type": "url", "id": "main_category_3_link", "label": "Main Category 3 Link"},
+    {"type": "header", "content": "Shop Skincare"},
+    {"type": "text", "id": "skincare_heading", "label": "Skincare Heading", "default": "Shop Skincare"},
+    {"type": "text", "id": "skincare_1", "label": "Skincare Link 1", "default": "Dry + Sensitive"},
+    {"type": "url", "id": "skincare_1_link", "label": "Skincare Link 1 URL"},
+    {"type": "text", "id": "skincare_2", "label": "Skincare Link 2", "default": "Hyperpigmentation"},
+    {"type": "url", "id": "skincare_2_link", "label": "Skincare Link 2 URL"},
+    {"type": "text", "id": "skincare_3", "label": "Skincare Link 3", "default": "Acne"},
+    {"type": "url", "id": "skincare_3_link", "label": "Skincare Link 3 URL"},
+    {"type": "text", "id": "skincare_4", "label": "Skincare Link 4", "default": "Anti-Aging"},
+    {"type": "url", "id": "skincare_4_link", "label": "Skincare Link 4 URL"},
+    {"type": "text", "id": "skincare_5", "label": "Skincare Link 5", "default": "Combination"},
+    {"type": "url", "id": "skincare_5_link", "label": "Skincare Link 5 URL"},
+    {"type": "text", "id": "skincare_all", "label": "Shop All Skincare", "default": "SHOP ALL SKINCARE"},
+    {"type": "url", "id": "skincare_all_link", "label": "Shop All Skincare URL"},
+    {"type": "header", "content": "Shop Haircare"},
+    {"type": "text", "id": "haircare_heading", "label": "Haircare Heading", "default": "Shop Haircare"},
+    {"type": "text", "id": "haircare_1", "label": "Haircare Link 1", "default": "Hair Essentials Bundle"},
+    {"type": "url", "id": "haircare_1_link", "label": "Haircare Link 1 URL"},
+    {"type": "text", "id": "haircare_2", "label": "Haircare Link 2", "default": "Hair Mask"},
+    {"type": "url", "id": "haircare_2_link", "label": "Haircare Link 2 URL"},
+    {"type": "text", "id": "haircare_3", "label": "Haircare Link 3", "default": "Hair Growth Serum"},
+    {"type": "url", "id": "haircare_3_link", "label": "Haircare Link 3 URL"},
+    {"type": "text", "id": "haircare_4", "label": "Haircare Link 4", "default": "Growth Shampoo"},
+    {"type": "url", "id": "haircare_4_link", "label": "Haircare Link 4 URL"},
+    {"type": "text", "id": "haircare_5", "label": "Haircare Link 5", "default": "Repair Conditioner"},
+    {"type": "url", "id": "haircare_5_link", "label": "Haircare Link 5 URL"},
+    {"type": "text", "id": "haircare_all", "label": "Shop All Haircare", "default": "SHOP ALL HAIRCARE"},
+    {"type": "url", "id": "haircare_all_link", "label": "Shop All Haircare URL"},
+    {"type": "header", "content": "Featured Products"},
+    {"type": "text", "id": "featured_heading", "label": "Featured Heading", "default": "Trending this Week"},
+    {"type": "image_picker", "id": "featured_image_1", "label": "Featured Image 1"},
+    {"type": "text", "id": "featured_badge_1", "label": "Featured Badge 1", "default": "Save 20%"},
+    {"type": "text", "id": "featured_title_1", "label": "Featured Title 1", "default": "The Bestsellers"},
+    {"type": "textarea", "id": "featured_desc_1", "label": "Featured Description 1", "default": "Includes all 10 of our best-selling products!"},
+    {"type": "url", "id": "featured_link_1", "label": "Featured Link 1"},
+    {"type": "image_picker", "id": "featured_image_2", "label": "Featured Image 2"},
+    {"type": "text", "id": "featured_badge_2", "label": "Featured Badge 2", "default": "Save 20%"},
+    {"type": "text", "id": "featured_title_2", "label": "Featured Title 2", "default": "Clear Skin All-Stars"},
+    {"type": "textarea", "id": "featured_desc_2", "label": "Featured Description 2", "default": "Includes Clay Mask, Gel Moisturiser, Gel Cleanser, Niacinamide Serum & Brush"},
+    {"type": "url", "id": "featured_link_2", "label": "Featured Link 2"},
+    {"type": "image_picker", "id": "featured_image_3", "label": "Featured Image 3"},
+    {"type": "text", "id": "featured_badge_3", "label": "Featured Badge 3", "default": "Save 20%"},
+    {"type": "text", "id": "featured_title_3", "label": "Featured Title 3", "default": "Longer & Stronger Hair Essentials"},
+    {"type": "textarea", "id": "featured_desc_3", "label": "Featured Description 3", "default": "Level up your hair care game with this lengthening & strengthening hair care routine."},
+    {"type": "url", "id": "featured_link_3", "label": "Featured Link 3"}
+  ]
+}
+{% endschema %} 
