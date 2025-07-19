@@ -21,11 +21,13 @@
 
   .ai-logo-carousel__title-{{ ai_gen_id }} {
     font-size: {{ block.settings.title_size }}px;
+    text-align: {{ block.settings.title_align }};
     margin: 0 0 8px;
   }
 
   .ai-logo-carousel__subtitle-{{ ai_gen_id }} {
     font-size: {{ block.settings.subtitle_size }}px;
+    text-align: {{ block.settings.subtitle_align }};
     opacity: 0.8;
     margin: 0;
   }
@@ -34,7 +36,14 @@
     display: flex;
     align-items: center;
     gap: {{ block.settings.logo_spacing }}px;
-    animation: ai-logo-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+    {% if block.settings.carousel_mode == 'scrolling' %}
+      animation: ai-logo-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+    {% endif %}
+  }
+  .ai-logo-carousel__track-{{ ai_gen_id }}.ai-logo-carousel__track--static {
+    animation: none !important;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .ai-logo-carousel__item-{{ ai_gen_id }} {
@@ -105,19 +114,32 @@
   {% if block.settings.title != blank or block.settings.subtitle != blank %}
     <div class="ai-logo-carousel__header-{{ ai_gen_id }}">
       {% if block.settings.title != blank %}
-        <h2 class="ai-logo-carousel__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        <h2 class="ai-logo-carousel__title-{{ ai_gen_id }}"
+            style="font-size: {{ block.settings.title_size }}px; text-align: {{ block.settings.title_align }};">
+          {{ block.settings.title }}
+        </h2>
       {% endif %}
       {% if block.settings.subtitle != blank %}
-        <p class="ai-logo-carousel__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+        <p class="ai-logo-carousel__subtitle-{{ ai_gen_id }}"
+           style="font-size: {{ block.settings.subtitle_size }}px; text-align: {{ block.settings.subtitle_align }};">
+          {{ block.settings.subtitle }}
+        </p>
       {% endif %}
     </div>
   {% endif %}
 
-  <div class="ai-logo-carousel__track-{{ ai_gen_id }}">
-    {% for i in (1..8) %}
+  <div class="ai-logo-carousel__track-{{ ai_gen_id }}{% if block.settings.carousel_mode == 'static' %} ai-logo-carousel__track--static{% endif %}">
+    {% assign logo_count = 0 %}
+    {% for i in (1..16) %}
       {% assign logo_key = 'logo_' | append: i %}
       {% assign logo = block.settings[logo_key] %}
-      
+      {% if logo != blank %}
+        {% assign logo_count = logo_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    {% for i in (1..16) %}
+      {% assign logo_key = 'logo_' | append: i %}
+      {% assign logo = block.settings[logo_key] %}
       {% if logo != blank %}
         <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
           <img
@@ -129,38 +151,26 @@
             height="200"
           >
         </div>
-      {% else %}
-        <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
-          <div class="ai-logo-carousel__placeholder-{{ ai_gen_id }}">
-            {{ 'image' | placeholder_svg_tag }}
-          </div>
-        </div>
       {% endif %}
     {% endfor %}
-
-    {% for i in (1..8) %}
-      {% assign logo_key = 'logo_' | append: i %}
-      {% assign logo = block.settings[logo_key] %}
-      
-      {% if logo != blank %}
-        <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
-          <img
-            src="{{ logo | image_url: width: 300 }}"
-            alt="{{ logo.alt | escape }}"
-            class="ai-logo-carousel__logo-{{ ai_gen_id }}"
-            loading="lazy"
-            width="300"
-            height="200"
-          >
-        </div>
-      {% else %}
-        <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
-          <div class="ai-logo-carousel__placeholder-{{ ai_gen_id }}">
-            {{ 'image' | placeholder_svg_tag }}
+    {% if block.settings.carousel_mode == 'scrolling' %}
+      {% for i in (1..16) %}
+        {% assign logo_key = 'logo_' | append: i %}
+        {% assign logo = block.settings[logo_key] %}
+        {% if logo != blank %}
+          <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
+            <img
+              src="{{ logo | image_url: width: 300 }}"
+              alt="{{ logo.alt | escape }}"
+              class="ai-logo-carousel__logo-{{ ai_gen_id }}"
+              loading="lazy"
+              width="300"
+              height="200"
+            >
           </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </div>
 </logo-carousel-{{ ai_gen_id }}>
 
@@ -198,228 +208,51 @@
   "name": "Logo Carousel",
   "tag": null,
   "settings": [
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Title",
-      "default": "As Featured In"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle",
-      "default": "Trusted by leading publications"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Publication Logos"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_1",
-      "label": "Logo 1"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_2",
-      "label": "Logo 2"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_3",
-      "label": "Logo 3"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_4",
-      "label": "Logo 4"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_5",
-      "label": "Logo 5"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_6",
-      "label": "Logo 6"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_7",
-      "label": "Logo 7"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo_8",
-      "label": "Logo 8"
-    },
-    {
-      "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 80,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "label": "Logo width",
-      "default": 120
-    },
-    {
-      "type": "range",
-      "id": "logo_height",
-      "min": 40,
-      "max": 120,
-      "step": 10,
-      "unit": "px",
-      "label": "Logo height",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "logo_spacing",
-      "min": 10,
-      "max": 60,
-      "step": 10,
-      "unit": "px",
-      "label": "Logo spacing",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "logo_padding",
-      "min": 5,
-      "max": 25,
-      "step": 5,
-      "unit": "px",
-      "label": "Logo padding",
-      "default": 15
-    },
-    {
-      "type": "range",
-      "id": "section_padding",
-      "min": 20,
-      "max": 80,
-      "step": 10,
-      "unit": "px",
-      "label": "Section padding",
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "header_spacing",
-      "min": 10,
-      "max": 50,
-      "step": 10,
-      "unit": "px",
-      "label": "Header spacing",
-      "default": 30
-    },
-    {
-      "type": "header",
-      "content": "Animation"
-    },
-    {
-      "type": "range",
-      "id": "scroll_speed",
-      "min": 10,
-      "max": 60,
-      "step": 10,
-      "unit": "s",
-      "label": "Scroll speed",
-      "default": 30
-    },
-    {
-      "type": "range",
-      "id": "hover_scale",
-      "min": 1,
-      "max": 1.2,
-      "step": 0.1,
-      "label": "Hover scale",
-      "default": 1.1
-    },
-    {
-      "type": "header",
-      "content": "Style"
-    },
-    {
-      "type": "color",
-      "id": "logo_background",
-      "label": "Logo background",
-      "default": "#f8f8f8"
-    },
-    {
-      "type": "range",
-      "id": "logo_border_radius",
-      "min": 0,
-      "max": 20,
-      "step": 2,
-      "unit": "px",
-      "label": "Logo border radius",
-      "default": 8
-    },
-    {
-      "type": "select",
-      "id": "logo_filter",
-      "label": "Logo filter",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "grayscale(100%)",
-          "label": "Grayscale"
-        },
-        {
-          "value": "opacity(0.7)",
-          "label": "Faded"
-        }
-      ],
-      "default": "grayscale(100%)"
-    },
-    {
-      "type": "header",
-      "content": "Typography"
-    },
-    {
-      "type": "range",
-      "id": "title_size",
-      "min": 16,
-      "max": 48,
-      "step": 2,
-      "unit": "px",
-      "label": "Title size",
-      "default": 32
-    },
-    {
-      "type": "range",
-      "id": "subtitle_size",
-      "min": 12,
-      "max": 24,
-      "step": 2,
-      "unit": "px",
-      "label": "Subtitle size",
-      "default": 16
-    }
+    { "type": "header", "content": "Heading" },
+    { "type": "text", "id": "title", "label": "Title", "default": "As Featured In" },
+    { "type": "range", "id": "title_size", "label": "Title Size", "min": 16, "max": 48, "step": 2, "unit": "px", "default": 32 },
+    { "type": "select", "id": "title_align", "label": "Title Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Trusted by leading publications" },
+    { "type": "range", "id": "subtitle_size", "label": "Subtitle Size", "min": 12, "max": 24, "step": 2, "unit": "px", "default": 16 },
+    { "type": "select", "id": "subtitle_align", "label": "Subtitle Alignment", "options": [ { "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" } ], "default": "center" },
+    { "type": "header", "content": "Publication Logos" },
+    { "type": "image_picker", "id": "logo_1", "label": "Logo 1" },
+    { "type": "image_picker", "id": "logo_2", "label": "Logo 2" },
+    { "type": "image_picker", "id": "logo_3", "label": "Logo 3" },
+    { "type": "image_picker", "id": "logo_4", "label": "Logo 4" },
+    { "type": "image_picker", "id": "logo_5", "label": "Logo 5" },
+    { "type": "image_picker", "id": "logo_6", "label": "Logo 6" },
+    { "type": "image_picker", "id": "logo_7", "label": "Logo 7" },
+    { "type": "image_picker", "id": "logo_8", "label": "Logo 8" },
+    { "type": "image_picker", "id": "logo_9", "label": "Logo 9" },
+    { "type": "image_picker", "id": "logo_10", "label": "Logo 10" },
+    { "type": "image_picker", "id": "logo_11", "label": "Logo 11" },
+    { "type": "image_picker", "id": "logo_12", "label": "Logo 12" },
+    { "type": "image_picker", "id": "logo_13", "label": "Logo 13" },
+    { "type": "image_picker", "id": "logo_14", "label": "Logo 14" },
+    { "type": "image_picker", "id": "logo_15", "label": "Logo 15" },
+    { "type": "image_picker", "id": "logo_16", "label": "Logo 16" },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "logo_width", "min": 80, "max": 200, "step": 10, "unit": "px", "label": "Logo width", "default": 120 },
+    { "type": "range", "id": "logo_height", "min": 40, "max": 120, "step": 10, "unit": "px", "label": "Logo height", "default": 80 },
+    { "type": "range", "id": "logo_spacing", "min": 10, "max": 60, "step": 10, "unit": "px", "label": "Logo spacing", "default": 40 },
+    { "type": "range", "id": "logo_padding", "min": 5, "max": 25, "step": 5, "unit": "px", "label": "Logo padding", "default": 15 },
+    { "type": "range", "id": "section_padding", "min": 20, "max": 80, "step": 10, "unit": "px", "label": "Section padding", "default": 40 },
+    { "type": "range", "id": "header_spacing", "min": 10, "max": 50, "step": 10, "unit": "px", "label": "Header spacing", "default": 30 },
+    { "type": "header", "content": "Animation" },
+    { "type": "select", "id": "carousel_mode", "label": "Carousel Mode", "options": [ { "value": "scrolling", "label": "Scrolling" }, { "value": "static", "label": "Static" } ], "default": "scrolling" },
+    { "type": "range", "id": "scroll_speed", "min": 10, "max": 60, "step": 10, "unit": "s", "label": "Scroll speed", "default": 30 },
+    { "type": "range", "id": "hover_scale", "min": 1, "max": 1.2, "step": 0.1, "label": "Hover scale", "default": 1.1 },
+    { "type": "header", "content": "Style" },
+    { "type": "color", "id": "logo_background", "label": "Logo background", "default": "#f8f8f8" },
+    { "type": "range", "id": "logo_border_radius", "min": 0, "max": 20, "step": 2, "unit": "px", "label": "Logo border radius", "default": 8 },
+    { "type": "select", "id": "logo_filter", "label": "Logo filter", "options": [ { "value": "none", "label": "None" }, { "value": "grayscale(100%)", "label": "Grayscale" }, { "value": "opacity(0.7)", "label": "Faded" } ], "default": "grayscale(100%)" },
+    { "type": "header", "content": "Typography" },
+    { "type": "range", "id": "title_size", "min": 16, "max": 48, "step": 2, "unit": "px", "label": "Title size", "default": 32 },
+    { "type": "range", "id": "subtitle_size", "min": 12, "max": 24, "step": 2, "unit": "px", "label": "Subtitle size", "default": 16 }
   ],
   "presets": [
-    {
-      "name": "Logo Carousel"
-    }
+    { "name": "Logo Carousel" }
   ]
 }
 {% endschema %}
