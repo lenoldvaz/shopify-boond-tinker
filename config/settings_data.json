@@ -158,7 +158,7 @@
       },
       "scheme-4": {
         "settings": {
-          "background": "#fdc656",
+          "background": "#ffe6b4",
           "foreground_heading": "#000000",
           "foreground": "#000000",
           "primary": "#000000",
@@ -388,6 +388,45 @@
           "selected_variant_hover_background_color": "#1a1a1a",
           "selected_variant_hover_text_color": "#ffffff",
           "selected_variant_hover_border_color": "#1a1a1a"
+        }
+      },
+      "scheme-e96a76ca-5672-4555-a4f6-6a372768393b": {
+        "settings": {
+          "background": "#f7f1eb",
+          "foreground_heading": "#111111",
+          "foreground": "#111111",
+          "primary": "#cf8b64",
+          "primary_hover": "#7a4e41",
+          "border": "#e0dad4",
+          "shadow": "#00000024",
+          "primary_button_background": "#cf8b64",
+          "primary_button_text": "#ffffff",
+          "primary_button_border": "#cf8b64",
+          "primary_button_hover_background": "#7a4e41",
+          "primary_button_hover_text": "#ffffff",
+          "primary_button_hover_border": "#7a4e41",
+          "secondary_button_background": "#fff3e9",
+          "secondary_button_text": "#cf8b64",
+          "secondary_button_border": "#cf8b64",
+          "secondary_button_hover_background": "#ffe5b4",
+          "secondary_button_hover_text": "#cf8b64",
+          "secondary_button_hover_border": "#cf8b64",
+          "input_background": "#ffffff",
+          "input_text_color": "#111111",
+          "input_border_color": "#e0dad4",
+          "input_hover_background": "#fff3e9",
+          "variant_background_color": "#ffffff",
+          "variant_text_color": "#111111",
+          "variant_border_color": "#e0dad4",
+          "variant_hover_background_color": "#fff3e9",
+          "variant_hover_text_color": "#cf8b64",
+          "variant_hover_border_color": "#e0dad4",
+          "selected_variant_background_color": "#cf8b64",
+          "selected_variant_text_color": "#ffffff",
+          "selected_variant_border_color": "#cf8b64",
+          "selected_variant_hover_background_color": "#7a4e41",
+          "selected_variant_hover_text_color": "#ffffff",
+          "selected_variant_hover_border_color": "#7a4e41"
         }
       }
     }
