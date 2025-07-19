@@ -94,7 +94,7 @@
         "show_search": true,
         "search_position": "right",
         "search_row": "top",
-        "show_country": false,
+        "show_country": true,
         "country_selector_style": true,
         "show_language": false,
         "localization_position": "right",
