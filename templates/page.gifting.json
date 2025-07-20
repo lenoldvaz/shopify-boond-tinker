@@ -1456,7 +1456,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Talk to us!",
-            "link": "",
+            "link": "shopify://pages/wedding-gifting-tally-form",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -2219,6 +2219,17 @@
         "padding-block-end": 16
       }
     },
+    "custom_liquid_VCq8U7": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "divider_giPU73": {
       "type": "divider",
       "name": "t:names.divider_section",
@@ -2231,17 +2242,6 @@
         "alignment_horizontal": "center",
         "padding-block-start": 80,
         "padding-block-end": 16
-      }
-    },
-    "custom_liquid_VCq8U7": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
       }
     }
   },
