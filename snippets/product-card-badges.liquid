@@ -10,7 +10,7 @@
 {% assign mf_badge  = product.metafields.custom.badge_type | downcase %}
 {% assign badge_text = product.metafields.custom.badge_text %}
 {% assign badge_type = '' %}
-{% assign show_sale_badge = block.settings.show_sale_badge | default: settings.show_sale_badge %}
+{% assign show_sale_badge = show_sale_badge | default: settings.show_sale_badge %}
 
 
 {%- if product.available == false -%}
