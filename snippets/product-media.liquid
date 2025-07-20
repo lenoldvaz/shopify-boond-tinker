@@ -23,7 +23,7 @@
 >
  {% if product.media.first.id == media.id %}
   <div class="product-media-badge-wrapper">
-    {% render 'product-card-badges', product: product %}
+    {% render 'product-card-badges', product: product,  show_sale_badge: block.settings.show_sale_badge %}
   </div>
 {% endif %}
  
