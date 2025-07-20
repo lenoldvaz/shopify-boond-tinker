@@ -787,6 +787,7 @@
           "static": true,
           "settings": {
             "product": "{{ closest.product }}",
+            "show_sale_badge": true,
             "product_card_gap": 0,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-1",
@@ -1079,6 +1080,7 @@
           "static": true,
           "settings": {
             "product": "{{ closest.product }}",
+            "show_sale_badge": true,
             "product_card_gap": 0,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-e1e09ff5-6396-47cd-ad7a-c05470cf2a2e",
@@ -1358,6 +1360,59 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "17530406586e3a1e5b": {
+      "type": "_blocks",
+      "blocks": {
+        "instafeed_app_block_ineDgj": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "The fragrances that everyone is talking about",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 80,
+            "instafeed_margin_bottom": 80,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_ineDgj"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -1366,6 +1421,7 @@
     "section_YGqMm4",
     "product_list_EDUBdR",
     "product_list_iMHf73",
-    "media_with_content_LfPdEJ"
+    "media_with_content_LfPdEJ",
+    "17530406586e3a1e5b"
   ]
 }
