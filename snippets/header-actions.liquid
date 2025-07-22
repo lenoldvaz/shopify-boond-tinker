@@ -273,85 +273,131 @@
   }
 
   /* Currency Switcher Styles */
-  .nt_currency {
+  .currency-selector {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
   }
 
-  .nt_currency .value {
+  .currency-button {
     display: flex;
     align-items: center;
-    gap: var(--gap-xs);
-    padding: var(--padding-sm);
+    gap: 6px;
+    padding: 8px 12px;
+    background: none;
+    border: none;
     cursor: pointer;
-    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
     color: var(--color-foreground);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
   }
 
-  .nt_currency .nav_dropdown {
+  .currency-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .currency-flag {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .currency-code {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .currency-caret {
+    font-size: 10px;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    transition: transform 0.2s ease;
+  }
+
+  .currency-selector:hover .currency-caret {
+    transform: rotate(180deg);
+  }
+
+  .currency-dropdown {
     position: absolute;
     top: 100%;
-    right: 0;
+    left: 0;
     background: var(--color-background);
-    border: var(--style-border-width) solid var(--color-border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-dropdown);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     min-width: 120px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--animation-speed) var(--animation-easing);
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
   }
 
-  .nt_currency:hover .nav_dropdown {
+  .currency-selector:hover .currency-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
 
-  .nt_currency .sub-menu {
+  .currency-menu {
     list-style: none;
     margin: 0;
-    padding: var(--padding-sm);
+    padding: 8px 0;
   }
 
-  .nt_currency .sub-menu li {
+  .currency-menu li {
     margin: 0;
   }
 
-  .nt_currency .sub-menu a {
-    display: block;
-    padding: var(--padding-xs) var(--padding-sm);
+  .currency-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
     text-decoration: none;
     color: var(--color-foreground);
-    transition: background-color var(--animation-speed) var(--animation-easing);
+    font-size: 14px;
+    transition: background-color 0.2s ease;
   }
 
-  .nt_currency .sub-menu a:hover {
-    background-color: var(--color-border);
+  .currency-option:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
-  .nt_currency .sub-menu a.selected {
-    font-weight: bold;
+  .currency-option.selected {
+    font-weight: 600;
     background-color: var(--color-primary);
     color: var(--color-background);
   }
 
-  .nt_currency .currency-item {
-    display: block;
-    padding: var(--padding-xs) var(--padding-sm);
+  .currency-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+  }
+
+  .currency-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
     text-decoration: none;
     color: var(--color-foreground);
-    transition: background-color var(--animation-speed) var(--animation-easing);
+    font-size: 14px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
   }
 
-  .nt_currency .currency-item:hover {
-    background-color: var(--color-border);
+  .currency-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
-  .nt_currency .currency-item.selected {
-    font-weight: bold;
+  .currency-item.selected {
+    font-weight: 600;
     background-color: var(--color-primary);
     color: var(--color-background);
   }
