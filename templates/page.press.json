@@ -2851,7 +2851,7 @@
             "overlay_style": "solid",
             "gradient_direction": "to top",
             "padding-block-start": 0,
-            "padding-block-end": 49,
+            "padding-block-end": 100,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -2912,7 +2912,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
-                    "type_preset": "h3",
+                    "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "",
                     "line_height": "normal",
@@ -2959,7 +2959,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Watch here",
+                    "label": "Read Here",
                     "link": "https://www.vogue.in/beauty/content/is-your-perfume-sustainable?fbclid=PAAaahn9VGKDAjzI2aX2FjVDck9p7b9rWwzRy8fZJmZE6M0M0TfP-j1UhLKNU",
                     "open_in_new_tab": true,
                     "style_class": "button",
@@ -3025,7 +3025,7 @@
               "type": "icon",
               "settings": {
                 "icon": "none",
-                "image_upload": "shopify://shop_images/loung_43784482-3c23-4b1a-98e8-85e2c5c46ff4.png",
+                "image_upload": "shopify://shop_images/Untitled_design_7.png",
                 "width": 200,
                 "link": "",
                 "open_in_new_tab": true
@@ -3073,11 +3073,11 @@
                 "text_eUjawK": {
                   "type": "text",
                   "settings": {
-                    "text": "<h3><a href=\"https://tinyurl.com/2p9yrktx\" target=\"_blank\"><strong>Meet the entrepreneurs taking Indian fragrance to the world</strong></a></h3>",
+                    "text": "<h5><a href=\"https://tinyurl.com/44muzu7t\" target=\"_blank\"><strong>This Rakhi, gift fragrances from olfactory hub of Kannauj with Boond’s festive perfume collection</strong></a></h5>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
-                    "type_preset": "h3",
+                    "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "",
                     "line_height": "normal",
@@ -3098,7 +3098,7 @@
                 "text_KkdxLe": {
                   "type": "text",
                   "settings": {
-                    "text": "<p><em>Mint Lounge</em></p>",
+                    "text": "<p><em>Indulge</em></p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -3124,8 +3124,8 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Watch Me",
-                    "link": "https://tinyurl.com/2p9yrktx",
+                    "label": "Read Here",
+                    "link": "https://tinyurl.com/44muzu7t",
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
@@ -3190,7 +3190,7 @@
               "type": "icon",
               "settings": {
                 "icon": "silhouette",
-                "image_upload": "shopify://shop_images/Untitled_design_4.png",
+                "image_upload": "shopify://shop_images/Untitled_design_5.png",
                 "width": 200,
                 "link": "",
                 "open_in_new_tab": false
@@ -3238,11 +3238,11 @@
                 "text_zLAnUq": {
                   "type": "text",
                   "settings": {
-                    "text": "<h3><a href=\"https://www.mansworldindia.com/currentedition/homegrown-fragrances-on-our-radar-that-should-be-in-your-perfume-collection/\" target=\"_self\"><strong>Homegrown Fragrances On Our Radar That Should Be In Your Perfume Collection</strong></a></h3>",
+                    "text": "<h5><a href=\"https://www.mid-day.com/sunday-mid-day/article/we-wont-smell-of-roses-experts-dwell-on-how-climate-change-is-affecting-the-perfume-industry-23254019\" target=\"_blank\"><strong>We won't smell of roses: Experts dwell on how climate change is affecting the perfume industry</strong></a></h5>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
-                    "type_preset": "h3",
+                    "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "",
                     "line_height": "normal",
@@ -3289,8 +3289,8 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Watch Me",
-                    "link": "https://www.mansworldindia.com/currentedition/homegrown-fragrances-on-our-radar-that-should-be-in-your-perfume-collection/",
+                    "label": "Read Here",
+                    "link": "https://www.mid-day.com/sunday-mid-day/article/we-wont-smell-of-roses-experts-dwell-on-how-climate-change-is-affecting-the-perfume-industry-23254019",
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
