@@ -28,9 +28,16 @@
         e.preventDefault();
         var option = target.closest('.currency-option');
         if (option) {
-          var currencyCode = option.getAttribute('data-currency');
-          if (currencyCode) {
-            switchCurrency(currencyCode);
+          var href = option.getAttribute('href');
+          if (href) {
+            // Use the href directly for proper currency switching
+            window.location.href = href;
+          } else {
+            // Fallback to data-currency method
+            var currencyCode = option.getAttribute('data-currency');
+            if (currencyCode) {
+              switchCurrency(currencyCode);
+            }
           }
         }
       }

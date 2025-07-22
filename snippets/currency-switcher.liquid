@@ -1,44 +1,70 @@
-{%- if settings.currency_type == '1' and shop.enabled_currencies.size > 1 -%}
-    {%- assign cart_iso_code = cart.currency.iso_code -%}
-    {%- assign currency_header = false -%}
-    {%- if currency_header -%}
-    <ul class="currency-list">
-        {%- if linklists.currency-the4.links.size > 0 -%}
-          {%- for currency in shop.enabled_currencies -%}{%- assign iso_code = currency.iso_code -%}
-                <li><a data-currency="{{iso_code}}" class="currency-item chp{% if iso_code == cart_iso_code %} selected{% endif %}" href="#">{{ iso_code }}</a></li>
-          {%- endfor -%}
-        {%- else -%}
-          {%- for currency in shop.enabled_currencies -%}{%- assign iso_code = currency.iso_code -%}
-                <li><a data-currency="{{iso_code}}" class="currency-item chp{% if iso_code == cart_iso_code %} selected{% endif %}" href="#">{{ iso_code }}</a></li>
-          {%- endfor -%}
-        {%- endif -%}
-     </ul>
-    {%- else -%}
-       <div class="currency-selector">
-         {%- if block.settings.title != blank-%}<span class="currency-title">{{block.settings.title}}</span>{%- endif -%}
-         {%- if linklists.currency-the4.links.size > 0 -%}
-           {%- assign ck_iso_code = '#'|append:cart_iso_code -%}{%- assign links_cur = linklists.currency-the4.links | where: "url", ck_iso_code -%}
-         {%- endif -%}
-          <button class="currency-button" aria-label="Select currency">
-            <span class="currency-flag">{% case cart_iso_code %}{% when 'INR' %}🇮🇳{% when 'USD' %}🇺🇸{% when 'EUR' %}🇪🇺{% when 'GBP' %}🇬🇧{% when 'CAD' %}🇨🇦{% when 'AUD' %}🇦🇺{% when 'JPY' %}🇯🇵{% when 'CNY' %}🇨🇳{% when 'CHF' %}🇨🇭{% when 'SEK' %}🇸🇪{% when 'NOK' %}🇳🇴{% when 'DKK' %}🇩🇰{% when 'PLN' %}🇵🇱{% when 'CZK' %}🇨🇿{% when 'HUF' %}🇭🇺{% when 'RON' %}🇷🇴{% when 'BGN' %}🇧🇬{% when 'HRK' %}🇭🇷{% when 'RUB' %}🇷🇺{% when 'TRY' %}🇹🇷{% when 'BRL' %}🇧🇷{% when 'MXN' %}🇲🇽{% when 'ARS' %}🇦🇷{% when 'CLP' %}🇨🇱{% when 'COP' %}🇨🇴{% when 'PEN' %}🇵🇪{% when 'UYU' %}🇺🇾{% when 'VEF' %}🇻🇪{% when 'ZAR' %}🇿🇦{% when 'NGN' %}🇳🇬{% when 'EGP' %}🇪🇬{% when 'GHS' %}🇬🇭{% when 'KES' %}🇰🇪{% when 'MAD' %}🇲🇦{% when 'TND' %}🇹🇳{% when 'XOF' %}🇧🇫{% when 'XAF' %}🇨🇲{% when 'XCD' %}🇦🇬{% when 'JMD' %}🇯🇲{% when 'BBD' %}🇧🇧{% when 'BZD' %}🇧🇿{% when 'BMD' %}🇧🇲{% when 'GYD' %}🇬🇾{% when 'SRD' %}🇸🇷{% when 'TTD' %}🇹🇹{% when 'XPF' %}🇵🇫{% when 'TOP' %}🇹🇴{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% else %}🌐{% endcase %}</span>
-            <span class="currency-code">{{ links_cur.first.title|default:cart_iso_code }}</span>
-            <span class="currency-caret">▼</span>
-          </button>
-          <div class="currency-dropdown">
-             <ul class="currency-menu">
-                {%- if linklists.currency-the4.links.size > 0 -%}
-                  {%- for link in linklists.currency-the4.links -%}{%- assign iso_code = link.url |remove:'#'|remove:' ' -%}
-                       <li><a data-currency="{{iso_code}}" class="currency-option{% if iso_code == cart_iso_code %} selected{% endif %}" href="#" rel="nofollow">{{ link.title|strip_html }}</a></li>
-                  {%- endfor -%}
-                {%- else -%}
-                  {%- for currency in shop.enabled_currencies -%}{%- assign iso_code = currency.iso_code -%}
-                       <li><a data-currency="{{iso_code}}" class="currency-option{% if iso_code == cart_iso_code %} selected{% endif %}" href="#" rel="nofollow">{{ iso_code }}</a></li>
-                  {%- endfor -%}
-                {%- endif -%}
-             </ul>
-          </div>
-       </div>
-    {%- endif -%}
+{%- if settings.currency_type == '0' and localization.available_countries.size > 1 -%}
+  {%- comment -%} Use Shopify's native localization system {%- endcomment -%}
+  {%- assign current_currency = cart.currency.iso_code -%}
+  <div class="currency-selector">
+    <button class="currency-button" aria-label="Select currency">
+      <span class="currency-flag">{% case current_currency %}{% when 'INR' %}🇮🇳{% when 'USD' %}🇺🇸{% when 'EUR' %}🇪🇺{% when 'GBP' %}🇬🇧{% when 'CAD' %}🇨🇦{% when 'AUD' %}🇦🇺{% when 'JPY' %}🇯🇵{% when 'CNY' %}🇨🇳{% when 'CHF' %}🇨🇭{% when 'SEK' %}🇸🇪{% when 'NOK' %}🇳🇴{% when 'DKK' %}🇩🇰{% when 'PLN' %}🇵🇱{% when 'CZK' %}🇨🇿{% when 'HUF' %}🇭🇺{% when 'RON' %}🇷🇴{% when 'BGN' %}🇧🇬{% when 'HRK' %}🇭🇷{% when 'RUB' %}🇷🇺{% when 'TRY' %}🇹🇷{% when 'BRL' %}🇧🇷{% when 'MXN' %}🇲🇽{% when 'ARS' %}🇦🇷{% when 'CLP' %}🇨🇱{% when 'COP' %}🇨🇴{% when 'PEN' %}🇵🇪{% when 'UYU' %}🇺🇾{% when 'VEF' %}🇻🇪{% when 'ZAR' %}🇿🇦{% when 'NGN' %}🇳🇬{% when 'EGP' %}🇪🇬{% when 'GHS' %}🇬🇭{% when 'KES' %}🇰🇪{% when 'MAD' %}🇲🇦{% when 'TND' %}🇹🇳{% when 'XOF' %}🇧🇫{% when 'XAF' %}🇨🇲{% when 'XCD' %}🇦🇬{% when 'JMD' %}🇯🇲{% when 'BBD' %}🇧🇧{% when 'BZD' %}🇧🇿{% when 'BMD' %}🇧🇲{% when 'GYD' %}🇬🇾{% when 'SRD' %}🇸🇷{% when 'TTD' %}🇹🇹{% when 'XPF' %}🇵🇫{% when 'TOP' %}🇹🇴{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% else %}🌐{% endcase %}</span>
+      <span class="currency-code">{{ current_currency }}</span>
+      <span class="currency-caret">▼</span>
+    </button>
+    <div class="currency-dropdown">
+      <ul class="currency-menu">
+        {%- for country in localization.available_countries -%}
+          {%- assign country_currency = country.currency.iso_code -%}
+          <li>
+            <a 
+              href="{{ routes.root_url }}?currency={{ country_currency }}" 
+              class="currency-option{% if country_currency == current_currency %} selected{% endif %}" 
+              rel="nofollow"
+            >
+              {{ country_currency }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- elsif settings.currency_type == '1' and shop.enabled_currencies.size > 1 -%}
+  {%- assign cart_iso_code = cart.currency.iso_code -%}
+  {%- assign currency_header = false -%}
+  {%- if currency_header -%}
+  <ul class="currency-list">
+      {%- if linklists.currency-the4.links.size > 0 -%}
+        {%- for currency in shop.enabled_currencies -%}{%- assign iso_code = currency.iso_code -%}
+              <li><a data-currency="{{iso_code}}" class="currency-item chp{% if iso_code == cart_iso_code %} selected{% endif %}" href="#">{{ iso_code }}</a></li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for currency in shop.enabled_currencies -%}{%- assign iso_code = currency.iso_code -%}
+              <li><a data-currency="{{iso_code}}" class="currency-item chp{% if iso_code == cart_iso_code %} selected{% endif %}" href="#">{{ iso_code }}</a></li>
+        {%- endfor -%}
+      {%- endif -%}
+   </ul>
+  {%- else -%}
+     <div class="currency-selector">
+       {%- if block.settings.title != blank-%}<span class="currency-title">{{block.settings.title}}</span>{%- endif -%}
+       {%- if linklists.currency-the4.links.size > 0 -%}
+         {%- assign ck_iso_code = '#'|append:cart_iso_code -%}{%- assign links_cur = linklists.currency-the4.links | where: "url", ck_iso_code -%}
+       {%- endif -%}
+        <button class="currency-button" aria-label="Select currency">
+          <span class="currency-flag">{% case cart_iso_code %}{% when 'INR' %}🇮🇳{% when 'USD' %}🇺🇸{% when 'EUR' %}🇪🇺{% when 'GBP' %}🇬🇧{% when 'CAD' %}🇨🇦{% when 'AUD' %}🇦🇺{% when 'JPY' %}🇯🇵{% when 'CNY' %}🇨🇳{% when 'CHF' %}🇨🇭{% when 'SEK' %}🇸🇪{% when 'NOK' %}🇳🇴{% when 'DKK' %}🇩🇰{% when 'PLN' %}🇵🇱{% when 'CZK' %}🇨🇿{% when 'HUF' %}🇭🇺{% when 'RON' %}🇷🇴{% when 'BGN' %}🇧🇬{% when 'HRK' %}🇭🇷{% when 'RUB' %}🇷🇺{% when 'TRY' %}🇹🇷{% when 'BRL' %}🇧🇷{% when 'MXN' %}🇲🇽{% when 'ARS' %}🇦🇷{% when 'CLP' %}🇨🇱{% when 'COP' %}🇨🇴{% when 'PEN' %}🇵🇪{% when 'UYU' %}🇺🇾{% when 'VEF' %}🇻🇪{% when 'ZAR' %}🇿🇦{% when 'NGN' %}🇳🇬{% when 'EGP' %}🇪🇬{% when 'GHS' %}🇬🇭{% when 'KES' %}🇰🇪{% when 'MAD' %}🇲🇦{% when 'TND' %}🇹🇳{% when 'XOF' %}🇧🇫{% when 'XAF' %}🇨🇲{% when 'XCD' %}🇦🇬{% when 'JMD' %}🇯🇲{% when 'BBD' %}🇧🇧{% when 'BZD' %}🇧🇿{% when 'BMD' %}🇧🇲{% when 'GYD' %}🇬🇾{% when 'SRD' %}🇸🇷{% when 'TTD' %}🇹🇹{% when 'XPF' %}🇵🇫{% when 'TOP' %}🇹🇴{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% else %}🌐{% endcase %}</span>
+          <span class="currency-code">{{ links_cur.first.title|default:cart_iso_code }}</span>
+          <span class="currency-caret">▼</span>
+        </button>
+        <div class="currency-dropdown">
+           <ul class="currency-menu">
+              {%- if linklists.currency-the4.links.size > 0 -%}
+                {%- for link in linklists.currency-the4.links -%}{%- assign iso_code = link.url |remove:'#'|remove:' ' -%}
+                     <li><a data-currency="{{iso_code}}" class="currency-option{% if iso_code == cart_iso_code %} selected{% endif %}" href="#" rel="nofollow">{{ link.title|strip_html }}</a></li>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for currency in shop.enabled_currencies -%}{%- assign iso_code = currency.iso_code -%}
+                     <li><a data-currency="{{iso_code}}" class="currency-option{% if iso_code == cart_iso_code %} selected{% endif %}" href="#" rel="nofollow">{{ iso_code }}</a></li>
+                {%- endfor -%}
+              {%- endif -%}
+           </ul>
+        </div>
+     </div>
+  {%- endif -%}
 {%- elsif settings.currency_type == '2' -%}
   {%- assign supported_codes = settings.supported_currencies | split: '|' -%}
   {%- assign check = true -%}
@@ -67,11 +93,11 @@
   {%- else -%}
      <div class="currency-selector">
        {%- if block.settings.title != blank-%}<span class="currency-title">{{block.settings.title}}</span>{%- endif -%}
-                 <button class="currency-button" aria-label="Select currency">
-           <span class="currency-flag">{% case shop_c %}{% when 'INR' %}🇮🇳{% when 'USD' %}🇺🇸{% when 'EUR' %}🇪🇺{% when 'GBP' %}🇬🇧{% when 'CAD' %}🇨🇦{% when 'AUD' %}🇦🇺{% when 'JPY' %}🇯🇵{% when 'CNY' %}🇨🇳{% when 'CHF' %}🇨🇭{% when 'SEK' %}🇸🇪{% when 'NOK' %}🇳🇴{% when 'DKK' %}🇩🇰{% when 'PLN' %}🇵🇱{% when 'CZK' %}🇨🇿{% when 'HUF' %}🇭🇺{% when 'RON' %}🇷🇴{% when 'BGN' %}🇧🇬{% when 'HRK' %}🇭🇷{% when 'RUB' %}🇷🇺{% when 'TRY' %}🇹🇷{% when 'BRL' %}🇧🇷{% when 'MXN' %}🇲🇽{% when 'ARS' %}🇦🇷{% when 'CLP' %}🇨🇱{% when 'COP' %}🇨🇴{% when 'PEN' %}🇵🇪{% when 'UYU' %}🇺🇾{% when 'VEF' %}🇻🇪{% when 'ZAR' %}🇿🇦{% when 'NGN' %}🇳🇬{% when 'EGP' %}🇪🇬{% when 'GHS' %}🇬🇭{% when 'KES' %}🇰🇪{% when 'MAD' %}🇲🇦{% when 'TND' %}🇹🇳{% when 'XOF' %}🇧🇫{% when 'XAF' %}🇨🇲{% when 'XCD' %}🇦🇬{% when 'JMD' %}🇯🇲{% when 'BBD' %}🇧🇧{% when 'BZD' %}🇧🇿{% when 'BMD' %}🇧🇲{% when 'GYD' %}🇬🇾{% when 'SRD' %}🇸🇷{% when 'TTD' %}🇹🇹{% when 'XPF' %}🇵🇫{% when 'TOP' %}🇹🇴{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% else %}🌐{% endcase %}</span>
-           <span class="currency-code">{{ shop_c }}</span>
-           <span class="currency-caret">▼</span>
-         </button>
+        <button class="currency-button" aria-label="Select currency">
+          <span class="currency-flag">{% case shop_c %}{% when 'INR' %}🇮🇳{% when 'USD' %}🇺🇸{% when 'EUR' %}🇪🇺{% when 'GBP' %}🇬🇧{% when 'CAD' %}🇨🇦{% when 'AUD' %}🇦🇺{% when 'JPY' %}🇯🇵{% when 'CNY' %}🇨🇳{% when 'CHF' %}🇨🇭{% when 'SEK' %}🇸🇪{% when 'NOK' %}🇳🇴{% when 'DKK' %}🇩🇰{% when 'PLN' %}🇵🇱{% when 'CZK' %}🇨🇿{% when 'HUF' %}🇭🇺{% when 'RON' %}🇷🇴{% when 'BGN' %}🇧🇬{% when 'HRK' %}🇭🇷{% when 'RUB' %}🇷🇺{% when 'TRY' %}🇹🇷{% when 'BRL' %}🇧🇷{% when 'MXN' %}🇲🇽{% when 'ARS' %}🇦🇷{% when 'CLP' %}🇨🇱{% when 'COP' %}🇨🇴{% when 'PEN' %}🇵🇪{% when 'UYU' %}🇺🇾{% when 'VEF' %}🇻🇪{% when 'ZAR' %}🇿🇦{% when 'NGN' %}🇳🇬{% when 'EGP' %}🇪🇬{% when 'GHS' %}🇬🇭{% when 'KES' %}🇰🇪{% when 'MAD' %}🇲🇦{% when 'TND' %}🇹🇳{% when 'XOF' %}🇧🇫{% when 'XAF' %}🇨🇲{% when 'XCD' %}🇦🇬{% when 'JMD' %}🇯🇲{% when 'BBD' %}🇧🇧{% when 'BZD' %}🇧🇿{% when 'BMD' %}🇧🇲{% when 'GYD' %}🇬🇾{% when 'SRD' %}🇸🇷{% when 'TTD' %}🇹🇹{% when 'XPF' %}🇵🇫{% when 'TOP' %}🇹🇴{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% when 'SBD' %}🇸🇧{% when 'VUV' %}🇻🇺{% when 'WST' %}🇼🇸{% when 'FJD' %}🇫🇯{% when 'PGK' %}🇵🇬{% else %}🌐{% endcase %}</span>
+          <span class="currency-code">{{ shop_c }}</span>
+          <span class="currency-caret">▼</span>
+        </button>
         <div class="currency-dropdown">
            <ul class="currency-menu">
               {%- if check -%}<li><a data-currency="{{ shop_c }}" class="currency-option selected" href="#" rel="nofollow">{{ shop_c }}</a></li>{%- endif -%}

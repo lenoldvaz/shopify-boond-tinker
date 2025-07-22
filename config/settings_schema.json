@@ -2136,6 +2136,10 @@
         "label": "Currency Switcher Type",
         "options": [
           {
+            "value": "0",
+            "label": "Shopify Native Localization (Recommended)"
+          },
+          {
             "value": "1",
             "label": "Shopify Native (Multi-currency)"
           },
@@ -2144,7 +2148,7 @@
             "label": "Custom Supported Currencies"
           }
         ],
-        "default": "1"
+        "default": "0"
       },
       {
         "type": "textarea",
