@@ -459,7 +459,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Watch Me",
+                    "label": "Read Here",
                     "link": "https://www.mid-day.com/sunday-mid-day/article/the-scent-of-movie-magic-23479876",
                     "open_in_new_tab": true,
                     "style_class": "button",
@@ -515,7 +515,7 @@
             "overlay_color": "#00000026",
             "overlay_style": "solid",
             "gradient_direction": "to top",
-            "padding-block-start": 49,
+            "padding-block-start": 62,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -624,7 +624,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Watch Me",
+                    "label": "Read Here",
                     "link": "https://www.aljazeera.com/economy/2023/12/17/smell-that-the-rise-of-indias-ittar-industry",
                     "open_in_new_tab": true,
                     "style_class": "button",
