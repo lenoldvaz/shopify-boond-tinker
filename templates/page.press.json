@@ -3347,6 +3347,207 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "section_VNXcPN": {
+      "type": "section",
+      "blocks": {
+        "group_bGpqNL": {
+          "type": "group",
+          "settings": {
+            "link": "",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 16,
+            "width": "custom",
+            "custom_width": 37,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "height": "custom",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_eHVRbP": {
+              "type": "icon",
+              "settings": {
+                "icon": "none",
+                "image_upload": "shopify://shop_images/yourstory-logo-7B331BB0BF-seeklogo.com_b06f4f82-b440-4b5c-ae7a-3cfd7ee463af.png",
+                "width": 200,
+                "link": "https://youtu.be/Zt18BerrJp8?si=4H6ueuOnNJZVHYCU",
+                "open_in_new_tab": true
+              },
+              "blocks": {}
+            },
+            "group_LE3N7Y": {
+              "type": "group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 4,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_jnYc6H": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h4><a href=\"https://yourstory.com/smbstory/how-g20-summit-gave-a-fillip-to-homegrown-businesses-msmes\" target=\"_blank\"><strong>How MSMEs & homegrown businesses added colour &flair to the G20 Summit</strong></a></h4>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "h5",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_VKgdyA": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><em>YourStory</em></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "center",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "button_9RygNJ": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Read Here",
+                    "link": "https://yourstory.com/smbstory/how-g20-summit-gave-a-fillip-to-homegrown-businesses-msmes",
+                    "open_in_new_tab": true,
+                    "style_class": "button",
+                    "width": "custom",
+                    "custom_width": 100,
+                    "width_mobile": "custom",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_jnYc6H",
+                "text_VKgdyA",
+                "button_9RygNJ"
+              ]
+            }
+          },
+          "block_order": [
+            "icon_eHVRbP",
+            "group_LE3N7Y"
+          ]
+        }
+      },
+      "block_order": [
+        "group_bGpqNL"
+      ],
+      "name": "t:names.icons_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
     }
   },
   "order": [
@@ -3358,6 +3559,7 @@
     "section_ijG7VV",
     "section_HKAq8g",
     "section_xCPHDc",
-    "section_FaUHFV"
+    "section_FaUHFV",
+    "section_VNXcPN"
   ]
 }
