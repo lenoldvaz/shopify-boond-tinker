@@ -3,6 +3,111 @@
   src="{{ 'cart-icon.js' | asset_url }}"
 ></script>
 
+<script>
+// Currency Switcher functionality
+(function() {
+  'use strict';
+
+  function initCurrencySwitcher() {
+    // Handle currency button clicks
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if (target && target.closest && target.closest('.currency-button')) {
+        e.preventDefault();
+        var selector = target.closest('.currency-selector');
+        if (selector) {
+          toggleDropdown(selector);
+        }
+      }
+    });
+
+    // Handle currency option clicks
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if (target && target.closest && target.closest('.currency-option')) {
+        e.preventDefault();
+        var option = target.closest('.currency-option');
+        if (option) {
+          var currencyCode = option.getAttribute('data-currency');
+          if (currencyCode) {
+            switchCurrency(currencyCode);
+          }
+        }
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if (target && target.closest && !target.closest('.currency-selector')) {
+        closeAllDropdowns();
+      }
+    });
+  }
+
+  function toggleDropdown(selector) {
+    var dropdown = selector.querySelector('.currency-dropdown');
+    if (!dropdown) return;
+    
+    var isOpen = dropdown.style.display === 'block';
+    
+    // Close all other dropdowns
+    closeAllDropdowns();
+    
+    if (!isOpen) {
+      dropdown.style.display = 'block';
+      dropdown.style.opacity = '1';
+      dropdown.style.visibility = 'visible';
+      dropdown.style.transform = 'translateY(0)';
+    }
+  }
+
+  function closeAllDropdowns() {
+    var dropdowns = document.querySelectorAll('.currency-dropdown');
+    for (var i = 0; i < dropdowns.length; i++) {
+      var dropdown = dropdowns[i];
+      dropdown.style.display = 'none';
+      dropdown.style.opacity = '0';
+      dropdown.style.visibility = 'hidden';
+      dropdown.style.transform = 'translateY(-8px)';
+    }
+  }
+
+  function switchCurrency(currencyCode) {
+    // Show loading state
+    showLoading();
+    
+    // Try Shopify's native currency switching first
+    var url = new URL(window.location.href);
+    url.searchParams.set('currency', currencyCode);
+    window.location.href = url.toString();
+  }
+
+  function showLoading() {
+    var buttons = document.querySelectorAll('.currency-button');
+    for (var i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      var originalText = button.innerHTML;
+      button.innerHTML = '<span class="currency-loading">...</span>';
+      button.disabled = true;
+      
+      // Restore after a short delay
+      setTimeout(function() {
+        button.innerHTML = originalText;
+        button.disabled = false;
+      }, 2000);
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCurrencySwitcher);
+  } else {
+    initCurrencySwitcher();
+  }
+})();
+</script>
+
 <header-actions
   {{- block.shopify_attributes -}}
 >
@@ -333,12 +438,14 @@
     visibility: hidden;
     transform: translateY(-8px);
     transition: all 0.2s ease;
+    display: none;
   }
 
   .currency-selector:hover .currency-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    display: block;
   }
 
   .currency-menu {
