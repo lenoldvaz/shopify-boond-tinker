@@ -180,6 +180,14 @@
   data-skip-node-update
   data-scroll-direction="none"
 >
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'simple-text' %}
+        <div class="header-simple-text">{{ block.settings.content }}</div>
+      {% else %}
+        <!-- Other block types -->
+    {% endcase %}
+  {% endfor %}
   {% for row in rows %}
     {% liquid
       assign scheme = 'color_scheme_' | append: row
@@ -951,7 +959,20 @@
       "visible_if": "{{ section.settings.enable_transparent_header_collection }}"
     }
   ],
-  
+  "blocks": [
+    {
+      "type": "simple-text",
+      "name": "Simple Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "content",
+          "label": "Text Content",
+          "default": "Hello from the header!"
+        }
+      ]
+    }
+  ],
   "presets": []
 }
 {% endschema %}

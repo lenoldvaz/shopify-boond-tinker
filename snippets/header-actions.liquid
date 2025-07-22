@@ -11,6 +11,8 @@
     {% render 'account-drawer' %}
   {% endif %}
 
+  {% render 'currency-switcher' %}
+
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     {% render 'cart-drawer' %}
   {% else %}
@@ -268,5 +270,89 @@
 
   .cart-bubble--animating .cart-bubble__text {
     animation: cartBubbleSlideIn var(--animation-speed) var(--animation-easing);
+  }
+
+  /* Currency Switcher Styles */
+  .nt_currency {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nt_currency .value {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-xs);
+    padding: var(--padding-sm);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-foreground);
+  }
+
+  .nt_currency .nav_dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-background);
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-dropdown);
+    z-index: 1000;
+    min-width: 120px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--animation-speed) var(--animation-easing);
+  }
+
+  .nt_currency:hover .nav_dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nt_currency .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: var(--padding-sm);
+  }
+
+  .nt_currency .sub-menu li {
+    margin: 0;
+  }
+
+  .nt_currency .sub-menu a {
+    display: block;
+    padding: var(--padding-xs) var(--padding-sm);
+    text-decoration: none;
+    color: var(--color-foreground);
+    transition: background-color var(--animation-speed) var(--animation-easing);
+  }
+
+  .nt_currency .sub-menu a:hover {
+    background-color: var(--color-border);
+  }
+
+  .nt_currency .sub-menu a.selected {
+    font-weight: bold;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+  }
+
+  .nt_currency .currency-item {
+    display: block;
+    padding: var(--padding-xs) var(--padding-sm);
+    text-decoration: none;
+    color: var(--color-foreground);
+    transition: background-color var(--animation-speed) var(--animation-easing);
+  }
+
+  .nt_currency .currency-item:hover {
+    background-color: var(--color-border);
+  }
+
+  .nt_currency .currency-item.selected {
+    font-weight: bold;
+    background-color: var(--color-primary);
+    color: var(--color-background);
   }
 {% endstylesheet %}

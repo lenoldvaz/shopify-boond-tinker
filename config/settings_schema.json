@@ -2125,6 +2125,33 @@
         "id": "currency_code_enabled_cart_total",
         "label": "t:settings.cart_total",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Currency Switcher"
+      },
+      {
+        "type": "select",
+        "id": "currency_type",
+        "label": "Currency Switcher Type",
+        "options": [
+          {
+            "value": "1",
+            "label": "Shopify Native (Multi-currency)"
+          },
+          {
+            "value": "2",
+            "label": "Custom Supported Currencies"
+          }
+        ],
+        "default": "1"
+      },
+      {
+        "type": "textarea",
+        "id": "supported_currencies",
+        "label": "Supported Currencies (Format: USD-US Dollar|EUR-Euro|GBP-British Pound)",
+        "info": "Only used when Currency Switcher Type is set to 'Custom Supported Currencies'",
+        "default": "USD-US Dollar|EUR-Euro|GBP-British Pound"
       }
     ]
   },
