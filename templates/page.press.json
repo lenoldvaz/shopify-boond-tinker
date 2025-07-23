@@ -59,7 +59,7 @@
         "gap": 16,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 35,
+        "section_height_custom": 27,
         "color_scheme": "scheme-5",
         "toggle_overlay": true,
         "overlay_color": "#00000026",
@@ -212,7 +212,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 5,
                 "width": "fill",
@@ -299,9 +299,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -377,7 +377,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -464,9 +464,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -629,9 +629,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -745,7 +745,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -832,9 +832,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 0
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -910,7 +910,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -997,9 +997,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -1075,7 +1075,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -1162,9 +1162,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -1278,7 +1278,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -1365,9 +1365,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -1443,7 +1443,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -1530,9 +1530,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -1608,7 +1608,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -1695,9 +1695,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -1811,7 +1811,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -1898,9 +1898,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -1976,7 +1976,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 7,
                 "width": "fill",
@@ -2063,9 +2063,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -2141,7 +2141,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -2228,9 +2228,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -2344,7 +2344,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -2431,9 +2431,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -2509,7 +2509,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -2596,9 +2596,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -2674,7 +2674,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -2761,9 +2761,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -2877,7 +2877,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -2964,9 +2964,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -3042,7 +3042,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -3129,9 +3129,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -3207,7 +3207,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -3294,9 +3294,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
@@ -3410,7 +3410,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
+                "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 4,
                 "width": "fill",
@@ -3497,9 +3497,9 @@
                     "open_in_new_tab": true,
                     "style_class": "button",
                     "width": "custom",
-                    "custom_width": 100,
+                    "custom_width": 40,
                     "width_mobile": "custom",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 40
                   },
                   "blocks": {}
                 }
