@@ -72,7 +72,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h1",
+                "type_preset": "h3",
                 "font": "var(--font-primary--family)",
                 "font_size": "",
                 "line_height": "normal",
@@ -92,6 +92,7 @@
             },
             "reviews": {
               "type": "review",
+              "disabled": true,
               "settings": {
                 "product": "{{ closest.product }}",
                 "stars_style": "shaded",
@@ -1623,6 +1624,7 @@
           "static": true,
           "settings": {
             "product": "{{ closest.product }}",
+            "show_sale_badge": true,
             "product_card_gap": 0,
             "inherit_color_scheme": false,
             "color_scheme": "scheme-e1e09ff5-6396-47cd-ad7a-c05470cf2a2e",

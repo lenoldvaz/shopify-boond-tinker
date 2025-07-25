@@ -35,7 +35,7 @@
     "popover_border": "none",
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
-    "currency_type": "2",
+    "currency_type": "1",
     "quick_add": false,
     "product_corner_radius": 10,
     "card_corner_radius": 10,
