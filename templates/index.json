@@ -1140,10 +1140,10 @@
       "name": "t:names.products_grid",
       "settings": {
         "collection": "all-products",
-        "layout_type": "grid",
+        "layout_type": "carousel",
         "carousel_on_mobile": false,
-        "max_products": 6,
-        "columns": 5,
+        "max_products": 8,
+        "columns": 4,
         "mobile_columns": "2",
         "columns_gap": 24,
         "rows_gap": 12,
