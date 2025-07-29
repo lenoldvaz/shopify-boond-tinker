@@ -22,6 +22,7 @@
     "type_size_h4": "24",
     "type_size_h5": "18",
     "type_case_h6": "none",
+    "page_width": "wide",
     "badge_position": "top-left",
     "badge_corner_radius": 4,
     "sale_badge_type": "percent",
