@@ -15,7 +15,7 @@
     {% render 'gap-style', value: gap_between_elements, name: 'marquee-gap' %}
     --marquee-direction: {{ section.settings.movement_direction }};
   "
-  data-speed-factor="10"
+  data-speed-factor="{{ section.settings.speed_factor | default: 10 }}"
   data-movement-direction="{{ section.settings.movement_direction }}"
 >
   <div
@@ -122,6 +122,16 @@
         }
       ],
       "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "speed_factor",
+      "label": "t:settings.speed",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 10,
+      "info": "t:settings.speed_info"
     },
     {
       "type": "color_scheme",

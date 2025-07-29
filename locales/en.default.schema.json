@@ -852,6 +852,7 @@
     "slideshow_fullwidth": "Full width slides",
     "small": "Small",
     "speed": "Speed",
+    "speed_info": "Lower values make the marquee move faster, higher values make it move slower",
     "statement": "Statement",
     "sticky_header": "Sticky header",
     "stroke": "Stroke",
