@@ -849,6 +849,8 @@
     "size_mobile": "Mobile size",
     "slide_spacing": "Slide gap",
     "slide_width": "Slide width",
+    "slide_link": "Slide link",
+    "slide_link_info": "Make the entire slide clickable by adding a link to a product, collection, page, or external URL",
     "slideshow_fullwidth": "Full width slides",
     "small": "Small",
     "speed": "Speed",
