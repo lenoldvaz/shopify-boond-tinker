@@ -17,6 +17,7 @@
           "name": "Gulab Jal",
           "settings": {
             "media_type_1": "image",
+            "slide_link": "",
             "image_1": "shopify://shop_images/gulab_jal_horizontal_final.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -44,6 +45,7 @@
           "name": "Maati",
           "settings": {
             "media_type_1": "image",
+            "slide_link": "",
             "image_1": "shopify://shop_images/Frame_5.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -81,6 +83,7 @@
         "autoplay_speed": 4,
         "section_width": "full-width",
         "slide_height": "large",
+        "custom_height": 400,
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -93,6 +96,7 @@
           "name": "Gulab Jal",
           "settings": {
             "media_type_1": "image",
+            "slide_link": "",
             "image_1": "shopify://shop_images/gulab_jal_vertical_final.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -162,6 +166,7 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
+            "slide_link": "",
             "image_1": "shopify://shop_images/DSC03910_11zon.jpg",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -301,6 +306,7 @@
           "type": "_slide",
           "settings": {
             "media_type_1": "image",
+            "slide_link": "",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -450,7 +456,8 @@
         "autoplay": false,
         "autoplay_speed": 4,
         "section_width": "full-width",
-        "slide_height": "large",
+        "slide_height": "custom",
+        "custom_height": 550,
         "padding-block-start": 0,
         "padding-block-end": 0
       }
