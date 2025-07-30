@@ -32,15 +32,15 @@
     margin-left: calc(-50vw + 50%) !important;
   }
 
-  /* Show mega menu on hover - simple approach */
-  .header-menu--mega:hover #dk-mega-menu-dropdown {
+  /* Show submenu on individual item hover */
+  .header-menu--mega .menu-list__list-item:hover .menu-list__submenu {
     visibility: visible !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
 
-  /* Keep mega menu visible when hovering over it */
-  #dk-mega-menu-dropdown:hover {
+  /* Keep submenu visible when hovering over it */
+  .header-menu--mega .menu-list__submenu:hover {
     visibility: visible !important;
     opacity: 1 !important;
     transform: translateY(0) !important;

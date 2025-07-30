@@ -1,7 +1,7 @@
 {% comment %}
   DK Mega Menu Snippet
   
-  Renders the mega menu when the dk_mega_menu style is selected in header menu.
+  Renders individual mega menus per menu item when dk_mega_menu style is selected.
   
   Accepts:
   - block: The header menu block with settings
@@ -9,7 +9,62 @@
 
 {% liquid
   assign animation_speed = 200
+  assign color_scheme_classes = ''
+  assign color_scheme_setting_id = 'color_scheme_' | append: section.settings.menu_row
+  assign current_color_scheme = block.settings.color_scheme
+  assign parent_color_scheme = section.settings[color_scheme_setting_id]
+
+  if parent_color_scheme.id != current_color_scheme.id
+    assign color_scheme_classes = ' color-' | append: current_color_scheme
+  endif
+
+  if parent_color_scheme.settings.background.rgb == current_color_scheme.settings.background.rgb
+    assign color_scheme_classes = color_scheme_classes | append: ' color-scheme-matches-parent'
+  endif
 %}
+
+{% capture children %}
+  {% for link in block.settings.menu.links %}
+    <li
+      role="presentation"
+      class="menu-list__list-item"
+      on:focus="/activate"
+      on:blur="/deactivate"
+      on:pointerenter="/activate"
+      on:pointerleave="/deactivate"
+    >
+      <a
+        role="menuitem"
+        aria-haspopup="true"
+        href="{{ link.url }}"
+        class="menu-list__link{% if link.active %} menu-list__link--active{% endif %}"
+      >
+        <span class="menu-list__link-title">{{- link.title -}}</span>
+      </a>
+      
+      <!-- DK Mega Menu submenu for each link -->
+      <div class="menu-list__submenu{{ color_scheme_classes }}" ref="submenu[]">
+        <div class="menu-list__submenu-inner">
+          {% assign link_handle = link.handle | downcase %}
+          
+          {% comment %}
+            Show mega menu only for "shop" menu item, regular dropdowns for others
+          {% endcomment %}
+          {% if link_handle == 'shop' or link_handle contains 'shop' %}
+            <!-- Full Mega Menu for Shop -->
+            {% render 'dk_mega-menu-content', block: block, link: link %}
+          {% elsif link.links != blank %}
+            <!-- Regular dropdown for other menu items -->
+            {% render 'mega-menu', parent_link: link, id: 'RegularMenu-' | append: forloop.index, menu_content_type: 'text' %}
+          {% else %}
+            <!-- Simple link with no dropdown -->
+            <div class="simple-menu-placeholder"></div>
+          {% endif %}
+        </div>
+      </div>
+    </li>
+  {% endfor %}
+{% endcapture %}
 
 <header-menu
   ref="headerMenu"
@@ -18,299 +73,17 @@
   {{ block.shopify_attributes }}
   style="--submenu-animation-speed: {{ animation_speed }}ms;"
 >
-  <div class="header-menu__inner">
-    {%- render 'header-menu', menu: block.settings.menu %}
-  </div>
-
-  <!-- DK Mega Menu as submenu - triggered by hovering any menu item -->
-  <div class="menu-list__submenu color-{{ block.settings.color_scheme | default: 'scheme-1' }}" id="dk-mega-menu-dropdown">
-    <div class="menu-list__submenu-inner">
-      <div
-        class="
-          dk-mega-menu
-          layout-panel-flex
-          layout-panel-flex--row
-          {% if block.settings.vertical_on_mobile %}mobile-column{% endif %}
-        "
-        style="
-          {% render 'gap-style', value: block.settings.gap_desktop | default: 32, mobile_value: block.settings.gap_mobile | default: 24 %}
-        "
-        data-testid="dk-mega-menu"
-      >
-      <!-- Navigation Categories -->
-      {% if block.settings.show_nav_categories %}
-        <div class="dk-mega-menu__nav-section">
-          <div class="dk-nav-categories">
-            <nav class="dk-nav-categories__nav" role="navigation">
-              <ul class="dk-nav-categories__list list-unstyled" role="list">
-                {% assign categories = block.settings.nav_categories | default: 'Best Sellers,Build Your Own Bundle,Subscribe & Save' | split: ',' %}
-                {% assign links = block.settings.nav_category_links | default: '/collections/best-sellers,/pages/build-bundle,/pages/subscribe' | split: ',' %}
-                {% assign pills = block.settings.nav_category_pills | default: ',,HOT' | split: ',' %}
-                
-                {% for category in categories %}
-                  <li class="dk-nav-categories__item">
-                    {% assign category_trimmed = category | strip %}
-                    {% assign link_index = forloop.index0 %}
-                    {% assign link_url = links[link_index] | strip | default: '#' %}
-                    {% assign pill_text = pills[link_index] | strip %}
-                    
-                    <a 
-                      href="{{ link_url }}" 
-                      class="dk-nav-categories__link"
-                    >
-                      {{ category_trimmed }}
-                      {% if pill_text != blank %}
-                        <span class="dk-nav-categories__pill dk-nav-categories__pill--{{ pill_text | downcase | replace: ' ', '-' }}">
-                          {{ pill_text }}
-                        </span>
-                      {% endif %}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </nav>
-          </div>
-        </div>
-      {% endif %}
-
-      <!-- Skincare Menu Column -->
-      {% if block.settings.skincare_menu != blank %}
-        <div class="dk-mega-menu__column-section">
-          <div class="dk-menu-column">
-            <h3 class="dk-menu-column__title">{{ block.settings.skincare_title | default: 'Shop Skincare' }}</h3>
-            <ul class="dk-menu-column__list list-unstyled" role="list">
-              {% assign max_links = block.settings.max_links | default: 8 %}
-              {% for link in block.settings.skincare_menu.links limit: max_links %}
-                <li class="dk-menu-column__item">
-                  <a 
-                    href="{{ link.url }}" 
-                    class="dk-menu-column__link"
-                    {% if link.current %}aria-current="page"{% endif %}
-                  >
-                    {{ link.title }}
-                  </a>
-                </li>
-              {% endfor %}
-              
-              {% if block.settings.show_shop_all %}
-                <li class="dk-menu-column__item dk-menu-column__item--shop-all">
-                  <a 
-                    href="{{ block.settings.skincare_menu.url }}" 
-                    class="dk-menu-column__link dk-menu-column__link--shop-all"
-                  >
-                    {{ block.settings.shop_all_text | default: 'SHOP ALL' }}
-                  </a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      {% endif %}
-
-      <!-- Haircare Menu Column -->
-      {% if block.settings.haircare_menu != blank %}
-        <div class="dk-mega-menu__column-section">
-          <div class="dk-menu-column">
-            <h3 class="dk-menu-column__title">{{ block.settings.haircare_title | default: 'Shop Haircare' }}</h3>
-            <ul class="dk-menu-column__list list-unstyled" role="list">
-              {% assign max_links = block.settings.max_links | default: 8 %}
-              {% for link in block.settings.haircare_menu.links limit: max_links %}
-                <li class="dk-menu-column__item">
-                  <a 
-                    href="{{ link.url }}" 
-                    class="dk-menu-column__link"
-                    {% if link.current %}aria-current="page"{% endif %}
-                  >
-                    {{ link.title }}
-                  </a>
-                </li>
-              {% endfor %}
-              
-              {% if block.settings.show_shop_all %}
-                <li class="dk-menu-column__item dk-menu-column__item--shop-all">
-                  <a 
-                    href="{{ block.settings.haircare_menu.url }}" 
-                    class="dk-menu-column__link dk-menu-column__link--shop-all"
-                  >
-                    {{ block.settings.shop_all_text | default: 'SHOP ALL' }}
-                  </a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      {% endif %}
-
-      <!-- Featured Products Carousel -->
-      {% if block.settings.show_featured_products and block.settings.featured_collection != blank %}
-        <div class="dk-mega-menu__featured-section">
-          {% liquid
-            assign collection = collections[block.settings.featured_collection]
-            assign products_to_show = block.settings.products_to_show | default: 5
-            assign products = collection.products | limit: products_to_show
-          %}
-
-          <div class="dk-featured-carousel">
-            {% if block.settings.carousel_title != blank %}
-              <div class="dk-featured-carousel__header">
-                <h3 class="dk-featured-carousel__title">
-                  {{ block.settings.carousel_title }}
-                </h3>
-                {% if products.size > 1 %}
-                  <div class="dk-featured-carousel__counter">
-                    <span class="dk-featured-carousel__current">1</span>/<span class="dk-featured-carousel__total">{{ products.size }}</span>
-                  </div>
-                {% endif %}
-              </div>
-            {% endif %}
-
-            {% if products.size > 0 %}
-              <div class="dk-featured-carousel__slideshow" data-carousel>
-                {% for product in products %}
-                  <div class="dk-featured-carousel__slide" {% if forloop.first %}style="display: block;"{% else %}style="display: none;"{% endif %} data-slide="{{ forloop.index0 }}">
-                    <div class="dk-product-card">
-                      <a href="{{ product.url }}" class="dk-product-card__link">
-                        {% if product.featured_media %}
-                          <div class="dk-product-card__image">
-                            {{ product.featured_media | image_url: width: 300 | image_tag: 
-                               loading: 'lazy',
-                               width: product.featured_media.width,
-                               height: product.featured_media.height,
-                               alt: product.featured_media.alt | escape
-                            }}
-                            {% if block.settings.show_sale_badges and product.compare_at_price > product.price %}
-                              <div class="dk-product-card__badge">
-                                {% assign savings = product.compare_at_price | minus: product.price %}
-                                {% assign savings_percentage = savings | times: 100 | divided_by: product.compare_at_price %}
-                                Save {{ savings_percentage }}%
-                              </div>
-                            {% endif %}
-                          </div>
-                        {% endif %}
-                        
-                        <div class="dk-product-card__content">
-                          <h4 class="dk-product-card__title">{{ product.title }}</h4>
-                          {% if block.settings.show_descriptions and product.description != blank %}
-                            <p class="dk-product-card__description">{{ product.description | strip_html | truncate: 80 }}</p>
-                          {% endif %}
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-
-              {% if products.size > 1 %}
-                <div class="dk-featured-carousel__navigation">
-                  <button class="dk-featured-carousel__nav-btn dk-featured-carousel__nav-btn--prev" data-carousel-prev>‹</button>
-                  <button class="dk-featured-carousel__nav-btn dk-featured-carousel__nav-btn--next" data-carousel-next>›</button>
-                </div>
-              {% endif %}
-            {% endif %}
-          </div>
-        </div>
-      {% endif %}
-      </div>
+  <nav header-menu>
+    <div class="menu-list" style="{% render 'menu-font-styles', settings: block.settings %}">
+      {% assign class = 'overflow-menu' | append: color_scheme_classes %}
+      {% render 'overflow-list', class: class, ref: 'overflowMenu', children: children, minimum-items: 2 %}
     </div>
-  </div>
+  </nav>
 
   <script
     src="{{ 'header-menu.js' | asset_url }}"
     type="module"
   ></script>
 </header-menu>
-
-<script>
-// Mega menu carousel functionality
-(function() {
-  function initCarousel() {
-    const megaMenu = document.querySelector('#dk-mega-menu-dropdown');
-    if (!megaMenu) return;
-    
-    const carousel = megaMenu.querySelector('[data-carousel]');
-    const prevBtn = megaMenu.querySelector('[data-carousel-prev]');
-    const nextBtn = megaMenu.querySelector('[data-carousel-next]');
-    const slides = megaMenu.querySelectorAll('[data-slide]');
-    const counter = megaMenu.querySelector('.dk-featured-carousel__current');
-    
-    if (!carousel || slides.length === 0) return;
-    
-    let currentSlide = 0;
-    let autoplayInterval;
-    
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.style.display = i === index ? 'block' : 'none';
-      });
-      if (counter) {
-        counter.textContent = index + 1;
-      }
-    }
-    
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-    
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    }
-    
-    function startAutoplay() {
-      stopAutoplay();
-      if (slides.length > 1) {
-        autoplayInterval = setInterval(nextSlide, 5000);
-      }
-    }
-    
-    function stopAutoplay() {
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-      }
-    }
-    
-    // Event listeners
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        nextSlide();
-        startAutoplay(); // Restart autoplay after manual interaction
-      });
-    }
-    
-    if (prevBtn) {
-      prevBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        prevSlide();
-        startAutoplay(); // Restart autoplay after manual interaction
-      });
-    }
-    
-    // Pause autoplay on hover
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-    
-    // Initialize
-    showSlide(0);
-    startAutoplay();
-  }
-  
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCarousel);
-  } else {
-    initCarousel();
-  }
-  
-  // Re-initialize when mega menu becomes visible (in case it's not loaded initially)
-  document.addEventListener('mouseover', function(e) {
-    if (e.target.closest('.header-menu--mega')) {
-      setTimeout(initCarousel, 100);
-    }
-  });
-})();
-</script>
 
 {% render 'dk_mega-menu-styles' %}
