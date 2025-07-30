@@ -1,0 +1,305 @@
+{% comment %}
+  DK Featured Products Carousel Block
+  
+  Displays a carousel of featured products with reviews, ratings, and sale badges.
+  Used for "Trending this Week" section in the mega menu.
+{% endcomment %}
+
+{% liquid
+  assign collection = collections[block.settings.collection] | default: collections.all
+  assign products_to_show = block.settings.products_to_show | default: 5
+  assign products = collection.products | limit: products_to_show
+%}
+
+<div 
+  class="dk-featured-carousel"
+  {{ block.shopify_attributes }}
+  data-testid="dk-featured-carousel"
+>
+  {% if block.settings.title != blank %}
+    <div class="dk-featured-carousel__header">
+      <h3 class="dk-featured-carousel__title">
+        {{ block.settings.title }}
+      </h3>
+      {% if products.size > 1 %}
+        <div class="dk-featured-carousel__counter">
+          <span class="dk-featured-carousel__current">1</span>/<span class="dk-featured-carousel__total">{{ products.size }}</span>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if products.size > 0 %}
+    {% render 'slideshow',
+      class: 'dk-featured-carousel__slideshow',
+      slides: dk_carousel_slides,
+      slide_count: products.size,
+      show_arrows: true,
+      icon_style: 'arrow',
+      autoplay: block.settings.autoplay,
+      autoplay_speed: block.settings.autoplay_speed
+    %}
+
+    {% capture dk_carousel_slides %}
+      {% for product in products %}
+        <div class="dk-featured-carousel__slide slideshow-slide">
+          <div class="dk-featured-carousel__product-card">
+            {% if product.featured_image %}
+              <div class="dk-featured-carousel__image-wrapper">
+                {% if product.compare_at_price > product.price and block.settings.show_sale_badges %}
+                  {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round %}
+                  <div class="dk-featured-carousel__sale-badge">
+                    Save {{ discount_percentage }}%
+                  </div>
+                {% endif %}
+                
+                <img
+                  src="{{ product.featured_image | image_url: width: 300 }}"
+                  alt="{{ product.featured_image.alt | escape }}"
+                  width="300"
+                  height="300"
+                  loading="lazy"
+                  class="dk-featured-carousel__image"
+                >
+              </div>
+            {% endif %}
+
+            <div class="dk-featured-carousel__content">
+              {% if block.settings.show_reviews and product.metafields.reviews.rating.value %}
+                <div class="dk-featured-carousel__reviews">
+                  <div class="dk-featured-carousel__stars" data-rating="{{ product.metafields.reviews.rating.value }}">
+                    {% assign rating = product.metafields.reviews.rating.value %}
+                    {% for i in (1..5) %}
+                      <span class="dk-featured-carousel__star {% if i <= rating %}dk-featured-carousel__star--filled{% endif %}">★</span>
+                    {% endfor %}
+                  </div>
+                  {% if product.metafields.reviews.rating_count.value %}
+                    <span class="dk-featured-carousel__rating-text">
+                      {{ rating }}/5.0 - {{ product.metafields.reviews.rating_count.value }} Reviews
+                    </span>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <h4 class="dk-featured-carousel__product-title">
+                <a href="{{ product.url }}" class="dk-featured-carousel__product-link">
+                  {{ product.title }}
+                </a>
+              </h4>
+
+              {% if block.settings.show_descriptions and product.description != blank %}
+                <div class="dk-featured-carousel__description">
+                  {{ product.description | strip_html | truncate: 100 }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endcapture %}
+  {% else %}
+    <div class="dk-featured-carousel__empty">
+      <p>No products found in the selected collection.</p>
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .dk-featured-carousel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+    width: 100%;
+  }
+
+  .dk-featured-carousel__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--padding-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dk-featured-carousel__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-foreground);
+    margin: 0;
+  }
+
+  .dk-featured-carousel__counter {
+    font-size: var(--font-size-sm);
+    color: var(--color-foreground-subtle);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .dk-featured-carousel__slideshow {
+    position: relative;
+  }
+
+  .dk-featured-carousel__slide {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .dk-featured-carousel__product-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  .dk-featured-carousel__image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--style-border-radius);
+  }
+
+  .dk-featured-carousel__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dk-featured-carousel__sale-badge {
+    position: absolute;
+    top: var(--padding-xs);
+    left: var(--padding-xs);
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    padding: var(--padding-xs) var(--padding-sm);
+    border-radius: var(--style-border-radius);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    z-index: var(--layer-over-media);
+  }
+
+  .dk-featured-carousel__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+  }
+
+  .dk-featured-carousel__reviews {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+  }
+
+  .dk-featured-carousel__stars {
+    display: flex;
+    gap: 1px;
+  }
+
+  .dk-featured-carousel__star {
+    color: var(--color-border);
+    font-size: var(--font-size-sm);
+  }
+
+  .dk-featured-carousel__star--filled {
+    color: var(--color-accent);
+  }
+
+  .dk-featured-carousel__rating-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-foreground-subtle);
+  }
+
+  .dk-featured-carousel__product-title {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+  }
+
+  .dk-featured-carousel__product-link {
+    color: var(--color-foreground);
+    text-decoration: none;
+  }
+
+  .dk-featured-carousel__product-link:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+  }
+
+  .dk-featured-carousel__description {
+    font-size: var(--font-size-sm);
+    color: var(--color-foreground-subtle);
+    line-height: var(--line-height-base);
+  }
+
+  .dk-featured-carousel__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg);
+    color: var(--color-foreground-subtle);
+    text-align: center;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Featured Products Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Carousel title",
+      "default": "Trending this Week"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Select the collection to display products from"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show product reviews",
+      "default": true,
+      "info": "Requires product review metafields"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_descriptions",
+      "label": "Show product descriptions",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_badges",
+      "label": "Show sale badges",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-rotate products",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 5,
+      "visible_if": "{{ block.settings.autoplay }}"
+    }
+  ]
+}
+{% endschema %}

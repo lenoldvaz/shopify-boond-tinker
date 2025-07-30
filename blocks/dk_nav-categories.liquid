@@ -1,0 +1,114 @@
+{% comment %}
+  DK Navigation Categories Block
+  
+  Displays main navigation categories in large, prominent text.
+  Used for "Best Sellers", "Build Your Own Bundle", "Subscribe & Save".
+{% endcomment %}
+
+<div 
+  class="dk-nav-categories"
+  {{ block.shopify_attributes }}
+  data-testid="dk-nav-categories"
+>
+  {% if block.settings.categories != blank %}
+    <nav class="dk-nav-categories__nav" role="navigation">
+      <ul class="dk-nav-categories__list list-unstyled" role="list">
+        {% assign categories = block.settings.categories | split: ',' %}
+        {% assign links = block.settings.category_links | split: ',' %}
+        
+        {% for category in categories %}
+          <li class="dk-nav-categories__item">
+            {% assign category_trimmed = category | strip %}
+            {% assign link_index = forloop.index0 %}
+            {% assign link_url = links[link_index] | strip | default: '#' %}
+            
+            <a 
+              href="{{ link_url }}" 
+              class="dk-nav-categories__link"
+            >
+              {{ category_trimmed }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .dk-nav-categories {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
+
+  .dk-nav-categories__nav {
+    width: 100%;
+  }
+
+  .dk-nav-categories__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+    margin: 0;
+    padding: 0;
+  }
+
+  .dk-nav-categories__item {
+    list-style: none;
+  }
+
+  .dk-nav-categories__link {
+    display: block;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    transition: color var(--animation-speed) ease;
+  }
+
+  .dk-nav-categories__link:hover {
+    color: var(--color-link-hover);
+  }
+
+  @media screen and (width >= 750px) {
+    .dk-nav-categories__link {
+      font-size: var(--font-size-xxl);
+    }
+  }
+
+  @media screen and (width >= 990px) {
+    .dk-nav-categories__link {
+      font-size: var(--font-size-xxxl);
+    }
+  }
+
+  /* Special styling for long text */
+  .dk-nav-categories__link {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Navigation Categories",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "categories",
+      "label": "Navigation categories",
+      "default": "Best Sellers,Build Your Own Bundle,Subscribe & Save",
+      "info": "Enter each category on a new line or separated by commas"
+    },
+    {
+      "type": "textarea",
+      "id": "category_links",
+      "label": "Category links",
+      "default": "/collections/best-sellers,/pages/build-bundle,/pages/subscribe",
+      "info": "Enter URLs separated by commas, in the same order as categories"
+    }
+  ]
+}
+{% endschema %}

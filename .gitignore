@@ -1,6 +1,9 @@
 # References folder
 references/
 
+# claude folder 
+claude/
+
 # macOS
 .DS_Store
 .DS_Store?

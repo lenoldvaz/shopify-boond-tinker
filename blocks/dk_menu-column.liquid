@@ -1,0 +1,149 @@
+{% comment %}
+  DK Menu Column Block
+  
+  Displays a column of menu links with a title and "SHOP ALL" option.
+  Used for categories like "Shop Skincare" and "Shop Haircare".
+{% endcomment %}
+
+<div 
+  class="dk-menu-column"
+  {{ block.shopify_attributes }}
+  data-testid="dk-menu-column"
+>
+  {% if block.settings.title != blank %}
+    <h3 class="dk-menu-column__title">
+      {{ block.settings.title }}
+    </h3>
+  {% endif %}
+
+  {% if block.settings.menu != blank %}
+    <ul class="dk-menu-column__list list-unstyled" role="list">
+      {% for link in block.settings.menu.links limit: block.settings.max_links %}
+        <li class="dk-menu-column__item">
+          <a 
+            href="{{ link.url }}" 
+            class="dk-menu-column__link"
+            {% if link.current %}aria-current="page"{% endif %}
+          >
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+      
+      {% if block.settings.show_shop_all and block.settings.menu.links.size > 0 %}
+        <li class="dk-menu-column__item dk-menu-column__item--shop-all">
+          <a 
+            href="{{ block.settings.menu.url }}" 
+            class="dk-menu-column__link dk-menu-column__link--shop-all"
+          >
+            {{ block.settings.shop_all_text }}
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .dk-menu-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  .dk-menu-column__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-foreground);
+    margin: 0;
+    padding-bottom: var(--padding-xs);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dk-menu-column__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    margin: 0;
+    padding: 0;
+  }
+
+  .dk-menu-column__item {
+    list-style: none;
+  }
+
+  .dk-menu-column__link {
+    display: block;
+    padding: var(--padding-xs) 0;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-tight);
+    transition: color var(--animation-speed) ease;
+  }
+
+  .dk-menu-column__link:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+  }
+
+  .dk-menu-column__link--shop-all {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.05em;
+    color: var(--color-link);
+    margin-top: var(--margin-xs);
+  }
+
+  .dk-menu-column__link--shop-all:hover {
+    color: var(--color-link-hover);
+  }
+
+  .dk-menu-column__item--shop-all {
+    margin-top: var(--margin-sm);
+    padding-top: var(--padding-xs);
+    border-top: 1px solid var(--color-border);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Menu Column",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Column title",
+      "default": "Shop Category"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "Select the menu to display in this column"
+    },
+    {
+      "type": "range",
+      "id": "max_links",
+      "label": "Maximum links to show",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shop_all",
+      "label": "Show 'Shop All' link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shop_all_text",
+      "label": "'Shop All' text",
+      "default": "SHOP ALL"
+    }
+  ]
+}
+{% endschema %}

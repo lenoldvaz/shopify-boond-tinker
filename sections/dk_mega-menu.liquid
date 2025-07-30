@@ -1,0 +1,202 @@
+{% comment %}
+  DK Mega Menu Section
+  
+  A comprehensive mega menu section that displays navigation categories,
+  menu columns, and featured products in a responsive layout.
+{% endcomment %}
+
+{% capture children %}
+  {% content_for 'blocks' %}
+{% endcapture %}
+
+<div
+  class="
+    dk-mega-menu
+    layout-panel-flex
+    layout-panel-flex--row
+    spacing-style
+    color-{{ section.settings.color_scheme }}
+    {% if section.settings.vertical_on_mobile %} mobile-column{% endif %}
+  "
+  style="
+    {% render 'layout-panel-style', settings: section.settings %}
+    {% render 'spacing-style', settings: section.settings %}
+  "
+  data-testid="dk-mega-menu"
+>
+  {{ children }}
+</div>
+
+{% stylesheet %}
+  .dk-mega-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    gap: var(--gap);
+    width: 100%;
+    padding: var(--padding-lg);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--style-border-radius);
+    box-shadow: var(--shadow-depth-2);
+  }
+
+  @media screen and (width < 750px) {
+    .dk-mega-menu {
+      grid-template-columns: 1fr;
+      gap: var(--gap-mobile, var(--gap));
+    }
+  }
+
+  .dk-mega-menu__category-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  .dk-mega-menu__featured-section {
+    grid-column: span 1;
+  }
+
+  @media screen and (width >= 990px) {
+    .dk-mega-menu__featured-section {
+      grid-column: span 1;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Mega Menu",
+  "class": "dk-mega-menu-section",
+  "blocks": [
+    {
+      "type": "dk_nav-categories"
+    },
+    {
+      "type": "dk_menu-column"
+    },
+    {
+      "type": "dk_featured-products-carousel"
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "vertical_on_mobile",
+      "label": "Stack vertically on mobile",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Mega Menu",
+      "category": "Navigation",
+      "blocks": [
+        {
+          "type": "dk_nav-categories"
+        },
+        {
+          "type": "dk_menu-column",
+          "settings": {
+            "title": "Shop Skincare",
+            "menu": ""
+          }
+        },
+        {
+          "type": "dk_menu-column",
+          "settings": {
+            "title": "Shop Haircare",
+            "menu": ""
+          }
+        },
+        {
+          "type": "dk_featured-products-carousel"
+        }
+      ],
+      "settings": {
+        "gap_desktop": 32,
+        "gap_mobile": 24,
+        "color_scheme": "scheme-1"
+      }
+    }
+  ]
+}
+{% endschema %}
