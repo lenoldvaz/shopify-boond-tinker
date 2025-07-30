@@ -168,41 +168,18 @@
               <div class="dk-featured-carousel__slideshow" data-carousel>
                 {% for product in products %}
                   <div class="dk-featured-carousel__slide" {% if forloop.first %}style="display: block;"{% else %}style="display: none;"{% endif %} data-slide="{{ forloop.index0 }}">
-                    <div class="dk-featured-carousel__product-card">
-                      {% if product.featured_image %}
-                        <div class="dk-featured-carousel__image-wrapper">
-                          {% if product.compare_at_price > product.price and block.settings.show_sale_badges %}
-                            {% assign discount_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round %}
-                            <div class="dk-featured-carousel__sale-badge">
-                              Save {{ discount_percentage }}%
-                            </div>
-                          {% endif %}
-                          
-                          <img
-                            src="{{ product.featured_image | image_url: width: 300 }}"
-                            alt="{{ product.featured_image.alt | escape }}"
-                            width="300"
-                            height="300"
-                            loading="lazy"
-                            class="dk-featured-carousel__image"
-                          >
-                        </div>
-                      {% endif %}
-
-                      <div class="dk-featured-carousel__content">
-                        <h4 class="dk-featured-carousel__product-title">
-                          <a href="{{ product.url }}" class="dk-featured-carousel__product-link">
-                            {{ product.title }}
-                          </a>
-                        </h4>
-
-                        {% if block.settings.show_descriptions and product.description != blank %}
-                          <div class="dk-featured-carousel__description">
-                            {{ product.description | strip_html | truncate: 100 }}
-                          </div>
-                        {% endif %}
-                      </div>
-                    </div>
+                    {% render 'product-card', 
+                       product: product, 
+                       show_quick_add: false,
+                       show_title: true,
+                       show_vendor: false,
+                       show_price: false,
+                       show_rating: false,
+                       show_description: block.settings.show_descriptions,
+                       show_badges: block.settings.show_sale_badges,
+                       image_ratio: '1:1',
+                       badge_position: 'top-left'
+                    %}
                   </div>
                 {% endfor %}
               </div>
@@ -228,16 +205,22 @@
 </header-menu>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Carousel functionality
-  const carousel = document.querySelector('[data-carousel]');
-  const prevBtn = document.querySelector('[data-carousel-prev]');
-  const nextBtn = document.querySelector('[data-carousel-next]');
-  const slides = document.querySelectorAll('[data-slide]');
-  const counter = document.querySelector('.dk-featured-carousel__current');
-  
-  if (carousel && slides.length > 0) {
+// Mega menu carousel functionality
+(function() {
+  function initCarousel() {
+    const megaMenu = document.querySelector('#dk-mega-menu-dropdown');
+    if (!megaMenu) return;
+    
+    const carousel = megaMenu.querySelector('[data-carousel]');
+    const prevBtn = megaMenu.querySelector('[data-carousel-prev]');
+    const nextBtn = megaMenu.querySelector('[data-carousel-next]');
+    const slides = megaMenu.querySelectorAll('[data-slide]');
+    const counter = megaMenu.querySelector('.dk-featured-carousel__current');
+    
+    if (!carousel || slides.length === 0) return;
+    
     let currentSlide = 0;
+    let autoplayInterval;
     
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -258,13 +241,60 @@ document.addEventListener('DOMContentLoaded', function() {
       showSlide(currentSlide);
     }
     
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    function startAutoplay() {
+      stopAutoplay();
+      if (slides.length > 1) {
+        autoplayInterval = setInterval(nextSlide, 5000);
+      }
+    }
     
-    // Auto-play carousel
-    setInterval(nextSlide, 5000);
+    function stopAutoplay() {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+      }
+    }
+    
+    // Event listeners
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        nextSlide();
+        startAutoplay(); // Restart autoplay after manual interaction
+      });
+    }
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        prevSlide();
+        startAutoplay(); // Restart autoplay after manual interaction
+      });
+    }
+    
+    // Pause autoplay on hover
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    
+    // Initialize
+    showSlide(0);
+    startAutoplay();
   }
-});
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel);
+  } else {
+    initCarousel();
+  }
+  
+  // Re-initialize when mega menu becomes visible (in case it's not loaded initially)
+  document.addEventListener('mouseover', function(e) {
+    if (e.target.closest('.header-menu--mega')) {
+      setTimeout(initCarousel, 100);
+    }
+  });
+})();
 </script>
 
 {% render 'dk_mega-menu-styles' %}

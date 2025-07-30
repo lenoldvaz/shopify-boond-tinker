@@ -299,47 +299,35 @@
     font-weight: 500;
   }
 
+  /* Use theme's actual product card classes */
   .dk-featured-carousel__product-card {
-    /* Use theme's product card styling */
-    background: var(--color-background) !important;
-    border: var(--border-width, 1px) solid var(--color-border) !important;
-    border-radius: var(--style-border-radius, 8px) !important;
-    padding: var(--padding-md, 16px) !important;
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    transition: var(--animation-speed, 0.2s) ease !important;
-    position: relative !important;
+    /* Remove custom styling - let theme handle it */
   }
 
-  .dk-featured-carousel__product-card:hover {
-    box-shadow: var(--shadow-card-hover, 0 4px 20px rgba(0,0,0,0.1)) !important;
-    transform: translateY(-2px) !important;
+  /* Override only the container to fit in mega menu */
+  .dk-mega-menu .product-card {
+    height: 100%;
+    max-width: none;
   }
 
-  .dk-featured-carousel__image-wrapper {
-    position: relative !important;
-    margin-bottom: var(--padding-sm, 12px) !important;
+  .dk-mega-menu .product-card__link {
+    height: 100%;
   }
 
-  .dk-featured-carousel__image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: var(--style-border-radius, 6px);
+  .dk-mega-menu .card-gallery {
+    aspect-ratio: 1;
+    height: 200px;
   }
 
-  .dk-featured-carousel__sale-badge {
-    position: absolute !important;
-    top: var(--padding-xs, 8px) !important;
-    left: var(--padding-xs, 8px) !important;
-    background: var(--color-accent, #173f36) !important;
-    color: var(--color-accent-text, white) !important;
-    padding: var(--padding-2xs, 4px) var(--padding-xs, 8px) !important;
-    border-radius: var(--style-border-radius, 4px) !important;
-    font-size: var(--font-size--small, 12px) !important;
-    font-weight: var(--font-weight-medium, 600) !important;
-    z-index: 2 !important;
+  .dk-mega-menu .product-media-container {
+    height: 100%;
+  }
+
+  .dk-mega-menu .product-badges {
+    position: absolute;
+    top: var(--padding-xs, 8px);
+    left: var(--padding-xs, 8px);
+    z-index: var(--layer-flat);
   }
 
   .dk-featured-carousel__product-title {
