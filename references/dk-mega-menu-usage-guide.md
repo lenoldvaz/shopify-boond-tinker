@@ -40,6 +40,11 @@ Once "DK Mega Menu" is selected, additional settings will appear:
    ```
    /collections/best-sellers,/pages/build-bundle,/pages/subscribe
    ```
+4. **Category callout pills**: Add attention-grabbing pills (NEW, HOT, etc.):
+   ```
+   NEW,,HOT
+   ```
+   This creates "Best Sellers NEW", "Build Your Own Bundle" (no pill), "Subscribe & Save HOT"
 
 ### Step 3: Set Up Menu Columns
 1. **Skincare column title**: Set to "Shop Skincare" 
@@ -65,6 +70,9 @@ Once "DK Mega Menu" is selected, additional settings will appear:
 - **Show navigation categories**: Toggle the left sidebar on/off
 - **Navigation categories**: Comma-separated list of category names
 - **Category links**: Comma-separated list of URLs (must match category order)
+- **Category callout pills**: Comma-separated list of pill text (NEW, HOT, SELLING OUT FAST, etc.)
+  - Leave empty positions for no pill: `NEW,,HOT` = first gets NEW, second gets nothing, third gets HOT
+  - Must match the same order as categories
 
 #### Menu Columns Section  
 - **Skincare column title**: Header text for first column
@@ -151,6 +159,79 @@ For reviews to display, products need these metafields:
 - `product.metafields.reviews.rating.value` (number)
 - `product.metafields.reviews.rating_count.value` (number)
 
+## Callout Pills Feature
+
+### Overview
+The DK Mega Menu includes a powerful callout pills system that adds attention-grabbing badges next to navigation categories. These pills help highlight special promotions, new arrivals, trending items, or urgency messaging.
+
+### Available Pill Types
+The system automatically color-codes pills based on the text you enter:
+
+#### Pre-styled Pills
+- **NEW** → Green pill (`#10b981`)
+- **HOT** → Red pill (`#ef4444`)
+- **SELLING OUT FAST** → Orange pill (`#f59e0b`)
+- **SALE** → Purple pill (`#8b5cf6`)
+- **LIMITED** → Pink pill (`#ec4899`)
+- **TRENDING** → Cyan pill (`#06b6d4`)
+
+#### Custom Pills
+- Any other text → Hey Bud green pill (`#173f36`)
+
+### How to Configure Pills
+
+1. **In Theme Customizer**: Header → Menu → DK Mega Menu
+2. **Find "Category callout pills" setting**
+3. **Enter pill text separated by commas**
+4. **Must match category order exactly**
+
+### Examples
+
+#### Example 1: Basic Setup
+```
+Categories: Best Sellers,New Arrivals,Sale Items
+Pills: HOT,NEW,SALE
+```
+**Result:**
+- Best Sellers **HOT** (red pill)
+- New Arrivals **NEW** (green pill)  
+- Sale Items **SALE** (purple pill)
+
+#### Example 2: Selective Pills
+```
+Categories: Best Sellers,Build Bundle,Subscribe & Save,Sale
+Pills: ,,HOT,SELLING OUT FAST
+```
+**Result:**
+- Best Sellers (no pill)
+- Build Bundle (no pill)
+- Subscribe & Save **HOT** (red pill)
+- Sale **SELLING OUT FAST** (orange pill)
+
+#### Example 3: Custom Text
+```
+Categories: Skincare,Haircare,Bundles
+Pills: 50% OFF,BESTSELLER,
+```
+**Result:**
+- Skincare **50% OFF** (Hey Bud green pill)
+- Haircare **BESTSELLER** (Hey Bud green pill)
+- Bundles (no pill)
+
+### Visual Features
+- **Animated pulse effect** draws attention
+- **Rounded pill design** matches modern UI trends
+- **High contrast colors** for readability
+- **Responsive design** works on all screen sizes
+- **Uppercase styling** for consistency
+
+### Best Practices
+- **Keep text short**: 1-3 words maximum
+- **Use urgency**: "SELLING OUT FAST", "LIMITED TIME"
+- **Highlight new items**: "NEW", "JUST LAUNCHED"  
+- **Show promotions**: "SALE", "50% OFF"
+- **Create urgency**: "HOT", "TRENDING"
+
 ## Integration Details
 
 ### Header Menu Integration
@@ -185,6 +266,32 @@ Edit the mega menu files for deeper customization:
 - **Layout**: Modify grid structure in `snippets/dk_mega-menu.liquid`
 - **Styling**: Update CSS in `snippets/dk_mega-menu-styles.liquid`  
 - **Integration**: Extend header integration in `blocks/_header-menu.liquid`
+
+## Recent Improvements
+
+### Product Card Enhancements
+- **Sale badges now properly positioned** inside product cards
+- **Theme-consistent styling** using your theme's CSS variables
+- **Improved hover effects** with proper animations
+- **Better image sizing** and aspect ratios
+
+### Column Layout Fixes
+- **Perfect alignment** between column titles and content
+- **Consistent spacing** throughout all sections
+- **Improved mobile responsiveness**
+
+### Carousel Functionality
+- **Working navigation controls** - Previous/Next buttons now functional
+- **Live slide counter** - Shows current position (1/5, 2/5, etc.)
+- **Auto-play feature** - Automatically cycles through products every 5 seconds
+- **Smooth transitions** between slides
+
+### Hey Bud Design Matching
+- **Authentic color scheme** - Uses Hey Bud's signature green (#173f36)
+- **Professional typography** - Matches Hey Bud's font sizing and weights
+- **Clean spacing** - Professional 48px padding and gaps
+- **Subtle shadows** - Elegant hover effects
+- **Modern button styling** - Green buttons with hover states
 
 ## Troubleshooting
 
