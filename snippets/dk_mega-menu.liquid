@@ -168,18 +168,34 @@
               <div class="dk-featured-carousel__slideshow" data-carousel>
                 {% for product in products %}
                   <div class="dk-featured-carousel__slide" {% if forloop.first %}style="display: block;"{% else %}style="display: none;"{% endif %} data-slide="{{ forloop.index0 }}">
-                    {% render 'product-card', 
-                       product: product, 
-                       show_quick_add: false,
-                       show_title: true,
-                       show_vendor: false,
-                       show_price: false,
-                       show_rating: false,
-                       show_description: block.settings.show_descriptions,
-                       show_badges: block.settings.show_sale_badges,
-                       image_ratio: '1:1',
-                       badge_position: 'top-left'
-                    %}
+                    <div class="dk-product-card">
+                      <a href="{{ product.url }}" class="dk-product-card__link">
+                        {% if product.featured_media %}
+                          <div class="dk-product-card__image">
+                            {{ product.featured_media | image_url: width: 300 | image_tag: 
+                               loading: 'lazy',
+                               width: product.featured_media.width,
+                               height: product.featured_media.height,
+                               alt: product.featured_media.alt | escape
+                            }}
+                            {% if block.settings.show_sale_badges and product.compare_at_price > product.price %}
+                              <div class="dk-product-card__badge">
+                                {% assign savings = product.compare_at_price | minus: product.price %}
+                                {% assign savings_percentage = savings | times: 100 | divided_by: product.compare_at_price %}
+                                Save {{ savings_percentage }}%
+                              </div>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                        
+                        <div class="dk-product-card__content">
+                          <h4 class="dk-product-card__title">{{ product.title }}</h4>
+                          {% if block.settings.show_descriptions and product.description != blank %}
+                            <p class="dk-product-card__description">{{ product.description | strip_html | truncate: 80 }}</p>
+                          {% endif %}
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 {% endfor %}
               </div>

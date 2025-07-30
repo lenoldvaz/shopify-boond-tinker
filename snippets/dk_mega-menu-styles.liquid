@@ -299,35 +299,80 @@
     font-weight: 500;
   }
 
-  /* Use theme's actual product card classes */
-  .dk-featured-carousel__product-card {
-    /* Remove custom styling - let theme handle it */
-  }
-
-  /* Override only the container to fit in mega menu */
-  .dk-mega-menu .product-card {
+  /* Simple Product Card for Mega Menu */
+  .dk-product-card {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    max-width: none;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
   }
 
-  .dk-mega-menu .product-card__link {
+  .dk-product-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .dk-product-card__link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
     height: 100%;
   }
 
-  .dk-mega-menu .card-gallery {
+  .dk-product-card__image {
+    position: relative;
     aspect-ratio: 1;
-    height: 200px;
+    overflow: hidden;
   }
 
-  .dk-mega-menu .product-media-container {
+  .dk-product-card__image img {
+    width: 100%;
     height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
   }
 
-  .dk-mega-menu .product-badges {
+  .dk-product-card:hover .dk-product-card__image img {
+    transform: scale(1.05);
+  }
+
+  .dk-product-card__badge {
     position: absolute;
-    top: var(--padding-xs, 8px);
-    left: var(--padding-xs, 8px);
-    z-index: var(--layer-flat);
+    top: 8px;
+    left: 8px;
+    background: #ef4444;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .dk-product-card__content {
+    padding: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dk-product-card__title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #173f36;
+    line-height: 1.3;
+  }
+
+  .dk-product-card__description {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    margin: 0;
+    margin-top: auto;
   }
 
   .dk-featured-carousel__product-title {
