@@ -101,6 +101,69 @@
     text-decoration: underline;
   }
 
+  /* Navigation Category Pills */
+  .dk-nav-categories__pill {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    vertical-align: middle;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Pill color variants */
+  .dk-nav-categories__pill--new {
+    background: #10b981;
+    color: white;
+  }
+
+  .dk-nav-categories__pill--hot {
+    background: #ef4444;
+    color: white;
+  }
+
+  .dk-nav-categories__pill--selling-out-fast {
+    background: #f59e0b;
+    color: white;
+  }
+
+  .dk-nav-categories__pill--sale {
+    background: #8b5cf6;
+    color: white;
+  }
+
+  .dk-nav-categories__pill--limited {
+    background: #ec4899;
+    color: white;
+  }
+
+  .dk-nav-categories__pill--trending {
+    background: #06b6d4;
+    color: white;
+  }
+
+  /* Default pill style */
+  .dk-nav-categories__pill:not([class*="--"]) {
+    background: #173f36;
+    color: white;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  }
+
   .dk-nav-categories__link:hover {
     background: rgba(var(--color-foreground-rgb), 0.05);
     padding-left: var(--padding-sm);
@@ -137,6 +200,12 @@
   }
 
   /* Menu Column - Hey Bud Style Overrides */
+  .dk-menu-column {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+
   .dk-menu-column__title {
     font-size: 22px !important;
     font-weight: 600 !important;
@@ -144,12 +213,16 @@
     color: #173f36 !important;
     border-bottom: 1px solid #e5e5e5 !important;
     padding-bottom: 12px !important;
+    margin-top: 0 !important;
   }
 
   .dk-menu-column__list {
     display: flex !important;
     flex-direction: column !important;
     gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
   }
 
   .dk-menu-column__link {
@@ -227,39 +300,46 @@
   }
 
   .dk-featured-carousel__product-card {
-    background: white !important;
-    border: 1px solid #e5e5e5 !important;
-    border-radius: 8px !important;
-    padding: 16px !important;
+    /* Use theme's product card styling */
+    background: var(--color-background) !important;
+    border: var(--border-width, 1px) solid var(--color-border) !important;
+    border-radius: var(--style-border-radius, 8px) !important;
+    padding: var(--padding-md, 16px) !important;
     height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    transition: box-shadow 0.2s ease !important;
+    transition: var(--animation-speed, 0.2s) ease !important;
+    position: relative !important;
   }
 
   .dk-featured-carousel__product-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
-    transform: none !important;
+    box-shadow: var(--shadow-card-hover, 0 4px 20px rgba(0,0,0,0.1)) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  .dk-featured-carousel__image-wrapper {
+    position: relative !important;
+    margin-bottom: var(--padding-sm, 12px) !important;
   }
 
   .dk-featured-carousel__image {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 12px;
+    border-radius: var(--style-border-radius, 6px);
   }
 
   .dk-featured-carousel__sale-badge {
     position: absolute !important;
-    top: 8px !important;
-    left: 8px !important;
-    background: #173f36 !important;
-    color: white !important;
-    padding: 4px 8px !important;
-    border-radius: 4px !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
+    top: var(--padding-xs, 8px) !important;
+    left: var(--padding-xs, 8px) !important;
+    background: var(--color-accent, #173f36) !important;
+    color: var(--color-accent-text, white) !important;
+    padding: var(--padding-2xs, 4px) var(--padding-xs, 8px) !important;
+    border-radius: var(--style-border-radius, 4px) !important;
+    font-size: var(--font-size--small, 12px) !important;
+    font-weight: var(--font-weight-medium, 600) !important;
+    z-index: 2 !important;
   }
 
   .dk-featured-carousel__product-title {

@@ -45,18 +45,25 @@
               <ul class="dk-nav-categories__list list-unstyled" role="list">
                 {% assign categories = block.settings.nav_categories | default: 'Best Sellers,Build Your Own Bundle,Subscribe & Save' | split: ',' %}
                 {% assign links = block.settings.nav_category_links | default: '/collections/best-sellers,/pages/build-bundle,/pages/subscribe' | split: ',' %}
+                {% assign pills = block.settings.nav_category_pills | default: ',,HOT' | split: ',' %}
                 
                 {% for category in categories %}
                   <li class="dk-nav-categories__item">
                     {% assign category_trimmed = category | strip %}
                     {% assign link_index = forloop.index0 %}
                     {% assign link_url = links[link_index] | strip | default: '#' %}
+                    {% assign pill_text = pills[link_index] | strip %}
                     
                     <a 
                       href="{{ link_url }}" 
                       class="dk-nav-categories__link"
                     >
                       {{ category_trimmed }}
+                      {% if pill_text != blank %}
+                        <span class="dk-nav-categories__pill dk-nav-categories__pill--{{ pill_text | downcase | replace: ' ', '-' }}">
+                          {{ pill_text }}
+                        </span>
+                      {% endif %}
                     </a>
                   </li>
                 {% endfor %}
@@ -219,5 +226,45 @@
     type="module"
   ></script>
 </header-menu>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Carousel functionality
+  const carousel = document.querySelector('[data-carousel]');
+  const prevBtn = document.querySelector('[data-carousel-prev]');
+  const nextBtn = document.querySelector('[data-carousel-next]');
+  const slides = document.querySelectorAll('[data-slide]');
+  const counter = document.querySelector('.dk-featured-carousel__current');
+  
+  if (carousel && slides.length > 0) {
+    let currentSlide = 0;
+    
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'block' : 'none';
+      });
+      if (counter) {
+        counter.textContent = index + 1;
+      }
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    
+    // Auto-play carousel
+    setInterval(nextSlide, 5000);
+  }
+});
+</script>
 
 {% render 'dk_mega-menu-styles' %}
