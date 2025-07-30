@@ -23,10 +23,11 @@
     opacity: 0 !important;
     transform: translateY(-10px) !important;
     transition: all 300ms ease !important;
-    background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: var(--style-border-radius);
-    box-shadow: var(--shadow-popover);
+    background: white;
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    border-radius: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     z-index: 1000 !important;
     margin-left: calc(-50vw + 50%) !important;
   }
@@ -48,17 +49,24 @@
   .dk-mega-menu {
     display: grid;
     grid-template-columns: 200px 1fr 1fr 2fr;
-    gap: var(--gap-desktop, 32px);
-    padding: var(--padding-xl);
-    min-height: 400px;
+    gap: 48px;
+    padding: 48px;
+    min-height: 500px;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
   }
 
   @media screen and (max-width: 750px) {
     .dk-mega-menu {
       grid-template-columns: 1fr;
-      gap: var(--gap-mobile, 24px);
-      padding: var(--padding-lg);
+      gap: 24px;
+      padding: 24px;
+      min-height: auto;
     }
   }
 
@@ -75,20 +83,22 @@
   .dk-nav-categories {
     display: flex;
     flex-direction: column;
-    gap: var(--padding-lg);
+    gap: 24px;
   }
 
   .dk-nav-categories__link {
-    font-size: var(--font-size--xxl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-foreground);
+    font-size: 28px;
+    font-weight: 700;
+    color: #173f36;
     text-decoration: none;
-    line-height: 1.2;
-    transition: color var(--animation-speed) ease;
+    line-height: 1.1;
+    transition: color 0.2s ease;
+    text-transform: none;
   }
 
   .dk-nav-categories__link:hover {
-    color: var(--color-link);
+    color: #2d6b5d;
+    text-decoration: underline;
   }
 
   .dk-nav-categories__link:hover {
@@ -128,39 +138,53 @@
 
   /* Menu Column - Hey Bud Style Overrides */
   .dk-menu-column__title {
-    font-size: var(--font-size--xl) !important;
-    font-weight: var(--font-weight-bold) !important;
-    margin-bottom: var(--padding-lg) !important;
-    color: var(--color-foreground) !important;
-    border-bottom: 1px solid var(--color-border) !important;
-    padding-bottom: var(--padding-sm) !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    margin-bottom: 20px !important;
+    color: #173f36 !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+    padding-bottom: 12px !important;
   }
 
   .dk-menu-column__list {
     display: flex !important;
     flex-direction: column !important;
-    gap: var(--padding-sm) !important;
+    gap: 8px !important;
   }
 
   .dk-menu-column__link {
-    color: var(--color-foreground) !important;
+    color: #333 !important;
     text-decoration: none !important;
-    font-size: var(--font-size--medium) !important;
-    transition: color var(--animation-speed) ease !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    padding: 4px 0 !important;
+    transition: color 0.2s ease !important;
   }
 
   .dk-menu-column__link:hover {
-    color: var(--color-link) !important;
-    background: rgba(var(--color-link-rgb), 0.1) !important;
+    color: #173f36 !important;
+    text-decoration: underline !important;
+    background: none !important;
   }
 
   .dk-menu-column__link--shop-all {
-    font-weight: var(--font-weight-bold) !important;
+    font-weight: 600 !important;
     text-transform: uppercase !important;
-    font-size: var(--font-size--small) !important;
+    font-size: 14px !important;
     letter-spacing: 0.5px !important;
-    margin-top: var(--padding-md) !important;
-    color: var(--color-link) !important;
+    margin-top: 16px !important;
+    color: #173f36 !important;
+    border: 1px solid #173f36 !important;
+    padding: 8px 16px !important;
+    text-align: center !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+  }
+
+  .dk-menu-column__link--shop-all:hover {
+    background: #173f36 !important;
+    color: white !important;
+    text-decoration: none !important;
   }
 
   /* Featured Carousel Enhanced Styling */
@@ -187,50 +211,106 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--padding-lg);
+    margin-bottom: 20px;
   }
 
   .dk-featured-carousel__title {
-    font-size: var(--font-size--xl) !important;
-    font-weight: var(--font-weight-bold) !important;
-    color: var(--color-foreground) !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #173f36 !important;
   }
 
   .dk-featured-carousel__counter {
-    font-size: var(--font-size--small);
-    color: var(--color-foreground-subdued);
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .dk-featured-carousel__product-card {
+    background: white !important;
+    border: 1px solid #e5e5e5 !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: box-shadow 0.2s ease !important;
+  }
+
+  .dk-featured-carousel__product-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+    transform: none !important;
   }
 
   .dk-featured-carousel__image {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
-    border-radius: var(--style-border-radius);
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .dk-featured-carousel__sale-badge {
+    position: absolute !important;
+    top: 8px !important;
+    left: 8px !important;
+    background: #173f36 !important;
+    color: white !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+  }
+
+  .dk-featured-carousel__product-title {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin-bottom: 8px !important;
+    color: #173f36 !important;
+  }
+
+  .dk-featured-carousel__product-link {
+    color: #173f36 !important;
+    text-decoration: none !important;
+  }
+
+  .dk-featured-carousel__product-link:hover {
+    text-decoration: underline !important;
+  }
+
+  .dk-featured-carousel__description {
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.4 !important;
+    margin-top: auto !important;
   }
 
   .dk-featured-carousel__navigation {
     display: flex;
     justify-content: center;
-    gap: var(--padding-sm);
-    margin-top: var(--padding-md);
+    gap: 8px;
+    margin-top: 16px;
   }
 
   .dk-featured-carousel__nav-btn {
-    background: var(--color-button-secondary, #f0f0f0);
-    border: 1px solid var(--color-border);
+    background: white;
+    border: 1px solid #e5e5e5;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--animation-speed) ease;
-    font-size: 18px;
+    transition: all 0.2s ease;
+    font-size: 16px;
+    color: #173f36;
   }
 
   .dk-featured-carousel__nav-btn:hover {
-    background: var(--color-button-secondary-hover, #e0e0e0);
+    background: #173f36;
+    color: white;
+    border-color: #173f36;
   }
 
   @keyframes pulse {
