@@ -11,32 +11,24 @@
   assign animation_speed = 200
 %}
 
-<header-menu
-  ref="headerMenu"
-  class="header-menu header-menu--mega mobile:hidden"
-  data-animation-delay="{{ animation_speed }}"
-  {{ block.shopify_attributes }}
-  style="--submenu-animation-speed: {{ animation_speed }}ms;"
->
-  <div class="header-menu__inner">
-    {% render 'header-menu', menu: block.settings.menu %}
-  </div>
-
-  <!-- Mega Menu Dropdown -->
-  <div class="dk-mega-menu-dropdown" data-mega-menu-dropdown>
-    <div
-      class="
-        dk-mega-menu
-        layout-panel-flex
-        layout-panel-flex--row
-        color-{{ block.settings.color_scheme | default: 'scheme-1' }}
-        {% if block.settings.vertical_on_mobile %}mobile-column{% endif %}
-      "
-      style="
-        {% render 'gap-style', value: block.settings.gap_desktop | default: 32, mobile_value: block.settings.gap_mobile | default: 24 %}
-      "
-      data-testid="dk-mega-menu"
-    >
+<div class="dk-mega-menu-container mobile:hidden" {{ block.shopify_attributes }}>
+  <!-- Show the mega menu content directly -->
+  <div
+    class="
+      dk-mega-menu
+      layout-panel-flex
+      layout-panel-flex--row
+      color-{{ block.settings.color_scheme | default: 'scheme-1' }}
+      {% if block.settings.vertical_on_mobile %}mobile-column{% endif %}
+    "
+    style="
+      {% render 'gap-style', value: block.settings.gap_desktop | default: 32, mobile_value: block.settings.gap_mobile | default: 24 %}
+      background: var(--color-background);
+      padding: var(--padding-lg);
+      border-radius: var(--style-border-radius);
+    "
+    data-testid="dk-mega-menu"
+  >
       <!-- Navigation Categories -->
       {% if block.settings.show_nav_categories %}
         <div class="dk-mega-menu__nav-section">
@@ -210,13 +202,7 @@
           </div>
         </div>
       {% endif %}
-    </div>
   </div>
-
-  <script
-    src="{{ 'header-menu.js' | asset_url }}"
-    type="module"
-  ></script>
-</header-menu>
+</div>
 
 {% render 'dk_mega-menu-styles' %}
