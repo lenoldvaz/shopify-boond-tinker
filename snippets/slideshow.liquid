@@ -60,6 +60,9 @@
       {% if slide_size %}
         size="{{ slide_size }}"
       {% endif %}
+      {% if slide_size == 'custom' and custom_height %}
+        style="--custom-height: {{ custom_height }}px;"
+      {% endif %}
       {% if slideshow_gutters %}
         gutters="{{ slideshow_gutters }}"
       {% endif %}

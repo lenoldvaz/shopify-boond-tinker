@@ -3065,9 +3065,9 @@ slideshow-slides {
     min-height: 25rem;
   }
 
-  &[size='fit-content'] {
-    height: fit-content;
-    min-height: auto;
+  &[size='custom'] {
+    min-height: var(--custom-height, 25rem);
+    height: var(--custom-height, 25rem);
   }
 
   @media screen and (width >= 750px) {

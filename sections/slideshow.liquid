@@ -44,7 +44,8 @@
     autoplay_speed: section.settings.autoplay_speed,
     slides: slides,
     slide_count: section.blocks.size,
-    slide_size: section.settings.slide_height
+    slide_size: section.settings.slide_height,
+    custom_height: section.settings.custom_height
   %}
 </div>
 
@@ -195,12 +196,23 @@
           "label": "t:options.large"
         },
         {
-          "value": "fit-content",
-          "label": "Fit to largest slide"
+          "value": "custom",
+          "label": "Custom"
         }
       ],
       "default": "medium",
       "label": "t:settings.height"
+    },
+    {
+      "type": "range",
+      "id": "custom_height",
+      "label": "Custom height",
+      "min": 200,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "default": 400,
+      "visible_if": "{{ section.settings.slide_height == 'custom' }}"
     },
     {
       "type": "header",
