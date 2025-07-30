@@ -12,24 +12,17 @@
   }
 
   .dk-mega-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: var(--layer-dropdown, 100);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: 
-      opacity var(--animation-speed) ease,
-      visibility var(--animation-speed) ease,
-      transform var(--animation-speed) ease;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--style-border-radius);
+    padding: var(--padding-lg);
+    margin-top: var(--padding-sm);
   }
 
-  .dk-mega-menu--visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  /* Make sure the mega menu submenu is visible */
+  .header-menu .menu-list__submenu {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   /* Enhanced Grid Layout */
