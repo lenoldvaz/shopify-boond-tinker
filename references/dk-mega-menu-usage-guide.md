@@ -14,11 +14,18 @@ The DK Mega Menu is implemented as a **header menu style** rather than a standal
 - Proper dropdown positioning and animations
 - Mobile-responsive behavior
 - Consistent user experience
+- **Individual dropdowns per menu item** - Different content for SHOP, RAKHI 2025, GIFTING
+
+### Menu Item Behavior
+- **SHOP Menu Item**: Shows full mega menu with all components
+- **RAKHI 2025 & GIFTING**: Show regular dropdown menus (if they have sub-links)
+- **Simple Links**: No dropdown for menu items without sub-links
 
 ### Components Included
 - **Navigation Categories** - Left sidebar (Best Sellers, Bundle, Subscribe & Save)
 - **Menu Columns** - Product category columns (Skincare, Haircare)  
 - **Featured Products Carousel** - Trending products with navigation
+- **Simple Product Cards** - Custom-designed cards with hover effects
 
 ## Quick Setup
 
@@ -239,7 +246,9 @@ The DK Mega Menu works seamlessly within the header system:
 - **Automatic positioning**: Dropdown appears below the header menu
 - **Animation support**: Uses existing header menu animations
 - **Mobile compatibility**: Integrates with mobile menu drawer
-- **Hover behavior**: Shows on menu hover (desktop) and click (mobile)
+- **Individual hover behavior**: Each menu item shows its own dropdown content
+- **Smart content detection**: SHOP items get mega menu, others get regular dropdowns
+- **Menu item detection**: Automatically detects menu handles containing "shop"
 
 ## Responsive Behavior
 
@@ -263,28 +272,43 @@ The system uses Boond 2025 theme variables:
 
 ### Advanced Customization
 Edit the mega menu files for deeper customization:
-- **Layout**: Modify grid structure in `snippets/dk_mega-menu.liquid`
+- **Main Structure**: Modify menu item logic in `snippets/dk_mega-menu.liquid`
+- **Mega Menu Content**: Update layout in `snippets/dk_mega-menu-content.liquid`
 - **Styling**: Update CSS in `snippets/dk_mega-menu-styles.liquid`  
 - **Integration**: Extend header integration in `blocks/_header-menu.liquid`
 
+### File Structure
+- `snippets/dk_mega-menu.liquid` - Main menu wrapper with individual dropdown logic
+- `snippets/dk_mega-menu-content.liquid` - Full mega menu content for "shop" items
+- `snippets/dk_mega-menu-styles.liquid` - All CSS styles and hover states
+- `blocks/_header-menu.liquid` - Header integration and settings schema
+
 ## Recent Improvements
 
-### Product Card Enhancements
-- **Sale badges now properly positioned** inside product cards
-- **Theme-consistent styling** using your theme's CSS variables
-- **Improved hover effects** with proper animations
-- **Better image sizing** and aspect ratios
+### Individual Menu Item Dropdowns ✨ NEW
+- **Separate dropdowns per menu item** - SHOP gets mega menu, others get regular dropdowns
+- **Smart menu detection** - Automatically detects "shop" menu items for mega menu
+- **Flexible dropdown system** - Mix mega menus and regular dropdowns in same header
+- **Better user experience** - Only relevant content shows for each menu item
+
+### Product Card Fixes ✅ FIXED
+- **Custom product card structure** - No longer depends on complex theme snippets
+- **Product images now visible** - Fixed missing product display issue
+- **Sale badges properly positioned** inside product cards with correct styling
+- **Improved hover effects** with smooth animations and scale transforms
+- **Better image sizing** with proper aspect ratios and object-fit coverage
 
 ### Column Layout Fixes
 - **Perfect alignment** between column titles and content
 - **Consistent spacing** throughout all sections
 - **Improved mobile responsiveness**
 
-### Carousel Functionality
-- **Working navigation controls** - Previous/Next buttons now functional
+### Carousel Functionality ✅ FIXED
+- **Working navigation controls** - Previous/Next buttons now fully functional
 - **Live slide counter** - Shows current position (1/5, 2/5, etc.)
 - **Auto-play feature** - Automatically cycles through products every 5 seconds
 - **Smooth transitions** between slides
+- **Multiple carousel support** - Each menu item can have its own carousel
 
 ### Hey Bud Design Matching
 - **Authentic color scheme** - Uses Hey Bud's signature green (#173f36)
@@ -296,6 +320,20 @@ Edit the mega menu files for deeper customization:
 ## Troubleshooting
 
 ### Common Issues
+
+#### Product Cards Not Showing ✅ FIXED
+- **Issue**: Product images and cards not displaying in carousel
+- **Solution**: Now uses custom product card structure - should work automatically
+- **Note**: No longer dependent on complex theme snippets
+
+#### Wrong Menu Item Shows Mega Menu
+- **Check**: Menu item handle contains "shop" (case-insensitive)
+- **Solution**: Rename menu item to include "shop" or edit the detection logic in `dk_mega-menu.liquid` line 53
+
+#### Carousel Controls Not Working ✅ FIXED
+- **Issue**: Previous/Next buttons not functional
+- **Solution**: Enhanced JavaScript now properly initializes all carousels
+- **Note**: Supports multiple carousels per page
 
 #### Menus Not Displaying
 - **Check**: Navigation menus are created and published
