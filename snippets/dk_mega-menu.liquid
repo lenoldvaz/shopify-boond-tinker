@@ -19,11 +19,11 @@
   style="--submenu-animation-speed: {{ animation_speed }}ms;"
 >
   <div class="header-menu__inner">
-    {%- render 'header-menu' %}
+    {%- render 'header-menu', menu: block.settings.menu %}
   </div>
 
-  <!-- DK Mega Menu as submenu -->
-  <div class="menu-list__submenu color-{{ block.settings.color_scheme | default: 'scheme-1' }}">
+  <!-- DK Mega Menu as submenu - triggered by hovering any menu item -->
+  <div class="menu-list__submenu color-{{ block.settings.color_scheme | default: 'scheme-1' }}" id="dk-mega-menu-dropdown">
     <div class="menu-list__submenu-inner">
       <div
         class="
