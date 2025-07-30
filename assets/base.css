@@ -2159,6 +2159,12 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   height: 100%;
 }
 
+@media screen and (width < 750px) {
+  .layout-panel-flex {
+    gap: var(--gap-mobile, var(--gap));
+  }
+}
+
 .layout-panel-flex--row {
   flex-flow: row var(--flex-wrap);
   justify-content: var(--horizontal-alignment);

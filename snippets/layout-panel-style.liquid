@@ -27,7 +27,7 @@
 
 --flex-direction: {{ settings.content_direction | default: 'column' }}; --flex-wrap: nowrap;
 
-{% render 'gap-style', value: settings.gap %}
+{% render 'gap-style', value: settings.gap_desktop | default: settings.gap, mobile_value: settings.gap_mobile | default: settings.gap %}
 
 --horizontal-alignment: {{ horizontal_alignment }}; --vertical-alignment: {{ vertical_alignment }};
 --vertical-alignment-mobile: {{ vertical_alignment_mobile }};
