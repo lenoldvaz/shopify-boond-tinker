@@ -139,9 +139,10 @@
             <h3 class="dk-featured-carousel__title">
               {{ block.settings.carousel_title }}
             </h3>
-            {% if products.size > 1 %}
+            {% if products.size > 2 %}
+              {% assign total_slides = products.size | divided_by: 2 | ceil %}
               <div class="dk-featured-carousel__counter">
-                <span class="dk-featured-carousel__current">1</span>/<span class="dk-featured-carousel__total">{{ products.size }}</span>
+                <span class="dk-featured-carousel__current">1</span>/<span class="dk-featured-carousel__total">{{ total_slides }}</span>
               </div>
             {% endif %}
           </div>
@@ -149,41 +150,55 @@
 
         {% if products.size > 0 %}
           <div class="dk-featured-carousel__slideshow" data-carousel>
-            {% for product in products %}
-              <div class="dk-featured-carousel__slide" {% if forloop.first %}style="display: block;"{% else %}style="display: none;"{% endif %} data-slide="{{ forloop.index0 }}">
-                <div class="dk-product-card">
-                  <a href="{{ product.url }}" class="dk-product-card__link">
-                    {% if product.featured_media %}
-                      <div class="dk-product-card__image">
-                        {{ product.featured_media | image_url: width: 300 | image_tag: 
-                           loading: 'lazy',
-                           width: product.featured_media.width,
-                           height: product.featured_media.height,
-                           alt: product.featured_media.alt | escape
-                        }}
-                        {% if block.settings.show_sale_badges and product.compare_at_price > product.price %}
-                          <div class="dk-product-card__badge">
-                            {% assign savings = product.compare_at_price | minus: product.price %}
-                            {% assign savings_percentage = savings | times: 100 | divided_by: product.compare_at_price %}
-                            Save {{ savings_percentage }}%
+            {% assign products_per_slide = 2 %}
+            {% assign total_slides = products.size | divided_by: products_per_slide | ceil %}
+            
+            {% for i in (0..total_slides) %}
+              {% assign slide_index = i %}
+              {% assign start_index = slide_index | times: products_per_slide %}
+              {% assign end_index = start_index | plus: products_per_slide | minus: 1 %}
+              
+              {% if start_index < products.size %}
+                <div class="dk-featured-carousel__slide" {% if slide_index == 0 %}style="display: flex;"{% else %}style="display: none;"{% endif %} data-slide="{{ slide_index }}">
+                  {% for j in (start_index..end_index) %}
+                    {% if j < products.size %}
+                      {% assign product = products[j] %}
+                      <div class="dk-product-card">
+                        <a href="{{ product.url }}" class="dk-product-card__link">
+                          {% if product.featured_media %}
+                            <div class="dk-product-card__image">
+                              {{ product.featured_media | image_url: width: 250 | image_tag: 
+                                 loading: 'lazy',
+                                 width: product.featured_media.width,
+                                 height: product.featured_media.height,
+                                 alt: product.featured_media.alt | escape
+                              }}
+                              {% if block.settings.show_sale_badges and product.compare_at_price > product.price %}
+                                <div class="dk-product-card__badge">
+                                  {% assign savings = product.compare_at_price | minus: product.price %}
+                                  {% assign savings_percentage = savings | times: 100 | divided_by: product.compare_at_price %}
+                                  Save {{ savings_percentage }}%
+                                </div>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                          
+                          <div class="dk-product-card__content">
+                            <h4 class="dk-product-card__title">{{ product.title }}</h4>
+                            {% if block.settings.show_descriptions and product.description != blank %}
+                              <p class="dk-product-card__description">{{ product.description | strip_html | truncate: 80 }}</p>
+                            {% endif %}
                           </div>
-                        {% endif %}
+                        </a>
                       </div>
                     {% endif %}
-                    
-                    <div class="dk-product-card__content">
-                      <h4 class="dk-product-card__title">{{ product.title }}</h4>
-                      {% if block.settings.show_descriptions and product.description != blank %}
-                        <p class="dk-product-card__description">{{ product.description | strip_html | truncate: 80 }}</p>
-                      {% endif %}
-                    </div>
-                  </a>
+                  {% endfor %}
                 </div>
-              </div>
+              {% endif %}
             {% endfor %}
           </div>
 
-          {% if products.size > 1 %}
+          {% if products.size > 2 %}
             <div class="dk-featured-carousel__navigation">
               <button class="dk-featured-carousel__nav-btn dk-featured-carousel__nav-btn--prev" data-carousel-prev>‹</button>
               <button class="dk-featured-carousel__nav-btn dk-featured-carousel__nav-btn--next" data-carousel-next>›</button>
@@ -214,7 +229,7 @@
       
       function showSlide(index) {
         slides.forEach((slide, i) => {
-          slide.style.display = i === index ? 'block' : 'none';
+          slide.style.display = i === index ? 'flex' : 'none';
         });
         if (counter) {
           counter.textContent = index + 1;
