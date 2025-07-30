@@ -3065,6 +3065,11 @@ slideshow-slides {
     min-height: 25rem;
   }
 
+  &[size='fit-content'] {
+    height: fit-content;
+    min-height: auto;
+  }
+
   @media screen and (width >= 750px) {
     &[size='small'] {
       min-height: 26.25rem;
