@@ -62,7 +62,7 @@
           "type": "_header-menu",
           "static": true,
           "settings": {
-            "menu": "2025-menu-dk",
+            "menu": "v2-mobile-menu-shop",
             "menu_style": "dk_mega_menu",
             "featured_products_aspect_ratio": "4 / 5",
             "featured_collections_aspect_ratio": "16 / 9",
