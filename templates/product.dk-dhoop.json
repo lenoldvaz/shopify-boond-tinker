@@ -111,6 +111,7 @@
             "divider_kYArEk": {
               "type": "_divider",
               "name": "t:names.divider",
+              "disabled": true,
               "settings": {
                 "thickness": 1,
                 "corner_radius": "square",
@@ -177,6 +178,7 @@
             "group_CfKHjP": {
               "type": "group",
               "name": "Product Bullets",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
