@@ -153,7 +153,8 @@
             {% assign products_per_slide = 2 %}
             {% assign total_slides = products.size | divided_by: products_per_slide | ceil %}
             
-            {% for i in (0..total_slides) %}
+            {% assign total_slides_minus_1 = total_slides | minus: 1 %}
+            {% for i in (0..total_slides_minus_1) %}
               {% assign slide_index = i %}
               {% assign start_index = slide_index | times: products_per_slide %}
               {% assign end_index = start_index | plus: products_per_slide | minus: 1 %}
