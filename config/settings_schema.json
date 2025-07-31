@@ -58,13 +58,6 @@
           },
           {
             "type": "color",
-            "id": "foreground_bold",
-            "label": "t:settings.bold_text",
-            "default": "#000000",
-            "alpha": true
-          },
-          {
-            "type": "color",
             "id": "primary",
             "label": "t:settings.primary_color",
             "default": "#000F9F",
