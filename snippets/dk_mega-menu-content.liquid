@@ -247,10 +247,8 @@
       }
       
       function startAutoplay() {
+        // Disabled auto-scroll - no automatic carousel rotation
         stopAutoplay();
-        if (slides.length > 1) {
-          autoplayInterval = setInterval(nextSlide, 5000);
-        }
       }
       
       function stopAutoplay() {
@@ -265,7 +263,6 @@
         nextBtn.addEventListener('click', function(e) {
           e.preventDefault();
           nextSlide();
-          startAutoplay(); // Restart autoplay after manual interaction
         });
       }
       
@@ -273,17 +270,11 @@
         prevBtn.addEventListener('click', function(e) {
           e.preventDefault();
           prevSlide();
-          startAutoplay(); // Restart autoplay after manual interaction
         });
       }
       
-      // Pause autoplay on hover
-      carousel.addEventListener('mouseenter', stopAutoplay);
-      carousel.addEventListener('mouseleave', startAutoplay);
-      
       // Initialize
       showSlide(0);
-      startAutoplay();
     });
   }
   

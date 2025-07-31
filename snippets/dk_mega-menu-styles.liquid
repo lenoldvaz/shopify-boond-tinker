@@ -308,6 +308,11 @@
 
   .dk-featured-carousel__slide {
     flex: 0 0 auto !important;
+    gap: 32px !important;
+  }
+
+  .dk-featured-carousel__slide .dk-product-card:not(:last-child) {
+    margin-right: 32px !important;
   }
 
   /* Simple Product Card for Mega Menu */
@@ -373,6 +378,7 @@
     flex-direction: column !important;
     text-align: left !important;
     min-height: 60px !important;
+    white-space: normal !important;
   }
 
   .dk-product-card__title {
@@ -384,6 +390,7 @@
     word-wrap: break-word !important;
     overflow-wrap: break-word !important;
     hyphens: auto !important;
+    white-space: normal !important;
   }
 
   .dk-product-card__description {
