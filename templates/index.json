@@ -1776,10 +1776,37 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "dk_text_nAaLV9": {
+              "type": "dk_text",
+              "name": "DK Text",
+              "settings": {
+                "text": "<p>With बूँद | Boond, our mission is to <strong>revive the ancient art</strong> of Indian perfume making, support the artisans and take <strong>Indian fragrances to the world</strong>.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "bold_text_color": "#b20000",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "text_eTtYe4": {
               "type": "text",
               "settings": {
-                "text": "<p>With बूँद | Boond, our mission is to <strong>revive the ancient art</strong> of Indian perfume making, support the artisans and take <strong>Indian fragrances to the world</strong>.</p>",
+                "text": "",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -1829,6 +1856,7 @@
             }
           },
           "block_order": [
+            "dk_text_nAaLV9",
             "text_eTtYe4",
             "text_TfN3fV"
           ]
