@@ -43,10 +43,10 @@
         },
         "slide_ia3YGc": {
           "type": "_slide",
-          "name": "Maati",
+          "name": "Dhoop",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "",
+            "slide_link": "shopify://collections/dhoop",
             "image_1": "shopify://shop_images/audh_dhoop_banner.png",
             "content_direction": "column",
             "vertical_on_mobile": true,

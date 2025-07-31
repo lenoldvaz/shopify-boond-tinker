@@ -62,7 +62,7 @@
           "type": "_header-menu",
           "static": true,
           "settings": {
-            "menu": "v2-mobile-menu-shop",
+            "menu": "2025-menu-dk",
             "menu_style": "dk_mega_menu",
             "featured_products_aspect_ratio": "4 / 5",
             "featured_collections_aspect_ratio": "16 / 9",
@@ -90,7 +90,7 @@
             "skincare_title": "Perfumes",
             "skincare_menu": "by-fragrances",
             "haircare_title": "Incense Cones",
-            "haircare_menu": "by-fragrances",
+            "haircare_menu": "v2-natural-incense-cones",
             "max_links": 8,
             "show_shop_all": false,
             "shop_all_text": "SHOP ALL",
