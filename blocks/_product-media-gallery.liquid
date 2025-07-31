@@ -123,7 +123,7 @@
       {% if block.settings.media_columns == "two" and block.settings.large_first_image%}media-gallery--large-first-image{% endif %}
     {% endif %}
     media-gallery--{{ block.settings.media_presentation }}
-    {% if block.settings.slideshow_mobile_controls_style == 'hint' %}
+    {% if block.settings.slideshow_mobile_controls_style == 'hint' or block.settings.slideshow_mobile_controls_style == 'hint_and_dots' %}
       media-gallery--hint
     {% endif %}
     {% if block.settings.extend_media %}

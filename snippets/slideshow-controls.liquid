@@ -133,7 +133,26 @@
         <span ref="current">1</span><span class="slash">/</span>{{ item_count -}}
       </div>
     {% when 'dots' %}
-      <ol class="slideshow-controls__{{ style }}">
+      <ol class="slideshow-controls__dots">
+        {% for i in (1..item_count) %}
+          <li>
+            <button
+              class="slideshow-control button button-unstyled"
+              style="animation-timeline: --slide-{{ forloop.index }}"
+              aria-label="{{ 'accessibility.slide_status' | t: index: forloop.index, length: forloop.length }}"
+              on:click="/select/{{ forloop.index0 }}"
+              ref="dots[]"
+              {% if forloop.first %}
+                aria-selected="true"
+              {% endif %}
+            >
+              {{ forloop.index }}
+            </button>
+          </li>
+        {% endfor %}
+      </ol>
+    {% when 'hint_and_dots' %}
+      <ol class="slideshow-controls__dots">
         {% for i in (1..item_count) %}
           <li>
             <button
