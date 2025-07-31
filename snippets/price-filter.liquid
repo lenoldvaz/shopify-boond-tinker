@@ -127,11 +127,12 @@
             </label>
           </div>
         </div>
-
-        <div class="price-facet__highest-price">
+          {% comment %} DK - Commented out the highest price on applying filters {% endcomment %}
+           
+        {% comment %} <div class="price-facet__highest-price">
           {%- assign formatted_highest_price = filter.range_max | money -%}
           {{ 'content.price_filter' | t: price: formatted_highest_price }}
-        </div>
+        </div> {% endcomment %}
 
         {% if filter.min_value.value != null or filter.max_value.value != null %}
           {% assign has_active_values = true %}
