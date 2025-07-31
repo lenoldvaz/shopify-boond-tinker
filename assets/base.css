@@ -802,6 +802,11 @@ h6,
   margin-block-end: 0;
 }
 
+/* Bold text */
+strong, b, .bold {
+  color: var(--color-foreground-bold);
+}
+
 /* Links */
 a {
   --button-color: var(--color, var(--color-primary));
