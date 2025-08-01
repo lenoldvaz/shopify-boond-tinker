@@ -21,10 +21,10 @@
         "padding-block-end": 80
       }
     },
-    "hero_BatAEb": {
-      "type": "hero",
+    "section_9g94wG": {
+      "type": "section",
       "blocks": {
-        "text_ttpGzb": {
+        "text_TRN7ax": {
           "type": "text",
           "settings": {
             "text": "<p>Impress with Gifts That Tell a Story</p>",
@@ -49,12 +49,12 @@
           },
           "blocks": {}
         },
-        "text_xMwJ9M": {
+        "text_Y8rNHh": {
           "type": "text",
           "settings": {
             "text": "<p>Whether it's for your employees, partners, or clients – gift them an experience of India’s fragrance legacy. Sustainably made, beautifully packaged, and customizable at scale.</p>",
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "left",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
@@ -73,55 +73,39 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "button_gNNayb": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Enquire Now",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "text_ttpGzb",
-        "text_xMwJ9M",
-        "button_gNNayb"
+        "text_TRN7ax",
+        "text_Y8rNHh"
       ],
-      "name": "t:names.hero",
+      "name": "t:names.custom_section",
       "settings": {
-        "visibility_option": "both",
-        "link": "",
-        "open_in_new_tab": false,
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/corporate_gifting.png",
-        "media_type_2": "image",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 24,
+        "gap_desktop": 12,
+        "gap_mobile": 12,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "",
         "section_height_custom": 50,
-        "color_scheme": "scheme-5",
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
         "toggle_overlay": false,
         "overlay_color": "#00000026",
-        "overlay_style": "gradient",
+        "overlay_style": "solid",
         "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 40,
+        "padding-block-start": 80,
         "padding-block-end": 40
       }
     },
@@ -2562,7 +2546,7 @@
   },
   "order": [
     "main",
-    "hero_BatAEb",
+    "section_9g94wG",
     "section_w9reni",
     "section_frwgfd",
     "section_CcFfQT",
