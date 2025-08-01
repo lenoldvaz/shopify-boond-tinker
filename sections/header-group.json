@@ -17,8 +17,8 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "<strong>Uplevel your office with new decor</strong>",
-            "link": "shopify://collections/objects",
+            "text": "<strong>Rakhi Collection, Now In! </strong>",
+            "link": "shopify://collections/rakhi",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
             "weight": "",
