@@ -57,9 +57,9 @@
         "blog-post-image": {
           "type": "image",
           "name": "Featured image",
-          "disabled": true,
           "static": true,
           "settings": {
+            "image": "{{ closest.article.image }}",
             "link": "",
             "image_ratio": "landscape",
             "width": "fill",
