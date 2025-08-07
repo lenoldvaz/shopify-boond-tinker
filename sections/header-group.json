@@ -17,8 +17,8 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "<strong>Uplevel your office with new decor</strong>",
-            "link": "shopify://collections/objects",
+            "text": "<strong>We Ship Globally! </strong>",
+            "link": "",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
             "weight": "",
@@ -90,7 +90,7 @@
             "cat1_title": "Perfumes",
             "cat1_menu": "by-fragrances",
             "haircare_title": "Incense Cones",
-            "haircare_menu": "by-fragrances",
+            "haircare_menu": "v2-natural-incense-cones",
             "max_links": 8,
             "show_shop_all": false,
             "shop_all_text": "SHOP ALL",

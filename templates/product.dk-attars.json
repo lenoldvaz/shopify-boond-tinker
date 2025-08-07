@@ -23,7 +23,7 @@
             "large_first_image": true,
             "icons_style": "chevron",
             "slideshow_controls_style": "dots",
-            "slideshow_mobile_controls_style": "hint",
+            "slideshow_mobile_controls_style": "hint_and_dots",
             "thumbnail_position": "bottom",
             "thumbnail_width": 44,
             "aspect_ratio": "1",
@@ -32,7 +32,7 @@
             "constrain_to_viewport": true,
             "zoom": true,
             "video_loop": false,
-            "hide_variants": false,
+            "hide_variants": true,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -91,19 +91,6 @@
               },
               "blocks": {}
             },
-            "reviews": {
-              "type": "review",
-              "disabled": true,
-              "settings": {
-                "product": "{{ closest.product }}",
-                "stars_style": "shaded",
-                "show_number": true,
-                "rating_color": "primary",
-                "type_preset": "paragraph",
-                "alignment": "left"
-              },
-              "blocks": {}
-            },
             "judge_me_reviews_preview_badge_qPH6jY": {
               "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
               "settings": {}
@@ -137,33 +124,6 @@
                 "wrap": "pretty",
                 "color": "var(--color-foreground)",
                 "bold_text_color": "#b20000",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_Az7QNW": {
-              "type": "text",
-              "name": "t:names.text",
-              "disabled": true,
-              "settings": {
-                "text": "{{ closest.product.metafields.custom.product_short_highlight | metafield_tag }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -1195,17 +1155,55 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "accordion_row_dkggdy": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "How to use?",
+                    "open_by_default": false
+                  },
+                  "blocks": {
+                    "text_xPQUmn": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.metafields.custom.how_to_use | metafield_tag }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_xPQUmn"
+                  ]
+                },
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Details",
+                    "heading": "How it's made",
                     "open_by_default": false
                   },
                   "blocks": {
                     "text_McjMWz": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>This product is crafted with quality materials to ensure durability and performance. Designed with your convenience in mind, it seamlessly fits into your everyday life.</p>",
+                        "text": "{{ closest.product.metafields.custom.how_it_s_made | metafield_tag }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1235,14 +1233,14 @@
                 "accordion_row_aaFerA": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Shipping & Returns",
+                    "heading": "Inside the box",
                     "open_by_default": false
                   },
                   "blocks": {
                     "text_DNPAct": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>We strive to process and ship all orders in a timely manner, working diligently to ensure that your items are on their way to you as soon as possible. </p><p>We are committed to ensuring a positive shopping experience for all our customers. If for any reason you wish to return an item, we invite you to reach out to our team for assistance, and we will evaluate every return request with care and consideration.</p>",
+                        "text": "{{ closest.product.metafields.custom.inside_the_box | metafield_tag }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1271,6 +1269,7 @@
                 }
               },
               "block_order": [
+                "accordion_row_dkggdy",
                 "accordion_row_VyFryh",
                 "accordion_row_aaFerA"
               ]
@@ -1278,11 +1277,9 @@
           },
           "block_order": [
             "heading_m7KmQQ",
-            "reviews",
             "judge_me_reviews_preview_badge_qPH6jY",
             "divider_kYArEk",
             "dk_text_96FEjd",
-            "text_Az7QNW",
             "group_CfKHjP",
             "divider_RwNDi4",
             "price_a7krng",
@@ -1566,6 +1563,7 @@
       "block_order": [
         "video_PthMbP"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
         "content_direction": "column",
@@ -1579,6 +1577,45 @@
         "gap_mobile": 12,
         "section_width": "full-width",
         "section_height": "small",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "175402345097dc9a1b": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_ajkfzN": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_ajkfzN"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
         "section_height_custom": 50,
         "color_scheme": "",
         "background_media": "none",
@@ -1845,6 +1882,7 @@
     "main",
     "section_yrEyFk",
     "section_NaqU9X",
+    "175402345097dc9a1b",
     "product_list_zR9Cym"
   ]
 }

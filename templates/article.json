@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "section": {
       "type": "main-blog-post",
@@ -58,6 +59,8 @@
           "name": "Featured image",
           "static": true,
           "settings": {
+            "image": "{{ closest.article.image }}",
+            "link": "",
             "image_ratio": "landscape",
             "width": "fill",
             "custom_width": 100,

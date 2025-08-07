@@ -1,0 +1,1742 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_KTVRHp": {
+      "type": "hero",
+      "blocks": {
+        "text_WgKHbc": {
+          "type": "text",
+          "settings": {
+            "text": "<h1><strong>FREQUENTLY ASKED QUESTIONS</strong></h1>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_WgKHbc"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "visibility_option": "desktop",
+        "link": "",
+        "open_in_new_tab": false,
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/IMG_20220628_124614.jpg",
+        "media_type_2": "image",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "custom",
+        "section_height_custom": 35,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "hero_tVhGLx": {
+      "type": "hero",
+      "blocks": {
+        "text_UHgNpW": {
+          "type": "text",
+          "settings": {
+            "text": "<h3><strong>FREQUENTLY ASKED QUESTIONS</strong></h3>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_UHgNpW"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "visibility_option": "mobile",
+        "link": "",
+        "open_in_new_tab": false,
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/IMG_20220628_124614.jpg",
+        "media_type_2": "image",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "custom",
+        "section_height_custom": 20,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h3><strong>General FAQs</strong></h3>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 11,
+        "padding-block-end": 9
+      }
+    },
+    "section_QYfYyw": {
+      "type": "section",
+      "blocks": {
+        "accordion_fFXADj": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h6",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_7tRRLP": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Do I have to pay extra for shipping within India?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_Cb6V6f": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Shipping is free on prepaid orders. There is an additional charge of Rs.150 on COD orders.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_Cb6V6f"
+              ]
+            },
+            "accordion_row_QWJNGy": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Can I pay for the order with cash on delivery?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_qNj6Vk": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes, we accept COD.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_qNj6Vk"
+              ]
+            },
+            "accordion_row_nLApfB": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you ship internationally?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_iQzgAk": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes we ship our products globally. Shipping charges are calculated at checkout.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_iQzgAk"
+              ]
+            },
+            "accordion_row_ybLVRb": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "I received my package and it was damaged. What do I do now?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_nBaNYd": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>We take great care to ensure that your package reaches you safely. In case there's damage in transit despite our best efforts, we sincerely apologize. Please inspect your order and reach out to us within 36 hours of delivery at team@boondfragrances, so that we can evaluate the issue and make it right.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_nBaNYd"
+              ]
+            },
+            "accordion_row_HV9PtR": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "I'd like to order these in bulk for gifting. Is there a discount?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_8R48MQ": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes, we offer additional discounts and customizations on bulk gifting orders. Please reach out to us via email on <a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a> or via WhatsApp on +91 73079 53240 to learn more.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_8R48MQ"
+              ]
+            },
+            "accordion_row_Emwa4G": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "I have been looking for a particular fragrance but I don't see it in your catalogue, can you source it for me? Do you only have fragrances listed on the website?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_CNUmGU": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>We do our best to cater to your special requests for natural fragrances. Write to us on<a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a>or WhatsApp us on +91 73079 53240. We’ll get back within 72 hours.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_CNUmGU"
+              ]
+            },
+            "accordion_row_DQJnJP": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "I am looking for perfume/essential oils for candles/soaps/other products. Do you provide these?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_fHHNVc": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes we do provide fragrances as ingredients for products such as candles, soaps etc. Please share the details of your requirements including the purpose, quantity required and budget on<a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a>or WhatsApp us on +91 73079 53240. We’ll get back within 72 hours.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_fHHNVc"
+              ]
+            },
+            "accordion_row_drUfLw": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "I'd like to work at Boond full/part time, what's the best way to reach out to you?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_j8mdyq": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Our values:</p><ul><li>Each of us are owners who are responsible, self driven and passionate about our work.</li><li>We insist on the highest standards of work, no matter what the work may be. We actively stay away from mediocrity.</li><li>We admit our mistakes openly. We discuss them, learn from them and limit their recurrence.</li><li>We actively give and take both, positive and negative feedback on our work honestly, objectively and kindly.</li><li>Delivering results is key to success. We define goals and we assess performance.We trust numbers and quantify as much as possible.</li><li>We are kind. To our customers, partners and to each other. Everyone grows as the business grows and growth doesn’t always mean competition.</li></ul><p>If you share our values and are interested in this position, please send your resume and an expression of interest on <a href=\"mailto:workwithus@boondfragrances.com\"><span style=\"text-decoration:underline\">workwithus@boondfragrances.com</span></a></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_j8mdyq"
+              ]
+            },
+            "accordion_row_XYWqQH": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "I'm an artist, how can I collaborate with you?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_EzKnxC": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>You can collaborate with us via बूँद | Boond Art Initiative. With this initiative, we have collaborated with artists who work across different mediums including water, oil, graphic design, photography, videography, ceramics. More details on the initiative here.</p><p>If you’re an artist who’d like to collaborate with us, write to us at BoondArtInitiative@boondfragrance.com. We’ll get in touch!</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_EzKnxC"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_7tRRLP",
+            "accordion_row_QWJNGy",
+            "accordion_row_nLApfB",
+            "accordion_row_ybLVRb",
+            "accordion_row_HV9PtR",
+            "accordion_row_Emwa4G",
+            "accordion_row_DQJnJP",
+            "accordion_row_drUfLw",
+            "accordion_row_XYWqQH"
+          ]
+        },
+        "text_hzFeby": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h3><strong>Natural Perfume Oils (Attars) FAQs</strong></h3>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "accordion_fFXADj",
+        "text_hzFeby"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap_desktop": 32,
+        "gap_mobile": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 20,
+        "padding-block-end": 20
+      }
+    },
+    "section_Di3JHG": {
+      "type": "section",
+      "blocks": {
+        "accordion_LfAVXW": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h6",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_MLMged": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What are attars?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_RMcKX7": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Attars are completely pure, natural alcohol-free perfume oils. They’re made from a combination of essential oils of natural ingredients such as flowers, spices, herbs and water. At बूँद | Boond, the oils are extracted by artisans using the centuries old Deg-Bhapka method.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_RMcKX7"
+              ]
+            },
+            "accordion_row_gJNByj": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What's the stay of your perfume oils?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_pgrPcm": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>They typically stay for around 4-6 hours. However, this varies by fragrance type, skin type, application, room temperature, humidity etc. You can find out more on the product detail page.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_pgrPcm"
+              ]
+            },
+            "accordion_row_anyRaT": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you take returns/exchanges? What if I don't like the product?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_EqrJAJ": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Since it’s a beauty product, we don’t accept returns or exchanges. Please see our Returns Policy for more details.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_EqrJAJ"
+              ]
+            },
+            "accordion_row_CKKjd6": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How can I use these perfumes?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_mFFHYG": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>You can use them by rubbing a few drops on your palm and gently dabbing on your clothes and/or by rubbing a few drops on your wrist or behind your ears.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_mFFHYG"
+              ]
+            },
+            "accordion_row_pACGGA": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "How do I know that these are authentic Kannauj perfume?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_XHtRxP": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Our perfume oils are conferred with the Geographical Indicator (G.I.) Tag by the Government of India for authentic Kannauj Perfume. The G.I. Tag is a government recognized indicator of quality and authenticity for products that have a unique geographical origin and possess qualities or a reputation that are due to that origin.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_XHtRxP"
+              ]
+            },
+            "accordion_row_BKd9aX": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Some attars are strong and give me a headache. Do you have something subtle?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_ycPizg": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Our perfumes are completely natural and have mild and subtle notes. To those specifically seeking milder fragrances, we recommend the Maati (Petrichor) and Khusa (Vetiver) perfume oils.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ycPizg"
+              ]
+            },
+            "accordion_row_nFwJkL": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What are your best selling perfume oils?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_rbwTH9": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Our bestsellers Maati (Petrichor), Motiya (Jasmine) and Audh (Agarwood).</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_rbwTH9"
+              ]
+            },
+            "accordion_row_k7g4qm": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Which are the best perfumes for men?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_G7NCUU": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>All our perfumes are natural and unisex. Perfumes particularly loved by our male customers are Audh, Khusa and Maati.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_G7NCUU"
+              ]
+            },
+            "accordion_row_pQgiHW": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Which are the best perfume box?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_aDppFa": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Each perfume box contains a bottle of the fragrance, a cotton tester, a special handwritten poem and a custom message. Contents of our Limited Edition gift boxes may vary, please check their <em>Inside the Box</em> section in the product pages for more details.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_aDppFa"
+              ]
+            },
+            "accordion_row_bjBkPg": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you only have fragrances listed on the website?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_weVbeL": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes and we also take special requests. If you want to know the availability of any particular fragrance, please contact us via email on <a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a> or via WhatsApp on +91 73079 53240.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_weVbeL"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_MLMged",
+            "accordion_row_gJNByj",
+            "accordion_row_anyRaT",
+            "accordion_row_CKKjd6",
+            "accordion_row_pACGGA",
+            "accordion_row_BKd9aX",
+            "accordion_row_nFwJkL",
+            "accordion_row_k7g4qm",
+            "accordion_row_pQgiHW",
+            "accordion_row_bjBkPg"
+          ]
+        },
+        "text_7rBYHt": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h3><strong> Natural Incense Cones (Dhoop) FAQs</strong><a href=\"https://boondfragrances.com/pages/faqs#tab_faq_dXpdiH\"><strong><br/></strong></a></h3>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_tERm8Y": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h6",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_FkM8nf": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How can I use these incense cones?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_NfezPm": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Place the cone on the clay holder with the flat base down. Light the tip until it catches the flame briefly and blow it out after a few seconds. The cone will smolder and release the fragrance.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_NfezPm"
+              ]
+            },
+            "accordion_row_77hmTb": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "What's inside each box?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_gCKHGE": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Each box comes with 25 incense cones, a handmade clay holder, a special poem and a handwritten note. We will be happy to customize the note and gift wrap the product for you on request.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_gCKHGE"
+              ]
+            },
+            "accordion_row_q3w9M8": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What is the burn time of each incense cone?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_WY3LQP": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>The burn time of each cone is 30-35 mins per cone, this may vary based on wind and weather conditions.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WY3LQP"
+              ]
+            },
+            "accordion_row_bhNDhV": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you take returns/exchanges?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_gB6kUc": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Sorry, we don’t accept returns or exchanges. Please see our Returns Policy for more details.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_gB6kUc"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_FkM8nf",
+            "accordion_row_77hmTb",
+            "accordion_row_q3w9M8",
+            "accordion_row_bhNDhV"
+          ]
+        },
+        "text_8qfbGz": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h3><strong>Bulk Gifting FAQs</strong></h3>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_FMBdXX": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h6",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_eFWRmJ": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Do you ship your products for bulk gifting outside India?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_P6rJbL": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes, we ship our products for bulk gifting outside India. You can contact us via email on <a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a> or via WhatsApp on +91 73079 53240 with your requirements, we’ll be happy to assist.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_P6rJbL"
+              ]
+            },
+            "accordion_row_ntzaLC": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Can I get a discount for my bulk gifting order?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_YaQftG": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes, we offer additional discounts for bulk gifting orders. You can contact us to know more.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_YaQftG"
+              ]
+            },
+            "accordion_row_i6DycY": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What elements can you customize for my bulk gifting order?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_ELzVx6": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>For the special occasion/event, we can:</p><ul><li>Customize the message and poem inside each box. </li><li>Customize the packaging such as to include a name/date/logo at an additional charge for large orders</li><li>Add additional custom elements to your gift on request such as roli/chawal, sandal powder, handmade paper diaries, handmade paper frames and more. </li></ul><p>Please contact us to know more.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ELzVx6"
+              ]
+            },
+            "accordion_row_X8rU3Y": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you have any ready-to-ship products for bulk orders?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_yx66kJ": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes, most of our products are ready-to-ship. The shipping time may increase for orders of higher quantity and for orders with requests for customization.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_yx66kJ"
+              ]
+            },
+            "accordion_row_4pKbc9": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Can I add more elements like a photo frame or a diary to each gift?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_9qjV8r": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes, we’d love to go the extra mile to make the gift extra special for your loved ones/work family. Some additional elements that we’ve added to the gifts on request in the past include roli-chawal, sandalwood powder, handmade paper diaries, handmade paper frames and more. Please contact us to know more.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_9qjV8r"
+              ]
+            },
+            "accordion_row_iDtXQJ": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What's the lead time for shipping my custom bulk gifting order?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_YdADP7": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>This varies by the quantity and customization required. We will share this with you at the time of order confirmation.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_YdADP7"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_eFWRmJ",
+            "accordion_row_ntzaLC",
+            "accordion_row_i6DycY",
+            "accordion_row_X8rU3Y",
+            "accordion_row_4pKbc9",
+            "accordion_row_iDtXQJ"
+          ]
+        },
+        "text_ppNBVF": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h3><strong>Stockist and Stores FAQs</strong><a href=\"https://boondfragrances.com/pages/faqs#tab_faq_ErRJAG\"><strong><br/></strong></a></h3>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "accordion_LfAVXW",
+        "text_7rBYHt",
+        "accordion_tERm8Y",
+        "text_8qfbGz",
+        "accordion_FMBdXX",
+        "text_ppNBVF"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap_desktop": 32,
+        "gap_mobile": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 20,
+        "padding-block-end": 20
+      }
+    },
+    "section_EyKCfz": {
+      "type": "section",
+      "blocks": {
+        "accordion_pQg4rY": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_DhbGd6": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How can I collaborate with you?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_T9LYDQ": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Drop us a line with the details on <a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a>, we’ll get back to you. You can find more about our past collaborations from <a href=\"https://boondfragrances.com/pages/collaborations\" title=\"Collaborations\">here</a>.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_T9LYDQ"
+              ]
+            },
+            "accordion_row_tHcn9A": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How can we include your products in our store/catalogue?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_q9EbRU": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Please share the details and contact information on <a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a>, we’ll get back to you.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_q9EbRU"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_DhbGd6",
+            "accordion_row_tHcn9A"
+          ]
+        }
+      },
+      "block_order": [
+        "accordion_pQg4rY"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap_desktop": 32,
+        "gap_mobile": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 20,
+        "padding-block-end": 20
+      }
+    }
+  },
+  "order": [
+    "hero_KTVRHp",
+    "hero_tVhGLx",
+    "main",
+    "section_QYfYyw",
+    "section_Di3JHG",
+    "section_EyKCfz"
+  ]
+}

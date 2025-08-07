@@ -26,7 +26,8 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
+            "gap_desktop": 12,
+            "gap_mobile": 12,
             "width": "fill",
             "custom_width": 67,
             "width_mobile": "fill",
@@ -64,7 +65,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 20,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "custom",
                 "custom_width": 60,
                 "width_mobile": "fill",
@@ -103,7 +105,8 @@
                     "align_baseline": false,
                     "horizontal_alignment_flex_direction_column": "flex-start",
                     "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
+                    "gap_desktop": 12,
+                    "gap_mobile": 12,
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -162,13 +165,14 @@
                         "link": "",
                         "open_in_new_tab": false,
                         "content_direction": "row",
-                        "vertical_on_mobile": true,
+                        "vertical_on_mobile": false,
                         "horizontal_alignment": "flex-start",
                         "vertical_alignment": "center",
                         "align_baseline": false,
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
+                        "gap_desktop": 12,
+                        "gap_mobile": 12,
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
@@ -244,13 +248,14 @@
                         "link": "",
                         "open_in_new_tab": false,
                         "content_direction": "row",
-                        "vertical_on_mobile": true,
+                        "vertical_on_mobile": false,
                         "horizontal_alignment": "flex-start",
                         "vertical_alignment": "center",
                         "align_baseline": false,
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
+                        "gap_desktop": 12,
+                        "gap_mobile": 12,
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
@@ -280,7 +285,7 @@
                           "type": "icon",
                           "name": "t:names.icon",
                           "settings": {
-                            "icon": "map_pin",
+                            "icon": "whatsapp",
                             "width": 24,
                             "link": "",
                             "open_in_new_tab": false
@@ -291,7 +296,7 @@
                           "type": "text",
                           "name": "t:names.text",
                           "settings": {
-                            "text": "<p>Kannauj, Uttar Pradesh, 209726, India</p>",
+                            "text": "<p><a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\">+91 73079 53240</a></p>",
                             "width": "fit-content",
                             "max_width": "normal",
                             "alignment": "left",
@@ -326,13 +331,14 @@
                         "link": "",
                         "open_in_new_tab": false,
                         "content_direction": "row",
-                        "vertical_on_mobile": true,
+                        "vertical_on_mobile": false,
                         "horizontal_alignment": "flex-start",
                         "vertical_alignment": "center",
                         "align_baseline": false,
                         "horizontal_alignment_flex_direction_column": "flex-start",
                         "vertical_alignment_flex_direction_column": "center",
-                        "gap": 12,
+                        "gap_desktop": 12,
+                        "gap_mobile": 12,
                         "width": "fill",
                         "custom_width": 100,
                         "width_mobile": "fill",
@@ -373,7 +379,7 @@
                           "type": "text",
                           "name": "t:names.text",
                           "settings": {
-                            "text": "<p>Kannauj, Uttar Pradesh, 209726, India</p>",
+                            "text": "<p><a href=\"mailto:team@boondfragrances.com\">team@boondfragrances.com</a></p>",
                             "width": "fit-content",
                             "max_width": "normal",
                             "alignment": "left",
@@ -422,7 +428,8 @@
                     "align_baseline": false,
                     "horizontal_alignment_flex_direction_column": "flex-start",
                     "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
+                    "gap_desktop": 12,
+                    "gap_mobile": 12,
                     "width": "fill",
                     "custom_width": 100,
                     "width_mobile": "fill",
@@ -506,179 +513,10 @@
                 "group_D4mMcH",
                 "group_MDdVKf"
               ]
-            },
-            "group_RMNyjY": {
-              "type": "group",
-              "settings": {
-                "link": "",
-                "open_in_new_tab": false,
-                "content_direction": "column",
-                "vertical_on_mobile": false,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 24,
-                "width": "custom",
-                "custom_width": 35,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "padding-block-start": 0,
-                "padding-block-end": 4,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_dFFpdp": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Stay Connected</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-primary--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 10,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "group_iNzwN7": {
-                  "type": "group",
-                  "name": "Social icons",
-                  "settings": {
-                    "link": "",
-                    "open_in_new_tab": false,
-                    "content_direction": "row",
-                    "vertical_on_mobile": false,
-                    "horizontal_alignment": "flex-start",
-                    "vertical_alignment": "center",
-                    "align_baseline": false,
-                    "horizontal_alignment_flex_direction_column": "flex-start",
-                    "vertical_alignment_flex_direction_column": "center",
-                    "gap": 12,
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "custom_height": 100,
-                    "inherit_color_scheme": true,
-                    "color_scheme": "",
-                    "background_media": "none",
-                    "video_position": "cover",
-                    "background_image_position": "cover",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "toggle_overlay": false,
-                    "overlay_color": "#00000026",
-                    "overlay_style": "solid",
-                    "gradient_direction": "to top",
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {
-                    "icon_gN6Dkc": {
-                      "type": "icon",
-                      "name": "Icon",
-                      "settings": {
-                        "icon": "facebook",
-                        "width": 28,
-                        "link": "https://www.facebook.com/shopify",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "icon_p3cq9C": {
-                      "type": "icon",
-                      "settings": {
-                        "icon": "instagram",
-                        "width": 28,
-                        "link": "https://www.instagram.com/shopify/",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "icon_hQX679": {
-                      "type": "icon",
-                      "settings": {
-                        "icon": "tiktok",
-                        "width": 28,
-                        "link": "https://www.tiktok.com/@shopify",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "icon_iQjhzC": {
-                      "type": "icon",
-                      "settings": {
-                        "icon": "twitter",
-                        "width": 28,
-                        "link": "https://x.com/shopify",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    },
-                    "icon_cMjXRh": {
-                      "type": "icon",
-                      "settings": {
-                        "icon": "youtube",
-                        "width": 28,
-                        "link": "https://www.youtube.com/shopify",
-                        "open_in_new_tab": false
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "icon_gN6Dkc",
-                    "icon_p3cq9C",
-                    "icon_hQX679",
-                    "icon_iQjhzC",
-                    "icon_cMjXRh"
-                  ]
-                }
-              },
-              "block_order": [
-                "text_dFFpdp",
-                "group_iNzwN7"
-              ]
             }
           },
           "block_order": [
-            "group_AeYPK8",
-            "group_RMNyjY"
+            "group_AeYPK8"
           ]
         },
         "footer_utilities_iTnDrc": {
