@@ -40,8 +40,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('Gift message script loaded');
     const giftMessageBlock = document.querySelector('[data-gift-message-block]');
-    if (!giftMessageBlock) return;
+    if (!giftMessageBlock) {
+      console.log('Gift message block not found in DOM');
+      return;
+    }
+    console.log('Gift message block found:', giftMessageBlock);
     
     const textarea = giftMessageBlock.querySelector('[data-gift-message-input]');
     const charCount = giftMessageBlock.querySelector('[data-char-count]');
@@ -78,8 +83,10 @@
     }
     
     function checkGiftWrapSelection() {
+      console.log('Checking gift wrap selection...');
       // Look for "Bespoke Gift Wrap" option with "Yes" selected
       const giftWrapInputs = document.querySelectorAll('variant-picker input[type="radio"]');
+      console.log('Found variant inputs:', giftWrapInputs.length);
       let giftWrapSelected = false;
       
       // Debug: Log all variant options to help identify the correct naming
@@ -145,12 +152,21 @@
     
     // Initial check
     checkGiftWrapSelection();
+    
+    // Fallback: If no variant picker found, show the block after a delay
+    setTimeout(function() {
+      const variantPicker = document.querySelector('variant-picker');
+      if (!variantPicker) {
+        console.log('No variant picker found, showing gift message block');
+        giftMessageBlock.style.display = 'block';
+      }
+    }, 2000);
   });
 </script>
 
 {% stylesheet %}
   .gift-message-block {
-    display: none; /* Hidden by default, shown via JavaScript */
+    display: block; /* Temporarily visible for debugging */
     width: 100%;
   }
   
