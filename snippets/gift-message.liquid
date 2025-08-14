@@ -1,0 +1,215 @@
+{% comment %}
+  Gift Message Snippet
+  This snippet renders a gift message input field that is only visible when "Bespoke Gift Wrap" is selected as "Yes"
+{% endcomment %}
+
+<div 
+  class="gift-message-block spacing-style"
+  style="{% render 'spacing-style', settings: block.settings %}"
+  data-gift-message-block
+  {{ block.shopify_attributes }}
+>
+  <div class="gift-message__container">
+    <label for="gift-message-{{ block.id }}" class="gift-message__label">
+      {{ block.settings.heading | default: 'Gift message (optional)' }}
+    </label>
+    
+    <div class="gift-message__input-wrapper">
+      <textarea
+        id="gift-message-{{ block.id }}"
+        name="gift_message"
+        class="gift-message__input"
+        placeholder="{{ block.settings.placeholder | default: 'Enter your gift message here...' }}"
+        maxlength="{{ block.settings.max_length | default: 70 }}"
+        rows="4"
+        data-gift-message-input
+      ></textarea>
+      
+      <div class="gift-message__counter">
+        <span class="gift-message__char-count" data-char-count>0</span>/{{ block.settings.max_length | default: 70 }} characters
+      </div>
+    </div>
+    
+    {% if block.settings.help_text != blank %}
+      <p class="gift-message__help-text">
+        {{ block.settings.help_text }}
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const giftMessageBlock = document.querySelector('[data-gift-message-block]');
+    if (!giftMessageBlock) return;
+    
+    const textarea = giftMessageBlock.querySelector('[data-gift-message-input]');
+    const charCount = giftMessageBlock.querySelector('[data-char-count]');
+    const maxLength = parseInt(textarea.getAttribute('maxlength'));
+    
+    // Character counter functionality
+    function updateCharCount() {
+      const currentLength = textarea.value.length;
+      charCount.textContent = currentLength;
+      
+      if (currentLength > maxLength * 0.9) {
+        charCount.style.color = '#b20000';
+      } else {
+        charCount.style.color = '';
+      }
+    }
+    
+    textarea.addEventListener('input', updateCharCount);
+    
+    // Check for variant picker and listen for changes
+    const variantPicker = document.querySelector('variant-picker');
+    if (variantPicker) {
+      variantPicker.addEventListener('variant-selected', function(event) {
+        checkGiftWrapSelection();
+      });
+      
+      // Also listen for direct changes to variant inputs
+      const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
+      variantInputs.forEach(input => {
+        input.addEventListener('change', function() {
+          setTimeout(checkGiftWrapSelection, 100); // Small delay to ensure variant is updated
+        });
+      });
+    }
+    
+    function checkGiftWrapSelection() {
+      // Look for "Bespoke Gift Wrap" option with "Yes" selected
+      const giftWrapInputs = document.querySelectorAll('variant-picker input[type="radio"]');
+      let giftWrapSelected = false;
+      
+      // Debug: Log all variant options to help identify the correct naming
+      if (window.location.search.includes('debug=true')) {
+        console.log('Available variant options:');
+        giftWrapInputs.forEach(input => {
+          const label = input.closest('label');
+          if (label) {
+            console.log('Option:', label.textContent.trim(), 'Checked:', input.checked);
+          }
+        });
+      }
+      
+      giftWrapInputs.forEach(input => {
+        const label = input.closest('label');
+        if (label) {
+          const labelText = label.textContent.toLowerCase();
+          // Check if this is a "Bespoke Gift Wrap" option and "Yes" is selected
+          if ((labelText.includes('bespoke gift wrap') || labelText.includes('gift wrap') || labelText.includes('gift')) && 
+              (labelText.includes('yes') || labelText.includes('true')) && input.checked) {
+            giftWrapSelected = true;
+          }
+        }
+      });
+      
+      // Also check dropdown selects
+      const giftWrapSelects = document.querySelectorAll('variant-picker select');
+      giftWrapSelects.forEach(select => {
+        const option = select.options[select.selectedIndex];
+        if (option) {
+          const optionText = option.text.toLowerCase();
+          if ((optionText.includes('bespoke gift wrap') || optionText.includes('gift wrap') || optionText.includes('gift')) && 
+              (optionText.includes('yes') || optionText.includes('true'))) {
+            giftWrapSelected = true;
+          }
+        }
+      });
+      
+      // Alternative: Check for any variant option that contains "gift wrap" and "yes"
+      if (!giftWrapSelected) {
+        const allVariantLabels = document.querySelectorAll('variant-picker label');
+        allVariantLabels.forEach(label => {
+          const labelText = label.textContent.toLowerCase();
+          if ((labelText.includes('bespoke gift wrap') || labelText.includes('gift wrap') || labelText.includes('gift')) && 
+              (labelText.includes('yes') || labelText.includes('true'))) {
+            const input = label.querySelector('input[type="radio"]');
+            if (input && input.checked) {
+              giftWrapSelected = true;
+            }
+          }
+        });
+      }
+      
+      // Show/hide the gift message block
+      if (giftWrapSelected) {
+        giftMessageBlock.style.display = 'block';
+      } else {
+        giftMessageBlock.style.display = 'none';
+        textarea.value = ''; // Clear the message when hidden
+        updateCharCount();
+      }
+    }
+    
+    // Initial check
+    checkGiftWrapSelection();
+  });
+</script>
+
+{% stylesheet %}
+  .gift-message-block {
+    display: none; /* Hidden by default, shown via JavaScript */
+    width: 100%;
+  }
+  
+  .gift-message__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+  
+  .gift-message__label {
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: var(--margin-xs);
+  }
+  
+  .gift-message__input-wrapper {
+    position: relative;
+  }
+  
+  .gift-message__input {
+    width: 100%;
+    min-height: 100px;
+    padding: var(--padding-lg);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs);
+    background-color: var(--color-input-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-size: var(--font-size--sm);
+    line-height: 1.5;
+    resize: vertical;
+    transition: border-color var(--animation-speed) ease, box-shadow var(--animation-speed) ease;
+  }
+  
+  .gift-message__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  .gift-message__input::placeholder {
+    color: var(--color-input-text);
+    opacity: 0.7;
+  }
+  
+  .gift-message__counter {
+    position: absolute;
+    bottom: var(--padding-xs);
+    right: var(--padding-xs);
+    font-size: var(--font-size--xs);
+    color: var(--color-foreground);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+  
+  .gift-message__help-text {
+    font-size: var(--font-size--xs);
+    color: var(--color-foreground);
+    opacity: 0.7;
+    margin: 0;
+  }
+{% endstylesheet %}
