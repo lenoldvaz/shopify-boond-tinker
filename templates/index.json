@@ -374,7 +374,7 @@
         "text_MzkJFB": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Alcohol Free </strong></p>",
+            "text": "<p><strong>Handcrafted</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -411,7 +411,7 @@
         "text_WrVFYb": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>All Natural</strong></p>",
+            "text": "<p><strong>Pure</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -448,7 +448,7 @@
         "text_qkb7rY": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>GI Tagged</strong></p>",
+            "text": "<p><strong>Natural</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -485,7 +485,7 @@
         "text_RhfnxW": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Handcrafted by Artisans</strong></p>",
+            "text": "<p><strong>GI-tagged</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -522,7 +522,7 @@
         "text_HdfG3n": {
           "type": "text",
           "settings": {
-            "text": "<p>Alcohol Free </p>",
+            "text": "<p><strong>Sustainable</strong></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -1718,7 +1718,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>How do we do this? By making products that are true to their craft and tradition.</p>",
+                "text": "<p>How do we do this? </p><p>By making products that are true to their craft and tradition. Learn more about the <a href=\"/pages/the-making-of-boond-fragrances\" title=\"The Making of Boond Fragrances\">process</a> and <a href=\"/pages/about-us\" title=\"About us\">us</a></p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -2178,7 +2178,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Zero Synthetic Fragrances</p>",
+                        "text": "<p>Shipping Globally</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -2261,7 +2261,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Zero Preservatives</p>",
+                        "text": "<p>Sustainable</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -2344,7 +2344,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Zero Alcohol</p>",
+                        "text": "<p>Unique Gifts</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
