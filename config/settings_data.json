@@ -54,6 +54,11 @@
         "type": "shopify://apps/nova-multi-currency-converter/blocks/app-embed/a5be3c35-cbd0-46a1-ac3a-1ace57a9c1ce",
         "disabled": false,
         "settings": {}
+      },
+      "3720565183479497137": {
+        "type": "shopify://apps/globo-product-option/blocks/app-embed-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -335,7 +340,7 @@
           "background": "#faf9f1",
           "foreground_heading": "#000000",
           "foreground": "#000000bd",
-          "primary": "#c3cca6",
+          "primary": "#68807e",
           "primary_hover": "#000000",
           "border": "#e6e6e6",
           "shadow": "#000000",
