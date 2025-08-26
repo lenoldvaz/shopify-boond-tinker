@@ -627,6 +627,16 @@
   <script>
     // Enhanced swipe functionality for featured products in mobile navigation
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('Header drawer script loaded');
+      
+      // Debug: Check if we're in a mobile drawer
+      const isMobileDrawer = document.querySelector('.header__drawer--mobile');
+      console.log('Mobile drawer found:', !!isMobileDrawer);
+      
+      // Debug: Check for featured products container
+      const featuredContainer = document.querySelector('.menu-drawer__featured-content');
+      console.log('Featured container found:', !!featuredContainer);
+      
       const featuredProductsScroll = document.querySelector('[data-featured-products-scroll]');
       if (!featuredProductsScroll) {
         console.log('Featured products scroll element not found');
