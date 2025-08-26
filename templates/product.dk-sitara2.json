@@ -519,30 +519,6 @@
                 "group_NaptEj"
               ]
             },
-            "price_a7krng": {
-              "type": "price",
-              "disabled": true,
-              "settings": {
-                "product": "{{ closest.product }}",
-                "show_sale_price_first": false,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 17,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -1273,7 +1249,6 @@
             "divider_kYArEk",
             "dk_text_96FEjd",
             "group_CfKHjP",
-            "price_a7krng",
             "variant_picker_R3rGDr",
             "globo_product_option_app_block_XnzrYV",
             "dk_price_DakaxW",
