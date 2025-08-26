@@ -628,8 +628,19 @@
     // Enhanced swipe functionality for featured products in mobile navigation
     document.addEventListener('DOMContentLoaded', function() {
       const featuredProductsScroll = document.querySelector('[data-featured-products-scroll]');
-      if (!featuredProductsScroll) return;
+      if (!featuredProductsScroll) {
+        console.log('Featured products scroll element not found');
+        return;
+      }
 
+      console.log('Featured products scroll element found:', featuredProductsScroll);
+
+      // Enable native touch scrolling
+      featuredProductsScroll.style.overflowX = 'auto';
+      featuredProductsScroll.style.overflowY = 'hidden';
+      featuredProductsScroll.style.webkitOverflowScrolling = 'touch';
+
+      // Mouse drag functionality for desktop
       let isDown = false;
       let startX;
       let scrollLeft;
@@ -659,25 +670,7 @@
         featuredProductsScroll.scrollLeft = scrollLeft - walk;
       });
 
-      // Touch events for mobile
-      featuredProductsScroll.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].pageX - featuredProductsScroll.offsetLeft;
-        scrollLeft = featuredProductsScroll.scrollLeft;
-      });
-
-      featuredProductsScroll.addEventListener('touchmove', function(e) {
-        if (!startX) return;
-        e.preventDefault();
-        const x = e.touches[0].pageX - featuredProductsScroll.offsetLeft;
-        const walk = (x - startX) * 2;
-        featuredProductsScroll.scrollLeft = scrollLeft - walk;
-      });
-
-      featuredProductsScroll.addEventListener('touchend', function() {
-        startX = null;
-      });
-
-      // Add grab cursor style
+      // Add grab cursor style for desktop
       featuredProductsScroll.style.cursor = 'grab';
     });
   </script>
@@ -1193,6 +1186,8 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 0 var(--padding-xl);
+    width: 100%;
+    position: relative;
   }
 
   .menu-drawer__featured-scroll-container::-webkit-scrollbar {
@@ -1205,6 +1200,8 @@
     padding: var(--padding-lg) 0;
     min-width: max-content;
     scroll-snap-type: x mandatory;
+    width: max-content;
+    flex-wrap: nowrap;
   }
 
   .menu-drawer__featured-content-list-item {
