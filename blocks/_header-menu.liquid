@@ -961,6 +961,17 @@
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
+      "type": "range",
+      "id": "desktop_menu_items_limit",
+      "label": "Desktop menu items limit",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "info": "Number of top-level menu items to display on desktop",
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
+    },
+    {
       "type": "checkbox",
       "id": "show_nav_categories",
       "label": "Show navigation categories",

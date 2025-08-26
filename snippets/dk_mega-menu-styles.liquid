@@ -560,4 +560,18 @@
       animation: none;
     }
   }
+
+  /* Desktop Menu Items Limit */
+  @media screen and (min-width: 750px) {
+    .dk-mega-menu__overflow-item {
+      display: none !important;
+    }
+  }
+
+  /* Show all items on mobile */
+  @media screen and (max-width: 749px) {
+    .dk-mega-menu__overflow-item {
+      display: flex !important;
+    }
+  }
 </style>
