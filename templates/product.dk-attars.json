@@ -1151,14 +1151,14 @@
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "How to use?",
+                    "heading": "How it's made",
                     "open_by_default": false
                   },
                   "blocks": {
                     "text_xPQUmn": {
                       "type": "text",
                       "settings": {
-                        "text": "{{ closest.product.metafields.custom.how_to_use | metafield_tag }}",
+                        "text": "{{ closest.product.metafields.custom.how_it_s_made | metafield_tag }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1188,14 +1188,14 @@
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "How it's made",
+                    "heading": "How to use?",
                     "open_by_default": false
                   },
                   "blocks": {
                     "text_McjMWz": {
                       "type": "text",
                       "settings": {
-                        "text": "{{ closest.product.metafields.custom.how_it_s_made | metafield_tag }}",
+                        "text": "{{ closest.product.metafields.custom.how_to_use | metafield_tag }}",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1591,7 +1591,10 @@
       "blocks": {
         "judge_me_reviews_review_widget_ajkfzN": {
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
         }
       },
       "block_order": [
