@@ -56,14 +56,14 @@
     </div>
   {% endif %}
 
-  <!-- Skincare Menu Column -->
-  {% if block.settings.skincare_menu != blank %}
+  <!-- Category 1 Menu Column -->
+  {% if block.settings.cat1_menu != blank %}
     <div class="dk-mega-menu__column-section">
       <div class="dk-menu-column">
-        <h3 class="dk-menu-column__title">{{ block.settings.skincare_title | default: 'Shop Skincare' }}</h3>
+        <h3 class="dk-menu-column__title">{{ block.settings.cat1_title | default: 'Shop Skincare' }}</h3>
         <ul class="dk-menu-column__list list-unstyled" role="list">
           {% assign max_links = block.settings.max_links | default: 8 %}
-          {% for link in block.settings.skincare_menu.links limit: max_links %}
+          {% for link in block.settings.cat1_menu.links limit: max_links %}
             <li class="dk-menu-column__item">
               <a 
                 href="{{ link.url }}" 
@@ -78,7 +78,7 @@
           {% if block.settings.show_shop_all %}
             <li class="dk-menu-column__item dk-menu-column__item--shop-all">
               <a 
-                href="{{ block.settings.skincare_menu.url }}" 
+                href="{{ block.settings.cat1_menu.url }}" 
                 class="dk-menu-column__link dk-menu-column__link--shop-all"
               >
                 {{ block.settings.shop_all_text | default: 'SHOP ALL' }}
@@ -90,7 +90,7 @@
     </div>
   {% endif %}
 
-  <!-- Haircare Menu Column -->
+  <!-- Category 2 Menu Column -->
   {% if block.settings.haircare_menu != blank %}
     <div class="dk-mega-menu__column-section">
       <div class="dk-menu-column">
