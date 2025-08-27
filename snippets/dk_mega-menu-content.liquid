@@ -57,13 +57,15 @@
   {% endif %}
 
   <!-- Category 1 Menu Column -->
-  {% if block.settings.cat1_menu != blank %}
+  {% assign cat1_menu = block.settings.cat1_menu | default: block.settings.skincare_menu %}
+  {% assign cat1_title = block.settings.cat1_title | default: block.settings.skincare_title | default: 'Shop Skincare' %}
+  {% if cat1_menu != blank %}
     <div class="dk-mega-menu__column-section">
       <div class="dk-menu-column">
-        <h3 class="dk-menu-column__title">{{ block.settings.cat1_title | default: 'Shop Skincare' }}</h3>
+        <h3 class="dk-menu-column__title">{{ cat1_title }}</h3>
         <ul class="dk-menu-column__list list-unstyled" role="list">
           {% assign max_links = block.settings.max_links | default: 8 %}
-          {% for link in block.settings.cat1_menu.links limit: max_links %}
+          {% for link in cat1_menu.links limit: max_links %}
             <li class="dk-menu-column__item">
               <a 
                 href="{{ link.url }}" 
@@ -78,7 +80,7 @@
           {% if block.settings.show_shop_all %}
             <li class="dk-menu-column__item dk-menu-column__item--shop-all">
               <a 
-                href="{{ block.settings.cat1_menu.url }}" 
+                href="{{ cat1_menu.url }}" 
                 class="dk-menu-column__link dk-menu-column__link--shop-all"
               >
                 {{ block.settings.shop_all_text | default: 'SHOP ALL' }}
@@ -91,13 +93,15 @@
   {% endif %}
 
   <!-- Category 2 Menu Column -->
-  {% if block.settings.cat2_menu != blank %}
+  {% assign cat2_menu = block.settings.cat2_menu | default: block.settings.haircare_menu %}
+  {% assign cat2_title = block.settings.cat2_title | default: block.settings.haircare_title | default: 'Shop Category 2' %}
+  {% if cat2_menu != blank %}
     <div class="dk-mega-menu__column-section">
       <div class="dk-menu-column">
-        <h3 class="dk-menu-column__title">{{ block.settings.cat2_title | default: 'Shop Category 2' }}</h3>
+        <h3 class="dk-menu-column__title">{{ cat2_title }}</h3>
         <ul class="dk-menu-column__list list-unstyled" role="list">
           {% assign max_links = block.settings.max_links | default: 8 %}
-          {% for link in block.settings.cat2_menu.links limit: max_links %}
+          {% for link in cat2_menu.links limit: max_links %}
             <li class="dk-menu-column__item">
               <a 
                 href="{{ link.url }}" 
@@ -112,7 +116,7 @@
           {% if block.settings.show_shop_all %}
             <li class="dk-menu-column__item dk-menu-column__item--shop-all">
               <a 
-                href="{{ block.settings.cat2_menu.url }}" 
+                href="{{ cat2_menu.url }}" 
                 class="dk-menu-column__link dk-menu-column__link--shop-all"
               >
                 {{ block.settings.shop_all_text | default: 'SHOP ALL' }}
