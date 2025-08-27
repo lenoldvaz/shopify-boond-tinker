@@ -22,6 +22,19 @@
   
   <div class="custom-currency-picker" data-base-currency="{{ base_currency }}">
     <button class="custom-currency-button" aria-label="Select currency" aria-expanded="false">
+      <span class="custom-currency-flag">
+        {%- case current_currency -%}
+          {%- when 'INR' -%}🇮🇳
+          {%- when 'USD' -%}🇺🇸
+          {%- when 'EUR' -%}🇪🇺
+          {%- when 'GBP' -%}🇬🇧
+          {%- when 'CAD' -%}🇨🇦
+          {%- when 'AUD' -%}🇦🇺
+          {%- when 'JPY' -%}🇯🇵
+          {%- when 'AED' -%}🇦🇪
+          {%- else -%}🌐
+        {%- endcase -%}
+      </span>
       <span class="custom-currency-code">{{ current_currency }}</span>
       <svg class="custom-currency-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
         <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/>
@@ -43,8 +56,23 @@
                       data-rate="{{ exchange_rate }}"
                       data-name="{{ currency_name }}"
                       {%- if currency_code == current_currency %} aria-selected="true"{%- endif -%}>
-                <span class="currency-option-code">{{ currency_code }}</span>
-                <span class="currency-option-name">{{ currency_name }}</span>
+                <span class="currency-option-flag">
+                  {%- case currency_code -%}
+                    {%- when 'INR' -%}🇮🇳
+                    {%- when 'USD' -%}🇺🇸
+                    {%- when 'EUR' -%}🇪🇺
+                    {%- when 'GBP' -%}🇬🇧
+                    {%- when 'CAD' -%}🇨🇦
+                    {%- when 'AUD' -%}🇦🇺
+                    {%- when 'JPY' -%}🇯🇵
+                    {%- when 'AED' -%}🇦🇪
+                    {%- else -%}🌐
+                  {%- endcase -%}
+                </span>
+                <span class="currency-option-info">
+                  <span class="currency-option-code">{{ currency_code }}</span>
+                  <span class="currency-option-name">{{ currency_name }}</span>
+                </span>
               </button>
             </li>
           {%- endif -%}
@@ -130,7 +158,18 @@
       }
 
       updateCurrency(currency) {
+        // Update currency code
         this.button.querySelector('.custom-currency-code').textContent = currency;
+        
+        // Update flag
+        const flagElement = this.button.querySelector('.custom-currency-flag');
+        const selectedOption = Array.from(this.options).find(opt => opt.dataset.currency === currency);
+        if (selectedOption && flagElement) {
+          const optionFlag = selectedOption.querySelector('.currency-option-flag');
+          if (optionFlag) {
+            flagElement.textContent = optionFlag.textContent;
+          }
+        }
         
         this.options.forEach(option => {
           option.setAttribute('aria-selected', option.dataset.currency === currency);
@@ -209,23 +248,38 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: transparent;
-      border: 1px solid currentColor;
-      border-radius: 4px;
+      padding: 0.6rem 1rem;
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
       cursor: pointer;
       font-family: inherit;
       font-size: inherit;
       color: inherit;
       transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     .custom-currency-button:hover {
-      opacity: 0.8;
+      border-color: var(--color-foreground);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-currency-flag {
+      font-size: 1.2em;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .custom-currency-code {
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
     .custom-currency-icon {
       transition: transform 0.2s ease;
+      opacity: 0.6;
     }
 
     .custom-currency-button[aria-expanded="true"] .custom-currency-icon {
@@ -239,14 +293,14 @@
       margin-top: 0.5rem;
       background: var(--color-background);
       border: 1px solid var(--color-border);
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
       opacity: 0;
       visibility: hidden;
       transform: translateY(-10px);
       transition: all 0.2s ease;
       z-index: 100;
-      min-width: 200px;
+      min-width: 240px;
     }
 
     .custom-currency-dropdown[aria-hidden="false"] {
@@ -263,10 +317,10 @@
 
     .custom-currency-option {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 0.75rem;
       width: 100%;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
       background: none;
       border: none;
       cursor: pointer;
@@ -282,17 +336,35 @@
     }
 
     .custom-currency-option[aria-selected="true"] {
-      font-weight: bold;
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: rgba(var(--color-primary-rgb), 0.1);
+    }
+
+    .currency-option-flag {
+      font-size: 1.5em;
+      line-height: 1;
+      width: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .currency-option-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+      flex: 1;
     }
 
     .currency-option-code {
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 0.95em;
+      letter-spacing: 0.02em;
     }
 
     .currency-option-name {
-      font-size: 0.875em;
+      font-size: 0.825em;
       opacity: 0.7;
+      font-weight: 400;
     }
 
     @media (max-width: 768px) {

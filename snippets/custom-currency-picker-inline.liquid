@@ -20,6 +20,17 @@
           {%- assign exchange_rate = currency_data[2] | strip -%}
           
           <option value="{{ currency_code }}" data-rate="{{ exchange_rate }}">
+            {%- case currency_code -%}
+              {%- when 'INR' -%}🇮🇳
+              {%- when 'USD' -%}🇺🇸
+              {%- when 'EUR' -%}🇪🇺
+              {%- when 'GBP' -%}🇬🇧
+              {%- when 'CAD' -%}🇨🇦
+              {%- when 'AUD' -%}🇦🇺
+              {%- when 'JPY' -%}🇯🇵
+              {%- when 'AED' -%}🇦🇪
+              {%- else -%}🌐
+            {%- endcase -%}
             {{ currency_code }} - {{ currency_name }}
           </option>
         {%- endif -%}
