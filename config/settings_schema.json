@@ -2173,14 +2173,14 @@
         "id": "custom_base_currency",
         "label": "Base Currency Code",
         "info": "The base currency code (e.g., USD, EUR, GBP)",
-        "default": "USD"
+        "default": "INR"
       },
       {
         "type": "textarea",
         "id": "custom_currencies",
         "label": "Currency Configuration",
-        "info": "Format: CURRENCY_CODE|Currency Name|Exchange Rate (one per line). Example: EUR|Euro|0.85",
-        "default": "USD|US Dollar|1.00\nEUR|Euro|0.85\nGBP|British Pound|0.73\nCAD|Canadian Dollar|1.25\nAUD|Australian Dollar|1.35\nJPY|Japanese Yen|110.50\nINR|Indian Rupee|74.50"
+        "info": "Format: CURRENCY_CODE|Currency Name|Exchange Rate (one per line). Exchange rate from base currency (INR)",
+        "default": "INR|Indian Rupee|1.00\nUSD|US Dollar|0.012\nEUR|Euro|0.011\nGBP|British Pound|0.0098\nCAD|Canadian Dollar|0.016\nAUD|Australian Dollar|0.018\nJPY|Japanese Yen|1.78\nAED|UAE Dirham|0.044"
       }
     ]
   },
