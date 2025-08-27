@@ -12,15 +12,25 @@ class CurrencyConverter {
   }
 
   init() {
+    console.log('Currency Converter initialized with:', {
+      baseCurrency: this.baseCurrency,
+      currentCurrency: this.currentCurrency,
+      currentRate: this.currentRate,
+      currencies: this.currencies
+    });
+
     // Listen for currency change events
     document.addEventListener('currency:changed', (e) => {
+      console.log('Currency changed to:', e.detail);
       this.currentCurrency = e.detail.currency;
-      this.currentRate = e.detail.rate;
+      this.currentRate = parseFloat(e.detail.rate);
       this.convertAllPrices();
     });
 
     // Convert prices on page load
-    this.convertAllPrices();
+    if (this.currentCurrency !== this.baseCurrency) {
+      this.convertAllPrices();
+    }
 
     // Watch for new content (AJAX loaded products, etc.)
     this.observePriceChanges();
@@ -69,18 +79,27 @@ class CurrencyConverter {
     let originalPrice = element.dataset.originalPrice;
     
     if (!originalPrice) {
-      // Extract price from text content
-      const priceText = element.textContent;
-      const priceMatch = priceText.match(/[\d,]+\.?\d*/);
+      // Extract price from text content - handle Shopify money format
+      const priceText = element.textContent.trim();
       
-      if (priceMatch) {
-        originalPrice = priceMatch[0].replace(/,/g, '');
+      // Match various price formats including Shopify's
+      // This regex matches: $123.45, USD 123.45, 123.45, $1,234.56, etc.
+      const priceMatch = priceText.match(/(?:[\$€£¥₹]?\s*)?(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)/);
+      
+      if (priceMatch && priceMatch[1]) {
+        originalPrice = priceMatch[1].replace(/,/g, '');
         element.dataset.originalPrice = originalPrice;
+        
+        // Store the original full text for format preservation
+        element.dataset.originalFormat = priceText;
       }
     }
 
     if (originalPrice) {
-      const convertedPrice = (parseFloat(originalPrice) * this.currentRate).toFixed(2);
+      const basePrice = parseFloat(originalPrice);
+      if (isNaN(basePrice)) return;
+      
+      const convertedPrice = (basePrice * this.currentRate).toFixed(2);
       const formattedPrice = this.formatPrice(convertedPrice);
       
       // Update the element

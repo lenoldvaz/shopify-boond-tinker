@@ -8,9 +8,11 @@
 
 {%- if settings.enable_custom_currency_picker -%}
   {%- assign base_currency = settings.custom_base_currency | default: shop.currency -%}
-  {%- assign current_currency = request.locale.iso_code | default: base_currency -%}
+  {%- assign current_currency = base_currency -%}
   
-  {%- comment -%} Get the saved currency from localStorage or cookie {%- endcomment -%}
+  {%- comment -%} Parse currencies from the textarea setting {%- endcomment -%}
+  {%- assign currency_lines = settings.custom_currencies | newline_to_br | strip_newlines | split: '<br />' -%}
+  
   <div class="custom-currency-picker" data-base-currency="{{ base_currency }}">
     <button class="custom-currency-button" aria-label="Select currency" aria-expanded="false">
       <span class="custom-currency-code">{{ current_currency }}</span>
@@ -21,22 +23,24 @@
     
     <div class="custom-currency-dropdown" aria-hidden="true">
       <ul class="custom-currency-list" role="listbox">
-        {%- for currency_config in settings.custom_currencies -%}
-          {%- assign currency_data = currency_config | split: '|' -%}
-          {%- assign currency_code = currency_data[0] -%}
-          {%- assign currency_name = currency_data[1] -%}
-          {%- assign exchange_rate = currency_data[2] | plus: 0 -%}
-          
-          <li role="option">
-            <button class="custom-currency-option" 
-                    data-currency="{{ currency_code }}" 
-                    data-rate="{{ exchange_rate }}"
-                    data-name="{{ currency_name }}"
-                    {%- if currency_code == current_currency %} aria-selected="true"{%- endif -%}>
-              <span class="currency-option-code">{{ currency_code }}</span>
-              <span class="currency-option-name">{{ currency_name }}</span>
-            </button>
-          </li>
+        {%- for currency_line in currency_lines -%}
+          {%- assign currency_data = currency_line | split: '|' -%}
+          {%- if currency_data.size == 3 -%}
+            {%- assign currency_code = currency_data[0] | strip -%}
+            {%- assign currency_name = currency_data[1] | strip -%}
+            {%- assign exchange_rate = currency_data[2] | strip -%}
+            
+            <li role="option">
+              <button class="custom-currency-option" 
+                      data-currency="{{ currency_code }}" 
+                      data-rate="{{ exchange_rate }}"
+                      data-name="{{ currency_name }}"
+                      {%- if currency_code == current_currency %} aria-selected="true"{%- endif -%}>
+                <span class="currency-option-code">{{ currency_code }}</span>
+                <span class="currency-option-name">{{ currency_name }}</span>
+              </button>
+            </li>
+          {%- endif -%}
         {%- endfor -%}
       </ul>
     </div>
@@ -46,16 +50,18 @@
     window.customCurrencyPicker = {
       baseCurrency: '{{ base_currency }}',
       currencies: {
-        {%- for currency_config in settings.custom_currencies -%}
-          {%- assign currency_data = currency_config | split: '|' -%}
-          {%- assign currency_code = currency_data[0] -%}
-          {%- assign currency_name = currency_data[1] -%}
-          {%- assign exchange_rate = currency_data[2] | plus: 0 -%}
-          '{{ currency_code }}': {
-            name: '{{ currency_name }}',
-            rate: {{ exchange_rate }},
-            symbol: '{{ currency_code }}'
-          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- for currency_line in currency_lines -%}
+          {%- assign currency_data = currency_line | split: '|' -%}
+          {%- if currency_data.size == 3 -%}
+            {%- assign currency_code = currency_data[0] | strip -%}
+            {%- assign currency_name = currency_data[1] | strip -%}
+            {%- assign exchange_rate = currency_data[2] | strip -%}
+            '{{ currency_code }}': {
+              name: '{{ currency_name }}',
+              rate: {{ exchange_rate }},
+              symbol: '{{ currency_code }}'
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endif -%}
         {%- endfor -%}
       }
     };

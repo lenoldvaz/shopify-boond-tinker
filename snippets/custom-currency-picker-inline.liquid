@@ -7,17 +7,21 @@
 {%- endcomment -%}
 
 {%- if settings.enable_custom_currency_picker -%}
+  {%- assign currency_lines = settings.custom_currencies | newline_to_br | strip_newlines | split: '<br />' -%}
+  
   <div class="custom-currency-inline">
     <select class="custom-currency-select" aria-label="Select currency">
-      {%- for currency_config in settings.custom_currencies -%}
-        {%- assign currency_data = currency_config | split: '|' -%}
-        {%- assign currency_code = currency_data[0] -%}
-        {%- assign currency_name = currency_data[1] -%}
-        {%- assign exchange_rate = currency_data[2] | plus: 0 -%}
-        
-        <option value="{{ currency_code }}" data-rate="{{ exchange_rate }}">
-          {{ currency_code }} - {{ currency_name }}
-        </option>
+      {%- for currency_line in currency_lines -%}
+        {%- assign currency_data = currency_line | split: '|' -%}
+        {%- if currency_data.size == 3 -%}
+          {%- assign currency_code = currency_data[0] | strip -%}
+          {%- assign currency_name = currency_data[1] | strip -%}
+          {%- assign exchange_rate = currency_data[2] | strip -%}
+          
+          <option value="{{ currency_code }}" data-rate="{{ exchange_rate }}">
+            {{ currency_code }} - {{ currency_name }}
+          </option>
+        {%- endif -%}
       {%- endfor -%}
     </select>
   </div>
