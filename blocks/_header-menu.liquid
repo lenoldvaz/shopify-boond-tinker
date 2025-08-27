@@ -957,105 +957,81 @@
     },
     {
       "type": "header",
-      "content": "🔧 DK Mega Menu - Desktop Settings",
+      "content": "DK Mega Menu Settings",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "range",
       "id": "desktop_menu_items_limit",
-      "label": "Visible menu items",
+      "label": "Desktop menu items limit",
       "min": 1,
       "max": 10,
       "step": 1,
       "default": 3,
-      "info": "Number of top-level menu items to display before 'More' button",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
-    },
-    {
-      "type": "range",
-      "id": "gap_desktop",
-      "label": "Item spacing",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "px",
-      "default": 32,
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
-    },
-    {
-      "type": "header",
-      "content": "📋 Navigation Categories",
+      "info": "Number of top-level menu items to display on desktop",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "checkbox",
       "id": "show_nav_categories",
-      "label": "Enable navigation categories",
+      "label": "Show navigation categories",
       "default": true,
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "textarea",
       "id": "nav_categories",
-      "label": "Category names",
+      "label": "Navigation categories",
       "default": "Best Sellers,Build Your Own Bundle,Subscribe & Save",
       "info": "Enter each category separated by commas",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_nav_categories }}"
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "textarea",
       "id": "nav_category_links",
       "label": "Category links",
       "default": "/collections/best-sellers,/pages/build-bundle,/pages/subscribe",
-      "info": "Enter URLs separated by commas, matching category order",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_nav_categories }}"
+      "info": "Enter URLs separated by commas, in the same order as categories",
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "textarea",
       "id": "nav_category_pills",
-      "label": "Category badges",
+      "label": "Category callout pills",
       "default": ",,HOT",
-      "info": "Add badges like NEW, HOT, SALE. Leave empty for no badge. Match category order.",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_nav_categories }}"
-    },
-    {
-      "type": "header",
-      "content": "🛍️ Shop Columns",
-      "info": "Configure the menu columns that appear in the mega menu",
+      "info": "Enter pill text separated by commas (NEW, HOT, SELLING OUT FAST, etc.). Leave empty for no pill. Must match category order.",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "text",
       "id": "cat1_title",
-      "label": "Column 1 title",
+      "label": "Category 1 column title",
       "default": "Shop Skincare",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "link_list",
       "id": "cat1_menu",
-      "label": "Column 1 menu",
-      "info": "Select a navigation menu for the first column",
+      "label": "Skincare menu",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "text",
-      "id": "cat2_title",
-      "label": "Column 2 title",
-      "default": "Shop Category 2",
+      "id": "haircare_title",
+      "label": "Haircare column title",
+      "default": "Shop Haircare",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "link_list",
-      "id": "cat2_menu",
-      "label": "Column 2 menu",
-      "info": "Select a navigation menu for the second column",
+      "id": "haircare_menu",
+      "label": "Haircare menu",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "range",
       "id": "max_links",
-      "label": "Max links per column",
+      "label": "Maximum links per column",
       "min": 3,
       "max": 15,
       "step": 1,
@@ -1065,26 +1041,21 @@
     {
       "type": "checkbox",
       "id": "show_shop_all",
-      "label": "Show 'Shop All' button",
+      "label": "Show 'Shop All' links",
       "default": true,
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "text",
       "id": "shop_all_text",
-      "label": "'Shop All' button text",
+      "label": "'Shop All' text",
       "default": "SHOP ALL",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_shop_all }}"
-    },
-    {
-      "type": "header",
-      "content": "🎠 Featured Products Carousel",
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "checkbox",
       "id": "show_featured_products",
-      "label": "Enable carousel",
+      "label": "Show featured products carousel",
       "default": true,
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
@@ -1093,48 +1064,52 @@
       "id": "carousel_title",
       "label": "Carousel title",
       "default": "Trending this Week",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_featured_products }}"
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "collection",
       "id": "featured_collection",
-      "label": "Featured collection",
-      "info": "Select products to display in carousel",
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_featured_products }}"
+      "label": "Featured collection"
     },
     {
       "type": "range",
       "id": "products_to_show",
-      "label": "Number of products",
+      "label": "Products to show",
       "min": 3,
       "max": 10,
       "step": 1,
       "default": 5,
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_featured_products }}"
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "checkbox",
       "id": "show_descriptions",
       "label": "Show product descriptions",
       "default": true,
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_featured_products }}"
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "checkbox",
       "id": "show_sale_badges",
       "label": "Show sale badges",
       "default": true,
-      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' && block.settings.show_featured_products }}"
+      "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
-      "type": "header",
-      "content": "📱 DK Mega Menu - Mobile Settings",
+      "type": "range",
+      "id": "gap_desktop",
+      "label": "Gap (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 32,
       "visible_if": "{{ block.settings.menu_style == 'dk_mega_menu' }}"
     },
     {
       "type": "range",
       "id": "gap_mobile",
-      "label": "Item spacing",
+      "label": "Gap (Mobile)",
       "min": 0,
       "max": 100,
       "step": 1,
