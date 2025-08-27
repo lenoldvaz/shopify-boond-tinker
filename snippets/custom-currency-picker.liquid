@@ -1,0 +1,299 @@
+{%- comment -%}
+  Custom Currency Picker with Exchange Rates
+  - Independent of Shopify Payments
+  - Configurable exchange rates
+  - Can be placed anywhere on the site
+  - Updates prices dynamically across the site
+{%- endcomment -%}
+
+{%- if settings.enable_custom_currency_picker -%}
+  {%- assign base_currency = settings.custom_base_currency | default: shop.currency -%}
+  {%- assign current_currency = request.locale.iso_code | default: base_currency -%}
+  
+  {%- comment -%} Get the saved currency from localStorage or cookie {%- endcomment -%}
+  <div class="custom-currency-picker" data-base-currency="{{ base_currency }}">
+    <button class="custom-currency-button" aria-label="Select currency" aria-expanded="false">
+      <span class="custom-currency-code">{{ current_currency }}</span>
+      <svg class="custom-currency-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
+        <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+    
+    <div class="custom-currency-dropdown" aria-hidden="true">
+      <ul class="custom-currency-list" role="listbox">
+        {%- for currency_config in settings.custom_currencies -%}
+          {%- assign currency_data = currency_config | split: '|' -%}
+          {%- assign currency_code = currency_data[0] -%}
+          {%- assign currency_name = currency_data[1] -%}
+          {%- assign exchange_rate = currency_data[2] | plus: 0 -%}
+          
+          <li role="option">
+            <button class="custom-currency-option" 
+                    data-currency="{{ currency_code }}" 
+                    data-rate="{{ exchange_rate }}"
+                    data-name="{{ currency_name }}"
+                    {%- if currency_code == current_currency %} aria-selected="true"{%- endif -%}>
+              <span class="currency-option-code">{{ currency_code }}</span>
+              <span class="currency-option-name">{{ currency_name }}</span>
+            </button>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    window.customCurrencyPicker = {
+      baseCurrency: '{{ base_currency }}',
+      currencies: {
+        {%- for currency_config in settings.custom_currencies -%}
+          {%- assign currency_data = currency_config | split: '|' -%}
+          {%- assign currency_code = currency_data[0] -%}
+          {%- assign currency_name = currency_data[1] -%}
+          {%- assign exchange_rate = currency_data[2] | plus: 0 -%}
+          '{{ currency_code }}': {
+            name: '{{ currency_name }}',
+            rate: {{ exchange_rate }},
+            symbol: '{{ currency_code }}'
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      }
+    };
+  </script>
+
+  <script type="module">
+    class CustomCurrencyPicker {
+      constructor() {
+        this.picker = document.querySelector('.custom-currency-picker');
+        this.button = this.picker.querySelector('.custom-currency-button');
+        this.dropdown = this.picker.querySelector('.custom-currency-dropdown');
+        this.options = this.picker.querySelectorAll('.custom-currency-option');
+        this.baseCurrency = this.picker.dataset.baseCurrency;
+        this.currentCurrency = this.loadCurrency() || this.baseCurrency;
+        
+        this.init();
+      }
+
+      init() {
+        this.button.addEventListener('click', () => this.toggleDropdown());
+        
+        this.options.forEach(option => {
+          option.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.selectCurrency(option.dataset.currency, option.dataset.rate);
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!this.picker.contains(e.target)) {
+            this.closeDropdown();
+          }
+        });
+
+        // Set initial currency
+        this.updateCurrency(this.currentCurrency);
+      }
+
+      toggleDropdown() {
+        const isOpen = this.button.getAttribute('aria-expanded') === 'true';
+        this.button.setAttribute('aria-expanded', !isOpen);
+        this.dropdown.setAttribute('aria-hidden', isOpen);
+      }
+
+      closeDropdown() {
+        this.button.setAttribute('aria-expanded', 'false');
+        this.dropdown.setAttribute('aria-hidden', 'true');
+      }
+
+      selectCurrency(currency, rate) {
+        this.currentCurrency = currency;
+        this.saveCurrency(currency);
+        this.updateCurrency(currency);
+        this.closeDropdown();
+        this.convertPrices(currency, rate);
+      }
+
+      updateCurrency(currency) {
+        this.button.querySelector('.custom-currency-code').textContent = currency;
+        
+        this.options.forEach(option => {
+          option.setAttribute('aria-selected', option.dataset.currency === currency);
+        });
+      }
+
+      saveCurrency(currency) {
+        localStorage.setItem('custom_currency', currency);
+        // Also set a cookie for server-side access
+        document.cookie = `custom_currency=${currency};path=/;max-age=2592000`;
+      }
+
+      loadCurrency() {
+        return localStorage.getItem('custom_currency');
+      }
+
+      convertPrices(currency, rate) {
+        const event = new CustomEvent('currency:changed', {
+          detail: { currency, rate }
+        });
+        document.dispatchEvent(event);
+
+        // Convert all prices on the page
+        this.convertAllPrices(currency, rate);
+      }
+
+      convertAllPrices(currency, rate) {
+        const priceElements = document.querySelectorAll('[data-price], .price, .money');
+        
+        priceElements.forEach(element => {
+          const originalPrice = element.dataset.originalPrice || element.textContent.replace(/[^0-9.]/g, '');
+          
+          if (originalPrice) {
+            if (!element.dataset.originalPrice) {
+              element.dataset.originalPrice = originalPrice;
+            }
+            
+            const convertedPrice = (parseFloat(originalPrice) * parseFloat(rate)).toFixed(2);
+            element.textContent = this.formatPrice(convertedPrice, currency);
+          }
+        });
+      }
+
+      formatPrice(price, currency) {
+        const formatter = new Intl.NumberFormat(undefined, {
+          style: 'currency',
+          currency: currency,
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        
+        try {
+          return formatter.format(price);
+        } catch (e) {
+          // Fallback for unsupported currencies
+          return `${currency} ${price}`;
+        }
+      }
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => new CustomCurrencyPicker());
+    } else {
+      new CustomCurrencyPicker();
+    }
+  </script>
+
+  <style>
+    .custom-currency-picker {
+      position: relative;
+      display: inline-block;
+    }
+
+    .custom-currency-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: 1px solid currentColor;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .custom-currency-button:hover {
+      opacity: 0.8;
+    }
+
+    .custom-currency-icon {
+      transition: transform 0.2s ease;
+    }
+
+    .custom-currency-button[aria-expanded="true"] .custom-currency-icon {
+      transform: rotate(180deg);
+    }
+
+    .custom-currency-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.5rem;
+      background: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.2s ease;
+      z-index: 100;
+      min-width: 200px;
+    }
+
+    .custom-currency-dropdown[aria-hidden="false"] {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .custom-currency-list {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
+
+    .custom-currency-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      text-align: left;
+      color: inherit;
+      transition: background-color 0.2s ease;
+    }
+
+    .custom-currency-option:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .custom-currency-option[aria-selected="true"] {
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .currency-option-code {
+      font-weight: 500;
+    }
+
+    .currency-option-name {
+      font-size: 0.875em;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .custom-currency-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        border-radius: 1rem 1rem 0 0;
+        transform: translateY(100%);
+      }
+
+      .custom-currency-dropdown[aria-hidden="false"] {
+        transform: translateY(0);
+      }
+    }
+  </style>
+{%- endif -%}

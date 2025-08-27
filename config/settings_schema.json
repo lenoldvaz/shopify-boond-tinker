@@ -2156,6 +2156,31 @@
         "label": "Supported Currencies (Format: USD-US Dollar|EUR-Euro|GBP-British Pound)",
         "info": "Only used when Currency Switcher Type is set to 'Custom Supported Currencies'",
         "default": "USD-US Dollar|EUR-Euro|GBP-British Pound"
+      },
+      {
+        "type": "header",
+        "content": "Custom Currency Picker (With Exchange Rates)"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_currency_picker",
+        "label": "Enable Custom Currency Picker",
+        "info": "Enable a custom currency picker that works without Shopify Payments",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "custom_base_currency",
+        "label": "Base Currency Code",
+        "info": "The base currency code (e.g., USD, EUR, GBP)",
+        "default": "USD"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_currencies",
+        "label": "Currency Configuration",
+        "info": "Format: CURRENCY_CODE|Currency Name|Exchange Rate (one per line). Example: EUR|Euro|0.85",
+        "default": "USD|US Dollar|1.00\nEUR|Euro|0.85\nGBP|British Pound|0.73\nCAD|Canadian Dollar|1.25\nAUD|Australian Dollar|1.35\nJPY|Japanese Yen|110.50\nINR|Indian Rupee|74.50"
       }
     ]
   },

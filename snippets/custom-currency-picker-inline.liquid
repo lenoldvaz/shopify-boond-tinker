@@ -1,0 +1,98 @@
+{%- comment -%}
+  Inline Custom Currency Picker
+  Usage: {% render 'custom-currency-picker-inline' %}
+  
+  This can be placed anywhere in your theme templates, sections, or blocks.
+  It will automatically sync with the main currency picker.
+{%- endcomment -%}
+
+{%- if settings.enable_custom_currency_picker -%}
+  <div class="custom-currency-inline">
+    <select class="custom-currency-select" aria-label="Select currency">
+      {%- for currency_config in settings.custom_currencies -%}
+        {%- assign currency_data = currency_config | split: '|' -%}
+        {%- assign currency_code = currency_data[0] -%}
+        {%- assign currency_name = currency_data[1] -%}
+        {%- assign exchange_rate = currency_data[2] | plus: 0 -%}
+        
+        <option value="{{ currency_code }}" data-rate="{{ exchange_rate }}">
+          {{ currency_code }} - {{ currency_name }}
+        </option>
+      {%- endfor -%}
+    </select>
+  </div>
+
+  <script>
+    (function() {
+      const select = document.querySelector('.custom-currency-inline .custom-currency-select');
+      if (!select) return;
+
+      // Load saved currency
+      const savedCurrency = localStorage.getItem('custom_currency');
+      if (savedCurrency) {
+        select.value = savedCurrency;
+      }
+
+      // Handle currency change
+      select.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        const currency = selectedOption.value;
+        const rate = selectedOption.dataset.rate;
+
+        // Save selection
+        localStorage.setItem('custom_currency', currency);
+        document.cookie = `custom_currency=${currency};path=/;max-age=2592000`;
+
+        // Dispatch event for converter
+        const event = new CustomEvent('currency:changed', {
+          detail: { currency, rate }
+        });
+        document.dispatchEvent(event);
+
+        // Update main picker if exists
+        const mainPicker = document.querySelector('.custom-currency-picker');
+        if (mainPicker) {
+          const mainButton = mainPicker.querySelector('.custom-currency-button .custom-currency-code');
+          if (mainButton) {
+            mainButton.textContent = currency;
+          }
+        }
+      });
+
+      // Listen for changes from main picker
+      document.addEventListener('currency:changed', function(e) {
+        if (select.value !== e.detail.currency) {
+          select.value = e.detail.currency;
+        }
+      });
+    })();
+  </script>
+
+  <style>
+    .custom-currency-inline {
+      display: inline-block;
+    }
+
+    .custom-currency-select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      font-family: inherit;
+      font-size: inherit;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .custom-currency-select:hover {
+      border-color: var(--color-foreground);
+    }
+
+    .custom-currency-select:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2);
+    }
+  </style>
+{%- endif -%}

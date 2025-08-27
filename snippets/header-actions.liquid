@@ -123,7 +123,11 @@
     {% render 'account-drawer' %}
   {% endif %}
 
-  {% render 'currency-switcher' %}
+  {% if settings.enable_custom_currency_picker %}
+    {% render 'custom-currency-picker' %}
+  {% else %}
+    {% render 'currency-switcher' %}
+  {% endif %}
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     {% render 'cart-drawer' %}
