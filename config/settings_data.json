@@ -38,6 +38,7 @@
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
     "currency_type": "1",
+    "enable_custom_currency_picker": true,
     "quick_add": false,
     "product_corner_radius": 10,
     "card_corner_radius": 10,
@@ -50,14 +51,14 @@
         "disabled": false,
         "settings": {}
       },
-      "1804893150726543839": {
-        "type": "shopify://apps/nova-multi-currency-converter/blocks/app-embed/a5be3c35-cbd0-46a1-ac3a-1ace57a9c1ce",
-        "disabled": false,
-        "settings": {}
-      },
       "3720565183479497137": {
         "type": "shopify://apps/globo-product-option/blocks/app-embed-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
         "disabled": false,
+        "settings": {}
+      },
+      "1804893150726543839": {
+        "type": "shopify://apps/nova-multi-currency-converter/blocks/app-embed/a5be3c35-cbd0-46a1-ac3a-1ace57a9c1ce",
+        "disabled": true,
         "settings": {}
       }
     },
