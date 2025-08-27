@@ -7,8 +7,15 @@
 {%- endcomment -%}
 
 {%- if settings.enable_custom_currency_picker -%}
-  {%- assign base_currency = settings.custom_base_currency | default: shop.currency -%}
-  {%- assign current_currency = base_currency -%}
+  {%- assign base_currency = settings.custom_base_currency | default: 'INR' -%}
+  {%- comment -%} Initialize current currency from cookie or default to base {%- endcomment -%}
+  {%- assign saved_currency = nil -%}
+  {%- for cookie in request.cookies -%}
+    {%- if cookie[0] == 'custom_currency' -%}
+      {%- assign saved_currency = cookie[1] -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign current_currency = saved_currency | default: base_currency -%}
   
   {%- comment -%} Parse currencies from the textarea setting {%- endcomment -%}
   {%- assign currency_lines = settings.custom_currencies | newline_to_br | strip_newlines | split: '<br />' -%}
@@ -75,7 +82,10 @@
         this.dropdown = this.picker.querySelector('.custom-currency-dropdown');
         this.options = this.picker.querySelectorAll('.custom-currency-option');
         this.baseCurrency = this.picker.dataset.baseCurrency;
-        this.currentCurrency = this.loadCurrency() || this.baseCurrency;
+        
+        // Get initial currency from button text or saved preference
+        const buttonCurrency = this.button.querySelector('.custom-currency-code').textContent.trim();
+        this.currentCurrency = this.loadCurrency() || buttonCurrency || this.baseCurrency;
         
         this.init();
       }

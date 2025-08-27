@@ -3,9 +3,12 @@
 
 class CurrencyConverter {
   constructor() {
-    this.baseCurrency = window.customCurrencyPicker?.baseCurrency || 'USD';
+    this.baseCurrency = window.customCurrencyPicker?.baseCurrency || 'INR';
     this.currencies = window.customCurrencyPicker?.currencies || {};
-    this.currentCurrency = this.loadCurrency() || this.baseCurrency;
+    
+    // Load saved currency or use base currency
+    const savedCurrency = this.loadCurrency();
+    this.currentCurrency = savedCurrency && this.currencies[savedCurrency] ? savedCurrency : this.baseCurrency;
     this.currentRate = this.currencies[this.currentCurrency]?.rate || 1;
     
     this.init();

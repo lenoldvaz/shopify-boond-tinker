@@ -7,10 +7,11 @@
 {%- endcomment -%}
 
 {%- if settings.enable_custom_currency_picker -%}
+  {%- assign base_currency = settings.custom_base_currency | default: 'INR' -%}
   {%- assign currency_lines = settings.custom_currencies | newline_to_br | strip_newlines | split: '<br />' -%}
   
   <div class="custom-currency-inline">
-    <select class="custom-currency-select" aria-label="Select currency">
+    <select class="custom-currency-select" aria-label="Select currency" data-base-currency="{{ base_currency }}">
       {%- for currency_line in currency_lines -%}
         {%- assign currency_data = currency_line | split: '|' -%}
         {%- if currency_data.size == 3 -%}
@@ -31,10 +32,18 @@
       const select = document.querySelector('.custom-currency-inline .custom-currency-select');
       if (!select) return;
 
-      // Load saved currency
-      const savedCurrency = localStorage.getItem('custom_currency');
-      if (savedCurrency) {
+      const baseCurrency = select.dataset.baseCurrency || 'INR';
+
+      // Load saved currency or use base currency
+      const savedCurrency = localStorage.getItem('custom_currency') || baseCurrency;
+      
+      // Set the select value if the option exists
+      const options = Array.from(select.options);
+      const hasOption = options.some(opt => opt.value === savedCurrency);
+      if (hasOption) {
         select.value = savedCurrency;
+      } else {
+        select.value = baseCurrency;
       }
 
       // Handle currency change
