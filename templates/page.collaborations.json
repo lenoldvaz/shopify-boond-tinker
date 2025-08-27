@@ -43,7 +43,7 @@
       ],
       "name": "t:names.hero",
       "settings": {
-        "visibility_option": "both",
+        "visibility_option": "desktop",
         "link": "",
         "open_in_new_tab": false,
         "media_type_1": "image",
@@ -59,7 +59,69 @@
         "gap": 16,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 40,
+        "section_height_custom": 35,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "hero_HUfMgx": {
+      "type": "hero",
+      "blocks": {
+        "text_WkQ9xB": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><strong>COLLABORATIONS</strong></h2>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_WkQ9xB"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "visibility_option": "mobile",
+        "link": "",
+        "open_in_new_tab": false,
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/IMG20220914143054-min.jpg",
+        "media_type_2": "image",
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "custom",
+        "section_height_custom": 20,
         "color_scheme": "scheme-5",
         "toggle_overlay": true,
         "overlay_color": "#00000026",
@@ -78,7 +140,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h4><strong>--- Ways to collaborate with us ----</strong></h4>",
+            "text": "<h4><strong>--- Ways to collaborate with us ---</strong></h4>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -128,7 +190,8 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap_desktop": 12,
+            "gap_mobile": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -167,7 +230,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -288,7 +352,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -409,7 +474,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -537,7 +603,8 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap_desktop": 12,
+            "gap_mobile": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -576,7 +643,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -697,7 +765,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -818,7 +887,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -947,7 +1017,8 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap_desktop": 12,
+        "gap_mobile": 12,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -1009,7 +1080,8 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap_desktop": 12,
+            "gap_mobile": 12,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -1048,7 +1120,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1094,7 +1167,8 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap_desktop": 12,
+        "gap_mobile": 12,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -1137,7 +1211,8 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 24
+            "gap_desktop": 24,
+            "gap_mobile": 24
           },
           "blocks": {
             "text_EyK9mn": {
@@ -1178,7 +1253,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1240,7 +1316,7 @@
                     "width": "fit-content",
                     "custom_width": 100,
                     "width_mobile": "fit-content",
-                    "custom_width_mobile": 100
+                    "custom_width_mobile": 37
                   },
                   "blocks": {}
                 }
@@ -1306,7 +1382,8 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 30
+            "gap_desktop": 24,
+            "gap_mobile": 24
           },
           "blocks": {
             "text_hQTXzR": {
@@ -1347,7 +1424,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1475,7 +1553,8 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 30
+            "gap_desktop": 24,
+            "gap_mobile": 24
           },
           "blocks": {
             "text_h9gDwr": {
@@ -1516,7 +1595,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1644,7 +1724,8 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
+            "gap_desktop": 24,
+            "gap_mobile": 24
           },
           "blocks": {
             "text_xpGcm9": {
@@ -1685,7 +1766,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1813,7 +1895,8 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 30
+            "gap_desktop": 24,
+            "gap_mobile": 24
           },
           "blocks": {
             "text_KkJJAz": {
@@ -1854,7 +1937,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -1982,7 +2066,8 @@
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 30
+            "gap_desktop": 24,
+            "gap_mobile": 24
           },
           "blocks": {
             "text_qywMjq": {
@@ -2023,7 +2108,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "center",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
+                "gap_desktop": 12,
+                "gap_mobile": 12,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -2161,7 +2247,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h5><a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\" target=\"_blank\"><strong>Drop us a message on Whatsapp </strong></a><strong>📲</strong></h5><h5><strong>OR<br/></strong></h5><h5><a href=\"mailto:team@boondfragrances.com\" target=\"_blank\"><strong>Email us at team@boondfragrances.com</strong></a></h5>",
+            "text": "<h5><a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\" target=\"_blank\"><strong>Drop us a message on Whatsapp </strong></a><strong>📲 </strong></h5><h5><strong>OR<br/></strong></h5><h5><a href=\"mailto:team@boondfragrances.com\" target=\"_blank\"><strong>Email us at team@boondfragrances.com</strong></a></h5>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -2197,7 +2283,8 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "gap_desktop": 12,
+        "gap_mobile": 12,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -2220,6 +2307,7 @@
   },
   "order": [
     "hero_yQVLdx",
+    "hero_HUfMgx",
     "main",
     "section_gNJ84W",
     "section_RGMwBm",
