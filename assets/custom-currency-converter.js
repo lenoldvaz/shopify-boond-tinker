@@ -30,10 +30,8 @@ class CurrencyConverter {
       this.convertAllPrices();
     });
 
-    // Convert prices on page load
-    if (this.currentCurrency !== this.baseCurrency) {
-      this.convertAllPrices();
-    }
+    // Convert prices on page load (always convert to show correct currency symbol)
+    this.convertAllPrices();
 
     // Watch for new content (AJAX loaded products, etc.)
     this.observePriceChanges();
@@ -85,16 +83,18 @@ class CurrencyConverter {
       // Extract price from text content - handle Shopify money format
       const priceText = element.textContent.trim();
       
-      // Match various price formats including Shopify's
-      // This regex matches: $123.45, USD 123.45, 123.45, $1,234.56, etc.
-      const priceMatch = priceText.match(/(?:[\$€£¥₹]?\s*)?(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)/);
+      // Remove any currency symbols and extract the number
+      // This regex matches: $123.45, USD 123.45, 123.45, $1,234.56, ₹1,234.56, etc.
+      const cleanedText = priceText.replace(/[A-Z]{3}\s*/g, ''); // Remove currency codes like USD
+      const priceMatch = cleanedText.match(/[\d,]+\.?\d*/);
       
-      if (priceMatch && priceMatch[1]) {
-        originalPrice = priceMatch[1].replace(/,/g, '');
+      if (priceMatch && priceMatch[0]) {
+        originalPrice = priceMatch[0].replace(/,/g, '');
         element.dataset.originalPrice = originalPrice;
         
         // Store the original full text for format preservation
         element.dataset.originalFormat = priceText;
+        console.log('Extracted price:', originalPrice, 'from:', priceText);
       }
     }
 
@@ -113,9 +113,24 @@ class CurrencyConverter {
   }
 
   formatPrice(price) {
+    // Define currency symbols
+    const currencySymbols = {
+      'INR': '₹',
+      'USD': '$',
+      'EUR': '€',
+      'GBP': '£',
+      'JPY': '¥',
+      'CAD': 'C$',
+      'AUD': 'A$',
+      'AED': 'د.إ'
+    };
+
     // Try to use Intl.NumberFormat for proper formatting
     try {
-      const formatter = new Intl.NumberFormat(undefined, {
+      // For INR, use Indian number format
+      const locale = this.currentCurrency === 'INR' ? 'en-IN' : undefined;
+      
+      const formatter = new Intl.NumberFormat(locale, {
         style: 'currency',
         currency: this.currentCurrency,
         minimumFractionDigits: 2,
@@ -124,8 +139,17 @@ class CurrencyConverter {
       return formatter.format(price);
     } catch (e) {
       // Fallback for unsupported currencies
-      const symbol = this.currencies[this.currentCurrency]?.symbol || this.currentCurrency;
-      return `${symbol} ${parseFloat(price).toFixed(2)}`;
+      const symbol = currencySymbols[this.currentCurrency] || this.currentCurrency;
+      const formattedNumber = parseFloat(price).toFixed(2);
+      
+      // For INR, format with Indian numbering system
+      if (this.currentCurrency === 'INR') {
+        const parts = formattedNumber.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+        return `${symbol}${parts.join('.')}`;
+      }
+      
+      return `${symbol}${formattedNumber}`;
     }
   }
 
@@ -161,10 +185,15 @@ class CurrencyConverter {
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    window.currencyConverter = new CurrencyConverter();
+    // Small delay to ensure Shopify's price rendering is complete
+    setTimeout(() => {
+      window.currencyConverter = new CurrencyConverter();
+    }, 100);
   });
 } else {
-  window.currencyConverter = new CurrencyConverter();
+  setTimeout(() => {
+    window.currencyConverter = new CurrencyConverter();
+  }, 100);
 }
 
 // Shopify-specific integrations
