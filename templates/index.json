@@ -1354,8 +1354,7 @@
         "collection_list": [
           "attars",
           "dhoop",
-          "gifting",
-          "rakhi"
+          "gifting"
         ],
         "layout_type": "carousel",
         "carousel_on_mobile": false,
