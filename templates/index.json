@@ -2155,6 +2155,7 @@
                       "name": "t:names.icon",
                       "settings": {
                         "icon": "paw_print",
+                        "image_upload": "shopify://shop_images/Handcrafted_by_artisans.png",
                         "width": 40,
                         "link": "",
                         "open_in_new_tab": false
@@ -2165,7 +2166,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>Handcrafted Products</p>",
+                        "text": "<p>Handcrafted by Artisans</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -2248,7 +2249,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p>GI Tagged</p>",
+                        "text": "<p>GI Tagged as Kannauj Perfumes</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -2321,6 +2322,7 @@
                       "name": "t:names.icon",
                       "settings": {
                         "icon": "plant",
+                        "image_upload": "shopify://shop_images/All_Natural_Ingredients.png",
                         "width": 40,
                         "link": "",
                         "open_in_new_tab": false
@@ -2451,6 +2453,7 @@
                       "name": "t:names.icon",
                       "settings": {
                         "icon": "perfume",
+                        "image_upload": "shopify://shop_images/Shipping_globally.png",
                         "width": 40,
                         "link": "",
                         "open_in_new_tab": false
@@ -2534,6 +2537,7 @@
                       "name": "t:names.icon",
                       "settings": {
                         "icon": "price_tag",
+                        "image_upload": "shopify://shop_images/Sustainable.png",
                         "width": 40,
                         "link": "",
                         "open_in_new_tab": false
@@ -2617,6 +2621,7 @@
                       "name": "t:names.icon",
                       "settings": {
                         "icon": "bottle",
+                        "image_upload": "shopify://shop_images/Unique_gifts.png",
                         "width": 40,
                         "link": "",
                         "open_in_new_tab": false
