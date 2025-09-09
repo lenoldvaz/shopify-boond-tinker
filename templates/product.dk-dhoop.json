@@ -385,7 +385,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "heart",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Handcrafted_by_artisans.png",
+                            "width": 32,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -468,7 +469,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "price_tag",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Pleasant_fragrance.png",
+                            "width": 30,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -478,7 +480,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Great value</p>",
+                            "text": "<p>Non-toxic fumes</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -597,7 +599,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "plant",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Long_lasting.png",
+                            "width": 30,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -607,7 +610,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Elegant design</p>",
+                            "text": "<p>Long-Lasting</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -680,7 +683,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "leather",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Richly_in_pure_natural_oils.png",
+                            "width": 30,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -690,7 +694,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Quality materials</p>",
+                            "text": "<p>Rich in Natural Oil</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
