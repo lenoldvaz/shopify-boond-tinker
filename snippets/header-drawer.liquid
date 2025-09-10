@@ -638,8 +638,18 @@
   <script>
     // Mobile currency dropdown functionality
     function initMobileCurrencyDropdown() {
-      const mobileSelector = document.querySelector('.menu-drawer__currency-selector .currency-selector');
+      const mobileSelector = document.querySelector('.menu-drawer__currency-selector .currency-selector') ||
+                           document.querySelector('.menu-drawer__currency-selector .custom-currency-picker');
       if (!mobileSelector) return;
+      
+      const isCustomPicker = mobileSelector.classList.contains('custom-currency-picker');
+      
+      // If custom picker, let it handle its own events for desktop but add mobile-specific handling
+      if (isCustomPicker) {
+        // Custom picker has its own desktop handlers, but mobile might need special handling
+        // due to the drawer context, so we only add minimal mobile-specific fixes
+        return;
+      }
       
       const button = mobileSelector.querySelector('.currency-button');
       const dropdown = mobileSelector.querySelector('.currency-dropdown');

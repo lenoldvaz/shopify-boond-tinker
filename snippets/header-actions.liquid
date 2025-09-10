@@ -9,7 +9,12 @@
   'use strict';
 
   function initCurrencySwitcher() {
-    // Only handle standard currency switcher (custom currency picker has its own handler)
+    // Don't initialize if custom picker is present (it has its own handlers)
+    if (document.querySelector('.custom-currency-picker')) {
+      return;
+    }
+    
+    // Only handle standard currency switcher
     // Handle currency button clicks
     document.addEventListener('click', function(e) {
       var target = e.target;
