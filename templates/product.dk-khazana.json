@@ -746,6 +746,7 @@
             "accordion_g8EVVp": {
               "type": "accordion",
               "name": "Accordion",
+              "disabled": true,
               "settings": {
                 "icon": "plus",
                 "dividers": true,
