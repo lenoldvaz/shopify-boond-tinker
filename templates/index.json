@@ -283,17 +283,6 @@
           },
           "blocks": {}
         },
-        "icon_dY7LEq": {
-          "type": "icon",
-          "name": "t:names.icon",
-          "settings": {
-            "icon": "price_tag",
-            "width": 24,
-            "link": "",
-            "open_in_new_tab": false
-          },
-          "blocks": {}
-        },
         "text_WrVFYb": {
           "type": "text",
           "settings": {
@@ -435,7 +424,6 @@
         "icon_y3x4MA",
         "text_MzkJFB",
         "icon_YQPH68",
-        "icon_dY7LEq",
         "text_WrVFYb",
         "icon_iAxYBL",
         "text_qkb7rY",
