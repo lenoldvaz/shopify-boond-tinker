@@ -27,7 +27,7 @@
         "text_ttpGzb": {
           "type": "text",
           "settings": {
-            "text": "<h1>Mark Every Moment with a Fragrance That Lingers</h1>",
+            "text": "<h1>Memorable gifts, Rooted in Tradition</h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -238,6 +238,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
+                    "image": "shopify://shop_images/Sandali-8_1.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -260,7 +261,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Housewarming</h5>",
+                    "text": "<h5>Birthdays</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -332,6 +333,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
+                    "image": "shopify://shop_images/IMG_20211108_104202.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -426,6 +428,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
+                    "image": "shopify://shop_images/IMG_20250812_173222_000.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -520,7 +523,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/freepik__indian-wedding-gifting-hero-scene-goldenhour-natur__14079.png",
+                    "image": "shopify://shop_images/Shortlisted_AD_3.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
