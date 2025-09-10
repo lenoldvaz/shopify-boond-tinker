@@ -27,7 +27,7 @@
         "text_ttpGzb": {
           "type": "text",
           "settings": {
-            "text": "<h1>Memorable gifts, Rooted in Tradition</h1>",
+            "text": "<h1>Traditional, Indian, Natural Fragrance Gifts </h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -132,7 +132,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Every Occasion, A Perfect Scent</h2>",
+            "text": "<h2>Gifts that fit every special occassion</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
