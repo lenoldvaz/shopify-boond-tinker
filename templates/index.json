@@ -926,36 +926,12 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
-                },
-                "image_PYx4pL": {
-                  "type": "image",
-                  "name": "t:names.image",
-                  "settings": {
-                    "image": "shopify://shop_images/Conde_Nast_Traveler_logo_6f4372a4-8424-47db-b670-ba7d0394ae8b.png",
-                    "link": "",
-                    "image_ratio": "adapt",
-                    "width": "custom",
-                    "custom_width": 80,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
                 }
               },
               "block_order": [
                 "image_HWpazA",
                 "image_rYcjWy",
-                "image_nntmFQ",
-                "image_PYx4pL"
+                "image_nntmFQ"
               ]
             },
             "group_HigHta": {
@@ -1002,7 +978,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+                    "image": "shopify://shop_images/Mint_newspaper_logo.png",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -1021,11 +997,34 @@
                   },
                   "blocks": {}
                 },
+                "image_gMhBWt": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/Conde_Nast_Traveler_logo_6f4372a4-8424-47db-b670-ba7d0394ae8b.png",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "width": "custom",
+                    "custom_width": 80,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "image_FXxWTY": {
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+                    "image": "shopify://shop_images/theprint.png",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -1047,6 +1046,7 @@
               },
               "block_order": [
                 "image_mt9fpm",
+                "image_gMhBWt",
                 "image_FXxWTY"
               ]
             }
