@@ -40,7 +40,7 @@
         "text_CCQfmT": {
           "type": "text",
           "settings": {
-            "text": "<p>Made with care and unconditionally loved by our customers.</p>",
+            "text": "<p>Move beyond generic gifts. Celebrate clients and teams with Boond - unique, personal, handcrafted.</p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -104,7 +104,7 @@
         "section_height_custom": 50,
         "color_scheme": "scheme-5",
         "toggle_overlay": true,
-        "overlay_color": "#000000fd",
+        "overlay_color": "#000000fc",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
@@ -510,7 +510,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Tailored for Every Milestone</h2>",
+            "text": "<h2>Artisanal Gifts Tailored for Every Milestone</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
