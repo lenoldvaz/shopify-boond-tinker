@@ -15,7 +15,7 @@
         "text_Kja9pP": {
           "type": "text",
           "settings": {
-            "text": "<h1>New arrivals</h1>",
+            "text": "<h1>Coporate Gifting, Curated with Care</h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -89,6 +89,7 @@
         "link": "",
         "open_in_new_tab": false,
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/4.png",
         "media_type_2": "image",
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -615,7 +616,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/NewHero.png",
+                    "image": "shopify://shop_images/DSCF0459.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -710,7 +711,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/DMS04513.jpg",
+                    "image": "shopify://shop_images/Sandali-8_1.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -805,7 +806,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/Shortlisted_AD.jpg",
+                    "image": "shopify://shop_images/Shortlisted_AD_1.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
