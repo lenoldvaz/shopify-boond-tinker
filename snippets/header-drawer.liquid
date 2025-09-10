@@ -636,63 +636,8 @@
   </details>
 
   <script>
-    // Mobile currency dropdown functionality
-    function initMobileCurrencyDropdown() {
-      const mobileSelector = document.querySelector('.menu-drawer__currency-selector .currency-selector') ||
-                           document.querySelector('.menu-drawer__currency-selector .custom-currency-picker');
-      if (!mobileSelector) return;
-      
-      const isCustomPicker = mobileSelector.classList.contains('custom-currency-picker');
-      
-      // If custom picker, let it handle its own events for desktop but add mobile-specific handling
-      if (isCustomPicker) {
-        // Custom picker has its own desktop handlers, but mobile might need special handling
-        // due to the drawer context, so we only add minimal mobile-specific fixes
-        return;
-      }
-      
-      const button = mobileSelector.querySelector('.currency-button');
-      const dropdown = mobileSelector.querySelector('.currency-dropdown');
-      
-      if (!button || !dropdown) return;
-      
-      // Handle button clicks to toggle dropdown
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        dropdown.classList.toggle('show');
-      });
-      
-      // Handle currency option clicks
-      const options = dropdown.querySelectorAll('.currency-option');
-      options.forEach(option => {
-        option.addEventListener('click', function(e) {
-          e.preventDefault();
-          const href = this.getAttribute('href');
-          const currencyCode = this.getAttribute('data-currency');
-          
-          if (href && href !== '#') {
-            window.location.href = href;
-          } else if (currencyCode) {
-            const url = new URL(window.location.href);
-            url.searchParams.set('currency', currencyCode);
-            window.location.href = url.toString();
-          }
-        });
-      });
-      
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!mobileSelector.contains(e.target)) {
-          dropdown.classList.remove('show');
-        }
-      });
-    }
-
     // Enhanced swipe functionality for featured products in mobile navigation
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize mobile currency dropdown
-      initMobileCurrencyDropdown();
       console.log('Header drawer script loaded');
       
       // Debug: Check if we're in a mobile drawer
@@ -1285,81 +1230,27 @@
     flex: 0 0 auto;
   }
 
-  /* Mobile menu currency selector styles */
+  /* Mobile menu currency selector styles - minimal styling for custom picker */
   .menu-drawer__currency-selector {
     padding: var(--padding-md) var(--padding-xl);
     border-top: 1px solid var(--color-border);
     margin-top: var(--margin-sm);
   }
 
-  .menu-drawer__currency-selector .currency-selector {
-    position: relative;
-    display: block;
+  /* Override custom currency picker mobile styles when inside drawer */
+  .menu-drawer__currency-selector .custom-currency-dropdown {
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: var(--margin-xs) 0 0 0 !important;
+    border-radius: 8px !important;
+    transform: none !important;
     width: 100%;
   }
 
-  .menu-drawer__currency-selector .currency-button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: var(--padding-md) var(--padding-lg);
-    background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    font-size: 16px;
-    color: var(--color-foreground);
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .menu-drawer__currency-selector .currency-button:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: var(--color-primary);
-  }
-
-  .menu-drawer__currency-selector .currency-dropdown {
-    position: static;
-    display: none;
-    width: 100%;
-    margin-top: var(--margin-xs);
-    background: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition: none;
-  }
-
-  .menu-drawer__currency-selector .currency-dropdown.show {
-    display: block;
-  }
-
-  .menu-drawer__currency-selector .currency-menu {
-    padding: var(--padding-xs) 0;
-  }
-
-  .menu-drawer__currency-selector .currency-option {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-sm);
-    padding: var(--padding-sm) var(--padding-lg);
-    font-size: 16px;
-    color: var(--color-foreground);
-    text-decoration: none;
-    transition: background-color 0.2s ease;
-  }
-
-  .menu-drawer__currency-selector .currency-option:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-
-  .menu-drawer__currency-selector .currency-option.selected {
-    font-weight: 600;
-    background-color: var(--color-primary);
-    color: var(--color-background);
+  .menu-drawer__currency-selector .custom-currency-dropdown[aria-hidden="false"] {
+    transform: none !important;
   }
 {% endstylesheet %}
