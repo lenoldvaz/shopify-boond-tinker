@@ -336,7 +336,7 @@
                     "image": "shopify://shop_images/DSCF0395_e.jpg",
                     "link": "",
                     "image_ratio": "adapt",
-                    "width": "fill",
+                    "width": "custom",
                     "custom_width": 100,
                     "width_mobile": "fill",
                     "custom_width_mobile": 100,
