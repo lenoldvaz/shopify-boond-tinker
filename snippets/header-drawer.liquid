@@ -636,8 +636,53 @@
   </details>
 
   <script>
+    // Mobile currency dropdown functionality
+    function initMobileCurrencyDropdown() {
+      const mobileSelector = document.querySelector('.menu-drawer__currency-selector .currency-selector');
+      if (!mobileSelector) return;
+      
+      const button = mobileSelector.querySelector('.currency-button');
+      const dropdown = mobileSelector.querySelector('.currency-dropdown');
+      
+      if (!button || !dropdown) return;
+      
+      // Handle button clicks to toggle dropdown
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+      });
+      
+      // Handle currency option clicks
+      const options = dropdown.querySelectorAll('.currency-option');
+      options.forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          const currencyCode = this.getAttribute('data-currency');
+          
+          if (href && href !== '#') {
+            window.location.href = href;
+          } else if (currencyCode) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('currency', currencyCode);
+            window.location.href = url.toString();
+          }
+        });
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!mobileSelector.contains(e.target)) {
+          dropdown.classList.remove('show');
+        }
+      });
+    }
+
     // Enhanced swipe functionality for featured products in mobile navigation
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mobile currency dropdown
+      initMobileCurrencyDropdown();
       console.log('Header drawer script loaded');
       
       // Debug: Check if we're in a mobile drawer
@@ -1279,8 +1324,7 @@
     transition: none;
   }
 
-  .menu-drawer__currency-selector .currency-selector:hover .currency-dropdown,
-  .menu-drawer__currency-selector .currency-selector:focus-within .currency-dropdown {
+  .menu-drawer__currency-selector .currency-dropdown.show {
     display: block;
   }
 
