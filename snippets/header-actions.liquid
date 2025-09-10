@@ -124,9 +124,13 @@
   {% endif %}
 
   {% if settings.enable_custom_currency_picker %}
-    {% render 'custom-currency-picker' %}
+    <div class="desktop:block mobile:hidden">
+      {% render 'custom-currency-picker' %}
+    </div>
   {% else %}
-    {% render 'currency-switcher' %}
+    <div class="desktop:block mobile:hidden">
+      {% render 'currency-switcher' %}
+    </div>
   {% endif %}
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
