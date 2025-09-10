@@ -118,6 +118,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
+                "image": "shopify://shop_images/Sandali-8_1.jpg",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -140,6 +141,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
+                "image": "shopify://shop_images/Shortlist_45_1.png",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -162,6 +164,7 @@
               "type": "image",
               "name": "t:names.image",
               "settings": {
+                "image": "shopify://shop_images/DMS04499.jpg",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -508,6 +511,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
+                    "image": "shopify://shop_images/NewHero.png",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -602,6 +606,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
+                    "image": "shopify://shop_images/DMS04513.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -696,6 +701,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
+                    "image": "shopify://shop_images/Shortlisted_AD.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -790,7 +796,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/freepik__indian-wedding-gifting-hero-scene-goldenhour-natur__14079.png",
+                    "image": "shopify://shop_images/Shortlist_45_1.png",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -1883,6 +1889,7 @@
                   "type": "icon",
                   "settings": {
                     "icon": "silhouette",
+                    "image_upload": "shopify://shop_images/All_Natural_Ingredients.png",
                     "width": 32,
                     "link": "",
                     "open_in_new_tab": false
@@ -2033,6 +2040,7 @@
                   "type": "icon",
                   "settings": {
                     "icon": "silhouette",
+                    "image_upload": "shopify://shop_images/Handcrafted_by_artisans.png",
                     "width": 32,
                     "link": "",
                     "open_in_new_tab": false
@@ -2333,6 +2341,7 @@
                   "type": "icon",
                   "settings": {
                     "icon": "eye",
+                    "image_upload": "shopify://shop_images/The_perfect_gift.png",
                     "width": 32,
                     "link": "",
                     "open_in_new_tab": false
