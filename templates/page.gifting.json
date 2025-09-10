@@ -854,6 +854,7 @@
                         "text_qRzEmy": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1036,6 +1037,7 @@
                         "text_6Uimbk": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1218,6 +1220,7 @@
                         "text_GpVR97": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1400,6 +1403,7 @@
                         "text_Wh7VXi": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
