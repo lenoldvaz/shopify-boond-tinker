@@ -21,13 +21,14 @@
       }
     });
 
-    // Handle currency option clicks
+    // Handle currency option clicks - ONLY within currency selectors
     document.addEventListener('click', function(e) {
       var target = e.target;
-      if (target && target.closest && target.closest('.currency-option')) {
-        e.preventDefault();
+      // CRITICAL FIX: Only handle clicks within currency-selector containers
+      if (target && target.closest && target.closest('.currency-selector')) {
         var option = target.closest('.currency-option');
         if (option) {
+          e.preventDefault(); // Only prevent default for actual currency options
           var href = option.getAttribute('href');
           if (href && href !== '#') {
             // Use the href directly for proper currency switching
