@@ -716,6 +716,7 @@
             "group_X39hBc": {
               "type": "group",
               "name": "Values",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
