@@ -557,21 +557,6 @@
               },
               "blocks": {}
             },
-            "gift_message_block": {
-              "type": "gift-message",
-              "name": "Gift Message",
-              "settings": {
-                "heading": "Gift message (optional)",
-                "placeholder": "Enter your gift message here...",
-                "max_length": 50,
-                "help_text": "We'll add this handwritten message to all the boxes you will order.",
-                "padding-block-start": 16,
-                "padding-block-end": 16,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "globo_product_option_app_block_XnzrYV": {
               "type": "shopify://apps/globo-product-option/blocks/app-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
               "settings": {}
@@ -798,7 +783,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "heart",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Handcrafted_by_artisans.png",
+                            "width": 32,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -881,7 +867,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "price_tag",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Pleasant_fragrance.png",
+                            "width": 32,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -891,7 +878,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Great value</p>",
+                            "text": "<p>Non-toxic fumes</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -1010,7 +997,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "plant",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Long_lasting.png",
+                            "width": 32,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -1020,7 +1008,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Elegant design</p>",
+                            "text": "<p>Long-Lasting</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
@@ -1093,7 +1081,8 @@
                           "name": "t:names.icon",
                           "settings": {
                             "icon": "leather",
-                            "width": 24,
+                            "image_upload": "shopify://shop_images/Richly_in_pure_natural_oils.png",
+                            "width": 32,
                             "link": "",
                             "open_in_new_tab": false
                           },
@@ -1103,7 +1092,7 @@
                           "type": "text",
                           "name": "Heading",
                           "settings": {
-                            "text": "<p>Quality materials</p>",
+                            "text": "<p>Rich in Natural Oil</p>",
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
