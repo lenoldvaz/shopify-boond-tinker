@@ -12,6 +12,35 @@
     "slideshow_WdUVQF": {
       "type": "slideshow",
       "blocks": {
+        "slide_xB3fep": {
+          "type": "_slide",
+          "name": "Khazana",
+          "settings": {
+            "media_type_1": "image",
+            "slide_link": "",
+            "image_1": "shopify://shop_images/Frame_12.png",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap_desktop": 12,
+            "gap_mobile": 12,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "slide_UVKGQB": {
           "type": "_slide",
           "name": "Maati",
@@ -69,14 +98,38 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "slide_xB3fep": {
+        }
+      },
+      "block_order": [
+        "slide_xB3fep",
+        "slide_UVKGQB",
+        "slide_ia3YGc"
+      ],
+      "name": "Slideshow Desktop",
+      "settings": {
+        "visibility_option": "desktop",
+        "icons_style": "chevron_large",
+        "slideshow_controls_style": "dots",
+        "color_scheme": "scheme-1",
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "section_width": "full-width",
+        "slide_height": "large",
+        "custom_height": 400,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "slideshow_w3wDtN": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_jw6346": {
           "type": "_slide",
           "name": "Khazana",
           "settings": {
             "media_type_1": "image",
             "slide_link": "",
-            "image_1": "shopify://shop_images/Frame_12.png",
+            "image_1": "shopify://shop_images/Frame_11.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -98,31 +151,7 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        }
-      },
-      "block_order": [
-        "slide_UVKGQB",
-        "slide_ia3YGc",
-        "slide_xB3fep"
-      ],
-      "name": "Slideshow Desktop",
-      "settings": {
-        "visibility_option": "desktop",
-        "icons_style": "chevron_large",
-        "slideshow_controls_style": "dots",
-        "color_scheme": "scheme-1",
-        "autoplay": false,
-        "autoplay_speed": 4,
-        "section_width": "full-width",
-        "slide_height": "large",
-        "custom_height": 400,
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
-    "slideshow_w3wDtN": {
-      "type": "slideshow",
-      "blocks": {
+        },
         "slide_agjiT3": {
           "type": "_slide",
           "name": "Maati",
@@ -180,41 +209,12 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "slide_jw6346": {
-          "type": "_slide",
-          "name": "Khazana",
-          "settings": {
-            "media_type_1": "image",
-            "slide_link": "",
-            "image_1": "shopify://shop_images/Frame_11.png",
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap_desktop": 12,
-            "gap_mobile": 12,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
+        "slide_jw6346",
         "slide_agjiT3",
-        "slide_dnrkd7",
-        "slide_jw6346"
+        "slide_dnrkd7"
       ],
       "name": "Slideshow Mobile",
       "settings": {
