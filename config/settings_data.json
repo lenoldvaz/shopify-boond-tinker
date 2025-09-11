@@ -71,6 +71,11 @@
           "button_vertical_position": "lowest",
           "greeting_message": ""
         }
+      },
+      "6065014864672580889": {
+        "type": "shopify://apps/amp-slide-cart-drawer/blocks/app-embed/0a410b8d-7dc4-4f2d-b4e8-c12d34fd2255",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
