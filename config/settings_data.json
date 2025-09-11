@@ -33,7 +33,8 @@
     "button_border_radius_primary": 4,
     "secondary_button_border_width": 0,
     "button_border_radius_secondary": 4,
-    "cart_type": "drawer",
+    "cart_type": "page",
+    "auto_open_cart_drawer": true,
     "popover_border": "none",
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
@@ -54,11 +55,6 @@
       "3720565183479497137": {
         "type": "shopify://apps/globo-product-option/blocks/app-embed-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
         "disabled": false,
-        "settings": {}
-      },
-      "1804893150726543839": {
-        "type": "shopify://apps/nova-multi-currency-converter/blocks/app-embed/a5be3c35-cbd0-46a1-ac3a-1ace57a9c1ce",
-        "disabled": true,
         "settings": {}
       }
     },
