@@ -105,23 +105,11 @@
   <script type="module">
     class CustomCurrencyPicker {
       constructor() {
-        console.log('Custom Currency Picker initializing...');
         this.picker = document.querySelector('.custom-currency-picker');
-        if (!this.picker) {
-          console.error('Custom currency picker element not found');
-          return;
-        }
-        
         this.button = this.picker.querySelector('.custom-currency-button');
         this.dropdown = this.picker.querySelector('.custom-currency-dropdown');
         this.options = this.picker.querySelectorAll('.custom-currency-option');
         this.baseCurrency = this.picker.dataset.baseCurrency;
-        
-        console.log('Picker elements:', {
-          button: !!this.button,
-          dropdown: !!this.dropdown,
-          options: this.options.length
-        });
         
         // Get initial currency from button text or saved preference
         const buttonCurrency = this.button.querySelector('.custom-currency-code').textContent.trim();
@@ -131,11 +119,7 @@
       }
 
       init() {
-        console.log('Adding click event listener to button');
-        this.button.addEventListener('click', (e) => {
-          console.log('Button clicked!', e);
-          this.toggleDropdown();
-        });
+        this.button.addEventListener('click', () => this.toggleDropdown());
         
         this.options.forEach(option => {
           option.addEventListener('click', (e) => {
@@ -156,10 +140,8 @@
 
       toggleDropdown() {
         const isOpen = this.button.getAttribute('aria-expanded') === 'true';
-        console.log('Toggling dropdown. Currently open:', isOpen);
         this.button.setAttribute('aria-expanded', !isOpen);
         this.dropdown.setAttribute('aria-hidden', isOpen);
-        console.log('After toggle - aria-expanded:', this.button.getAttribute('aria-expanded'), 'aria-hidden:', this.dropdown.getAttribute('aria-hidden'));
       }
 
       closeDropdown() {
