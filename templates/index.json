@@ -1043,11 +1043,27 @@
             "group_FgdmQt",
             "group_HigHta"
           ]
+        },
+        "button_gLDKzx": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Read More",
+            "link": "shopify://pages/in-the-press",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "text_bJzEUY",
-        "group_CDgrwW"
+        "group_CDgrwW",
+        "button_gLDKzx"
       ],
       "name": "t:names.custom_section",
       "settings": {
