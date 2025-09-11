@@ -102,6 +102,33 @@
   {% endif %}
 </div>
 
+<script>
+// Targeted checkout debugging - preserve all other functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const checkoutButton = document.getElementById('checkout');
+  const cartForm = document.getElementById('cart-form');
+  
+  if (checkoutButton && cartForm) {
+    // Add debugging to form submission
+    cartForm.addEventListener('submit', function(e) {
+      console.log('=== CHECKOUT FORM SUBMISSION DEBUG ===');
+      console.log('Form action:', this.action);
+      console.log('Form method:', this.method);
+      console.log('Form target:', this.target || 'default');
+      console.log('Submitter:', e.submitter?.id || 'unknown');
+      console.log('Event type:', e.type);
+      console.log('Event isTrusted:', e.isTrusted);
+      console.log('==========================================');
+    });
+    
+    // Log checkout button clicks without interfering
+    checkoutButton.addEventListener('click', function(e) {
+      console.log('Checkout button clicked - allowing natural flow');
+    });
+  }
+});
+</script>
+
 {% stylesheet %}
   .cart-actions {
     display: flex;
