@@ -9,13 +9,10 @@
   'use strict';
 
   function initCurrencySwitcher() {
-    console.log('Standard currency switcher initializing...');
-    
     // Handle currency button clicks
     document.addEventListener('click', function(e) {
       var target = e.target;
       if (target && target.closest && target.closest('.currency-button')) {
-        console.log('Currency button clicked!');
         e.preventDefault();
         var selector = target.closest('.currency-selector');
         if (selector) {
@@ -57,19 +54,14 @@
 
   function toggleDropdown(selector) {
     var dropdown = selector.querySelector('.currency-dropdown');
-    if (!dropdown) {
-      console.log('No currency dropdown found');
-      return;
-    }
+    if (!dropdown) return;
     
     var isOpen = dropdown.classList.contains('show');
-    console.log('Dropdown currently open:', isOpen);
     
     // Close all other dropdowns
     closeAllDropdowns();
     
     if (!isOpen) {
-      console.log('Opening dropdown');
       dropdown.classList.add('show');
     }
   }
@@ -125,15 +117,9 @@
     {% render 'account-drawer' %}
   {% endif %}
 
-  {% if settings.enable_custom_currency_picker %}
-    <div class="desktop:block mobile:hidden">
-      {% render 'custom-currency-picker' %}
-    </div>
-  {% else %}
-    <div class="desktop:block mobile:hidden">
-      {% render 'currency-switcher' %}
-    </div>
-  {% endif %}
+  <div class="desktop:block mobile:hidden">
+    {% render 'currency-switcher' %}
+  </div>
 
   {% if settings.cart_type == 'drawer' and template.name != 'cart' %}
     {% render 'cart-drawer' %}
