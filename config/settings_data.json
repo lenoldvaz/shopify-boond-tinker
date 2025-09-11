@@ -33,7 +33,7 @@
     "button_border_radius_primary": 4,
     "secondary_button_border_width": 0,
     "button_border_radius_secondary": 4,
-    "cart_type": "page",
+    "cart_type": "drawer",
     "auto_open_cart_drawer": true,
     "popover_border": "none",
     "currency_code_enabled_product_pages": false,
