@@ -17,7 +17,7 @@
           "name": "Khazana",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "",
+            "slide_link": "shopify://products/khazana-gift-box",
             "image_1": "shopify://shop_images/Frame_12.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -128,7 +128,7 @@
           "name": "Khazana",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "",
+            "slide_link": "shopify://products/khazana-gift-box",
             "image_1": "shopify://shop_images/Frame_11.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
