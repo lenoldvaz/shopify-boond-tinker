@@ -39,6 +39,24 @@
 <script src='https://bridge.shopflo.com/js/shopflo.bundle.js' async></script>
 
 <script>
+/**
+ * Finds the cart close button and simulates a click to close the cart drawer.
+ */
+function closeCartDrawer() {
+  // 1. Select the button using its aria-label attribute.
+  const closeButton = document.querySelector('[aria-label="close cart"]');
+
+  // 2. Check if the button exists on the page before trying to click it.
+  if (closeButton) {
+    // 3. Trigger the click event.
+    closeButton.click();
+  } else {
+    console.warn('Cart close button not found. The cart may already be closed.');
+  }
+}
+</script>
+
+<script>
 	    let targetNode = document.querySelector("html");
       let floCheckoutBtn = `<button type="button" id="checkout2"  onclick="handleFloCheckoutBtn()" class="button full" name="checkout2">Checkout</button>`;
       let parsedFloBtn = new DOMParser().parseFromString(floCheckoutBtn, "text/html").querySelectorAll("#checkout2")[0];
@@ -65,7 +83,7 @@
   </script>
 
 
-  
+
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
