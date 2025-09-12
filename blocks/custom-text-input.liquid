@@ -97,57 +97,98 @@
     
     // Variant-based visibility functionality
     function checkVariantVisibility() {
-      console.log('Checking variant visibility for rule:', visibilityRule);
+      console.log('=== DEBUGGING CUSTOM TEXT INPUT VISIBILITY ===');
+      console.log('Visibility rule:', visibilityRule);
+      console.log('Variant option name filter:', variantOptionName);
+      
       let shouldShow = false;
       
       // If no visibility rule is set, always show
       if (!visibilityRule || visibilityRule === '') {
+        console.log('No visibility rule set, showing field');
         shouldShow = true;
       } else {
         // Check all variant inputs (radio buttons and selects)
-        const variantInputs = document.querySelectorAll('variant-picker input[type="radio"]:checked, variant-picker select');
+        const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
+        console.log('Found variant inputs:', variantInputs.length);
         
-        variantInputs.forEach(input => {
+        // Debug: Log all available options
+        variantInputs.forEach((input, index) => {
           let optionText = '';
           let optionName = '';
+          let isSelected = false;
           
           if (input.type === 'radio') {
+            isSelected = input.checked;
             const label = input.closest('label');
             if (label) {
-              optionText = label.textContent.toLowerCase();
-              // Get option name from fieldset legend or data attribute
-              const fieldset = input.closest('fieldset');
-              if (fieldset) {
-                const legend = fieldset.querySelector('legend');
-                if (legend) {
-                  optionName = legend.textContent.toLowerCase();
-                }
+              optionText = label.textContent.trim().toLowerCase();
+            }
+            // Get option name from fieldset legend
+            const fieldset = input.closest('fieldset');
+            if (fieldset) {
+              const legend = fieldset.querySelector('legend');
+              if (legend) {
+                optionName = legend.textContent.trim().toLowerCase();
               }
             }
           } else if (input.tagName === 'SELECT') {
             const selectedOption = input.options[input.selectedIndex];
             if (selectedOption) {
-              optionText = selectedOption.text.toLowerCase();
-              // Get select label or name
-              const label = document.querySelector(`label[for="${input.id}"]`);
+              isSelected = true;
+              optionText = selectedOption.text.trim().toLowerCase();
+              // Get select label
+              const label = input.closest('div').querySelector('label');
               if (label) {
-                optionName = label.textContent.toLowerCase();
+                optionName = label.textContent.trim().toLowerCase();
               }
             }
           }
           
+          console.log(`Input ${index}:`, {
+            type: input.type || input.tagName,
+            optionName: optionName,
+            optionText: optionText,
+            isSelected: isSelected
+          });
+          
           // Check if this variant option matches our criteria
-          if (variantOptionName === '' || optionName.includes(variantOptionName)) {
-            if (optionText.includes(visibilityRule)) {
+          if (isSelected) {
+            // If no specific variant option name is set, check all
+            if (variantOptionName === '' || optionName.includes(variantOptionName.toLowerCase())) {
+              console.log('Checking option text:', optionText, 'against rule:', visibilityRule);
+              if (optionText.includes(visibilityRule.toLowerCase())) {
+                console.log('MATCH FOUND! Setting shouldShow = true');
+                shouldShow = true;
+              }
+            }
+          }
+        });
+        
+        // Also check for buttons/labels that might be structured differently
+        const variantLabels = document.querySelectorAll('variant-picker label');
+        console.log('Found variant labels:', variantLabels.length);
+        
+        variantLabels.forEach((label, index) => {
+          const input = label.querySelector('input[type="radio"]');
+          if (input && input.checked) {
+            const labelText = label.textContent.trim().toLowerCase();
+            console.log(`Label ${index} (selected):`, labelText);
+            
+            if (labelText.includes(visibilityRule.toLowerCase())) {
+              console.log('MATCH FOUND in label! Setting shouldShow = true');
               shouldShow = true;
             }
           }
         });
       }
       
+      console.log('Final decision - shouldShow:', shouldShow);
+      
       // Show/hide the input field
       if (shouldShow) {
         customTextInputBlock.style.display = 'block';
+        console.log('✅ Custom text input field SHOWN');
       } else {
         customTextInputBlock.style.display = 'none';
         textInput.value = ''; // Clear value when hidden
@@ -155,44 +196,64 @@
           charCount.textContent = '0';
           charCount.style.color = '';
         }
+        console.log('❌ Custom text input field HIDDEN');
       }
       
-      console.log('Custom text input visibility:', shouldShow ? 'shown' : 'hidden');
+      console.log('=== END DEBUGGING ===');
     }
     
-    // Listen for variant changes
+    // Listen for variant changes with multiple event types
     const variantPicker = document.querySelector('variant-picker');
     if (variantPicker) {
+      console.log('Found variant picker, setting up event listeners');
+      
+      // Listen for custom variant-selected events
       variantPicker.addEventListener('variant-selected', function(event) {
+        console.log('variant-selected event fired');
+        setTimeout(checkVariantVisibility, 100);
+      });
+      
+      // Listen for change events on the variant picker element itself
+      variantPicker.addEventListener('change', function(event) {
+        console.log('change event fired on variant picker');
         setTimeout(checkVariantVisibility, 100);
       });
       
       // Also listen for direct changes to variant inputs
       const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
-      variantInputs.forEach(input => {
+      console.log('Setting up direct input listeners for', variantInputs.length, 'inputs');
+      variantInputs.forEach((input, index) => {
         input.addEventListener('change', function() {
+          console.log('Direct input change event fired for input', index);
           setTimeout(checkVariantVisibility, 100);
         });
+        input.addEventListener('click', function() {
+          console.log('Direct input click event fired for input', index);
+          setTimeout(checkVariantVisibility, 150);
+        });
       });
+    } else {
+      console.log('No variant picker found initially');
     }
     
-    // Initial check
+    // Multiple initial checks at different intervals
     setTimeout(checkVariantVisibility, 500);
+    setTimeout(checkVariantVisibility, 1000);
+    setTimeout(checkVariantVisibility, 2000);
     
-    // Fallback: If no variant picker found, show the block after a delay
-    setTimeout(function() {
-      const variantPicker = document.querySelector('variant-picker');
-      if (!variantPicker) {
-        console.log('No variant picker found, showing custom text input block');
-        customTextInputBlock.style.display = 'block';
-      }
-    }, 2000);
+    // Also add manual trigger function for testing
+    window.debugCustomTextInput = function() {
+      console.log('Manual debug trigger called');
+      checkVariantVisibility();
+    };
+    
+    console.log('Custom text input setup complete. Use debugCustomTextInput() to manually test.');
   });
 </script>
 
 {% stylesheet %}
   .custom-text-input-block {
-    display: none; /* Hidden by default, shown by JavaScript based on variant */
+    display: block; /* Temporarily visible for debugging */
     width: 100%;
   }
   
