@@ -37,6 +37,35 @@
     
   </head>
 <script src='https://bridge.shopflo.com/js/shopflo.bundle.js' async></script>
+
+<script>
+	    let targetNode = document.querySelector("html");
+      let floCheckoutBtn = `<button type="button" id="checkout2"  onclick="handleFloCheckoutBtn()" class="button full" name="checkout2">Checkout</button>`;
+      let parsedFloBtn = new DOMParser().parseFromString(floCheckoutBtn, "text/html").querySelectorAll("#checkout2")[0];
+      let isFloBtnAdded = false;
+      const stickyCartCb = function (mutationList) {
+        mutationList.forEach((mutation) => {
+          let stickyCart = document.querySelector("#slidecarthq");
+          let sideCartButtonParent = document.querySelector("#slidecart-checkout-form");
+          let sideCartButton = document.querySelector("#slidecart-checkout-form");
+          mutation.addedNodes.forEach((added_node) => {
+            if (stickyCart) {
+              if (sideCartButtonParent && !isFloBtnAdded) {
+                isFloBtnAdded = true;
+                sideCartButton.style.display = "none";
+                sideCartButton.before(parsedFloBtn);
+              }
+            }
+          });
+        });
+      };
+      const stickyCartObserver = new MutationObserver(stickyCartCb);
+      const config = { attributes: true, childList: true, subtree: true };
+      stickyCartObserver.observe(targetNode, config);
+  </script>
+
+
+  
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
