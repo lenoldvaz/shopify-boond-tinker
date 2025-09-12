@@ -1,0 +1,436 @@
+{% comment %}
+  Custom Text Input Block
+  
+  A configurable text input field that can be shown/hidden based on product variant values.
+  Integrates with the product form for cart submission.
+  
+  Accepts:
+  - block: The custom text input block with settings
+{% endcomment %}
+
+<div 
+  class="custom-text-input-block spacing-style"
+  style="{% render 'spacing-style', settings: block.settings %}"
+  data-custom-text-input-block
+  data-visibility-rule="{{ block.settings.visibility_rule_text | default: 'Yes' | downcase }}"
+  data-variant-option="{{ block.settings.variant_option_name | default: 'Custom Text' | downcase }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="custom-text-input__container">
+    <label for="custom-text-input-{{ block.id }}" class="custom-text-input__label">
+      {{ block.settings.label | default: 'Custom Text' }}
+      {% if block.settings.required %}
+        <span class="custom-text-input__required">*</span>
+      {% endif %}
+    </label>
+    
+    <div class="custom-text-input__input-wrapper">
+      {% if block.settings.input_type == 'textarea' %}
+        <textarea
+          id="custom-text-input-{{ block.id }}"
+          name="properties[{{ block.settings.property_name | default: 'Custom Text Field' }}]"
+          class="custom-text-input__input custom-text-input__textarea"
+          placeholder="{{ block.settings.placeholder | default: 'Enter text here...' }}"
+          maxlength="{{ block.settings.max_characters | default: 100 }}"
+          rows="3"
+          data-custom-text-input
+          {% if block.settings.required %}required{% endif %}
+        ></textarea>
+      {% else %}
+        <input
+          type="text"
+          id="custom-text-input-{{ block.id }}"
+          name="properties[{{ block.settings.property_name | default: 'Custom Text Field' }}]"
+          class="custom-text-input__input"
+          placeholder="{{ block.settings.placeholder | default: 'Enter text here...' }}"
+          maxlength="{{ block.settings.max_characters | default: 100 }}"
+          data-custom-text-input
+          {% if block.settings.required %}required{% endif %}
+        />
+      {% endif %}
+      
+      {% if block.settings.show_character_count %}
+        <div class="custom-text-input__counter">
+          <span class="custom-text-input__char-count" data-char-count>0</span>/{{ block.settings.max_characters | default: 100 }} characters
+        </div>
+      {% endif %}
+    </div>
+    
+    {% if block.settings.help_text != blank %}
+      <p class="custom-text-input__help-text">
+        {{ block.settings.help_text }}
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Custom text input script loaded');
+    const customTextInputBlock = document.querySelector('[data-custom-text-input-block]');
+    if (!customTextInputBlock) {
+      console.log('Custom text input block not found in DOM');
+      return;
+    }
+    
+    const textInput = customTextInputBlock.querySelector('[data-custom-text-input]');
+    const charCount = customTextInputBlock.querySelector('[data-char-count]');
+    const maxLength = parseInt(textInput.getAttribute('maxlength')) || 100;
+    const visibilityRule = customTextInputBlock.dataset.visibilityRule || 'yes';
+    const variantOptionName = customTextInputBlock.dataset.variantOption || '';
+    
+    // Character counter functionality
+    if (charCount) {
+      function updateCharCount() {
+        const currentLength = textInput.value.length;
+        charCount.textContent = currentLength;
+        
+        if (currentLength > maxLength * 0.9) {
+          charCount.style.color = '#b20000';
+        } else {
+          charCount.style.color = '';
+        }
+      }
+      
+      textInput.addEventListener('input', updateCharCount);
+    }
+    
+    // Variant-based visibility functionality
+    function checkVariantVisibility() {
+      console.log('Checking variant visibility for rule:', visibilityRule);
+      let shouldShow = false;
+      
+      // If no visibility rule is set, always show
+      if (!visibilityRule || visibilityRule === '') {
+        shouldShow = true;
+      } else {
+        // Check all variant inputs (radio buttons and selects)
+        const variantInputs = document.querySelectorAll('variant-picker input[type="radio"]:checked, variant-picker select');
+        
+        variantInputs.forEach(input => {
+          let optionText = '';
+          let optionName = '';
+          
+          if (input.type === 'radio') {
+            const label = input.closest('label');
+            if (label) {
+              optionText = label.textContent.toLowerCase();
+              // Get option name from fieldset legend or data attribute
+              const fieldset = input.closest('fieldset');
+              if (fieldset) {
+                const legend = fieldset.querySelector('legend');
+                if (legend) {
+                  optionName = legend.textContent.toLowerCase();
+                }
+              }
+            }
+          } else if (input.tagName === 'SELECT') {
+            const selectedOption = input.options[input.selectedIndex];
+            if (selectedOption) {
+              optionText = selectedOption.text.toLowerCase();
+              // Get select label or name
+              const label = document.querySelector(`label[for="${input.id}"]`);
+              if (label) {
+                optionName = label.textContent.toLowerCase();
+              }
+            }
+          }
+          
+          // Check if this variant option matches our criteria
+          if (variantOptionName === '' || optionName.includes(variantOptionName)) {
+            if (optionText.includes(visibilityRule)) {
+              shouldShow = true;
+            }
+          }
+        });
+      }
+      
+      // Show/hide the input field
+      if (shouldShow) {
+        customTextInputBlock.style.display = 'block';
+      } else {
+        customTextInputBlock.style.display = 'none';
+        textInput.value = ''; // Clear value when hidden
+        if (charCount) {
+          charCount.textContent = '0';
+          charCount.style.color = '';
+        }
+      }
+      
+      console.log('Custom text input visibility:', shouldShow ? 'shown' : 'hidden');
+    }
+    
+    // Listen for variant changes
+    const variantPicker = document.querySelector('variant-picker');
+    if (variantPicker) {
+      variantPicker.addEventListener('variant-selected', function(event) {
+        setTimeout(checkVariantVisibility, 100);
+      });
+      
+      // Also listen for direct changes to variant inputs
+      const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
+      variantInputs.forEach(input => {
+        input.addEventListener('change', function() {
+          setTimeout(checkVariantVisibility, 100);
+        });
+      });
+    }
+    
+    // Initial check
+    setTimeout(checkVariantVisibility, 500);
+    
+    // Fallback: If no variant picker found, show the block after a delay
+    setTimeout(function() {
+      const variantPicker = document.querySelector('variant-picker');
+      if (!variantPicker) {
+        console.log('No variant picker found, showing custom text input block');
+        customTextInputBlock.style.display = 'block';
+      }
+    }, 2000);
+  });
+</script>
+
+{% stylesheet %}
+  .custom-text-input-block {
+    display: none; /* Hidden by default, shown by JavaScript based on variant */
+    width: 100%;
+  }
+  
+  .custom-text-input__container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+  
+  .custom-text-input__label {
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: var(--margin-xs);
+  }
+  
+  .custom-text-input__required {
+    color: #b20000;
+    margin-left: 4px;
+  }
+  
+  .custom-text-input__input-wrapper {
+    position: relative;
+  }
+  
+  .custom-text-input__input {
+    width: 100%;
+    padding: var(--padding-lg);
+    border: 1px solid var(--color-input-border);
+    border-radius: var(--style-border-radius-inputs);
+    background-color: var(--color-input-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body--family);
+    font-size: var(--font-size--sm);
+    line-height: 1.5;
+    transition: border-color var(--animation-speed) ease, box-shadow var(--animation-speed) ease;
+  }
+  
+  .custom-text-input__textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+  
+  .custom-text-input__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+  }
+  
+  .custom-text-input__input::placeholder {
+    color: var(--color-input-text);
+    opacity: 0.7;
+  }
+  
+  .custom-text-input__counter {
+    position: absolute;
+    bottom: var(--padding-xs);
+    right: var(--padding-xs);
+    font-size: var(--font-size--xs);
+    color: var(--color-foreground);
+    opacity: 0.7;
+    pointer-events: none;
+    background-color: var(--color-input-background);
+    padding: 2px 4px;
+    border-radius: 2px;
+  }
+  
+  .custom-text-input__help-text {
+    font-size: var(--font-size--xs);
+    color: var(--color-foreground);
+    opacity: 0.7;
+    margin: 0;
+  }
+  
+  /* Mobile responsiveness */
+  @media screen and (max-width: 749px) {
+    .custom-text-input__input {
+      font-size: 16px; /* Prevents zoom on iOS */
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Custom Text Input",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Field Label",
+      "default": "Custom Text",
+      "info": "The label shown above the input field"
+    },
+    {
+      "type": "text",
+      "id": "property_name",
+      "label": "Property Name",
+      "default": "Custom Text Field",
+      "info": "The name used to store this field in cart properties (appears in orders)"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder Text",
+      "default": "Enter text here...",
+      "info": "Placeholder text shown inside the input field"
+    },
+    {
+      "type": "textarea",
+      "id": "help_text",
+      "label": "Help Text",
+      "placeholder": "Additional information or instructions for customers",
+      "info": "Optional help text shown below the input field"
+    },
+    {
+      "type": "select",
+      "id": "input_type",
+      "label": "Input Type",
+      "options": [
+        {
+          "value": "text",
+          "label": "Single Line"
+        },
+        {
+          "value": "textarea",
+          "label": "Multi-line (Textarea)"
+        }
+      ],
+      "default": "text"
+    },
+    {
+      "type": "checkbox",
+      "id": "required",
+      "label": "Required Field",
+      "default": false,
+      "info": "Make this field required for form submission"
+    },
+    {
+      "type": "header",
+      "content": "Character Limits"
+    },
+    {
+      "type": "range",
+      "id": "max_characters",
+      "label": "Maximum Characters",
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "default": 100,
+      "unit": "chars"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_character_count",
+      "label": "Show Character Counter",
+      "default": true,
+      "info": "Display remaining character count"
+    },
+    {
+      "type": "header",
+      "content": "Visibility Rules"
+    },
+    {
+      "type": "text",
+      "id": "visibility_rule_text",
+      "label": "Show When Variant Contains",
+      "default": "Yes",
+      "info": "Show this field when any product variant option contains this text (case-insensitive)"
+    },
+    {
+      "type": "text",
+      "id": "variant_option_name",
+      "label": "Specific Variant Option Name (Optional)",
+      "placeholder": "e.g., Gift Wrap, Size, Color",
+      "info": "Only check this specific variant option. Leave blank to check all variant options."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Text Input",
+      "settings": {
+        "label": "Custom Text",
+        "property_name": "Custom Text Field",
+        "placeholder": "Enter text here...",
+        "max_characters": 100,
+        "show_character_count": true,
+        "visibility_rule_text": "Yes",
+        "input_type": "text"
+      }
+    }
+  ]
+}
+{% endschema %}

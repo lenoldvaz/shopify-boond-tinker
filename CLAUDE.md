@@ -122,3 +122,10 @@ The mega menu integrates deeply with Shopify's navigation system:
 - CSS and JS inlined in components for faster loading
 - No build process - assets served directly by Shopify's CDN
 - Careful use of `!important` only where necessary to override theme conflicts
+
+## Reference Materials
+
+### DK Mega Menu Documentation
+- **Usage Guide**: `references/dk-mega-menu-usage-guide.md` contains comprehensive setup and configuration instructions
+- **Implementation Details**: Detailed explanations of callout pills, carousel functionality, and responsive behavior
+- **Troubleshooting**: Common issues and solutions for the mega menu system
