@@ -31,6 +31,7 @@
   {% if product != blank %}
     {%- form 'product', product -%}
       {% comment %} {{ form | payment_button }} {% endcomment %}
+       {% comment %} adding shopflo buy now btn {% endcomment %}
        {% if product.selected_or_first_available_variant.available %}
  <div class="shopify-payment-button">
   <button type="button" id="flo-buy-now-button" onclick="handleFloBuyNowBtn(event)" class="shopify-payment-button__button shopify-payment-button__button--unbranded" name="flo-buy-now-button">
