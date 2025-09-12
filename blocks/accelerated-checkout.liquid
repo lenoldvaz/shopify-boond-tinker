@@ -30,7 +30,15 @@
 >
   {% if product != blank %}
     {%- form 'product', product -%}
-      {{ form | payment_button }}
+      {% comment %} {{ form | payment_button }} {% endcomment %}
+       {% if product.selected_or_first_available_variant.available %}
+ <div class="shopify-payment-button">
+  <button type="button" id="flo-buy-now-button" onclick="handleFloBuyNowBtn(event)" class="shopify-payment-button__button shopify-payment-button__button--unbranded" name="flo-buy-now-button">
+    {{ 'BUY IT NOW' }}
+</button>
+ </div>
+ {%- endif -%}
+ 
     {%- endform -%}
   {% endif %}
 </div>
