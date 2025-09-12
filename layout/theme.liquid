@@ -95,7 +95,7 @@ function closeCartDrawer() {
   function setBuyNowButton() {
       if ((Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata')){  
       document.querySelector('#flo-buy-now-button').style.setProperty('display', 'block', 'important');
-      document.querySelector('#shopify-payment-button').style.setProperty('display', 'none', 'important');
+      document.querySelector('#shopify_buy_now_button_wrapper').style.setProperty('display', 'none', 'important');
       return
     }
     // conditions for other checkouts
