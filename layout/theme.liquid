@@ -95,11 +95,11 @@ function closeCartDrawer() {
   function setBuyNowButton() {
       if ((Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata')){  
       document.querySelector('#flo-buy-now-button').style.setProperty('display', 'block', 'important');
-      document.querySelector('#shopify_buy_now_button_wrapper').style.setProperty('display', 'none', 'important');
+      document.querySelector('#slidecart-checkout-form').style.setProperty('display', 'none', 'important');
       return
     }
     // conditions for other checkouts
-    document.querySelector('#shopify_buy_now_button_wrapper').style.setProperty('display', 'block', 'important');
+    document.querySelector('#slidecart-checkout-form').style.setProperty('display', 'block', 'important');
     document.querySelector('#flo-buy-now-button').style.setProperty('display', 'none', 'important');
   }
   document.addEventListener('DOMContentLoaded', function() {
@@ -107,6 +107,7 @@ function closeCartDrawer() {
     setBuyNowButton();
   });
 </script>
+{% comment %} ends here {% endcomment %}
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
