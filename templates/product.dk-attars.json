@@ -557,9 +557,26 @@
               },
               "blocks": {}
             },
-            "globo_product_option_app_block_XnzrYV": {
-              "type": "shopify://apps/globo-product-option/blocks/app-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
-              "settings": {}
+            "custom_text_input_UX3TtV": {
+              "type": "custom-text-input",
+              "name": "Custom Text Input",
+              "settings": {
+                "label": "Gift Message",
+                "property_name": "Gift Message",
+                "placeholder": "Enter text here...",
+                "help_text": "",
+                "input_type": "text",
+                "required": false,
+                "max_characters": 100,
+                "show_character_count": true,
+                "visibility_rule_text": "Yes",
+                "variant_option_name": "",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "dk_price_DakaxW": {
               "type": "dk-price",
@@ -1279,7 +1296,7 @@
             "group_CfKHjP",
             "price_a7krng",
             "variant_picker_R3rGDr",
-            "globo_product_option_app_block_XnzrYV",
+            "custom_text_input_UX3TtV",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
