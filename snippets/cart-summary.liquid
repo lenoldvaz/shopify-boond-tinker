@@ -95,10 +95,11 @@
     {{ 'content.checkout' | t }}
   </button> {% endcomment %}
 
+  {% comment %} adding shopflo checkout btn {% endcomment %}
   <button type="button" id="checkout2" onclick="handleFloCheckoutBtn()" class="cart__checkout-button button" name="checkout2">
 		{{ 'Checkout' }}
 </button>
-
+{% comment %} ends here {% endcomment %}
   {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
     <div class="additional-checkout-buttons additional-checkout-buttons--vertical">
       {{ content_for_additional_checkout_buttons }}
