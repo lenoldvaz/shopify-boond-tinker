@@ -5,6 +5,7 @@
 >
   <head>
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
 
     {%- if settings.favicon != blank -%}
       <link
@@ -41,7 +42,12 @@
     <div id="header-group">
       {% sections 'header-group' %}
     </div>
-  
+
+    <!--     custom code for whatsapp button -->
+     <a href="https://api.whatsapp.com/send?phone=+917307953240&text=Hello" class="wa-custom-float" target="_blank">
+     <img src="https://cdn.shopify.com/s/files/1/0637/4765/3864/files/whatsapp.webp?v=1721622427" alt="whatsapp-chat-button">
+    </a> 
+<!--     custom code for whatsapp button End-->
     <main
       id="MainContent"
       class="content-for-layout"
