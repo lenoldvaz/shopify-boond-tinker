@@ -81,7 +81,7 @@
   </div>
 </div>
 
-<div class="cart__ctas">
+{% comment %} <div class="cart__ctas">
   <button
     type="submit"
     id="checkout"
@@ -93,7 +93,11 @@
     form="cart-form"
   >
     {{ 'content.checkout' | t }}
-  </button>
+  </button> {% endcomment %}
+
+  <button type="button" id="checkout2" onclick="handleFloCheckoutBtn()" class="cart__checkout-button button" name="checkout2">
+		{{ 'Checkout' }}
+</button>
 
   {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
     <div class="additional-checkout-buttons additional-checkout-buttons--vertical">
