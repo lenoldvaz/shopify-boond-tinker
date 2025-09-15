@@ -1160,7 +1160,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>From the fragrance of first rain to custom gift boxes, choose from a wide range of cherishable presents</p>",
+            "text": "<p><em>From the fragrance of first rain to custom gift boxes, choose from a wide range of cherishable presents</em></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
