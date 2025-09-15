@@ -1614,7 +1614,7 @@
                   "type": "product-card",
                   "name": "t:names.product_card",
                   "settings": {
-                    "product": "boond-fragrances-the-signature-set-of-12-natural-perfume-oils-copy",
+                    "product": "gulabi-natural-perfume-oil",
                     "show_sale_badge": true,
                     "product_card_gap": 16,
                     "inherit_color_scheme": true,
@@ -1797,7 +1797,7 @@
                   "type": "product-card",
                   "name": "t:names.product_card",
                   "settings": {
-                    "product": "royal-natural-perfume-oils-gift-set-of-2",
+                    "product": "pure-sandalwood-incense-cones",
                     "show_sale_badge": true,
                     "product_card_gap": 16,
                     "inherit_color_scheme": true,
