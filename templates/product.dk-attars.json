@@ -569,8 +569,6 @@
                 "required": false,
                 "max_characters": 100,
                 "show_character_count": true,
-                "visibility_rule_text": "Yes",
-                "variant_option_name": "",
                 "padding-block-start": 16,
                 "padding-block-end": 16,
                 "padding-inline-start": 0,
