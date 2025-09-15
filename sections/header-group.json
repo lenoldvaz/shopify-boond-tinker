@@ -17,7 +17,7 @@
         "announcement_mxxhta": {
           "type": "_announcement",
           "settings": {
-            "text": "<strong>We Ship Globally! </strong>",
+            "text": "<strong>We Ship Globally</strong>",
             "link": "",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
