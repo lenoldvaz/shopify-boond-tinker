@@ -12,7 +12,7 @@
     "logo": "shopify://shop_images/Logo_off_white_BG-removebg-preview.png",
     "type_body_font": "instrument_sans_n4",
     "type_subheading_font": "instrument_sans_n4",
-    "type_heading_font": "instrument_serif_n4",
+    "type_heading_font": "libre_baskerville_n4",
     "type_accent_font": "instrument_serif_n4",
     "type_size_paragraph": "14",
     "type_line_height_paragraph": "body-loose",
@@ -50,11 +50,6 @@
     "blocks": {
       "14060646107696862457": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
-      "3720565183479497137": {
-        "type": "shopify://apps/globo-product-option/blocks/app-embed-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
         "disabled": false,
         "settings": {}
       },
