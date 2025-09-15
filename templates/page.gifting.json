@@ -623,8 +623,9 @@
         "text_mJDhUk": {
           "type": "text",
           "name": "t:names.heading",
+          "disabled": true,
           "settings": {
-            "text": "<h2>From Roka to Vidaai, we’ve got every ritual covered.</h2>",
+            "text": "<h2>Special Features</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -649,6 +650,7 @@
         "group_XJaMyV": {
           "type": "group",
           "name": "t:names.group",
+          "disabled": true,
           "settings": {
             "link": "",
             "open_in_new_tab": false,
@@ -689,6 +691,7 @@
             "group_ABGtqH": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -753,7 +756,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Engagement</h5>",
+                    "text": "<h5>Customised gift boxes</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -784,6 +787,7 @@
             "group_tBLVQp": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -848,7 +852,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Mehendi</h5>",
+                    "text": "<h5>Special wedding poem</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -879,6 +883,7 @@
             "group_dTyM3k": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -943,7 +948,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Sangeet</h5>",
+                    "text": "<h5>Gift options for all budgets</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -974,6 +979,7 @@
             "group_HDgYzY": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -1038,7 +1044,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Wedding Favors</h5>",
+                    "text": "<h5>Exclusive discounts & express delivery</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1079,6 +1085,7 @@
         "text_mJDhUk",
         "group_XJaMyV"
       ],
+      "disabled": true,
       "name": "Occasions",
       "settings": {
         "content_direction": "column",
@@ -1107,6 +1114,17 @@
         "gradient_direction": "to top",
         "padding-block-start": 80,
         "padding-block-end": 80
+      }
+    },
+    "custom_liquid_VCq8U7": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "section_frwgfd": {
@@ -1142,7 +1160,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>From the fragrance of first rain to custom boxes, choose from a wide range of cherishable gifts</p>",
+            "text": "<p>From the fragrance of first rain to custom gift boxes, choose from a wide range of cherishable presents</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -1944,32 +1962,6 @@
             "group_LAibxi"
           ]
         },
-        "text_ka9B6C": {
-          "type": "text",
-          "name": "t:names.text",
-          "settings": {
-            "text": "<p>Undecided? Let us help you decide what’s right for you.</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "button_VRejtw": {
           "type": "button",
           "name": "t:names.button",
@@ -1990,7 +1982,6 @@
         "text_9kdTVG",
         "text_NGdNmY",
         "group_dtxnE8",
-        "text_ka9B6C",
         "button_VRejtw"
       ],
       "name": "Suggested Products",
@@ -2752,17 +2743,6 @@
         "padding-block-end": 16
       }
     },
-    "custom_liquid_VCq8U7": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "divider_giPU73": {
       "type": "divider",
       "name": "t:names.divider_section",
@@ -2864,6 +2844,7 @@
             },
             "accordion_row_PKHH3U": {
               "type": "_accordion-row",
+              "disabled": true,
               "settings": {
                 "heading": "Are any purchases final sale?",
                 "open_by_default": false
@@ -2950,7 +2931,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value. </p>",
+                    "text": "<p>Our products are manufactured locally in Kannauj, Uttar Pradesh. </p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -3066,10 +3047,10 @@
     "hero_BatAEb",
     "section_w9reni",
     "section_VFKWyt",
+    "custom_liquid_VCq8U7",
     "section_frwgfd",
     "section_CcFfQT",
     "divider_Gn3Yb9",
-    "custom_liquid_VCq8U7",
     "divider_giPU73",
     "section_aYmpyR"
   ]
