@@ -1,7 +1,7 @@
 {% comment %}
   Custom Text Input Block
   
-  A configurable text input field that can be shown/hidden based on product variant values.
+  A configurable text input field for product pages.
   Integrates with the product form for cart submission.
   
   Accepts:
@@ -12,8 +12,6 @@
   class="custom-text-input-block spacing-style"
   style="{% render 'spacing-style', settings: block.settings %}"
   data-custom-text-input-block
-  data-visibility-rule="{{ block.settings.visibility_rule_text | default: 'Yes' | downcase }}"
-  data-variant-option="{{ block.settings.variant_option_name | default: 'Custom Text' | downcase }}"
   {{ block.shopify_attributes }}
 >
   <div class="custom-text-input__container">
@@ -66,18 +64,12 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('Custom text input script loaded');
     const customTextInputBlock = document.querySelector('[data-custom-text-input-block]');
-    if (!customTextInputBlock) {
-      console.log('Custom text input block not found in DOM');
-      return;
-    }
+    if (!customTextInputBlock) return;
     
     const textInput = customTextInputBlock.querySelector('[data-custom-text-input]');
     const charCount = customTextInputBlock.querySelector('[data-char-count]');
     const maxLength = parseInt(textInput.getAttribute('maxlength')) || 100;
-    const visibilityRule = customTextInputBlock.dataset.visibilityRule || 'yes';
-    const variantOptionName = customTextInputBlock.dataset.variantOption || '';
     
     // Character counter functionality
     if (charCount) {
@@ -94,166 +86,12 @@
       
       textInput.addEventListener('input', updateCharCount);
     }
-    
-    // Variant-based visibility functionality
-    function checkVariantVisibility() {
-      console.log('=== DEBUGGING CUSTOM TEXT INPUT VISIBILITY ===');
-      console.log('Visibility rule:', visibilityRule);
-      console.log('Variant option name filter:', variantOptionName);
-      
-      let shouldShow = false;
-      
-      // If no visibility rule is set, always show
-      if (!visibilityRule || visibilityRule === '') {
-        console.log('No visibility rule set, showing field');
-        shouldShow = true;
-      } else {
-        // Check all variant inputs (radio buttons and selects)
-        const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
-        console.log('Found variant inputs:', variantInputs.length);
-        
-        // Debug: Log all available options
-        variantInputs.forEach((input, index) => {
-          let optionText = '';
-          let optionName = '';
-          let isSelected = false;
-          
-          if (input.type === 'radio') {
-            isSelected = input.checked;
-            const label = input.closest('label');
-            if (label) {
-              optionText = label.textContent.trim().toLowerCase();
-            }
-            // Get option name from fieldset legend
-            const fieldset = input.closest('fieldset');
-            if (fieldset) {
-              const legend = fieldset.querySelector('legend');
-              if (legend) {
-                optionName = legend.textContent.trim().toLowerCase();
-              }
-            }
-          } else if (input.tagName === 'SELECT') {
-            const selectedOption = input.options[input.selectedIndex];
-            if (selectedOption) {
-              isSelected = true;
-              optionText = selectedOption.text.trim().toLowerCase();
-              // Get select label
-              const label = input.closest('div').querySelector('label');
-              if (label) {
-                optionName = label.textContent.trim().toLowerCase();
-              }
-            }
-          }
-          
-          console.log(`Input ${index}:`, {
-            type: input.type || input.tagName,
-            optionName: optionName,
-            optionText: optionText,
-            isSelected: isSelected
-          });
-          
-          // Check if this variant option matches our criteria
-          if (isSelected) {
-            // If no specific variant option name is set, check all
-            if (variantOptionName === '' || optionName.includes(variantOptionName.toLowerCase())) {
-              console.log('Checking option text:', optionText, 'against rule:', visibilityRule);
-              if (optionText.includes(visibilityRule.toLowerCase())) {
-                console.log('MATCH FOUND! Setting shouldShow = true');
-                shouldShow = true;
-              }
-            }
-          }
-        });
-        
-        // Also check for buttons/labels that might be structured differently
-        const variantLabels = document.querySelectorAll('variant-picker label');
-        console.log('Found variant labels:', variantLabels.length);
-        
-        variantLabels.forEach((label, index) => {
-          const input = label.querySelector('input[type="radio"]');
-          if (input && input.checked) {
-            const labelText = label.textContent.trim().toLowerCase();
-            console.log(`Label ${index} (selected):`, labelText);
-            
-            if (labelText.includes(visibilityRule.toLowerCase())) {
-              console.log('MATCH FOUND in label! Setting shouldShow = true');
-              shouldShow = true;
-            }
-          }
-        });
-      }
-      
-      console.log('Final decision - shouldShow:', shouldShow);
-      
-      // Show/hide the input field
-      if (shouldShow) {
-        customTextInputBlock.style.display = 'block';
-        console.log('✅ Custom text input field SHOWN');
-      } else {
-        customTextInputBlock.style.display = 'none';
-        textInput.value = ''; // Clear value when hidden
-        if (charCount) {
-          charCount.textContent = '0';
-          charCount.style.color = '';
-        }
-        console.log('❌ Custom text input field HIDDEN');
-      }
-      
-      console.log('=== END DEBUGGING ===');
-    }
-    
-    // Listen for variant changes with multiple event types
-    const variantPicker = document.querySelector('variant-picker');
-    if (variantPicker) {
-      console.log('Found variant picker, setting up event listeners');
-      
-      // Listen for custom variant-selected events
-      variantPicker.addEventListener('variant-selected', function(event) {
-        console.log('variant-selected event fired');
-        setTimeout(checkVariantVisibility, 100);
-      });
-      
-      // Listen for change events on the variant picker element itself
-      variantPicker.addEventListener('change', function(event) {
-        console.log('change event fired on variant picker');
-        setTimeout(checkVariantVisibility, 100);
-      });
-      
-      // Also listen for direct changes to variant inputs
-      const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
-      console.log('Setting up direct input listeners for', variantInputs.length, 'inputs');
-      variantInputs.forEach((input, index) => {
-        input.addEventListener('change', function() {
-          console.log('Direct input change event fired for input', index);
-          setTimeout(checkVariantVisibility, 100);
-        });
-        input.addEventListener('click', function() {
-          console.log('Direct input click event fired for input', index);
-          setTimeout(checkVariantVisibility, 150);
-        });
-      });
-    } else {
-      console.log('No variant picker found initially');
-    }
-    
-    // Multiple initial checks at different intervals
-    setTimeout(checkVariantVisibility, 500);
-    setTimeout(checkVariantVisibility, 1000);
-    setTimeout(checkVariantVisibility, 2000);
-    
-    // Also add manual trigger function for testing
-    window.debugCustomTextInput = function() {
-      console.log('Manual debug trigger called');
-      checkVariantVisibility();
-    };
-    
-    console.log('Custom text input setup complete. Use debugCustomTextInput() to manually test.');
   });
 </script>
 
 {% stylesheet %}
   .custom-text-input-block {
-    display: block; /* Temporarily visible for debugging */
+    display: block;
     width: 100%;
   }
   
@@ -418,24 +256,6 @@
     },
     {
       "type": "header",
-      "content": "Visibility Rules"
-    },
-    {
-      "type": "text",
-      "id": "visibility_rule_text",
-      "label": "Show When Variant Contains",
-      "default": "Yes",
-      "info": "Show this field when any product variant option contains this text (case-insensitive)"
-    },
-    {
-      "type": "text",
-      "id": "variant_option_name",
-      "label": "Specific Variant Option Name (Optional)",
-      "placeholder": "e.g., Gift Wrap, Size, Color",
-      "info": "Only check this specific variant option. Leave blank to check all variant options."
-    },
-    {
-      "type": "header",
       "content": "Layout"
     },
     {
@@ -488,7 +308,6 @@
         "placeholder": "Enter text here...",
         "max_characters": 100,
         "show_character_count": true,
-        "visibility_rule_text": "Yes",
         "input_type": "text"
       }
     }
