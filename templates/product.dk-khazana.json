@@ -172,10 +172,6 @@
               },
               "blocks": {}
             },
-            "globo_product_option_app_block_XnzrYV": {
-              "type": "shopify://apps/globo-product-option/blocks/app-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
-              "settings": {}
-            },
             "dk_price_DakaxW": {
               "type": "dk-price",
               "name": "DK Custom Price",
@@ -232,12 +228,13 @@
                   "static": true,
                   "settings": {
                     "product": "{{ closest.product }}",
-                    "style_class": "button-secondary"
+                    "style_class": "button"
                   },
                   "blocks": {}
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "product": "{{ closest.product }}"
@@ -890,7 +887,6 @@
             "dk_text_96FEjd",
             "price_a7krng",
             "variant_picker_R3rGDr",
-            "globo_product_option_app_block_XnzrYV",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
