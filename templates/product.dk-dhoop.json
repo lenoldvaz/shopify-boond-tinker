@@ -148,6 +148,27 @@
               },
               "blocks": {}
             },
+            "custom_text_input_tq8PbL": {
+              "type": "custom-text-input",
+              "name": "Custom Text Input",
+              "settings": {
+                "label": "Gift Message",
+                "property_name": "Gift Message",
+                "placeholder": "Enter your gift message here",
+                "help_text": "",
+                "input_type": "text",
+                "required": false,
+                "max_characters": 70,
+                "show_character_count": true,
+                "visibility_rule_text": "",
+                "variant_option_name": "",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "dk_price_DakaxW": {
               "type": "dk-price",
               "name": "DK Custom Price",
@@ -943,6 +964,7 @@
             "dk_text_96FEjd",
             "divider_RwNDi4",
             "variant_picker_R3rGDr",
+            "custom_text_input_tq8PbL",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
