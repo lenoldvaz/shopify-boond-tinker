@@ -2804,14 +2804,14 @@
             "accordion_row_xyXbT9": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "What is the return policy?",
+                "heading": "I sent my enquiry by filling the form. What should I expect next?",
                 "open_by_default": false
               },
               "blocks": {
                 "text_wMRrXa": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn’t the case, let us know and we’ll do our best to work with you to make it right. </p>",
+                    "text": "<p>Thank you for filling the form. We will respond to you within 48 hours.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2880,7 +2880,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "When will I get my order?",
+                "heading": "How much time will customization take?",
                 "open_by_default": false
               },
               "blocks": {
@@ -2888,7 +2888,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                    "text": "<p>It depends upon the quantity of the order and the customizations that are needed. For further enquiry, you can reach out to us on team@boondfragrances.com or via whatsapp at <a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\" target=\"_blank\" title=\"Whatsapp\">+91 7307953240</a>.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2919,7 +2919,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "Where are your products manufactured?",
+                "heading": "Do I get a discount for custom orders?",
                 "open_by_default": false
               },
               "blocks": {
@@ -2927,7 +2927,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our products are manufactured locally in Kannauj, Uttar Pradesh. </p>",
+                    "text": "<p>Definitely, we do give discount on custom orders.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2958,7 +2958,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "How much does shipping cost?",
+                "heading": "What’s the MOQ for getting a discount?",
                 "open_by_default": false
               },
               "blocks": {
@@ -2966,7 +2966,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
+                    "text": "<p>We can offer a discount on orders starting at 10 or more items.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2992,6 +2992,84 @@
               "block_order": [
                 "text_Bg7AQ9"
               ]
+            },
+            "accordion_row_LzjQdh": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you ship bulk orders outside India?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_aJUGUh": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes, we do ship bulk orders internationally.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_aJUGUh"
+              ]
+            },
+            "accordion_row_HtpTFV": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What if some of my products get damaged in shipping?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_KbJxif": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>We do our best to ensure that our products reach your safely. Please inspect your order within 36 hours of delivery and reach out to us at team@boondfragrances.com in case of any defects, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_KbJxif"
+              ]
             }
           },
           "block_order": [
@@ -2999,7 +3077,9 @@
             "accordion_row_PKHH3U",
             "accordion_row_mLgA3q",
             "accordion_row_bHtJPG",
-            "accordion_row_eqXVTD"
+            "accordion_row_eqXVTD",
+            "accordion_row_LzjQdh",
+            "accordion_row_HtpTFV"
           ]
         }
       },
