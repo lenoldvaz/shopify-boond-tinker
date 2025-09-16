@@ -312,14 +312,13 @@
       "block_order": [
         "text_gbxbjE"
       ],
-      "disabled": true,
       "name": "t:names.hero",
       "settings": {
         "visibility_option": "mobile",
         "link": "",
         "open_in_new_tab": false,
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/boond_mobile_making_1.png",
+        "image_1": "shopify://shop_images/Shortlist_49__11zon.jpg",
         "media_type_2": "image",
         "content_direction": "row",
         "vertical_on_mobile": false,
@@ -348,7 +347,9 @@
       "blocks": {
         "image_QCKLb4": {
           "type": "image",
+          "disabled": true,
           "settings": {
+            "image": "shopify://shop_images/boond_mobile_making_1_b48f3092-f520-41d2-9eae-afa0e92576a3.png",
             "link": "",
             "image_ratio": "square",
             "width": "fill",
@@ -409,6 +410,7 @@
             "text_3pUXFV": {
               "type": "text",
               "name": "t:names.heading",
+              "disabled": true,
               "settings": {
                 "text": "<h2>Our signature product.</h2>",
                 "width": "fit-content",
@@ -434,6 +436,7 @@
             },
             "text_f7yJPG": {
               "type": "text",
+              "disabled": true,
               "settings": {
                 "text": "<p>Made with care and unconditionally loved by our customers, this signature bestseller exceeds all expectations.</p>",
                 "width": "fit-content",
@@ -459,6 +462,7 @@
             },
             "button_4zCdN3": {
               "type": "button",
+              "disabled": true,
               "settings": {
                 "label": "Shop now",
                 "link": "shopify://collections/all",
@@ -521,7 +525,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h4><strong>The Deg-Bhapka method</strong></h4>",
+            "text": "<h4>The Deg-Bhapka method</h4>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -538,6 +542,30 @@
             "corner_radius": 0,
             "padding-block-start": 28,
             "padding-block-end": 23,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "image_fxrTP8": {
+          "type": "image",
+          "name": "t:names.image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Shortlist_1_6__11zon.jpg",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -689,6 +717,7 @@
       },
       "block_order": [
         "text_TBhLtH",
+        "image_fxrTP8",
         "group_Y6y6rb"
       ],
       "name": "t:names.custom_section",
