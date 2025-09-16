@@ -1612,6 +1612,7 @@
         "text_ka9B6C",
         "button_VRejtw"
       ],
+      "disabled": true,
       "name": "Suggested Products",
       "settings": {
         "content_direction": "column",
@@ -2324,6 +2325,7 @@
         "text_Q6UPjM",
         "group_T6ykGP"
       ],
+      "disabled": true,
       "name": "t:names.icons_with_text",
       "settings": {
         "content_direction": "column",
@@ -2371,6 +2373,7 @@
     },
     "divider_giPU73": {
       "type": "divider",
+      "disabled": true,
       "name": "t:names.divider_section",
       "settings": {
         "color_scheme": "",
