@@ -72,6 +72,11 @@
         "type": "shopify://apps/amp-slide-cart-drawer/blocks/app-embed/0a410b8d-7dc4-4f2d-b4e8-c12d34fd2255",
         "disabled": false,
         "settings": {}
+      },
+      "12973772748516043749": {
+        "type": "shopify://apps/bitespeed-whatsapp-marketing/blocks/app-embed/9efdb9ca-2d01-4a12-b1ac-02679fe0f6fc",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
