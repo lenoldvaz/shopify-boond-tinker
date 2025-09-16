@@ -21,6 +21,17 @@
         "padding-block-end": 80
       }
     },
+    "custom_liquid_VCq8U7": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "hero_BatAEb": {
       "type": "hero",
       "blocks": {
@@ -95,6 +106,7 @@
         "text_xMwJ9M",
         "button_gNNayb"
       ],
+      "disabled": true,
       "name": "t:names.hero",
       "settings": {
         "visibility_option": "both",
@@ -132,7 +144,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Gifts that fit every special occassion</h2>",
+            "text": "<h2>Special Features</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -238,7 +250,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/Sandali-8_1.jpg",
+                    "image": "shopify://shop_images/DSCF0459_11zon.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -261,7 +273,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Birthdays</h5>",
+                    "text": "<h5>Exclusive discounts</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -289,105 +301,9 @@
                 "text_pmnhKD"
               ]
             },
-            "group_tqth9V": {
-              "type": "group",
-              "name": "t:names.group",
-              "settings": {
-                "link": "",
-                "open_in_new_tab": false,
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "center",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap_desktop": 12,
-                "gap_mobile": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "inherit_color_scheme": true,
-                "color_scheme": "",
-                "background_media": "none",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "image_3gRbdx": {
-                  "type": "image",
-                  "name": "t:names.image",
-                  "settings": {
-                    "image": "shopify://shop_images/DSCF0459.jpg",
-                    "link": "",
-                    "image_ratio": "square",
-                    "width": "fill",
-                    "custom_width": 100,
-                    "width_mobile": "fill",
-                    "custom_width_mobile": 100,
-                    "height": "fit",
-                    "border": "none",
-                    "border_width": 1,
-                    "border_opacity": 100,
-                    "border_radius": 4,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_He3VYq": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<h5>Festivals</h5>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "image_3gRbdx",
-                "text_He3VYq"
-              ]
-            },
             "group_VcdkCU": {
               "type": "group",
               "name": "t:names.group",
-              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -429,7 +345,7 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/IMG_20250812_173222_000.jpg",
+                    "image": "shopify://shop_images/IMG_20250529_170005_11zon.jpg",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "fill",
@@ -452,7 +368,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<h5>Sangeet</h5>",
+                    "text": "<h5>Customised gift boxes</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -480,9 +396,200 @@
                 "text_qkgUXm"
               ]
             },
+            "group_Yx8rfb": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap_desktop": 12,
+                "gap_mobile": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_yW3rAH": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/IMG_20220701_103901_11zon.jpg",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_gkTPht": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<h5>Special handwritten note & poem</h5>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_yW3rAH",
+                "text_gkTPht"
+              ]
+            },
+            "group_iJh94A": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap_desktop": 12,
+                "gap_mobile": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_wCgpqn": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/DSCF0700_11zon.jpg",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 4,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_q48DTU": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<h5>Eco-friendly & sustainable gifts</h5>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_wCgpqn",
+                "text_q48DTU"
+              ]
+            },
             "group_7AEkYq": {
               "type": "group",
               "name": "t:names.group",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -578,8 +685,9 @@
           },
           "block_order": [
             "group_YfhVG6",
-            "group_tqth9V",
             "group_VcdkCU",
+            "group_Yx8rfb",
+            "group_iJh94A",
             "group_7AEkYq"
           ]
         }
@@ -625,7 +733,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Choose Your Signature Scents</h2>",
+            "text": "<h2>Memorable gifts for all occasions</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -651,7 +759,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>From mehendi florals to vedi woods, mix-and-match our artisanal attars to craft a hamper that feels uniquely yours.</p>",
+            "text": "<p><em>From the fragrance of first rain to custom gift boxes, choose from a wide range of cherishable presents</em></p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -855,6 +963,7 @@
                         "text_qRzEmy": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1037,6 +1146,7 @@
                         "text_6Uimbk": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1121,7 +1231,7 @@
                   "type": "product-card",
                   "name": "t:names.product_card",
                   "settings": {
-                    "product": "boond-fragrances-the-signature-set-of-12-natural-perfume-oils-copy",
+                    "product": "gulabi-natural-perfume-oil",
                     "show_sale_badge": true,
                     "product_card_gap": 16,
                     "inherit_color_scheme": true,
@@ -1219,6 +1329,7 @@
                         "text_GpVR97": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1303,7 +1414,7 @@
                   "type": "product-card",
                   "name": "t:names.product_card",
                   "settings": {
-                    "product": "royal-natural-perfume-oils-gift-set-of-2",
+                    "product": "pure-sandalwood-incense-cones",
                     "show_sale_badge": true,
                     "product_card_gap": 16,
                     "inherit_color_scheme": true,
@@ -1401,6 +1512,7 @@
                         "text_Wh7VXi": {
                           "type": "text",
                           "name": "t:names.text",
+                          "disabled": true,
                           "settings": {
                             "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>",
                             "width": "fit-content",
@@ -1452,6 +1564,7 @@
         "text_ka9B6C": {
           "type": "text",
           "name": "t:names.text",
+          "disabled": true,
           "settings": {
             "text": "<p>Undecided? Let us help you decide what’s right for you.</p>",
             "width": "fit-content",
@@ -1478,6 +1591,7 @@
         "button_VRejtw": {
           "type": "button",
           "name": "t:names.button",
+          "disabled": true,
           "settings": {
             "label": "Talk to us!",
             "link": "shopify://pages/wedding-gifting-tally-form",
@@ -2242,6 +2356,7 @@
     },
     "divider_Gn3Yb9": {
       "type": "divider",
+      "disabled": true,
       "name": "t:names.divider_section",
       "settings": {
         "color_scheme": "",
@@ -2252,17 +2367,6 @@
         "alignment_horizontal": "center",
         "padding-block-start": 80,
         "padding-block-end": 16
-      }
-    },
-    "custom_liquid_VCq8U7": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
       }
     },
     "divider_giPU73": {
@@ -2330,14 +2434,14 @@
             "accordion_row_xyXbT9": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "What is the return policy?",
+                "heading": "I sent my enquiry by filling the form. What should I expect next?",
                 "open_by_default": false
               },
               "blocks": {
                 "text_wMRrXa": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn’t the case, let us know and we’ll do our best to work with you to make it right. </p>",
+                    "text": "<p>Thank you for filling the form. We will respond to you within 48 hours.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2367,14 +2471,14 @@
             "accordion_row_PKHH3U": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Are any purchases final sale?",
+                "heading": "How much time will customization take?",
                 "open_by_default": false
               },
               "blocks": {
                 "text_jwFUke": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We are unable to accept returns on certain items. These will be carefully marked before purchase.</p>",
+                    "text": "<p>It depends upon the quantity of the order and the customizations that are needed. For further enquiry, you can reach out to us on team@boondfragrances.com or via whatsapp at <a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\" target=\"_blank\" title=\"Whatsapp\">+91 7307953240</a>.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2405,7 +2509,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "When will I get my order?",
+                "heading": "Do I get a discount for custom orders?",
                 "open_by_default": false
               },
               "blocks": {
@@ -2413,7 +2517,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                    "text": "<p>Definitely, we do give discount on custom orders.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2444,7 +2548,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "Where are your products manufactured?",
+                "heading": "What’s the MOQ for getting a discount?",
                 "open_by_default": false
               },
               "blocks": {
@@ -2452,7 +2556,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value. </p>",
+                    "text": "<p>We can offer a discount on orders starting at 10 or more items.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2483,7 +2587,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "How much does shipping cost?",
+                "heading": "Do you ship bulk orders outside India?",
                 "open_by_default": false
               },
               "blocks": {
@@ -2491,7 +2595,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
+                    "text": "<p>Yes, we do ship bulk orders internationally.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -2517,6 +2621,45 @@
               "block_order": [
                 "text_Bg7AQ9"
               ]
+            },
+            "accordion_row_8ggfbW": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What if some of my products get damaged in shipping?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_c6eV6D": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>We do our best to ensure that our products reach your safely. Please inspect your order within 36 hours of delivery and reach out to us at team@boondfragrances.com in case of any defects, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_c6eV6D"
+              ]
             }
           },
           "block_order": [
@@ -2524,7 +2667,8 @@
             "accordion_row_PKHH3U",
             "accordion_row_mLgA3q",
             "accordion_row_bHtJPG",
-            "accordion_row_eqXVTD"
+            "accordion_row_eqXVTD",
+            "accordion_row_8ggfbW"
           ]
         }
       },
@@ -2565,12 +2709,12 @@
   },
   "order": [
     "main",
+    "custom_liquid_VCq8U7",
     "hero_BatAEb",
     "section_w9reni",
     "section_frwgfd",
     "section_CcFfQT",
     "divider_Gn3Yb9",
-    "custom_liquid_VCq8U7",
     "divider_giPU73",
     "section_aYmpyR"
   ]
