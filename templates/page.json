@@ -41,6 +41,7 @@
         "text_CD3qGW": {
           "type": "text",
           "name": "t:names.heading",
+          "disabled": true,
           "settings": {
             "text": "<h3><strong>--- Ways to collaborate with us ---</strong></h3>",
             "width": "100%",
