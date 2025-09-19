@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "collection_list_KreTXe": {
       "type": "collection-list",
@@ -15,6 +16,7 @@
           "type": "group",
           "name": "t:names.header",
           "settings": {
+            "link": "",
             "open_in_new_tab": false,
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -23,7 +25,8 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
+            "gap_desktop": 12,
+            "gap_mobile": 12,
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -152,6 +155,11 @@
       ],
       "name": "t:names.collections_grid",
       "settings": {
+        "collection_list": [
+          "dhoop",
+          "attars",
+          "gifting"
+        ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 3,
