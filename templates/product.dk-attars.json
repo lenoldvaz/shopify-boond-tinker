@@ -107,33 +107,6 @@
               },
               "blocks": {}
             },
-            "dk_text_96FEjd": {
-              "type": "dk_text",
-              "name": "DK Text",
-              "settings": {
-                "text": "{{ closest.product.metafields.custom.product_short_highlight | metafield_tag }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "bold_text_color": "#b20000",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "group_CfKHjP": {
               "type": "group",
               "name": "Product Bullets",
@@ -518,6 +491,33 @@
                 "group_Fg8fKR",
                 "group_NaptEj"
               ]
+            },
+            "dk_text_96FEjd": {
+              "type": "dk_text",
+              "name": "DK Text",
+              "settings": {
+                "text": "{{ closest.product.metafields.custom.product_short_highlight | metafield_tag }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "bold_text_color": "#b20000",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "price_a7krng": {
               "type": "price",
@@ -1291,8 +1291,8 @@
             "heading_m7KmQQ",
             "judge_me_reviews_preview_badge_qPH6jY",
             "divider_kYArEk",
-            "dk_text_96FEjd",
             "group_CfKHjP",
+            "dk_text_96FEjd",
             "price_a7krng",
             "variant_picker_R3rGDr",
             "custom_text_input_UX3TtV",
