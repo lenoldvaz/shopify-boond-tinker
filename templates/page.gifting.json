@@ -78,10 +78,10 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Shop Now",
-            "link": "shopify://collections/all",
+            "label": "Enquire Now",
+            "link": "##shopify-section-template--19284544061672__custom_liquid_VCq8U7",
             "open_in_new_tab": false,
-            "style_class": "button",
+            "style_class": "button-secondary",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
