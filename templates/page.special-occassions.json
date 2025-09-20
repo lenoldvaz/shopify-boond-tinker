@@ -79,7 +79,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Enquire Now",
-            "link": "shopify://collections/all",
+            "link": "#shopify-section-template--19284544061672__custom_liquid_VCq8U7",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -1480,7 +1480,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Talk to us!",
-            "link": "shopify://pages/wedding-gifting-tally-form",
+            "link": "#shopify-section-template--19284544061672__custom_liquid_VCq8U7",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
