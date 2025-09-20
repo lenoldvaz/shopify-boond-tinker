@@ -79,7 +79,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Enquire Now",
-            "link": "##shopify-section-template--19284544061672__custom_liquid_VCq8U7",
+            "link": "#shopify-section-template--19204754538728__custom_liquid_VCq8U7",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "width": "fit-content",
