@@ -29,7 +29,7 @@
             "aspect_ratio": "1",
             "media_radius": 20,
             "extend_media": false,
-            "constrain_to_viewport": true,
+            "constrain_to_viewport": false,
             "zoom": true,
             "video_loop": false,
             "hide_variants": true,
