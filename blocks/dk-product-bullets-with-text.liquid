@@ -1,9 +1,13 @@
 <div class="product-sales-points">
   {% for i in (1..5) %}
-    {% assign bullet_text = block.settings["bullet_text_" | append: i] %}
-    {% assign bullet_icon = block.settings["bullet_icon_" | append: i] %}
-    {% assign bullet_svg = block.settings["bullet_svg_" | append: i] %}
-    {% assign bullet_text_color = block.settings["bullet_text_color_" | append: i] %}
+    {% assign bullet_text_key = "bullet_text_" | append: i %}
+    {% assign bullet_icon_key = "bullet_icon_" | append: i %}
+    {% assign bullet_svg_key = "bullet_svg_" | append: i %}
+    {% assign bullet_text_color_key = "bullet_text_color_" | append: i %}
+    {% assign bullet_text = block.settings[bullet_text_key] %}
+    {% assign bullet_icon = block.settings[bullet_icon_key] %}
+    {% assign bullet_svg = block.settings[bullet_svg_key] %}
+    {% assign bullet_text_color = block.settings[bullet_text_color_key] %}
     {% assign bullet_metafield_key = "product_bullets_" | append: i %}
     {% assign bullet_metafield = product.metafields.custom[bullet_metafield_key] %}
     
