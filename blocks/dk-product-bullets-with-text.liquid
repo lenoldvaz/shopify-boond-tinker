@@ -1,0 +1,381 @@
+<div class="product-sales-points">
+  {% for i in (1..5) %}
+    {% assign bullet_text = block.settings["bullet_text_" | append: i] %}
+    {% assign bullet_icon = block.settings["bullet_icon_" | append: i] %}
+    {% assign bullet_svg = block.settings["bullet_svg_" | append: i] %}
+    {% assign bullet_text_color = block.settings["bullet_text_color_" | append: i] %}
+    {% assign bullet_metafield_key = "product_bullets_" | append: i %}
+    {% assign bullet_metafield = product.metafields.custom[bullet_metafield_key] %}
+    
+    {% if bullet_text != empty %}
+      <div class="product-point">
+        {% if bullet_icon != blank %}
+          <img class="product-icon-image" src="{{ bullet_icon | img_url: '32x32' }}" alt="Bullet point icon {{ i }}" loading="lazy">
+        {% elsif bullet_svg != empty %}
+          {{ bullet_svg }}
+        {% else %}
+          <svg class="product-icon-fallback" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="3" fill="currentColor"/>
+          </svg>
+        {% endif %}
+        <div style="color:{{ bullet_text_color }}" class="product-text-container">
+          {% if bullet_metafield != blank %}
+            {{ bullet_metafield | metafield_tag }}
+          {% else %}
+            {{ bullet_text }}
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% stylesheet %}
+.product-sales-points {
+  display: flex;
+  flex-direction: column;
+  gap: {{ block.settings.spacing | default: 12 }}px;
+  margin-top: {{ block.settings.top_margin | default: 20 }}px;
+  margin-bottom: {{ block.settings.bottom_margin | default: 0 }}px;
+}
+
+.product-point {
+  display: flex;
+  align-items: flex-start;
+  gap: {{ block.settings.icon_text_gap | default: 12 }}px;
+}
+
+.product-icon-image {
+  width: {{ block.settings.icon_size | default: 20 }}px !important;
+  height: {{ block.settings.icon_size | default: 20 }}px !important;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.product-icon-fallback {
+  width: {{ block.settings.icon_size | default: 20 }}px;
+  height: {{ block.settings.icon_size | default: 20 }}px;
+  flex-shrink: 0;
+  color: {{ block.settings.fallback_icon_color | default: '#000000' }};
+}
+
+.product-sales-points svg.icon {
+  width: {{ block.settings.icon_size | default: 20 }}px !important;
+  height: {{ block.settings.icon_size | default: 20 }}px !important;
+  flex-shrink: 0;
+  color: {{ block.settings.svg_icon_color | default: '#000000' }};
+}
+
+.product-text-container {
+  flex: 1;
+  font-size: {{ block.settings.text_size | default: 14 }}px;
+  font-weight: {{ block.settings.text_weight | default: 400 }};
+  line-height: {{ block.settings.line_height | default: 1.4 }};
+  margin-top: 2px; /* Slight vertical alignment adjustment */
+}
+
+.product-text-container p {
+  margin: 0;
+}
+
+.product-text-container .metafield-rich_text_field p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .product-sales-points {
+    gap: {{ block.settings.mobile_spacing | default: 10 }}px;
+  }
+  
+  .product-point {
+    gap: {{ block.settings.mobile_icon_text_gap | default: 10 }}px;
+  }
+  
+  .product-text-container {
+    font-size: {{ block.settings.mobile_text_size | default: 13 }}px;
+  }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Product Bullets with Text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing Between Items",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "icon_text_gap",
+      "label": "Gap Between Icon and Text",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "top_margin",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "bottom_margin",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text Size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line Height",
+      "min": 1.0,
+      "max": 2.0,
+      "step": 0.1,
+      "default": 1.4
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "fallback_icon_color",
+      "label": "Fallback Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "svg_icon_color",
+      "label": "SVG Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_spacing",
+      "label": "Mobile Spacing Between Items",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_text_gap",
+      "label": "Mobile Gap Between Icon and Text",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "label": "Mobile Text Size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Bullet Point 1"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_1",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_1",
+      "label": "Icon Image"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_1",
+      "label": "Custom SVG Code",
+      "info": "Used if no image is selected"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_1",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Bullet Point 2"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_2",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_2",
+      "label": "Icon Image"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_2",
+      "label": "Custom SVG Code",
+      "info": "Used if no image is selected"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_2",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Bullet Point 3"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_3",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_3",
+      "label": "Icon Image"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_3",
+      "label": "Custom SVG Code",
+      "info": "Used if no image is selected"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_3",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Bullet Point 4"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_4",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_4",
+      "label": "Icon Image"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_4",
+      "label": "Custom SVG Code",
+      "info": "Used if no image is selected"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_4",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Bullet Point 5"
+    },
+    {
+      "type": "text",
+      "id": "bullet_text_5",
+      "label": "Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bullet_icon_5",
+      "label": "Icon Image"
+    },
+    {
+      "type": "textarea",
+      "id": "bullet_svg_5",
+      "label": "Custom SVG Code",
+      "info": "Used if no image is selected"
+    },
+    {
+      "type": "color",
+      "id": "bullet_text_color_5",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Product Bullets with Text"
+    }
+  ]
+}
+{% endschema %}
