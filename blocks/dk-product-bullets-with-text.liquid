@@ -1,17 +1,17 @@
 <div class="product-sales-points">
   {% for i in (1..5) %}
-    {% assign bullet_metafield_key = "bullet_metafield_" | append: i %}
     {% assign bullet_text_key = "bullet_text_" | append: i %}
     {% assign bullet_icon_key = "bullet_icon_" | append: i %}
     {% assign bullet_svg_key = "bullet_svg_" | append: i %}
     {% assign bullet_text_color_key = "bullet_text_color_" | append: i %}
-    {% assign bullet_metafield = block.settings[bullet_metafield_key] %}
     {% assign bullet_text = block.settings[bullet_text_key] %}
     {% assign bullet_icon = block.settings[bullet_icon_key] %}
     {% assign bullet_svg = block.settings[bullet_svg_key] %}
     {% assign bullet_text_color = block.settings[bullet_text_color_key] %}
+    {% assign bullet_metafield_key = "product_bullets_" | append: i %}
+    {% assign bullet_metafield = product.metafields.custom[bullet_metafield_key] %}
     
-    {% if bullet_metafield != blank or bullet_text != empty %}
+    {% if bullet_text != empty %}
       <div class="product-point">
         {% if bullet_icon != blank %}
           <img class="product-icon-image" src="{{ bullet_icon | img_url: '32x32' }}" alt="Bullet point icon {{ i }}" loading="lazy">
@@ -250,15 +250,9 @@
       "content": "Bullet Point 1"
     },
     {
-      "type": "product_metafield",
-      "id": "bullet_metafield_1",
-      "label": "Text Metafield"
-    },
-    {
       "type": "text",
       "id": "bullet_text_1",
-      "label": "Fallback Text",
-      "info": "Used if no metafield is selected"
+      "label": "Text"
     },
     {
       "type": "image_picker",
@@ -282,15 +276,9 @@
       "content": "Bullet Point 2"
     },
     {
-      "type": "product_metafield",
-      "id": "bullet_metafield_2",
-      "label": "Text Metafield"
-    },
-    {
       "type": "text",
       "id": "bullet_text_2",
-      "label": "Fallback Text",
-      "info": "Used if no metafield is selected"
+      "label": "Text"
     },
     {
       "type": "image_picker",
@@ -314,15 +302,9 @@
       "content": "Bullet Point 3"
     },
     {
-      "type": "product_metafield",
-      "id": "bullet_metafield_3",
-      "label": "Text Metafield"
-    },
-    {
       "type": "text",
       "id": "bullet_text_3",
-      "label": "Fallback Text",
-      "info": "Used if no metafield is selected"
+      "label": "Text"
     },
     {
       "type": "image_picker",
@@ -346,15 +328,9 @@
       "content": "Bullet Point 4"
     },
     {
-      "type": "product_metafield",
-      "id": "bullet_metafield_4",
-      "label": "Text Metafield"
-    },
-    {
       "type": "text",
       "id": "bullet_text_4",
-      "label": "Fallback Text",
-      "info": "Used if no metafield is selected"
+      "label": "Text"
     },
     {
       "type": "image_picker",
@@ -378,15 +354,9 @@
       "content": "Bullet Point 5"
     },
     {
-      "type": "product_metafield",
-      "id": "bullet_metafield_5",
-      "label": "Text Metafield"
-    },
-    {
       "type": "text",
       "id": "bullet_text_5",
-      "label": "Fallback Text",
-      "info": "Used if no metafield is selected"
+      "label": "Text"
     },
     {
       "type": "image_picker",
