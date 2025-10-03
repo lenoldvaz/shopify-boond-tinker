@@ -719,7 +719,7 @@
       },
       "name": "t:names.products_grid",
       "settings": {
-        "collection": "all-products",
+        "collection": "bestsellers-homepage",
         "layout_type": "carousel",
         "carousel_on_mobile": false,
         "max_products": 8,
