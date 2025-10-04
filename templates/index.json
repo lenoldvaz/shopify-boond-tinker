@@ -275,7 +275,7 @@
           "name": "t:names.slide",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "",
+            "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
             "image_1": "shopify://shop_images/Mobile_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
