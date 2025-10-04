@@ -112,7 +112,7 @@
             "shop_all_text": "SHOP ALL",
             "show_featured_products": true,
             "carousel_title": "Trending this Week",
-            "featured_collection": "dhoop",
+            "featured_collection": "bestsellers-homepage",
             "products_to_show": 5,
             "show_descriptions": true,
             "show_sale_badges": true,
