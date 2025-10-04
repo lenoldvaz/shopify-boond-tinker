@@ -101,7 +101,7 @@
             "desktop_menu_items_limit": 3,
             "show_nav_categories": true,
             "nav_categories": "Khazana, Best Sellers, Gulab Jal",
-            "nav_category_links": "/products/khazana-gift-box, /collections/all-products?sort_by=best-selling&grid=default,/products/boond-fragrances-pure-rose-water",
+            "nav_category_links": "/products/khazana-gift-box, /collections/bestsellers-homepage,/products/boond-fragrances-pure-rose-water",
             "nav_category_pills": "NEW,",
             "cat1_title": "Shop Perfumes",
             "cat1_menu": "by-fragrances",
