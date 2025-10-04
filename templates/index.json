@@ -102,6 +102,7 @@
         "slide_yjczEq": {
           "type": "_slide",
           "name": "t:names.slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
@@ -131,6 +132,7 @@
         "slide_hf8tq9": {
           "type": "_slide",
           "name": "t:names.slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
