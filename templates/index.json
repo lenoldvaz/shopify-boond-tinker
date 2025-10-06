@@ -131,11 +131,10 @@
         "slide_hf8tq9": {
           "type": "_slide",
           "name": "t:names.slide",
-          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
-            "image_1": "shopify://shop_images/Banner_Desktop.png",
+            "image_1": "shopify://shop_images/banner_updated_2.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
