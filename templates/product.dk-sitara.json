@@ -177,6 +177,13 @@
               },
               "blocks": {}
             },
+            "upload_lift_app_block_4JpC37": {
+              "type": "shopify://apps/upload-lift/blocks/app-block/3c98bdcb-7587-4ade-bfe4-7d8af00d05ca",
+              "settings": {
+                "product": "{{closest.product}}",
+                "field": "Image upload"
+              }
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -820,6 +827,7 @@
             "dk_price_DakaxW",
             "price_a7krng",
             "variant_picker_R3rGDr",
+            "upload_lift_app_block_4JpC37",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
             "group_X39hBc",
