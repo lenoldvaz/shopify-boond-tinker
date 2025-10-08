@@ -85,10 +85,13 @@
           "vwoAccountId": "957114",
           "codeType": "ASYNC",
           "settingsTolerance": 2000,
-          "libraryTolerance": 2500,
-          "existingJquery": "false",
           "enableThemeTesting": false
         }
+      },
+      "15132424025755801183": {
+        "type": "shopify://apps/upload-lift/blocks/app-embed/3c98bdcb-7587-4ade-bfe4-7d8af00d05ca",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
