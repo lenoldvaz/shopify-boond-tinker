@@ -26,25 +26,10 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "announcement_ezBeBL": {
-          "type": "_announcement",
-          "name": "t:names.announcement",
-          "settings": {
-            "text": "<strong>FREE</strong> Dhoop Sampler on spending 3500+",
-            "link": "",
-            "font": "var(--font-body--family)",
-            "font_size": "",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "announcement_mxxhta",
-        "announcement_ezBeBL"
+        "announcement_mxxhta"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
