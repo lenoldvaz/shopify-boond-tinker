@@ -92,6 +92,16 @@
         "type": "shopify://apps/upload-lift/blocks/app-embed/3c98bdcb-7587-4ade-bfe4-7d8af00d05ca",
         "disabled": false,
         "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
