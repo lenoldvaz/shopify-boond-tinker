@@ -18,7 +18,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/khazana-gift-box",
-            "image_1": "shopify://shop_images/Frame_12.png",
+            "image_1": "shopify://shop_images/Frame_12_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -76,7 +76,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://collections/dhoop",
-            "image_1": "shopify://shop_images/Frame_10.png",
+            "image_1": "shopify://shop_images/Frame_10_1_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -105,7 +105,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
-            "image_1": "shopify://shop_images/banner_desktop_f820dad7-404b-4be4-985b-aa34ea090b43.png",
+            "image_1": "shopify://shop_images/banner_desktop_f820dad7-404b-4be4-985b-aa34ea090b43_1_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -134,7 +134,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
-            "image_1": "shopify://shop_images/banner_updated_2.png",
+            "image_1": "shopify://shop_images/banner_updated_2_1_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -189,7 +189,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/khazana-gift-box",
-            "image_1": "shopify://shop_images/Frame_11.png",
+            "image_1": "shopify://shop_images/Frame_11_1_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -218,7 +218,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/maati-natural-perfume-oil",
-            "image_1": "shopify://shop_images/Frame_7.png",
+            "image_1": "shopify://shop_images/Frame_7_1_1_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -276,7 +276,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
-            "image_1": "shopify://shop_images/Mobile_1.png",
+            "image_1": "shopify://shop_images/Mobile_1_2.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -305,7 +305,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "https://boondfragrances.com/pages/the-making-of-boond-fragrances",
-            "image_1": "shopify://shop_images/Banner_Mobile.png",
+            "image_1": "shopify://shop_images/Banner_Mobile_1.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
