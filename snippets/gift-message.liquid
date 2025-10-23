@@ -40,13 +40,10 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('Gift message script loaded');
     const giftMessageBlock = document.querySelector('[data-gift-message-block]');
     if (!giftMessageBlock) {
-      console.log('Gift message block not found in DOM');
       return;
     }
-    console.log('Gift message block found:', giftMessageBlock);
     
     const textarea = giftMessageBlock.querySelector('[data-gift-message-input]');
     const charCount = giftMessageBlock.querySelector('[data-char-count]');
@@ -66,107 +63,14 @@
     
     textarea.addEventListener('input', updateCharCount);
     
-    // Check for variant picker and listen for changes
-    const variantPicker = document.querySelector('variant-picker');
-    if (variantPicker) {
-      variantPicker.addEventListener('variant-selected', function(event) {
-        checkGiftWrapSelection();
-      });
-      
-      // Also listen for direct changes to variant inputs
-      const variantInputs = document.querySelectorAll('variant-picker input[type="radio"], variant-picker select');
-      variantInputs.forEach(input => {
-        input.addEventListener('change', function() {
-          setTimeout(checkGiftWrapSelection, 100); // Small delay to ensure variant is updated
-        });
-      });
-    }
-    
-    function checkGiftWrapSelection() {
-      console.log('Checking gift wrap selection...');
-      // Look for "Bespoke Gift Wrap" option with "Yes" selected
-      const giftWrapInputs = document.querySelectorAll('variant-picker input[type="radio"]');
-      console.log('Found variant inputs:', giftWrapInputs.length);
-      let giftWrapSelected = false;
-      
-      // Debug: Log all variant options to help identify the correct naming
-      if (window.location.search.includes('debug=true')) {
-        console.log('Available variant options:');
-        giftWrapInputs.forEach(input => {
-          const label = input.closest('label');
-          if (label) {
-            console.log('Option:', label.textContent.trim(), 'Checked:', input.checked);
-          }
-        });
-      }
-      
-      giftWrapInputs.forEach(input => {
-        const label = input.closest('label');
-        if (label) {
-          const labelText = label.textContent.toLowerCase();
-          // Check if this is a "Bespoke Gift Wrap" option and "Yes" is selected
-          if ((labelText.includes('bespoke gift wrap') || labelText.includes('gift wrap') || labelText.includes('gift')) && 
-              (labelText.includes('yes') || labelText.includes('true')) && input.checked) {
-            giftWrapSelected = true;
-          }
-        }
-      });
-      
-      // Also check dropdown selects
-      const giftWrapSelects = document.querySelectorAll('variant-picker select');
-      giftWrapSelects.forEach(select => {
-        const option = select.options[select.selectedIndex];
-        if (option) {
-          const optionText = option.text.toLowerCase();
-          if ((optionText.includes('bespoke gift wrap') || optionText.includes('gift wrap') || optionText.includes('gift')) && 
-              (optionText.includes('yes') || optionText.includes('true'))) {
-            giftWrapSelected = true;
-          }
-        }
-      });
-      
-      // Alternative: Check for any variant option that contains "gift wrap" and "yes"
-      if (!giftWrapSelected) {
-        const allVariantLabels = document.querySelectorAll('variant-picker label');
-        allVariantLabels.forEach(label => {
-          const labelText = label.textContent.toLowerCase();
-          if ((labelText.includes('bespoke gift wrap') || labelText.includes('gift wrap') || labelText.includes('gift')) && 
-              (labelText.includes('yes') || labelText.includes('true'))) {
-            const input = label.querySelector('input[type="radio"]');
-            if (input && input.checked) {
-              giftWrapSelected = true;
-            }
-          }
-        });
-      }
-      
-      // Show/hide the gift message block
-      if (giftWrapSelected) {
-        giftMessageBlock.style.display = 'block';
-      } else {
-        giftMessageBlock.style.display = 'none';
-        textarea.value = ''; // Clear the message when hidden
-        updateCharCount();
-      }
-    }
-    
-    // Initial check
-    checkGiftWrapSelection();
-    
-    // Fallback: If no variant picker found, show the block after a delay
-    setTimeout(function() {
-      const variantPicker = document.querySelector('variant-picker');
-      if (!variantPicker) {
-        console.log('No variant picker found, showing gift message block');
-        giftMessageBlock.style.display = 'block';
-      }
-    }, 2000);
+    // Always show the gift message block
+    giftMessageBlock.style.display = 'block';
   });
 </script>
 
 {% stylesheet %}
   .gift-message-block {
-    display: block; /* Temporarily visible for debugging */
+    display: block;
     width: 100%;
   }
   
