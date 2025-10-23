@@ -1,10 +1,39 @@
 
 
-{% capture children %}
-  {% content_for 'blocks' %}
-{% endcapture %}
+{% liquid
+  assign show_section = true
+  
+  if section.settings.conditional_metafield != blank
+    assign metafield_parts = section.settings.conditional_metafield | split: '.'
+    if metafield_parts.size == 2
+      assign namespace = metafield_parts[0]
+      assign key = metafield_parts[1]
+      
+      case template.name
+        when 'product'
+          assign metafield_value = product.metafields[namespace][key]
+        when 'collection'
+          assign metafield_value = collection.metafields[namespace][key]
+        when 'page'
+          assign metafield_value = page.metafields[namespace][key]
+        else
+          assign metafield_value = nil
+      endcase
+      
+      if metafield_value == blank
+        assign show_section = false
+      endif
+    endif
+  endif
+%}
 
-{% render 'section', section: section, children: children %}
+{% if show_section %}
+  {% capture children %}
+    {% content_for 'blocks' %}
+  {% endcapture %}
+
+  {% render 'section', section: section, children: children %}
+{% endif %}
 
 {% schema %}
 {
@@ -25,6 +54,17 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "header",
+      "content": "Conditional Visibility"
+    },
+    {
+      "type": "text",
+      "id": "conditional_metafield",
+      "label": "Show only when metafield has content",
+      "info": "Enter metafield in format: namespace.key (e.g., custom.product_video). Section will only show if this metafield contains any value.",
+      "placeholder": "custom.product_video"
+    },
     {
       "type": "header",
       "content": "t:content.layout"
