@@ -1319,6 +1319,7 @@
           "name": "t:names.video",
           "settings": {
             "source": "uploaded",
+            "video": "{{ closest.product.metafields.custom.product_video.value }}",
             "video_url": "",
             "video_autoplay": false,
             "video_loop": true,
@@ -1341,9 +1342,9 @@
       "block_order": [
         "video_PthMbP"
       ],
-      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
+        "conditional_metafield": "custom.product_video",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
