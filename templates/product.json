@@ -1345,6 +1345,7 @@
       "name": "t:names.video_section",
       "settings": {
         "conditional_metafield": "custom.product_video",
+        "hide_on_desktop": true,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
