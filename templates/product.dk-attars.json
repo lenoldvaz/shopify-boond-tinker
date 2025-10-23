@@ -1491,6 +1491,8 @@
       ],
       "name": "Comparison",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1545,37 +1547,15 @@
             "padding-inline-end": 0
           },
           "blocks": {}
-        },
-        "image_jQKJdR": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "video_PthMbP",
-        "image_jQKJdR"
+        "video_PthMbP"
       ],
-      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
+        "conditional_metafield": "custom.product_video",
+        "hide_on_desktop": true,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
