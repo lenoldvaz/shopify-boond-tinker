@@ -28,11 +28,27 @@
 %}
 
 {% if show_section %}
-  {% capture children %}
-    {% content_for 'blocks' %}
-  {% endcapture %}
+  <div class="section-wrapper{% if section.settings.hide_on_desktop %} hide-on-desktop{% endif %}">
+    {% capture children %}
+      {% content_for 'blocks' %}
+    {% endcapture %}
 
-  {% render 'section', section: section, children: children %}
+    {% render 'section', section: section, children: children %}
+  </div>
+{% endif %}
+
+{% if section.settings.hide_on_desktop %}
+  <style>
+    .hide-on-desktop {
+      display: none !important;
+    }
+    
+    @media screen and (max-width: 749px) {
+      .hide-on-desktop {
+        display: block !important;
+      }
+    }
+  </style>
 {% endif %}
 
 {% schema %}
@@ -64,6 +80,12 @@
       "label": "Show only when metafield has content",
       "info": "Enter metafield in format: namespace.key (e.g., custom.product_video). Section will only show if this metafield contains any value.",
       "placeholder": "custom.product_video"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_desktop",
+      "label": "Hide on desktop",
+      "default": false
     },
     {
       "type": "header",
