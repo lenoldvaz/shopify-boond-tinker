@@ -535,6 +535,22 @@
               },
               "blocks": {}
             },
+            "gift_message_QHnptM": {
+              "type": "gift-message",
+              "name": "Gift Message",
+              "disabled": true,
+              "settings": {
+                "heading": "Gift message (optional)",
+                "placeholder": "Enter your gift message here...",
+                "max_length": 70,
+                "help_text": "We'll add this handwritten message to all the boxes you will order.",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "dk_price_DakaxW": {
               "type": "dk-price",
               "name": "DK Custom Price",
@@ -1253,6 +1269,7 @@
             "dk_text_96FEjd",
             "group_CfKHjP",
             "variant_picker_R3rGDr",
+            "gift_message_QHnptM",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
