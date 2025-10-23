@@ -1529,7 +1529,7 @@
           "name": "t:names.video",
           "settings": {
             "source": "uploaded",
-            "video": "{{ closest.product.metafields.my_fields.testimonail_4.value }}",
+            "video": "{{ closest.product.metafields.custom.product_video.value }}",
             "video_url": "",
             "video_autoplay": false,
             "video_loop": false,
