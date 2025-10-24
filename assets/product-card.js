@@ -237,16 +237,37 @@ export class ProductCard extends Component {
    * @param {PointerEvent} event - The pointer event.
    */
   previewImage(event) {
-    // Disabled: Image cycling on hover
-    return;
+    // Disable image cycling on mobile devices
+    if (window.innerWidth <= 768) return;
+    
+    const { slideshow } = this.refs;
+
+    if (!slideshow || event.pointerType !== 'mouse') return;
+
+    this.resetVariant.cancel();
+
+    if (this.#previousSlideIndex != null && this.#previousSlideIndex > 0) {
+      slideshow.select(this.#previousSlideIndex, undefined, { animate: false });
+    } else {
+      slideshow.next(undefined, { animate: false });
+      setTimeout(() => this.#preloadNextPreviewImage());
+    }
   }
 
   /**
    * Resets the image to the variant image.
    */
   resetImage() {
-    // Disabled: Image cycling on hover
-    return;
+    // Disable image cycling on mobile devices
+    if (window.innerWidth <= 768) return;
+    
+    const { slideshow } = this.refs;
+    if (!this.variantPicker) {
+      if (!slideshow) return;
+      slideshow.previous(undefined, { animate: false });
+    } else {
+      this.#resetVariant();
+    }
   }
 
   /**
