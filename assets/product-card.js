@@ -237,8 +237,15 @@ export class ProductCard extends Component {
    * @param {PointerEvent} event - The pointer event.
    */
   previewImage(event) {
-    // Disable image cycling on mobile devices
-    if (window.innerWidth <= 768) return;
+    // Check theme settings for image cycling
+    const isMobile = window.innerWidth <= 768;
+    const bodyEl = document.body;
+    const desktopEnabled = bodyEl.getAttribute('data-card-image-cycling-desktop') === 'true';
+    const mobileEnabled = bodyEl.getAttribute('data-card-image-cycling-mobile') === 'true';
+    
+    if ((isMobile && !mobileEnabled) || (!isMobile && !desktopEnabled)) {
+      return;
+    }
     
     const { slideshow } = this.refs;
 
@@ -258,8 +265,15 @@ export class ProductCard extends Component {
    * Resets the image to the variant image.
    */
   resetImage() {
-    // Disable image cycling on mobile devices
-    if (window.innerWidth <= 768) return;
+    // Check theme settings for image cycling
+    const isMobile = window.innerWidth <= 768;
+    const bodyEl = document.body;
+    const desktopEnabled = bodyEl.getAttribute('data-card-image-cycling-desktop') === 'true';
+    const mobileEnabled = bodyEl.getAttribute('data-card-image-cycling-mobile') === 'true';
+    
+    if ((isMobile && !mobileEnabled) || (!isMobile && !desktopEnabled)) {
+      return;
+    }
     
     const { slideshow } = this.refs;
     if (!this.variantPicker) {

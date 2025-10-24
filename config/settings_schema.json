@@ -1393,6 +1393,20 @@
         ],
         "default": "lift",
         "info": "t:info.hover_effects"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_image_cycling_desktop",
+        "label": "Enable image cycling on desktop",
+        "default": true,
+        "info": "Allow product cards to cycle through images on hover for desktop devices"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_image_cycling_mobile",
+        "label": "Enable image cycling on mobile", 
+        "default": false,
+        "info": "Allow product cards to cycle through images on hover for mobile devices"
       }
     ]
   },

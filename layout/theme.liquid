@@ -109,7 +109,7 @@ function closeCartDrawer() {
 </script>
 {% comment %} ends here {% endcomment %}
 
-  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}" data-card-image-cycling-desktop="{{ settings.card_image_cycling_desktop }}" data-card-image-cycling-mobile="{{ settings.card_image_cycling_mobile }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
       {% sections 'header-group' %}
