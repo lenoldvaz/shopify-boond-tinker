@@ -184,6 +184,15 @@
                 "field": "Image upload"
               }
             },
+            "dk_combo_pack_selector_DK2025": {
+              "type": "dk_combo-pack-selector",
+              "settings": {
+                "padding-block-start": 12,
+                "padding-block-end": 12,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -828,6 +837,7 @@
             "price_a7krng",
             "variant_picker_R3rGDr",
             "upload_lift_app_block_4JpC37",
+            "dk_combo_pack_selector_DK2025",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
             "group_X39hBc",
