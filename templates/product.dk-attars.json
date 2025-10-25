@@ -583,8 +583,7 @@
               "blocks": {}
             },
             "dk_combo_pack_selector_DK2025": {
-              "type": "dk_combo-pack-selector",
-              "static": true,
+              "type": "dk-combo-pack-selector",
               "settings": {
                 "padding-block-start": 12,
                 "padding-block-end": 12,
