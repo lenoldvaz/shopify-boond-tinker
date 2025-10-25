@@ -9,13 +9,15 @@
 {%- assign combos = product.metafields.custom.combo_products.value -%}
 {%- assign combo_heading = product.metafields.custom.combo_heading.value | default: 'Combo Packs' -%}
 
-{% comment %} DEBUG: Always show block for testing {% endcomment %}
-<div style="background: #ffeb3b; padding: 15px; margin: 10px; border: 2px solid #f57c00;">
-  <strong>🔧 DK Combo Pack Block - DEBUG MODE</strong><br>
-  Block is loading correctly!<br>
+{% comment %} DEBUG: MAXIMUM VISIBILITY TEST {% endcomment %}
+<div style="background: #ff0000; color: white; padding: 20px; margin: 20px; border: 5px solid #000; font-size: 18px; z-index: 9999; position: relative;">
+  <strong>🚨 COMBO PACK BLOCK IS LOADING! 🚨</strong><br>
+  Template: {{ template.name }}<br>
+  Block settings: {{ block.settings | json }}<br>
   Combos found: {{ combos.size | default: 0 }}<br>
   Metafield data: {{ combos | json }}<br>
   Product handle: {{ product.handle }}<br>
+  Product ID: {{ product.id }}<br>
 </div>
 
 {%- if combos and combos.size > 0 -%}
