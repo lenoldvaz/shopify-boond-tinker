@@ -139,6 +139,11 @@ function closeCartDrawer() {
     <script src="{{ 'critical.js' | asset_url }}"></script>
     {% # theme-check-enable ParserBlockingScript %}
 
+    {% comment %} DK Combo Pack functionality - Added by DK on 2025-10-25 {% endcomment %}
+    {% if template.name == 'product' %}
+      <script src="{{ 'dk_combo-pack.js' | asset_url }}" defer></script>
+    {% endif %}
+
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
