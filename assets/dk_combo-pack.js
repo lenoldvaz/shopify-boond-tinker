@@ -224,7 +224,9 @@
       console.log('Product swapped to:', event.detail.newUrl);
     });
 
-    console.log('DK Combo Pack functionality initialized');
+    console.log('🔧 DK Combo Pack functionality initialized - DEBUG MODE');
+    console.log('Target selector:', TARGET_SELECTOR);
+    console.log('Section ID:', SECTION_ID);
   }
 
   // Initialize when DOM is ready
