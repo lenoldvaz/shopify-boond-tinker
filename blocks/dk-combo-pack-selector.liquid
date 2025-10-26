@@ -15,12 +15,15 @@
   Template: {{ template.name }}<br>
   Block settings: {{ block.settings | json }}<br>
   Combos found: {{ combos.size | default: 0 }}<br>
+  Combos is array: {{ combos | json }}<br>
+  First combo: {{ combos[0].title }}<br>
   Metafield data: {{ combos | json }}<br>
   Product handle: {{ product.handle }}<br>
   Product ID: {{ product.id }}<br>
 </div>
 
-{%- if combos and combos.size > 0 -%}
+{% comment %} DEBUG: Force show combo section {% endcomment %}
+{%- if combos -%}
   <div 
     id="ComboPacks" 
     class="pdp-option-block"
