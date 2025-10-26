@@ -582,15 +582,6 @@
               },
               "blocks": {}
             },
-            "dk_combo_pack_selector_DK2025": {
-              "type": "dk-combo-pack-selector",
-              "settings": {
-                "padding-block-start": 12,
-                "padding-block-end": 12,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              }
-            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -1278,7 +1269,6 @@
             "dk_text_96FEjd",
             "group_CfKHjP",
             "variant_picker_R3rGDr",
-            "dk_combo_pack_selector_DK2025",
             "gift_message_QHnptM",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",

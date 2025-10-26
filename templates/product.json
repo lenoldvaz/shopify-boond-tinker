@@ -647,21 +647,6 @@
               },
               "blocks": {}
             },
-            "test_combo_block_simple": {
-              "type": "test-combo-block",
-              "settings": {},
-              "blocks": {}
-            },
-            "dk_combo_pack_selector_DK2025": {
-              "type": "dk-combo-pack-selector",
-              "settings": {
-                "padding-block-start": 12,
-                "padding-block-end": 12,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -1307,8 +1292,6 @@
             "price_a7krng",
             "group_TJCLQr",
             "variant_picker_R3rGDr",
-            "test_combo_block_simple",
-            "dk_combo_pack_selector_DK2025",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
             "group_X39hBc",
