@@ -647,6 +647,10 @@
               },
               "blocks": {}
             },
+            "test_combo_block_simple": {
+              "type": "test-combo-block",
+              "settings": {}
+            },
             "dk_combo_pack_selector_DK2025": {
               "type": "dk-combo-pack-selector",
               "settings": {
@@ -1301,6 +1305,7 @@
             "price_a7krng",
             "group_TJCLQr",
             "variant_picker_R3rGDr",
+            "test_combo_block_simple",
             "dk_combo_pack_selector_DK2025",
             "buy_buttons_eYQEYi",
             "product_description_LfDYCg",
