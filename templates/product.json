@@ -649,16 +649,20 @@
             },
             "test_combo_block_simple": {
               "type": "test-combo-block",
-              "settings": {}
+              "disabled": true,
+              "settings": {},
+              "blocks": {}
             },
             "dk_combo_pack_selector_DK2025": {
               "type": "dk-combo-pack-selector",
+              "disabled": true,
               "settings": {
                 "padding-block-start": 12,
                 "padding-block-end": 12,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              }
+              },
+              "blocks": {}
             },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
