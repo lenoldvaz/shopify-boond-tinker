@@ -17,7 +17,7 @@
   Combos found: {{ combos.size | default: 0 }}<br>
   Combos length: {{ combos | size }}<br>
   Array type: {{ combos | type }}<br>
-  Combos empty?: {{ combos == empty }}<br>
+  Combos empty?: {% if combos == empty %}true{% else %}false{% endif %}<br>
   First combo: {{ combos.first.title }}<br>
   Metafield data: {{ combos | json }}<br>
   Product handle: {{ product.handle }}<br>
