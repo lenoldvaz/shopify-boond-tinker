@@ -17,15 +17,15 @@
   Combos found: {{ combos.size | default: 0 }}<br>
   Combos length: {{ combos | size }}<br>
   Array type: {{ combos | type }}<br>
-  First combo: {{ combos[0].title }}<br>
+  Combos empty?: {{ combos == empty }}<br>
+  First combo: {{ combos.first.title }}<br>
   Metafield data: {{ combos | json }}<br>
   Product handle: {{ product.handle }}<br>
   Product ID: {{ product.id }}<br>
 </div>
 
-{% comment %} DEBUG: Check if combo array has content {% endcomment %}
-{%- assign combo_count = combos | size -%}
-{%- if combo_count > 0 -%}
+{% comment %} DEBUG: Check if combo ProductListDrop has content {% endcomment %}
+{%- if combos and combos != empty -%}
   <div 
     id="ComboPacks" 
     class="pdp-option-block"
