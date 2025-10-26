@@ -649,13 +649,11 @@
             },
             "test_combo_block_simple": {
               "type": "test-combo-block",
-              "disabled": true,
               "settings": {},
               "blocks": {}
             },
             "dk_combo_pack_selector_DK2025": {
               "type": "dk-combo-pack-selector",
-              "disabled": true,
               "settings": {
                 "padding-block-start": 12,
                 "padding-block-end": 12,
