@@ -1232,6 +1232,7 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
+            "background_image": "shopify://shop_images/Shortlist_1_7__11zon.jpg",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
@@ -1262,6 +1263,7 @@
             },
             "text_9LwdFA": {
               "type": "text",
+              "disabled": true,
               "settings": {
                 "text": "<h3>New arrivals</h3>",
                 "width": "fit-content",
@@ -1287,6 +1289,7 @@
             },
             "button_7GcE8H": {
               "type": "button",
+              "disabled": true,
               "settings": {
                 "label": "Shop now",
                 "link": "shopify://collections/all",
@@ -1305,6 +1308,31 @@
             "text_9LwdFA",
             "button_7GcE8H"
           ]
+        },
+        "text_rrnrap": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>Seasonal farm visits</h6>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "group_HEF36b": {
           "type": "group",
@@ -1330,6 +1358,7 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "video_position": "cover",
+            "background_image": "shopify://shop_images/Jojo_11zon.jpg",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
@@ -1360,6 +1389,7 @@
             },
             "text_dgpBfx": {
               "type": "text",
+              "disabled": true,
               "settings": {
                 "text": "<h3>Bestsellers</h3>",
                 "width": "fit-content",
@@ -1385,6 +1415,7 @@
             },
             "button_KWTfX3": {
               "type": "button",
+              "disabled": true,
               "settings": {
                 "label": "Shop now",
                 "link": "shopify://collections/all",
@@ -1403,11 +1434,38 @@
             "text_dgpBfx",
             "button_KWTfX3"
           ]
+        },
+        "text_9aNDaD": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>Meet our team and create lifelong memories</h6>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "group_kWPexE",
-        "group_HEF36b"
+        "text_rrnrap",
+        "group_HEF36b",
+        "text_9aNDaD"
       ],
       "name": "t:names.split_showcase",
       "settings": {
