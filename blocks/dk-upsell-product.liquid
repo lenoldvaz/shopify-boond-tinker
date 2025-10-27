@@ -38,9 +38,27 @@
     style="{% render 'spacing-style', settings: block.settings %}"
     {{ block.shopify_attributes }}
   >
+    {% if block.settings.section_heading != blank %}
+      <h3 class="dk-upsell-heading" style="
+        font-family: var(--font-{{ block.settings.heading_font }}--family);
+        font-weight: var(--font-{{ block.settings.heading_font }}--weight);
+        font-size: {{ block.settings.heading_font_size }}px;
+        color: {{ block.settings.heading_color }};
+        text-transform: {{ block.settings.heading_text_transform }};
+        text-align: {{ block.settings.heading_alignment }};
+        margin-bottom: {{ block.settings.heading_spacing }}px;
+      ">
+        {{ block.settings.section_heading }}
+      </h3>
+    {% endif %}
+
     <a href="{{ also_product.url }}" class="product-also-see-link" style="display: block; text-decoration: none;">
       <div class="product-also-see-container">
-        <div class="product-also-see-item" style="background-color: {{ bg_color }} !important;">
+        <div class="product-also-see-item" style="
+          background-color: {{ bg_color }} !important;
+          border-radius: {{ block.settings.card_border_radius }}px;
+          border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+        ">
           {% if block.settings.custom_image != blank %}
             <img src="{{ block.settings.custom_image | image_url: width: 300 }}" alt="{{ also_product.title }}" class="also-see-image">
           {% else %}
@@ -48,7 +66,13 @@
           {% endif %}
           
           <div class="also-see-content">
-            <h4 class="also-see-title">{{ display_title }}</h4>
+            <h4 class="also-see-title" style="
+              font-family: var(--font-{{ block.settings.title_font }}--family);
+              font-weight: var(--font-{{ block.settings.title_font }}--weight);
+              font-size: {{ block.settings.title_font_size }}px;
+              color: {{ block.settings.title_color }};
+              text-transform: {{ block.settings.title_text_transform }};
+            ">{{ display_title }}</h4>
             
             {% if block.settings.show_description and also_product.description != blank %}
               <p class="also-see-description">{{ also_product.description | strip_html | truncate: 80 }}</p>
@@ -105,6 +129,13 @@
       "info": "Leave blank to use product title"
     },
     {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading",
+      "default": "Also available in",
+      "info": "Optional heading above the product"
+    },
+    {
       "type": "image_picker",
       "id": "custom_image",
       "label": "Custom image",
@@ -118,13 +149,136 @@
     },
     {
       "type": "header",
-      "content": "Styling"
+      "content": "Section Heading Style"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_transform",
+      "label": "Heading text transform",
+      "default": "none",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "uppercase", "label": "Uppercase"},
+        {"value": "lowercase", "label": "Lowercase"},
+        {"value": "capitalize", "label": "Capitalize"}
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "default": "left",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"},
+        {"value": "right", "label": "Right"}
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Spacing below heading",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Product Title Style"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title font",
+      "default": "body"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 13
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "title_text_transform",
+      "label": "Title text transform",
+      "default": "uppercase",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "uppercase", "label": "Uppercase"},
+        {"value": "lowercase", "label": "Lowercase"},
+        {"value": "capitalize", "label": "Capitalize"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Card Styling"
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background color",
+      "label": "Card background color",
       "default": "#f8f8f8"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#e0e0e0"
     },
     {
       "type": "text",
