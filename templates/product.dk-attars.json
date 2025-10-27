@@ -628,15 +628,30 @@
               "settings": {
                 "enabled": true,
                 "title": "",
+                "section_heading": "",
                 "show_description": false,
+                "heading_font": "work_sans_n4",
+                "heading_font_size": 18,
+                "heading_color": "#000000",
+                "heading_text_transform": "none",
+                "heading_alignment": "left",
+                "heading_spacing": 12,
+                "title_font": "work_sans_n4",
+                "title_font_size": 13,
+                "title_color": "#000000",
+                "title_text_transform": "uppercase",
                 "background_color": "#f8f8f8",
+                "card_border_radius": 8,
+                "card_border_width": 0,
+                "card_border_color": "#e0e0e0",
                 "button_text": "+ ADD",
                 "padding-block-start": 16,
                 "padding-block-end": 16,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "show_debug": false
-              }
+              },
+              "blocks": {}
             },
             "product_description_LfDYCg": {
               "type": "product-description",
