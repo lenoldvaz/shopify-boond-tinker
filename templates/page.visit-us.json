@@ -1038,6 +1038,31 @@
             "button_wrVDYc"
           ]
         },
+        "text_VeVUXq": {
+          "type": "text",
+          "settings": {
+            "text": "<h6>Explore our collections and exclusive scents with expert guidance</h6>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "group_qXtDKH": {
           "type": "group",
           "disabled": true,
@@ -1139,39 +1164,14 @@
             "text_8nbjkc",
             "button_8wJUMT"
           ]
-        },
-        "text_EQjd6B": {
-          "type": "text",
-          "settings": {
-            "text": "<h2>What Awaits You</h2>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "group_bJmhxb",
         "text_BPFEnh",
         "group_nYGK3g",
-        "group_qXtDKH",
-        "text_EQjd6B"
+        "text_VeVUXq",
+        "group_qXtDKH"
       ],
       "name": "t:names.split_showcase",
       "settings": {
