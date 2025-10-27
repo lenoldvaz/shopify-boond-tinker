@@ -66,6 +66,18 @@
           {{ 'content.product_badge_sale' | t }}
         </div>
 
+      {%- when 'new' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle " 
+          style="background-color: {{ settings.badge_new_color_background }}; color: {{ settings.badge_new_color_text }};">
+          New
+        </div>
+
+      {%- when 'bestseller' -%}
+        <div class="product-badges__badge product-badges__badge--rectangle " 
+          style="background-color: {{ settings.badge_bestseller_color_background }}; color: {{ settings.badge_bestseller_color_text }};">
+          Bestseller
+        </div>
+
       {%- when 'custom' -%}
         <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
           {{ badge_text | default: 'New' }}

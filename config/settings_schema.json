@@ -1551,6 +1551,38 @@
       },
       {
         "type": "header",
+        "content": "New Badge"
+      },
+      {
+        "type": "color",
+        "id": "badge_new_color_background",
+        "label": "New Background",
+        "default": "#10b981"
+      },
+      {
+        "type": "color",
+        "id": "badge_new_color_text",
+        "label": "New Text",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Bestseller Badge"
+      },
+      {
+        "type": "color",
+        "id": "badge_bestseller_color_background",
+        "label": "Bestseller Background",
+        "default": "#f59e0b"
+      },
+      {
+        "type": "color",
+        "id": "badge_bestseller_color_text",
+        "label": "Bestseller Text",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
         "content": "t:names.typography"
       },
       {
