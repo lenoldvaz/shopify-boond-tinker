@@ -32,7 +32,7 @@
     "sale_badge_type": "percent",
     "badge_sale_color_scheme": "scheme-4",
     "badge_percent_color_background": "#f91717",
-    "badge_bestseller_color_background": "#10b981",
+    "badge_bestseller_color_background": "#b20000",
     "badge_text_transform": "none",
     "button_border_radius_primary": 4,
     "secondary_button_border_width": 0,
