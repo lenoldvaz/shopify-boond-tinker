@@ -623,6 +623,21 @@
               },
               "block_order": []
             },
+            "dk_upsell_product_DK2025": {
+              "type": "dk-upsell-product",
+              "settings": {
+                "enabled": true,
+                "title": "",
+                "show_description": false,
+                "background_color": "#f8f8f8",
+                "button_text": "+ ADD",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0,
+                "show_debug": false
+              }
+            },
             "product_description_LfDYCg": {
               "type": "product-description",
               "name": "t:names.product_description",
@@ -1272,6 +1287,7 @@
             "gift_message_QHnptM",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
+            "dk_upsell_product_DK2025",
             "product_description_LfDYCg",
             "group_X39hBc",
             "accordion_g8EVVp"
