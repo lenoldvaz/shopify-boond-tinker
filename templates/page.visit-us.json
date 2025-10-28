@@ -1041,7 +1041,7 @@
         "text_VeVUXq": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Explore our fragrances</strong><br/>Discover our complete collection, from classic attars to rare finds, with guided insights from our team</p>",
+            "text": "<p><strong>Explore our fragrances</strong><br/>Discover our complete collection, from classics to rare finds, with guided insights from our team</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1312,7 +1312,7 @@
         "text_rrnrap": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Walk through the flower fields</strong><br/><br/>Depending on the season, wander through blooming rose or marigold flower farms, and see where each fragrance begins</p>",
+            "text": "<p><strong>Walk through the flower farm</strong><br/>In season, wander through blooming rose or marigold farms and see where the journey of each fragrance begins</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1438,7 +1438,7 @@
         "text_9aNDaD": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>Meet the makers</strong></p><p>Get to know the people behind Boond, our artisans, perfumers, and cheerleaders and take home memories for a lifetime</p>",
+            "text": "<p><strong>Meet the makers</strong>Get to know the people behind Boond and take home memories for a lifetime</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
