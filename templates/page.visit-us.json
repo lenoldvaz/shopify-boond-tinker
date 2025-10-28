@@ -92,7 +92,7 @@
         "text_UzqgpM": {
           "type": "text",
           "settings": {
-            "text": "<h1>Step into the world of fragrances with us</h1>",
+            "text": "<h1>Step into the world of  Indian perfumery</h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -117,7 +117,7 @@
         "text_EYrPbc": {
           "type": "text",
           "settings": {
-            "text": "<p>Visit our workshop in Kannauj and experience the making in person  & get a hands on our products</p>",
+            "text": "<p>Visit our workshop in Kannauj, watch artisans at work, learn about the ancient deg-bhapka process, and experience the scents that make Indian perfumery timeless</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -915,7 +915,7 @@
         "text_BPFEnh": {
           "type": "text",
           "settings": {
-            "text": "<h6>Understand the process of making Natural Perfume Oils</h6>",
+            "text": "<p><strong>Understand the craft</strong><br/>Witness the millennia-old <em>deg-bhapka</em> process that transforms flowers into timeless perfumes sustainably</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1041,7 +1041,7 @@
         "text_VeVUXq": {
           "type": "text",
           "settings": {
-            "text": "<h6>Explore our collections and exclusive scents with expert guidance</h6>",
+            "text": "<p><strong>Explore our fragrances</strong><br/>Discover our complete collection, from classic attars to rare finds, with guided insights from our team</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1312,7 +1312,7 @@
         "text_rrnrap": {
           "type": "text",
           "settings": {
-            "text": "<h6>Seasonal farm visits</h6>",
+            "text": "<p><strong>Walk through the flower fields</strong><br/><br/>Depending on the season, wander through blooming rose or marigold flower farms, and see where each fragrance begins</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1438,7 +1438,7 @@
         "text_9aNDaD": {
           "type": "text",
           "settings": {
-            "text": "<h6>Meet our team and create lifelong memories</h6>",
+            "text": "<p><strong>Meet the makers</strong></p><p>Get to know the people behind Boond, our artisans, perfumers, and cheerleaders and take home memories for a lifetime</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
