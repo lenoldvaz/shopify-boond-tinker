@@ -187,6 +187,7 @@
         "slide_jw6346": {
           "type": "_slide",
           "name": "Khazana",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/khazana-gift-box",
