@@ -15,6 +15,7 @@
         "slide_xB3fep": {
           "type": "_slide",
           "name": "Khazana",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/khazana-gift-box",
@@ -1187,6 +1188,8 @@
       ],
       "name": "t:names.custom_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -2407,6 +2410,8 @@
       ],
       "name": "t:names.pull_quote",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
