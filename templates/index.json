@@ -48,7 +48,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/maati-natural-perfume-oil",
-            "image_1": "shopify://shop_images/Frame_8_1.png",
+            "image_1": "shopify://shop_images/attar_banner_A_web.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -220,7 +220,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/maati-natural-perfume-oil",
-            "image_1": "shopify://shop_images/Frame_7_1_1_1.png",
+            "image_1": "shopify://shop_images/attar_banner_A_mob.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
