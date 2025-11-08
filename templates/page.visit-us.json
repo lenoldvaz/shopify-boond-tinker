@@ -197,7 +197,7 @@
           "type": "dk_text",
           "name": "DK Heading",
           "settings": {
-            "text": "<h2>What Awaits You</h2>",
+            "text": "<h2><strong>What Awaits You</strong></h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -405,7 +405,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/Shortlist_1_8__11zon.jpg",
+            "image": "shopify://shop_images/Shortlist_53__11zon.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -523,6 +523,288 @@
           },
           "block_order": [
             "group_ectBhA"
+          ]
+        }
+      },
+      "name": "t:names.editorial",
+      "settings": {
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "extend_media": true,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "media_with_content_7wMAzU": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/DSCF2312_11zon.jpg",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap_desktop": 24,
+            "gap_mobile": 24
+          },
+          "blocks": {
+            "group_nDa7xi": {
+              "type": "group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap_desktop": 12,
+                "gap_mobile": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_HkBywb": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<p><strong>Walk through the flower farms</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_La4Pam": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>In season, wander through blooming rose or marigold farms and see where the journey of each fragrance begins</p>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_HkBywb",
+                "text_La4Pam"
+              ]
+            }
+          },
+          "block_order": [
+            "group_nDa7xi"
+          ]
+        }
+      },
+      "name": "t:names.editorial",
+      "settings": {
+        "media_position": "left",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "extend_media": true,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "media_with_content_HAxNFt": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/Jojo_11zon.jpg",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap_desktop": 24,
+            "gap_mobile": 24
+          },
+          "blocks": {
+            "group_eeXD73": {
+              "type": "group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap_desktop": 12,
+                "gap_mobile": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_cnWcKi": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<p><strong>Meet the makers</strong></p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_63fKJU": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Meet our team and create lifelong memories</p>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_cnWcKi",
+                "text_63fKJU"
+              ]
+            }
+          },
+          "block_order": [
+            "group_eeXD73"
           ]
         }
       },
@@ -833,6 +1115,7 @@
         "text_VeVUXq",
         "group_qXtDKH"
       ],
+      "disabled": true,
       "name": "t:names.split_showcase",
       "settings": {
         "conditional_metafield": "",
@@ -870,6 +1153,7 @@
       "blocks": {
         "group_kWPexE": {
           "type": "group",
+          "disabled": true,
           "settings": {
             "link": "",
             "open_in_new_tab": false,
@@ -910,6 +1194,7 @@
           "blocks": {
             "spacer_UbjCwc": {
               "type": "spacer",
+              "disabled": true,
               "settings": {
                 "size": "pixel",
                 "percent_size": 100,
@@ -971,6 +1256,7 @@
         },
         "text_rrnrap": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p><strong>Walk through the flower farms</strong><br/>In season, wander through blooming rose or marigold farms and see where the journey of each fragrance begins</p>",
             "width": "100%",
@@ -996,6 +1282,7 @@
         },
         "group_HEF36b": {
           "type": "group",
+          "disabled": true,
           "settings": {
             "link": "",
             "open_in_new_tab": false,
@@ -1036,6 +1323,7 @@
           "blocks": {
             "spacer_BHyDJi": {
               "type": "spacer",
+              "disabled": true,
               "settings": {
                 "size": "pixel",
                 "percent_size": 100,
@@ -1097,6 +1385,7 @@
         },
         "text_9aNDaD": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p><strong>Meet the makers</strong><br/>Meet our team and create lifelong memories</p>",
             "width": "100%",
@@ -1127,6 +1416,7 @@
         "group_HEF36b",
         "text_9aNDaD"
       ],
+      "disabled": true,
       "name": "t:names.split_showcase",
       "settings": {
         "conditional_metafield": "",
@@ -1166,6 +1456,8 @@
     "section_E7LUD6",
     "media_with_content_iym8DR",
     "media_with_content_am7KWP",
+    "media_with_content_7wMAzU",
+    "media_with_content_HAxNFt",
     "section_dD8DQ9",
     "section_DREBpP"
   ]
