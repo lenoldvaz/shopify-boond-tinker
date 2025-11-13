@@ -110,6 +110,7 @@
             "dk_text_96FEjd": {
               "type": "dk_text",
               "name": "DK Text",
+              "disabled": true,
               "settings": {
                 "text": "{{ closest.product.metafields.custom.product_short_highlight | metafield_tag }}",
                 "width": "fit-content",
@@ -137,6 +138,7 @@
             "group_CfKHjP": {
               "type": "group",
               "name": "Product Bullets",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
