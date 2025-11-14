@@ -14,12 +14,11 @@
       "blocks": {
         "slide_xB3fep": {
           "type": "_slide",
-          "name": "Khazana",
-          "disabled": true,
+          "name": "Satparni",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "shopify://products/khazana-gift-box",
-            "image_1": "shopify://shop_images/Frame_13_f_1.jpg",
+            "slide_link": "shopify://products/satparni-natural-perfume-oil",
+            "image_1": "shopify://shop_images/Banner_desktop_9.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -186,12 +185,11 @@
       "blocks": {
         "slide_jw6346": {
           "type": "_slide",
-          "name": "Khazana",
-          "disabled": true,
+          "name": "Satparni",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "shopify://products/khazana-gift-box",
-            "image_1": "shopify://shop_images/Frame_11_1_1.png",
+            "slide_link": "shopify://products/satparni-natural-perfume-oil",
+            "image_1": "shopify://shop_images/Banner_mobile_10.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
