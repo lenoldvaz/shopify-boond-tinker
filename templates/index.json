@@ -44,11 +44,10 @@
         "slide_f9PNn6": {
           "type": "_slide",
           "name": "t:names.slide",
-          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/boond-fragrances-pure-rose-water",
-            "image_1": "shopify://shop_images/desktop_version_1800_x_603_b.png",
+            "image_1": "shopify://shop_images/Banner_Desktop_10.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -249,7 +248,7 @@
           "settings": {
             "media_type_1": "image",
             "slide_link": "shopify://products/boond-fragrances-pure-rose-water",
-            "image_1": "shopify://shop_images/mobile_version_rw_b_5.png",
+            "image_1": "shopify://shop_images/Desktop_mobile.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
