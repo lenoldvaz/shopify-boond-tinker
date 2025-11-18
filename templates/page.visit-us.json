@@ -144,7 +144,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Schedule your visit",
-            "link": "shopify://collections/all",
+            "link": "",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -820,6 +820,17 @@
         "padding-block-end": 0
       }
     },
+    "custom_liquid_haDiDd": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/QKKYa8?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"941\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Visit Us\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 60,
+        "padding-block-end": 40
+      }
+    },
     "section_dD8DQ9": {
       "type": "section",
       "blocks": {
@@ -1458,6 +1469,7 @@
     "media_with_content_am7KWP",
     "media_with_content_7wMAzU",
     "media_with_content_HAxNFt",
+    "custom_liquid_haDiDd",
     "section_dD8DQ9",
     "section_DREBpP"
   ]
