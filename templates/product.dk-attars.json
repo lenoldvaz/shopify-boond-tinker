@@ -607,21 +607,6 @@
               },
               "block_order": []
             },
-            "gift_message_QHnptM": {
-              "type": "gift-message",
-              "name": "Gift Message",
-              "settings": {
-                "heading": "Gift message (optional)",
-                "placeholder": "Enter your gift message here...",
-                "max_length": 70,
-                "help_text": "We'll add this handwritten message to all the boxes you will order.",
-                "padding-block-start": 16,
-                "padding-block-end": 16,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "dk_upsell_product_DK2025": {
               "type": "dk-upsell-product",
               "settings": {
@@ -649,6 +634,21 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0,
                 "show_debug": false
+              },
+              "blocks": {}
+            },
+            "gift_message_QHnptM": {
+              "type": "gift-message",
+              "name": "Gift Message",
+              "settings": {
+                "heading": "Gift message (optional)",
+                "placeholder": "Enter your gift message here...",
+                "max_length": 70,
+                "help_text": "We'll add this handwritten message to all the boxes you will order.",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             },
@@ -1300,8 +1300,8 @@
             "variant_picker_R3rGDr",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
-            "gift_message_QHnptM",
             "dk_upsell_product_DK2025",
+            "gift_message_QHnptM",
             "product_description_LfDYCg",
             "group_X39hBc",
             "accordion_g8EVVp"
