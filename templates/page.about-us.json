@@ -687,7 +687,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p><a href=\"https://www.youtube.com/watch?v=vrVRT7W46TI\" title=\"https://www.youtube.com/watch?v=vrVRT7W46TI\">Watch Thursday Special</a></p>",
+            "text": "<p><a href=\"https://www.youtube.com/watch?v=vrVRT7W46TI\" target=\"_blank\" title=\"https://www.youtube.com/watch?v=vrVRT7W46TI\">Watch Thursday Special</a></p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
@@ -713,7 +713,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p><a href=\"https://www.youtube.com/watch?v=wESIAWuD4GE\" title=\"https://www.youtube.com/watch?v=wESIAWuD4GE\">Watch Syaahi</a></p>",
+            "text": "<p><a href=\"https://www.youtube.com/watch?v=wESIAWuD4GE\" target=\"_blank\" title=\"https://www.youtube.com/watch?v=wESIAWuD4GE\">Watch Syaahi</a></p>",
             "width": "100%",
             "max_width": "none",
             "alignment": "center",
