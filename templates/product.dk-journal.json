@@ -110,7 +110,6 @@
             "dk_text_96FEjd": {
               "type": "dk_text",
               "name": "DK Text",
-              "disabled": true,
               "settings": {
                 "text": "{{ closest.product.metafields.custom.product_short_highlight | metafield_tag }}",
                 "width": "fit-content",
@@ -138,7 +137,6 @@
             "group_CfKHjP": {
               "type": "group",
               "name": "Product Bullets",
-              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -609,6 +607,7 @@
             },
             "dk_upsell_product_DK2025": {
               "type": "dk-upsell-product",
+              "disabled": true,
               "settings": {
                 "enabled": true,
                 "title": "",
@@ -656,6 +655,7 @@
             "product_description_LfDYCg": {
               "type": "product-description",
               "name": "t:names.product_description",
+              "disabled": true,
               "settings": {
                 "text": "{{ closest.product.description }}",
                 "width": "fit-content",
@@ -682,6 +682,7 @@
             "group_X39hBc": {
               "type": "group",
               "name": "Values",
+              "disabled": true,
               "settings": {
                 "link": "",
                 "open_in_new_tab": false,
@@ -1212,6 +1213,7 @@
                 },
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
                     "heading": "How to use?",
                     "open_by_default": false
@@ -1319,237 +1321,6 @@
         "color_scheme": "scheme-933a4105-2122-491e-9769-a1afe67ef389",
         "padding-block-start": 0,
         "padding-block-end": 32
-      }
-    },
-    "section_yrEyFk": {
-      "type": "section",
-      "blocks": {
-        "group_VDNrt4": {
-          "type": "group",
-          "name": "t:names.group",
-          "settings": {
-            "link": "",
-            "open_in_new_tab": false,
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap_desktop": 12,
-            "gap_mobile": 12,
-            "width": "custom",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "padding-block-start": 100,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "text_YByFwE": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<h4>Be a part of the Boond Mission</h4>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-subheading--family)",
-                "font_size": "0.875rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-primary)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_nVddMj": {
-              "type": "text",
-              "name": "t:names.heading",
-              "settings": {
-                "text": "<h2>Why Choose बूँद | Boond?</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_Tegcjj": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "<p>With बूँद | Boond, our mission is to revive the ancient art of Indian perfume making, support the artisans and take Indian fragrances to the world.</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "buy_buttons_tMJYBD": {
-              "type": "buy-buttons",
-              "name": "t:names.product_buy_buttons",
-              "settings": {
-                "product": "{{  closest.product }}",
-                "stacking": true,
-                "show_pickup_availability": true,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "disabled": true,
-                  "static": true,
-                  "settings": {
-                    "product": "{{ closest.product }}"
-                  },
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true,
-                  "settings": {
-                    "product": "{{ closest.product }}",
-                    "style_class": "button-secondary"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "static": true,
-                  "settings": {
-                    "product": "{{ closest.product }}"
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            }
-          },
-          "block_order": [
-            "text_YByFwE",
-            "text_nVddMj",
-            "text_Tegcjj",
-            "buy_buttons_tMJYBD"
-          ]
-        },
-        "image_UP7De6": {
-          "type": "image",
-          "name": "t:names.image",
-          "settings": {
-            "image": "shopify://shop_images/Frame_279.png",
-            "link": "",
-            "image_ratio": "adapt",
-            "width": "custom",
-            "custom_width": 70,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 32,
-            "padding-inline-end": 32
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "group_VDNrt4",
-        "image_UP7De6"
-      ],
-      "name": "Comparison",
-      "settings": {
-        "conditional_metafield": "",
-        "hide_on_desktop": false,
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "flex-start",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap_desktop": 12,
-        "gap_mobile": 12,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-933a4105-2122-491e-9769-a1afe67ef389",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": true,
-        "overlay_color": "#fefbff",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 80,
-        "padding-block-end": 80
       }
     },
     "section_NaqU9X": {
@@ -1906,7 +1677,6 @@
   },
   "order": [
     "main",
-    "section_yrEyFk",
     "section_NaqU9X",
     "175402345097dc9a1b",
     "product_list_zR9Cym"
