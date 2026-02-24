@@ -640,6 +640,7 @@
             "gift_message_QHnptM": {
               "type": "gift-message",
               "name": "Gift Message",
+              "disabled": true,
               "settings": {
                 "heading": "Gift message (optional)",
                 "placeholder": "Enter your gift message here...",
