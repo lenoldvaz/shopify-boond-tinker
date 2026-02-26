@@ -655,7 +655,6 @@
             "product_description_LfDYCg": {
               "type": "product-description",
               "name": "t:names.product_description",
-              "disabled": true,
               "settings": {
                 "text": "{{ closest.product.description }}",
                 "width": "fit-content",
@@ -1251,6 +1250,7 @@
                 },
                 "accordion_row_aaFerA": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
                     "heading": "Inside the box",
                     "open_by_default": false
