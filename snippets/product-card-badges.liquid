@@ -55,7 +55,8 @@
         </div>
 
       {%- when 'percent' -%}
-        {%- assign discount = 100 | times: product.price | divided_by: product.compare_at_price | minus: 100 | abs -%}
+        {%- comment -%}Added by DK on 2026-03-05: Use round() to match pricing section formula and avoid 1% discrepancy from integer division{%- endcomment -%}
+        {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
         <div class="product-badges__badge product-badges__badge--rectangle "
            style="background-color: {{ settings.badge_percent_color_background }}; color: {{ settings.badge_percent_color_text }};">
          <strong>{{ discount }}%&nbsp;OFF</strong> 
