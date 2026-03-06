@@ -55,9 +55,15 @@ class HeaderDrawer extends Component {
 
   /**
    * Toggle the main menu drawer
+   * Added by DK on 2026-03-05: Accept event param and prevent native <details> toggle.
+   * On iOS Safari, the native toggle fires on touchend (before the synthetic click event),
+   * so isOpen is already true when toggle() runs, causing immediate close() — items flash
+   * then vanish. Preventing default stops native toggle; open() sets the attribute manually.
+   * @param {Event} [event]
    */
-  toggle() {
-    return this.isOpen ? this.close() : this.open();
+  toggle(event) {
+    event?.preventDefault();
+    return this.isOpen ? this.close() : this.open(event);
   }
 
   /**
@@ -70,6 +76,9 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
+    // Added by DK on 2026-03-05: Manually set open attribute since native toggle is prevented
+    event?.preventDefault();
+    details.setAttribute('open', '');
     summary.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => details.classList.add('menu-open'));
 
