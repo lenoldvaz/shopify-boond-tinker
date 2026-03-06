@@ -13,32 +13,23 @@ import { onAnimationEnd } from '@theme/utilities';
 class HeaderDrawer extends Component {
   requiredRefs = ['details'];
 
+  // Added by DK on 2026-03-05: Track open state with a private flag instead of reading
+  // the DOM's [open] attribute. On iOS Safari, the native <details> toggle can fire at
+  // different times relative to click events, making the DOM attribute unreliable as a
+  // state source. Using our own flag makes toggle() immune to that race condition.
+  #isDrawerOpen = false;
+
   connectedCallback() {
     super.connectedCallback();
 
     this.addEventListener('keyup', this.#onKeyUp);
     this.#setupAnimatedElementListeners();
-
-    // Added by DK on 2026-03-05: Intercept touchend on the main summary to prevent
-    // iOS Safari from toggling <details> on touchend (before the synthetic click fires).
-    // preventDefault() on touchend also suppresses the click, so toggle() only runs once.
-    const mainSummary = this.refs.details.querySelector(':scope > summary');
-    mainSummary?.addEventListener('touchend', this.#onSummaryTouchEnd, { passive: false });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('keyup', this.#onKeyUp);
-
-    const mainSummary = this.refs.details.querySelector(':scope > summary');
-    mainSummary?.removeEventListener('touchend', this.#onSummaryTouchEnd);
   }
-
-  // Added by DK on 2026-03-05: Touch handler that prevents native iOS details toggle
-  #onSummaryTouchEnd = (event) => {
-    event.preventDefault();
-    this.toggle();
-  };
 
   /**
    * Close the main menu drawer when the Escape key is pressed
@@ -52,9 +43,11 @@ class HeaderDrawer extends Component {
 
   /**
    * @returns {boolean} Whether the main menu drawer is open
+   * Added by DK on 2026-03-05: Use private flag instead of DOM attribute to avoid
+   * iOS Safari race condition where native <details> toggle fires before click handler.
    */
   get isOpen() {
-    return this.refs.details.hasAttribute('open');
+    return this.#isDrawerOpen;
   }
 
   /**
@@ -70,10 +63,8 @@ class HeaderDrawer extends Component {
 
   /**
    * Toggle the main menu drawer
-   * Added by DK on 2026-03-05: Accept event param and prevent native <details> toggle.
-   * On iOS Safari, the native toggle fires on touchend (before the synthetic click event),
-   * so isOpen is already true when toggle() runs, causing immediate close() — items flash
-   * then vanish. Preventing default stops native toggle; open() sets the attribute manually.
+   * Added by DK on 2026-03-05: Prevent native <details> toggle so it doesn't interfere
+   * with our flag-based state tracking.
    * @param {Event} [event]
    */
   toggle(event) {
@@ -91,8 +82,10 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
-    // Added by DK on 2026-03-05: Manually set open attribute since native toggle is prevented
+    // Added by DK on 2026-03-05: Track state via flag and set [open] manually.
+    // Native toggle is prevented so we must set the attribute ourselves for CSS selectors.
     event?.preventDefault();
+    if (details === this.refs.details) this.#isDrawerOpen = true;
     details.setAttribute('open', '');
     summary.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => details.classList.add('menu-open'));
@@ -112,6 +105,7 @@ class HeaderDrawer extends Component {
    * Close the main menu drawer
    */
   close() {
+    this.#isDrawerOpen = false;
     this.#close(this.refs.details);
   }
 
@@ -124,6 +118,10 @@ class HeaderDrawer extends Component {
     const summary = details.querySelector('summary');
 
     if (!summary) return;
+
+    // Added by DK on 2026-03-05: Reset flag if closing main drawer (e.g. via Escape key,
+    // which calls #close() directly without going through close()).
+    if (details === this.refs.details) this.#isDrawerOpen = false;
 
     summary.setAttribute('aria-expanded', 'false');
     details.classList.remove('menu-open');
