@@ -63,13 +63,20 @@ class HeaderDrawer extends Component {
 
   /**
    * Toggle the main menu drawer
-   * Added by DK on 2026-03-05: Prevent native <details> toggle so it doesn't interfere
-   * with our flag-based state tracking.
+   * Added by DK on 2026-03-05: Use flag-based state to avoid iOS Safari race condition.
+   * Added by DK on 2026-03-06: Only call preventDefault() when CLOSING.
+   * On iOS, calling preventDefault() on click during OPEN causes iOS to undo the
+   * touchend native toggle (which already set [open]), making the drawer invisible.
+   * During CLOSE, preventDefault() keeps [open] present so the 200ms slide-out
+   * CSS transition can complete before reset() removes [open].
    * @param {Event} [event]
    */
   toggle(event) {
-    event?.preventDefault();
-    return this.isOpen ? this.close() : this.open(event);
+    if (this.isOpen) {
+      event?.preventDefault();
+      return this.close();
+    }
+    return this.open(event);
   }
 
   /**
@@ -82,11 +89,14 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
-    // Added by DK on 2026-03-05: Track state via flag and set [open] manually.
-    // Native toggle is prevented so we must set the attribute ourselves for CSS selectors.
-    event?.preventDefault();
+    // Added by DK on 2026-03-05: Track state via flag.
+    // Added by DK on 2026-03-06: Removed event.preventDefault() and manual setAttribute([open]).
+    // Native <details> toggle now manages [open]:
+    // - Desktop: fires as click default action after our capture-phase handler runs.
+    // - iOS Safari: fires on touchend before the synthetic click, so [open] is already set.
+    // Calling preventDefault() here was causing iOS to undo the touchend toggle
+    // asynchronously, removing [open] after our code set it → drawer stayed invisible.
     if (details === this.refs.details) this.#isDrawerOpen = true;
-    details.setAttribute('open', '');
     summary.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => details.classList.add('menu-open'));
 
