@@ -18,12 +18,27 @@ class HeaderDrawer extends Component {
 
     this.addEventListener('keyup', this.#onKeyUp);
     this.#setupAnimatedElementListeners();
+
+    // Added by DK on 2026-03-05: Intercept touchend on the main summary to prevent
+    // iOS Safari from toggling <details> on touchend (before the synthetic click fires).
+    // preventDefault() on touchend also suppresses the click, so toggle() only runs once.
+    const mainSummary = this.refs.details.querySelector(':scope > summary');
+    mainSummary?.addEventListener('touchend', this.#onSummaryTouchEnd, { passive: false });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('keyup', this.#onKeyUp);
+
+    const mainSummary = this.refs.details.querySelector(':scope > summary');
+    mainSummary?.removeEventListener('touchend', this.#onSummaryTouchEnd);
   }
+
+  // Added by DK on 2026-03-05: Touch handler that prevents native iOS details toggle
+  #onSummaryTouchEnd = (event) => {
+    event.preventDefault();
+    this.toggle();
+  };
 
   /**
    * Close the main menu drawer when the Escape key is pressed
@@ -113,7 +128,15 @@ class HeaderDrawer extends Component {
     summary.setAttribute('aria-expanded', 'false');
     details.classList.remove('menu-open');
 
-    onAnimationEnd(details, () => {
+    // Added by DK on 2026-03-05: Replaced onAnimationEnd with setTimeout since stagger
+    // animations were removed. onAnimationEnd waits for an animationend event which never
+    // fires without item animations, so reset() would never be called (leaving the [open]
+    // attribute on details, breaking the icon toggle and subsequent open/close cycles).
+    // We wait for the drawer slide-out CSS transition (--drawer-animation-speed) + buffer.
+    const drawerSpeedMs =
+      parseFloat(getComputedStyle(this).getPropertyValue('--drawer-animation-speed')) * 1000 || 200;
+
+    setTimeout(() => {
       reset(details);
 
       if (details === this.refs.details) {
@@ -123,7 +146,7 @@ class HeaderDrawer extends Component {
       } else {
         trapFocus(this.refs.details);
       }
-    });
+    }, drawerSpeedMs + 50);
   }
 
   /**

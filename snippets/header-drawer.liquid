@@ -931,14 +931,11 @@
     padding-inline-start: 0;
   }
 
+  /* Added by DK on 2026-03-05: Removed stagger animation so menu items appear instantly.
+     Original animation caused iOS Safari flash-and-vanish bug due to touch event timing.
+     Items are visible immediately via parent .menu-drawer visibility transition. */
   .menu-drawer-container[open] .menu-drawer__animated-element {
-    animation: menu-drawer-nav-open var(--drawer-animation-speed) ease-in-out;
-    animation-delay: calc(var(--drawer-animation-speed) + (var(--menu-drawer-animation-index) - 1) * 0.1s);
-    /* Added by DK on 2026-03-05: Changed from 'backwards' to 'both' to fix iOS Safari bug
-       where animated items flash and vanish after staggered animation completes.
-       'both' retains the to-keyframe state (visible) after animation ends,
-       while still hiding items during their delay phase (from-keyframe). */
-    animation-fill-mode: both;
+    animation: none;
   }
 
   .menu-drawer__menu details,
