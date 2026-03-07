@@ -13,12 +13,6 @@ import { onAnimationEnd } from '@theme/utilities';
 class HeaderDrawer extends Component {
   requiredRefs = ['details'];
 
-  // Added by DK on 2026-03-05: Track open state with a private flag instead of reading
-  // the DOM's [open] attribute. On iOS Safari, the native <details> toggle can fire at
-  // different times relative to click events, making the DOM attribute unreliable as a
-  // state source. Using our own flag makes toggle() immune to that race condition.
-  #isDrawerOpen = false;
-
   connectedCallback() {
     super.connectedCallback();
 
@@ -43,11 +37,9 @@ class HeaderDrawer extends Component {
 
   /**
    * @returns {boolean} Whether the main menu drawer is open
-   * Added by DK on 2026-03-05: Use private flag instead of DOM attribute to avoid
-   * iOS Safari race condition where native <details> toggle fires before click handler.
    */
   get isOpen() {
-    return this.#isDrawerOpen;
+    return this.refs.details.hasAttribute('open');
   }
 
   /**
@@ -63,20 +55,9 @@ class HeaderDrawer extends Component {
 
   /**
    * Toggle the main menu drawer
-   * Added by DK on 2026-03-05: Use flag-based state to avoid iOS Safari race condition.
-   * Added by DK on 2026-03-06: Only call preventDefault() when CLOSING.
-   * On iOS, calling preventDefault() on click during OPEN causes iOS to undo the
-   * touchend native toggle (which already set [open]), making the drawer invisible.
-   * During CLOSE, preventDefault() keeps [open] present so the 200ms slide-out
-   * CSS transition can complete before reset() removes [open].
-   * @param {Event} [event]
    */
-  toggle(event) {
-    if (this.isOpen) {
-      event?.preventDefault();
-      return this.close();
-    }
-    return this.open(event);
+  toggle() {
+    return this.isOpen ? this.close() : this.open();
   }
 
   /**
@@ -89,21 +70,8 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
-    // Added by DK on 2026-03-05: Track state via flag.
-    // Added by DK on 2026-03-06: Re-assert [open] inside the rAF alongside menu-open.
-    // Two scenarios require this:
-    // 1. iOS Safari: the click's native toggle fires on touchend (setting [open]), but iOS
-    //    may also fire the toggle again as the click default action (removing [open]).
-    //    Re-setting in rAF counters that removal before the first paint.
-    // 2. Fast re-open race: if [open] is still present from a previous close's setTimeout
-    //    that hasn't fired yet, the native click toggle sees [open] present and removes it.
-    //    Re-setting in rAF restores it so Safari's UA stylesheet doesn't hide drawer content.
-    if (details === this.refs.details) this.#isDrawerOpen = true;
     summary.setAttribute('aria-expanded', 'true');
-    requestAnimationFrame(() => {
-      details.setAttribute('open', '');
-      details.classList.add('menu-open');
-    });
+    requestAnimationFrame(() => details.classList.add('menu-open'));
 
     trapFocus(details);
   }
@@ -120,7 +88,6 @@ class HeaderDrawer extends Component {
    * Close the main menu drawer
    */
   close() {
-    this.#isDrawerOpen = false;
     this.#close(this.refs.details);
   }
 
@@ -134,27 +101,10 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
-    // Added by DK on 2026-03-05: Reset flag if closing main drawer (e.g. via Escape key,
-    // which calls #close() directly without going through close()).
-    if (details === this.refs.details) this.#isDrawerOpen = false;
-
     summary.setAttribute('aria-expanded', 'false');
     details.classList.remove('menu-open');
 
-    // Added by DK on 2026-03-05: Replaced onAnimationEnd with setTimeout since stagger
-    // animations were removed. onAnimationEnd waits for an animationend event which never
-    // fires without item animations, so reset() would never be called (leaving the [open]
-    // attribute on details, breaking the icon toggle and subsequent open/close cycles).
-    // We wait for the drawer slide-out CSS transition (--drawer-animation-speed) + buffer.
-    const drawerSpeedMs =
-      parseFloat(getComputedStyle(this).getPropertyValue('--drawer-animation-speed')) * 1000 || 200;
-
-    setTimeout(() => {
-      // Added by DK on 2026-03-06: Guard against rapid re-open race condition.
-      // If the main drawer was re-opened before this timeout fired, skip reset()
-      // so the newly-opened drawer is not torn down by a stale close timeout.
-      if (details === this.refs.details && this.#isDrawerOpen) return;
-
+    onAnimationEnd(details, () => {
       reset(details);
 
       if (details === this.refs.details) {
@@ -164,7 +114,7 @@ class HeaderDrawer extends Component {
       } else {
         trapFocus(this.refs.details);
       }
-    }, drawerSpeedMs + 50);
+    });
   }
 
   /**
