@@ -13,6 +13,14 @@ import { onAnimationEnd } from '@theme/utilities';
 class HeaderDrawer extends Component {
   requiredRefs = ['details'];
 
+  // Added by DK on 2026-03-07: Track drawer open state with a private flag instead of
+  // reading the DOM [open] attribute. On iOS Safari the native <details> toggle fires on
+  // touchend — before the synthetic click event — so by the time toggle() runs, the DOM
+  // already has [open] set and isOpen would wrongly return true, causing close() to be
+  // called on every open tap (flash-and-vanish bug). The flag reflects OUR intent and is
+  // immune to the iOS touchend timing difference.
+  #isDrawerOpen = false;
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -39,7 +47,7 @@ class HeaderDrawer extends Component {
    * @returns {boolean} Whether the main menu drawer is open
    */
   get isOpen() {
-    return this.refs.details.hasAttribute('open');
+    return this.#isDrawerOpen; // Added by DK on 2026-03-07: use flag, not DOM attribute
   }
 
   /**
@@ -70,6 +78,7 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
+    if (details === this.refs.details) this.#isDrawerOpen = true; // Added by DK on 2026-03-07
     summary.setAttribute('aria-expanded', 'true');
     requestAnimationFrame(() => details.classList.add('menu-open'));
 
@@ -101,6 +110,7 @@ class HeaderDrawer extends Component {
 
     if (!summary) return;
 
+    if (details === this.refs.details) this.#isDrawerOpen = false; // Added by DK on 2026-03-07
     summary.setAttribute('aria-expanded', 'false');
     details.classList.remove('menu-open');
 
