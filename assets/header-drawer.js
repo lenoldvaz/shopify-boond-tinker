@@ -90,15 +90,20 @@ class HeaderDrawer extends Component {
     if (!summary) return;
 
     // Added by DK on 2026-03-05: Track state via flag.
-    // Added by DK on 2026-03-06: Removed event.preventDefault() and manual setAttribute([open]).
-    // Native <details> toggle now manages [open]:
-    // - Desktop: fires as click default action after our capture-phase handler runs.
-    // - iOS Safari: fires on touchend before the synthetic click, so [open] is already set.
-    // Calling preventDefault() here was causing iOS to undo the touchend toggle
-    // asynchronously, removing [open] after our code set it → drawer stayed invisible.
+    // Added by DK on 2026-03-06: Re-assert [open] inside the rAF alongside menu-open.
+    // Two scenarios require this:
+    // 1. iOS Safari: the click's native toggle fires on touchend (setting [open]), but iOS
+    //    may also fire the toggle again as the click default action (removing [open]).
+    //    Re-setting in rAF counters that removal before the first paint.
+    // 2. Fast re-open race: if [open] is still present from a previous close's setTimeout
+    //    that hasn't fired yet, the native click toggle sees [open] present and removes it.
+    //    Re-setting in rAF restores it so Safari's UA stylesheet doesn't hide drawer content.
     if (details === this.refs.details) this.#isDrawerOpen = true;
     summary.setAttribute('aria-expanded', 'true');
-    requestAnimationFrame(() => details.classList.add('menu-open'));
+    requestAnimationFrame(() => {
+      details.setAttribute('open', '');
+      details.classList.add('menu-open');
+    });
 
     trapFocus(details);
   }
@@ -145,6 +150,11 @@ class HeaderDrawer extends Component {
       parseFloat(getComputedStyle(this).getPropertyValue('--drawer-animation-speed')) * 1000 || 200;
 
     setTimeout(() => {
+      // Added by DK on 2026-03-06: Guard against rapid re-open race condition.
+      // If the main drawer was re-opened before this timeout fired, skip reset()
+      // so the newly-opened drawer is not torn down by a stale close timeout.
+      if (details === this.refs.details && this.#isDrawerOpen) return;
+
       reset(details);
 
       if (details === this.refs.details) {
