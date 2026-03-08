@@ -87,11 +87,8 @@
           {%- endcomment -%}
           {% if linklist.levels < 3 %}
             {% assign first_accordion_open = false %}
-            {% assign animation_index = 0 %}
             {%- for link in linklist.links -%}
-              {% assign animation_index = animation_index | plus: 1 %}
               <li
-                style="--menu-drawer-animation-index: {{ animation_index }};"
                 class="{%- if block.settings.drawer_accordion -%}menu-drawer__list-item--deep{%- else -%}menu-drawer__list-item--flat{%- endif -%}{% if block.settings.drawer_dividers %} menu-drawer__list-item--divider{% endif %}"
               >
                 {% if block.settings.drawer_accordion and link.links != blank %}
@@ -136,7 +133,6 @@
                         {%- for childlink in link.links -%}
                           <li
                             class="menu-drawer__list-item"
-                            style="--menu-drawer-animation-index: {{ forloop.index }};"
                           >
                             <a
                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
@@ -191,7 +187,6 @@
                     {%- for childlink in link.links -%}
                       <li
                         class="menu-drawer__list-item"
-                        style="--menu-drawer-animation-index: {{ animation_index }};"
                       >
                         <a
                           href="{{ childlink.url }}"
@@ -230,12 +225,9 @@
             {%- comment -%}
               Handle menus with 3 levels of links
             {%- endcomment -%}
-            {% assign animation_index = 0 %}
             {%- for link in linklist.links -%}
-              {% assign animation_index = animation_index | plus: 1 %}
               <li
                 class="menu-drawer__list-item"
-                style="--menu-drawer-animation-index: {{ animation_index }};"
               >
                 {%- if link.links != blank -%}
                   {%- comment -%}
@@ -259,7 +251,6 @@
                       id="link-{{ link.handle | escape }}"
                       class="menu-drawer__submenu has-submenu gradient motion-reduce"
                       tabindex="-1"
-                      style="--menu-drawer-animation-index: {{ animation_index }};"
                     >
                       <div class="menu-drawer__inner-submenu">
                         <div class="menu-drawer__nav-buttons">
@@ -376,7 +367,6 @@
                                         {%- for grandchildlink in childlink.links -%}
                                           <li
                                             class="menu-drawer__list-item"
-                                            style="--menu-drawer-animation-index: {{ forloop.index }};"
                                           >
                                             <a
                                               id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
@@ -433,7 +423,6 @@
                                     {%- for grandchildlink in childlink.links -%}
                                       <li
                                         class="menu-drawer__list-item"
-                                        style="--menu-drawer-animation-index: {{ forloop.index }};"
                                       >
                                         <a
                                           id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
@@ -479,7 +468,6 @@
                         {% if featured_collections.size > 0 or featured_products.size > 0 %}
                           <div
                             class="menu-drawer__featured-content menu-drawer__featured-content--childlist"
-                            style="--menu-drawer-animation-index: {{ linklist.links.size | plus: 1 }};"
                           >
                             <ul class="menu-drawer__featured-content-list list-unstyled">
                               {% if featured_collections.size > 0 %}
@@ -534,7 +522,6 @@
       </nav>
       <div
         class="menu-drawer__utility-links menu-drawer__animated-element"
-        style="--menu-drawer-animation-index: {{ linklist.links.size }};"
       >
         {% liquid
           assign show_language = section.settings.show_language
@@ -582,7 +569,6 @@
       {% if top_level_featured_collections.size > 0 or top_level_featured_products.size > 0 or dk_featured_products.size > 0 %}
         <div
           class="menu-drawer__featured-content"
-          style="--menu-drawer-animation-index: {{ linklist.links.size | plus: 1 }};"
         >
           {% if dk_featured_products.size > 0 and block.settings.carousel_title != blank %}
             <h3 class="menu-drawer__featured-title">{{ block.settings.carousel_title }}</h3>
