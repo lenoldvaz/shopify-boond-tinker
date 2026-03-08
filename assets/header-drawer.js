@@ -25,7 +25,6 @@ class HeaderDrawer extends Component {
     super.connectedCallback();
 
     this.addEventListener('keyup', this.#onKeyUp);
-    this.#setupAnimatedElementListeners();
   }
 
   disconnectedCallback() {
@@ -127,27 +126,8 @@ class HeaderDrawer extends Component {
     });
   }
 
-  /**
-   * Attach animationend event listeners to all animated elements to remove will-change after animation
-   * to remove the stacking context and allow submenus to be positioned correctly
-   */
-  #setupAnimatedElementListeners() {
-    /**
-     * @param {AnimationEvent} event
-     */
-    function removeWillChangeOnAnimationEnd(event) {
-      const target = event.target;
-      if (target && target instanceof HTMLElement) {
-        target.style.setProperty('will-change', 'unset');
-        target.removeEventListener('animationend', removeWillChangeOnAnimationEnd);
-      }
-    }
-    const allAnimated = this.querySelectorAll('.menu-drawer__animated-element');
-    allAnimated.forEach((element) => {
-      element.addEventListener('animationend', removeWillChangeOnAnimationEnd);
-    });
-  }
 }
+// Added by DK on 2026-03-07: #setupAnimatedElementListeners removed — stagger animation removed.
 
 if (!customElements.get('header-drawer')) {
   customElements.define('header-drawer', HeaderDrawer);

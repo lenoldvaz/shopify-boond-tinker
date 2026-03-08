@@ -931,11 +931,8 @@
     padding-inline-start: 0;
   }
 
-  .menu-drawer-container[open] .menu-drawer__animated-element {
-    animation: menu-drawer-nav-open var(--drawer-animation-speed) ease-in-out;
-    animation-delay: calc(var(--drawer-animation-speed) + (var(--menu-drawer-animation-index) - 1) * 0.1s);
-    animation-fill-mode: backwards;
-  }
+  /* Added by DK on 2026-03-07: Removed staggered animation — caused flash-and-vanish on iOS Safari.
+     Menu items now appear immediately when the drawer opens. */
 
   .menu-drawer__menu details,
   .menu-drawer__menu-item,
@@ -1159,19 +1156,7 @@
     border-radius: var(--menu-image-border-radius);
   }
 
-  @keyframes menu-drawer-nav-open {
-    0% {
-      visibility: hidden;
-      opacity: 0;
-      transform: translateX(-0.5rem);
-    }
-
-    100% {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+  /* Added by DK on 2026-03-07: @keyframes menu-drawer-nav-open removed — stagger animation removed. */
 
   @keyframes menu-drawer-subnav-open {
     0% {
