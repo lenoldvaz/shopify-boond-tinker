@@ -5,25 +5,24 @@ import { onAnimationEnd } from '@theme/utilities';
 /**
  * A custom element that manages the main menu drawer.
  *
+ * Added by DK on 2026-03-07: Rewritten to use <button>/<div> instead of <details>/<summary>
+ * for the main drawer trigger. This eliminates iOS Safari native <details> toggle timing
+ * issues entirely — a <button> has no built-in toggle behaviour, so iOS cannot set or remove
+ * [open] out of sync with our JS. Submenus continue to use <details> elements (they work fine).
+ *
  * @typedef {object} Refs
- * @property {HTMLDetailsElement} details - The details element.
+ * @property {HTMLButtonElement} toggle - The hamburger button that opens/closes the drawer.
+ * @property {HTMLElement} container - The drawer container element.
  *
  * @extends {Component<Refs>}
  */
 class HeaderDrawer extends Component {
-  requiredRefs = ['details'];
+  requiredRefs = ['toggle', 'container'];
 
-  // Added by DK on 2026-03-07: Track drawer open state with a private flag instead of
-  // reading the DOM [open] attribute. On iOS Safari the native <details> toggle fires on
-  // touchend — before the synthetic click event — so by the time toggle() runs, the DOM
-  // already has [open] set and isOpen would wrongly return true, causing close() to be
-  // called on every open tap (flash-and-vanish bug). The flag reflects OUR intent and is
-  // immune to the iOS touchend timing difference.
   #isDrawerOpen = false;
 
   connectedCallback() {
     super.connectedCallback();
-
     this.addEventListener('keyup', this.#onKeyUp);
   }
 
@@ -32,123 +31,121 @@ class HeaderDrawer extends Component {
     this.removeEventListener('keyup', this.#onKeyUp);
   }
 
-  /**
-   * Close the main menu drawer when the Escape key is pressed
-   * @param {KeyboardEvent} event
-   */
+  /** @param {KeyboardEvent} event */
   #onKeyUp = (event) => {
     if (event.key !== 'Escape') return;
-
-    this.#close(this.#getDetailsElement(event));
+    this.close();
   };
 
-  /**
-   * @returns {boolean} Whether the main menu drawer is open
-   */
+  /** @returns {boolean} */
   get isOpen() {
-    return this.#isDrawerOpen; // Added by DK on 2026-03-07: use flag, not DOM attribute
+    return this.#isDrawerOpen;
   }
 
   /**
-   * Get the closest details element to the event target
+   * Return the nearest submenu <details> element that is a descendant of this component,
+   * or null if the event did not originate inside a submenu.
    * @param {Event | undefined} event
-   * @returns {HTMLDetailsElement}
+   * @returns {HTMLDetailsElement | null}
    */
-  #getDetailsElement(event) {
-    if (!(event?.target instanceof Element)) return this.refs.details;
-
-    return event.target.closest('details') ?? this.refs.details;
+  #getSubmenu(event) {
+    if (!(event?.target instanceof Element)) return null;
+    const details = event.target.closest('details');
+    return details && this.contains(details) ? /** @type {HTMLDetailsElement} */ (details) : null;
   }
 
   /**
-   * Toggle the main menu drawer
-   * Added by DK on 2026-03-07: Accept event so we can preventDefault() — prevents the
-   * <summary> click's native <details> toggle from firing as the default action. On iOS
-   * Safari, touchend already set/removed [open] before click fires, so letting the click's
-   * default action run a second toggle causes [open] to be in the wrong state, hiding all
-   * menu content (blank drawer). We take full ownership of [open] via open()/reset() instead.
-   * @param {Event} [event]
+   * Toggle the main menu drawer.
+   * No preventDefault() needed — <button> has no native toggle behaviour.
    */
-  toggle(event) {
-    event?.preventDefault();
-    return this.isOpen ? this.close() : this.open(event);
+  toggle() {
+    return this.isOpen ? this.close() : this.open();
   }
 
   /**
-   * Open the closest drawer or the main menu drawer
+   * Open the closest submenu or the main drawer.
    * @param {Event} [event]
    */
   open(event) {
-    const details = this.#getDetailsElement(event);
-    const summary = details.querySelector('summary');
-
-    if (!summary) return;
-
-    if (details === this.refs.details) {
-      this.#isDrawerOpen = true; // Added by DK on 2026-03-07
-      details.setAttribute('open', ''); // Added by DK on 2026-03-07: manually set [open] since preventDefault() stops native toggle
+    const submenu = this.#getSubmenu(event);
+    if (submenu) {
+      this.#openSubmenu(submenu);
+    } else {
+      this.#openMain();
     }
-    summary.setAttribute('aria-expanded', 'true');
-    requestAnimationFrame(() => details.classList.add('menu-open'));
-
-    trapFocus(details);
   }
 
   /**
-   * Go back or close the main menu drawer
+   * Go back — closes the nearest open submenu.
    * @param {Event} [event]
    */
   back(event) {
-    this.#close(this.#getDetailsElement(event));
+    const submenu = this.#getSubmenu(event);
+    if (submenu) {
+      this.#closeSubmenu(submenu);
+    } else {
+      this.close();
+    }
   }
 
   /**
-   * Close the main menu drawer
+   * Close the main menu drawer.
    */
   close() {
-    this.#close(this.refs.details);
+    this.#closeMain();
   }
 
-  /**
-   * Close the closest menu or submenu that is open
-   *
-   * @param {HTMLDetailsElement} details
-   */
-  #close(details) {
-    const summary = details.querySelector('summary');
+  #openMain() {
+    this.#isDrawerOpen = true;
+    this.refs.toggle.setAttribute('aria-expanded', 'true');
+    document.documentElement.setAttribute('scroll-lock', '');
+    requestAnimationFrame(() => this.refs.container.classList.add('menu-open'));
+    trapFocus(this.refs.container);
+  }
 
-    if (!summary) return;
-
-    if (details === this.refs.details) this.#isDrawerOpen = false; // Added by DK on 2026-03-07
-    summary.setAttribute('aria-expanded', 'false');
-    details.classList.remove('menu-open');
-
-    onAnimationEnd(details, () => {
-      reset(details);
-
-      if (details === this.refs.details) {
-        removeTrapFocus();
-        const openDetails = this.querySelectorAll('details[open]');
-        openDetails.forEach(reset);
-      } else {
-        trapFocus(this.refs.details);
-      }
+  #closeMain() {
+    if (!this.#isDrawerOpen) return;
+    this.#isDrawerOpen = false;
+    this.refs.toggle.setAttribute('aria-expanded', 'false');
+    this.refs.container.classList.remove('menu-open');
+    document.documentElement.removeAttribute('scroll-lock');
+    onAnimationEnd(this.refs.container, () => {
+      removeTrapFocus();
+      this.querySelectorAll('details[open]').forEach(resetDetails);
     });
   }
 
+  /** @param {HTMLDetailsElement} details */
+  #openSubmenu(details) {
+    const summary = details.querySelector('summary');
+    if (!summary) return;
+    summary.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => details.classList.add('menu-open'));
+    trapFocus(details);
+  }
+
+  /** @param {HTMLDetailsElement} details */
+  #closeSubmenu(details) {
+    const summary = details.querySelector('summary');
+    if (!summary) return;
+    summary.setAttribute('aria-expanded', 'false');
+    details.classList.remove('menu-open');
+    onAnimationEnd(details, () => {
+      resetDetails(details);
+      trapFocus(this.refs.container);
+    });
+  }
 }
-// Added by DK on 2026-03-07: #setupAnimatedElementListeners removed — stagger animation removed.
 
 if (!customElements.get('header-drawer')) {
   customElements.define('header-drawer', HeaderDrawer);
 }
 
 /**
- * Reset an open details element to its original state
- *
+ * Reset a submenu details element to its closed state.
  * @param {HTMLDetailsElement} element
  */
-function reset(element) {
+function resetDetails(element) {
   element.classList.remove('menu-open');
   element.removeAttribute('open');
   element.querySelector('summary')?.setAttribute('aria-expanded', 'false');

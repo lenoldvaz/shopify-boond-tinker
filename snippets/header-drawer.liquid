@@ -31,24 +31,28 @@
   class="header-drawer {{ class }}"
   style="--menu-image-border-radius: {{ image_border_radius }}px;"
 >
-  <details
+  {%- comment -%}Added by DK on 2026-03-07: Replaced details/summary with button/div to eliminate iOS Safari native toggle timing issues.{%- endcomment -%}
+  <button
+    type="button"
+    class="header__icon header__icon--menu"
+    ref="toggle"
+    aria-expanded="false"
+    aria-controls="Details-menu-drawer-container"
+    aria-label="{{ 'accessibility.menu' | t }}"
+    on:click="/toggle"
+  >
+    <span class="svg-wrapper header-drawer-icon header-drawer-icon--open">
+      {{- 'icon-menu.svg' | inline_asset_content -}}
+    </span>
+    <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
+      {{- 'icon-close.svg' | inline_asset_content -}}
+    </span>
+  </button>
+  <div
     id="Details-menu-drawer-container"
     class="menu-drawer-container"
-    ref="details"
-    scroll-lock
+    ref="container"
   >
-    <summary
-      class="header__icon header__icon--menu header__icon--summary"
-      aria-label="{{ 'accessibility.menu' | t }}"
-      on:click="/toggle"
-    >
-      <span class="svg-wrapper header-drawer-icon header-drawer-icon--open">
-        {{- 'icon-menu.svg' | inline_asset_content -}}
-      </span>
-      <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
-        {{- 'icon-close.svg' | inline_asset_content -}}
-      </span>
-    </summary>
     <div
       data-header-drawer
       class="
@@ -629,7 +633,7 @@
       class="menu-drawer__backdrop"
       on:click="header-drawer/close"
     >    </div>
-  </details>
+  </div>{%- comment -%}Added by DK on 2026-03-07: Closed div ref="container" (was details){%- endcomment -%}
 
   <script>
     // Enhanced swipe functionality for featured products in mobile navigation
@@ -704,15 +708,19 @@
     }
   }
 
-  .menu-drawer-container .header__icon--summary {
+  /* Added by DK on 2026-03-07: Button is now a sibling of .menu-drawer-container, not inside it */
+  header-drawer > .header__icon--menu {
     color: var(--color-foreground);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: var(--padding-lg);
+    background: none;
+    border: none;
+    cursor: pointer;
   }
 
-  .header__icon--summary .header-drawer-icon {
+  header-drawer > .header__icon--menu .header-drawer-icon {
     margin: auto;
     width: var(--icon-size-xs);
     height: var(--icon-size-xs);
@@ -740,17 +748,18 @@
     }
   }
 
-  details:not([open]) .header__icon--menu .header-drawer-icon--close {
+  /* Added by DK on 2026-03-07: Use aria-expanded on the <button> instead of [open] on <details> */
+  header-drawer > .header__icon--menu[aria-expanded="false"] .header-drawer-icon--close {
     display: none;
   }
 
-  details[open] .header__icon--menu .header-drawer-icon--close {
+  header-drawer > .header__icon--menu[aria-expanded="true"] .header-drawer-icon--close {
     @media screen and (width >= 750px) {
       display: none;
     }
   }
 
-  details[open] .header__icon--menu .header-drawer-icon--open {
+  header-drawer > .header__icon--menu[aria-expanded="true"] .header-drawer-icon--open {
     display: none;
 
     @media screen and (width >= 750px) {
