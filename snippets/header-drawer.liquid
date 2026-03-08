@@ -807,10 +807,12 @@
     backdrop-filter: brightness(0.75);
     z-index: var(--layer-heightened);
     opacity: 0;
+    pointer-events: none; /* Added by DK on 2026-03-07: prevent backdrop from intercepting taps when drawer is closed */
     transition: opacity var(--drawer-animation-speed) ease;
 
     .menu-open & {
       opacity: 1;
+      pointer-events: auto; /* Added by DK on 2026-03-07: allow backdrop tap-to-close when drawer is open */
     }
   }
 
