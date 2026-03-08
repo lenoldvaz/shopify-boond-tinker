@@ -808,7 +808,7 @@
     z-index: var(--layer-heightened);
     opacity: 0;
     pointer-events: none; /* Added by DK on 2026-03-07: prevent backdrop from intercepting taps when drawer is closed */
-    transition: opacity var(--drawer-animation-speed) ease;
+    
 
     .menu-open & {
       opacity: 1;
@@ -818,8 +818,7 @@
 
   .menu-drawer,
   details[open] > .menu-drawer__submenu {
-    transition: transform var(--drawer-animation-speed) ease, visibility var(--drawer-animation-speed) ease,
-      opacity var(--drawer-animation-speed) ease;
+   
   }
 
   .menu-open > .menu-drawer,
