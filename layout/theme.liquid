@@ -4,6 +4,26 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+<!-- Added by DK on 2026-03-15 — Geo-redirect US/CA visitors to boond.ca -->
+<script>
+(function() {
+  if (sessionStorage.getItem('boond_geo_redirected')) return;
+  if (window.Shopify && window.Shopify.designMode) return;
+  if (/bot|crawl|spider|slurp|googlebot/i.test(navigator.userAgent)) return;
+
+  fetch('https://api.country.is/')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data || !data.country) return;
+      if (['CA', 'US'].includes(data.country)) {
+        sessionStorage.setItem('boond_geo_redirected', 'true');
+        window.location.replace('https://boond.ca');
+      }
+    })
+    .catch(function() {});
+})();
+</script>
+
 <script> window.Shopflo = { ...(window.Shopflo ?? {}), autoOnboarding: true} </script>
 
 <script src='https://d24sh1msnqkirc.cloudfront.net/shopflo.bundle.js' async></script>
