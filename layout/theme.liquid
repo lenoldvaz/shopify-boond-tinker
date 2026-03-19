@@ -5,11 +5,21 @@
 >
   <head>
 <!-- Added by DK on 2026-03-15 — Geo-redirect US/CA visitors to boond.ca -->
+<!-- Updated by DK on 2026-03-19 — ?geo=in param bypasses redirect and persists for the session -->
 <script>
 (function() {
-  if (sessionStorage.getItem('boond_geo_redirected')) return;
   if (window.Shopify && window.Shopify.designMode) return;
   if (/bot|crawl|spider|slurp|googlebot/i.test(navigator.userAgent)) return;
+
+  // If ?geo=in is in the URL, mark this session as bypassed and skip redirect
+  if (new URLSearchParams(window.location.search).get('geo') === 'in') {
+    sessionStorage.setItem('boond_geo_bypass', 'true');
+    return;
+  }
+
+  // Persist bypass for the entire session once set
+  if (sessionStorage.getItem('boond_geo_bypass')) return;
+  if (sessionStorage.getItem('boond_geo_redirected')) return;
 
   fetch('https://api.country.is/')
     .then(function(r) { return r.json(); })
