@@ -1,35 +1,37 @@
 {% comment %}
   Gift Message Snippet
-  This snippet renders a gift message input field that is only visible when "Bespoke Gift Wrap" is selected as "Yes"
+  Added by DK on 2026-03-19:
+  - Hidden by default; shown only when a variant option value matches the configured trigger value (default "Yes").
+  - On form submit, injects the message as a line item property so it appears in the Shopify admin order detail.
 {% endcomment %}
 
-<div 
+<div
   class="gift-message-block spacing-style"
-  style="{% render 'spacing-style', settings: block.settings %}"
+  style="display: none; {% render 'spacing-style', settings: block.settings %}"
   data-gift-message-block
+  data-trigger-value="{{ block.settings.gift_wrap_trigger_value | default: 'Yes' }}"
   {{ block.shopify_attributes }}
 >
   <div class="gift-message__container">
     <label for="gift-message-{{ block.id }}" class="gift-message__label">
       {{ block.settings.heading | default: 'Gift message (optional)' }}
     </label>
-    
+
     <div class="gift-message__input-wrapper">
       <textarea
         id="gift-message-{{ block.id }}"
-        name="gift_message"
         class="gift-message__input"
         placeholder="{{ block.settings.placeholder | default: 'Enter your gift message here...' }}"
         maxlength="{{ block.settings.max_length | default: 70 }}"
         rows="4"
         data-gift-message-input
       ></textarea>
-      
+
       <div class="gift-message__counter">
         <span class="gift-message__char-count" data-char-count>0</span>/{{ block.settings.max_length | default: 70 }} characters
       </div>
     </div>
-    
+
     {% if block.settings.help_text != blank %}
       <p class="gift-message__help-text">
         {{ block.settings.help_text }}
@@ -39,32 +41,81 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  // Added by DK on 2026-03-19: Gift message visibility + line item property injection
+  document.addEventListener('DOMContentLoaded', function () {
     const giftMessageBlock = document.querySelector('[data-gift-message-block]');
-    if (!giftMessageBlock) {
-      return;
-    }
-    
+    if (!giftMessageBlock) return;
+
     const textarea = giftMessageBlock.querySelector('[data-gift-message-input]');
     const charCount = giftMessageBlock.querySelector('[data-char-count]');
-    const maxLength = parseInt(textarea.getAttribute('maxlength'));
-    
-    // Character counter functionality
-    function updateCharCount() {
-      const currentLength = textarea.value.length;
-      charCount.textContent = currentLength;
-      
-      if (currentLength > maxLength * 0.9) {
-        charCount.style.color = '#b20000';
-      } else {
-        charCount.style.color = '';
+    const maxLength = parseInt(textarea.getAttribute('maxlength'), 10);
+    const triggerValue = (giftMessageBlock.dataset.triggerValue || 'Yes').toLowerCase();
+
+    // Character counter
+    textarea.addEventListener('input', function () {
+      const len = textarea.value.length;
+      charCount.textContent = len;
+      charCount.style.color = len > maxLength * 0.9 ? '#b20000' : '';
+    });
+
+    // Show/hide based on whether the selected variant has the trigger option value
+    function isGiftWrapSelected(variant) {
+      if (!variant || !Array.isArray(variant.options)) return false;
+      return variant.options.some(function (v) {
+        return v.toLowerCase() === triggerValue;
+      });
+    }
+
+    function setVisibility(show) {
+      giftMessageBlock.style.display = show ? 'block' : 'none';
+      if (!show) {
+        textarea.value = '';
+        charCount.textContent = '0';
       }
     }
-    
-    textarea.addEventListener('input', updateCharCount);
-    
-    // Always show the gift message block
-    giftMessageBlock.style.display = 'block';
+
+    // Set initial state from the variant JSON embedded in the variant picker
+    const variantPickerScript = document.querySelector('variant-picker script[type="application/json"]');
+    if (variantPickerScript) {
+      try {
+        const initialVariant = JSON.parse(variantPickerScript.textContent);
+        setVisibility(isGiftWrapSelected(initialVariant));
+      } catch (_) {
+        // stays hidden on parse error
+      }
+    }
+
+    // Update visibility whenever the variant changes
+    document.addEventListener('variant:update', function (event) {
+      const variant = event.detail && event.detail.resource;
+      setVisibility(isGiftWrapSelected(variant));
+    });
+
+    // Inject the message as a line item property on form submit.
+    // Runs in capture phase so it fires before the product-form-component AJAX handler
+    // collects FormData — Shopify then includes it as a line item property visible
+    // in the admin order detail under the line item.
+    const productForm = document.querySelector('form[data-type="add-to-cart-form"]');
+    if (productForm) {
+      productForm.addEventListener(
+        'submit',
+        function () {
+          // Remove any leftover injected input from a previous submit attempt
+          var existing = productForm.querySelector('input[name="properties[Gift Message]"]');
+          if (existing) existing.remove();
+
+          var message = textarea.value.trim();
+          if (message && giftMessageBlock.style.display !== 'none') {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'properties[Gift Message]';
+            input.value = message;
+            productForm.appendChild(input);
+          }
+        },
+        true // capture phase
+      );
+    }
   });
 </script>
 
@@ -73,23 +124,23 @@
     display: block;
     width: 100%;
   }
-  
+
   .gift-message__container {
     display: flex;
     flex-direction: column;
     gap: var(--gap-sm);
   }
-  
+
   .gift-message__label {
     font-weight: 600;
     color: var(--color-foreground);
     margin-bottom: var(--margin-xs);
   }
-  
+
   .gift-message__input-wrapper {
     position: relative;
   }
-  
+
   .gift-message__input {
     width: 100%;
     min-height: 100px;
@@ -104,18 +155,18 @@
     resize: vertical;
     transition: border-color var(--animation-speed) ease, box-shadow var(--animation-speed) ease;
   }
-  
+
   .gift-message__input:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
   }
-  
+
   .gift-message__input::placeholder {
     color: var(--color-input-text);
     opacity: 0.7;
   }
-  
+
   .gift-message__counter {
     position: absolute;
     bottom: var(--padding-xs);
@@ -125,7 +176,7 @@
     opacity: 0.7;
     pointer-events: none;
   }
-  
+
   .gift-message__help-text {
     font-size: var(--font-size--xs);
     color: var(--color-foreground);
