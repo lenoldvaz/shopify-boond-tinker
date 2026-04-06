@@ -303,6 +303,8 @@
       "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -967,6 +969,8 @@
       ],
       "name": "Occasions",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1854,6 +1858,8 @@
       ],
       "name": "Suggested Products",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -2569,6 +2575,8 @@
       ],
       "name": "t:names.icons_with_text",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -2797,45 +2805,6 @@
                 "text_fkReVK"
               ]
             },
-            "accordion_row_bHtJPG": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_dash_row",
-              "settings": {
-                "heading": "Where are your products manufactured?",
-                "open_by_default": false
-              },
-              "blocks": {
-                "text_DJtL7f": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value. </p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_DJtL7f"
-              ]
-            },
             "accordion_row_eqXVTD": {
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
@@ -2880,7 +2849,6 @@
             "accordion_row_xyXbT9",
             "accordion_row_PKHH3U",
             "accordion_row_mLgA3q",
-            "accordion_row_bHtJPG",
             "accordion_row_eqXVTD"
           ]
         }
@@ -2891,6 +2859,8 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
