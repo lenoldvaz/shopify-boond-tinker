@@ -3264,7 +3264,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "When will I get my order?",
+                "heading": "What’s the MOQ for getting a discount?",
                 "open_by_default": false
               },
               "blocks": {
@@ -3272,7 +3272,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                    "text": "<p>We can offer a discount on orders starting at 10 or more items.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
