@@ -438,7 +438,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yes we do provide fragrances as ingredients for products such as candles, soaps etc. Please share the details of your requirements including the purpose, quantity required and budget on<a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a>or WhatsApp us on +91 73079 53240. We’ll get back within 72 hours.</p>",
+                    "text": "<p>Yes we do provide fragrances as ingredients for products such as candles, soaps etc. Please share the details of your requirements including the purpose, quantity required and budget on <a href=\"mailto:team@boondfragrances.com\"><span style=\"text-decoration:underline\">team@boondfragrances.com</span></a>or WhatsApp us on +91 73079 53240. We’ll get back within 72 hours.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
