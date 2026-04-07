@@ -3337,13 +3337,53 @@
               "block_order": [
                 "text_Bg7AQ9"
               ]
+            },
+            "accordion_row_BHVDm3": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What if some of my products get damaged in shipping?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_DgyKqr": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>We do our best to ensure that our products reach your safely. Please inspect your order within 36 hours of delivery and reach out to us at team@boondfragrances.com in case of any defects, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_DgyKqr"
+              ]
             }
           },
           "block_order": [
             "accordion_row_xyXbT9",
             "accordion_row_PKHH3U",
             "accordion_row_mLgA3q",
-            "accordion_row_eqXVTD"
+            "accordion_row_eqXVTD",
+            "accordion_row_BHVDm3"
           ]
         }
       },
