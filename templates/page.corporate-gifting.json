@@ -3189,14 +3189,14 @@
             "accordion_row_xyXbT9": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "What is the return policy?",
+                "heading": "I sent my enquiry by filling the form. What should I expect next?",
                 "open_by_default": false
               },
               "blocks": {
                 "text_wMRrXa": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn’t the case, let us know and we’ll do our best to work with you to make it right. </p>",
+                    "text": "<p>Thank you for filling the form. We will respond to you within 48 hours.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
