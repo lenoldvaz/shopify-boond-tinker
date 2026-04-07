@@ -3226,14 +3226,14 @@
             "accordion_row_PKHH3U": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "Are any purchases final sale?",
+                "heading": "How much time will customization take?",
                 "open_by_default": false
               },
               "blocks": {
                 "text_jwFUke": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We are unable to accept returns on certain items. These will be carefully marked before purchase.</p>",
+                    "text": "<p>It depends upon the quantity of the order and the customizations that are needed. For further enquiry, you can reach out to us on team@boondfragrances.com or via whatsapp at<a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\" target=\"_blank\" title=\"Whatsapp\">+91 7307953240</a>.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
