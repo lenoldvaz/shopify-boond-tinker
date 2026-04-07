@@ -206,7 +206,7 @@
                 "text_Cb6V6f": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Shipping is free on prepaid orders. There is an additional charge of Rs.150 on COD orders.</p>",
+                    "text": "<p>Shipping is free on prepaid orders. There is an additional charge of Rs.170 on COD orders.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -589,6 +589,8 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1566,6 +1568,8 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1702,6 +1706,8 @@
       ],
       "name": "t:names.faq_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
