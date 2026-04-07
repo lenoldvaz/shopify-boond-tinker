@@ -3303,7 +3303,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "How much does shipping cost?",
+                "heading": "Do you ship bulk orders outside India?",
                 "open_by_default": false
               },
               "blocks": {
@@ -3311,7 +3311,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
+                    "text": "<p>Yes, we do ship bulk orders internationally.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
