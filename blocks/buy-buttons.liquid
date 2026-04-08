@@ -62,6 +62,14 @@
           ref="variantId"
           value="{{ product.selected_or_first_available_variant.id }}"
         >
+        {{- '<!-- Added by DK on 2026-04-08: Gift message property input. Value and disabled state kept in sync by gift-message.liquid JS. Starts disabled so empty messages are excluded from FormData. -->' -}}
+        <input
+          type="hidden"
+          id="gift-message-property"
+          name="properties[Gift Message]"
+          value=""
+          disabled
+        >
         <div
           class="product-form-buttons spacing-style{% if block.settings.stacking %} product-form-buttons--stacked{% endif %}"
           style="{% render 'spacing-style', settings: block.settings %}"

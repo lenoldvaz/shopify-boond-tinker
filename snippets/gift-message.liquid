@@ -44,42 +44,33 @@
 <script>
   // Added by DK on 2026-03-19: Gift message line item property injection
   // Updated by DK on 2026-04-07: Removed variant-based show/hide — block is always visible
-  // Updated by DK on 2026-04-08: Intercept window.fetch to inject the gift message property
-  //   directly into cart/add.js requests. This bypasses all event-ordering issues with
-  //   product-form-component's document-level capture listener and FormData construction timing.
-  (function () {
+  // Updated by DK on 2026-04-08: Sync value to a hidden input rendered inside the product form
+  //   in buy-buttons.liquid. That input is always part of the DOM so FormData picks it up
+  //   naturally — no event interception or fetch wrapping needed. The input starts disabled
+  //   (excluded from FormData) and is only enabled when the user has typed a message.
+  document.addEventListener('DOMContentLoaded', function () {
     const giftMessageBlock = document.querySelector('[data-gift-message-block]');
     if (!giftMessageBlock) return;
 
     const textarea = giftMessageBlock.querySelector('[data-gift-message-input]');
     const charCount = giftMessageBlock.querySelector('[data-char-count]');
     const maxLength = parseInt(textarea.getAttribute('maxlength'), 10);
+    const hiddenInput = document.getElementById('gift-message-property');
 
-    // Character counter
+    function syncToForm() {
+      if (!hiddenInput) return;
+      const msg = textarea.value.trim();
+      hiddenInput.value = msg;
+      hiddenInput.disabled = !msg; // disabled inputs are excluded from FormData
+    }
+
     textarea.addEventListener('input', function () {
       const len = textarea.value.length;
       charCount.textContent = len;
       charCount.style.color = len > maxLength * 0.9 ? '#b20000' : '';
+      syncToForm();
     });
-
-    // Wrap window.fetch to intercept cart/add.js calls and append the gift message.
-    // By the time fetch is called, the FormData body object still exists and can be appended to.
-    const originalFetch = window.fetch;
-    window.fetch = function (url, options) {
-      if (
-        typeof url === 'string' &&
-        url.includes('cart/add') &&
-        options &&
-        options.body instanceof FormData
-      ) {
-        const msg = textarea.value.trim();
-        if (msg) {
-          options.body.append('properties[Gift Message]', msg);
-        }
-      }
-      return originalFetch.call(this, url, options);
-    };
-  })();
+  });
 </script>
 
 {% stylesheet %}
