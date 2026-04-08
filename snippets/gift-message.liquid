@@ -3,13 +3,14 @@
   Added by DK on 2026-03-19:
   - Hidden by default; shown only when a variant option value matches the configured trigger value (default "Yes").
   - On form submit, injects the message as a line item property so it appears in the Shopify admin order detail.
+  Updated by DK on 2026-04-07:
+  - Always visible regardless of selected variant.
 {% endcomment %}
 
 <div
   class="gift-message-block spacing-style"
-  style="display: none; {% render 'spacing-style', settings: block.settings %}"
+  style="{% render 'spacing-style', settings: block.settings %}"
   data-gift-message-block
-  data-trigger-value="{{ block.settings.gift_wrap_trigger_value | default: 'Yes' }}"
   {{ block.shopify_attributes }}
 >
   <div class="gift-message__container">
@@ -41,7 +42,13 @@
 </div>
 
 <script>
-  // Added by DK on 2026-03-19: Gift message visibility + line item property injection
+  // Added by DK on 2026-03-19: Gift message line item property injection
+  // Updated by DK on 2026-04-07: Removed variant-based show/hide — block is always visible
+  // Updated by DK on 2026-04-08: Use the 'formdata' event to inject the property.
+  //   product-form-component uses `new FormData(form)` inside handleSubmit, which is triggered
+  //   by a capture listener registered on document. That fires before any capture listener on the
+  //   form itself. The 'formdata' event fires synchronously inside new FormData(), so it's the
+  //   only reliable hook point — it bypasses listener registration order entirely.
   document.addEventListener('DOMContentLoaded', function () {
     const giftMessageBlock = document.querySelector('[data-gift-message-block]');
     if (!giftMessageBlock) return;
@@ -49,7 +56,6 @@
     const textarea = giftMessageBlock.querySelector('[data-gift-message-input]');
     const charCount = giftMessageBlock.querySelector('[data-char-count]');
     const maxLength = parseInt(textarea.getAttribute('maxlength'), 10);
-    const triggerValue = (giftMessageBlock.dataset.triggerValue || 'Yes').toLowerCase();
 
     // Character counter
     textarea.addEventListener('input', function () {
@@ -58,63 +64,17 @@
       charCount.style.color = len > maxLength * 0.9 ? '#b20000' : '';
     });
 
-    // Show/hide based on whether the selected variant has the trigger option value
-    function isGiftWrapSelected(variant) {
-      if (!variant || !Array.isArray(variant.options)) return false;
-      return variant.options.some(function (v) {
-        return v.toLowerCase() === triggerValue;
-      });
-    }
-
-    function setVisibility(show) {
-      giftMessageBlock.style.display = show ? 'block' : 'none';
-      if (!show) {
-        textarea.value = '';
-        charCount.textContent = '0';
-      }
-    }
-
-    // Set initial state from the variant JSON embedded in the variant picker
-    const variantPickerScript = document.querySelector('variant-picker script[type="application/json"]');
-    if (variantPickerScript) {
-      try {
-        const initialVariant = JSON.parse(variantPickerScript.textContent);
-        setVisibility(isGiftWrapSelected(initialVariant));
-      } catch (_) {
-        // stays hidden on parse error
-      }
-    }
-
-    // Update visibility whenever the variant changes
-    document.addEventListener('variant:update', function (event) {
-      const variant = event.detail && event.detail.resource;
-      setVisibility(isGiftWrapSelected(variant));
-    });
-
-    // Inject the message as a line item property on form submit.
-    // Runs in capture phase so it fires before the product-form-component AJAX handler
-    // collects FormData — Shopify then includes it as a line item property visible
-    // in the admin order detail under the line item.
+    // Listen for the 'formdata' event which fires synchronously inside new FormData(form).
+    // This is the only reliable way to inject data into FormData after product-form-component
+    // has already registered its document-level capture listener.
     const productForm = document.querySelector('form[data-type="add-to-cart-form"]');
     if (productForm) {
-      productForm.addEventListener(
-        'submit',
-        function () {
-          // Remove any leftover injected input from a previous submit attempt
-          var existing = productForm.querySelector('input[name="properties[Gift Message]"]');
-          if (existing) existing.remove();
-
-          var message = textarea.value.trim();
-          if (message && giftMessageBlock.style.display !== 'none') {
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'properties[Gift Message]';
-            input.value = message;
-            productForm.appendChild(input);
-          }
-        },
-        true // capture phase
-      );
+      productForm.addEventListener('formdata', function (event) {
+        const msg = textarea.value.trim();
+        if (msg) {
+          event.formData.append('properties[Gift Message]', msg);
+        }
+      });
     }
   });
 </script>
