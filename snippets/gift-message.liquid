@@ -44,12 +44,10 @@
 <script>
   // Added by DK on 2026-03-19: Gift message line item property injection
   // Updated by DK on 2026-04-07: Removed variant-based show/hide — block is always visible
-  // Updated by DK on 2026-04-08: Use the 'formdata' event to inject the property.
-  //   product-form-component uses `new FormData(form)` inside handleSubmit, which is triggered
-  //   by a capture listener registered on document. That fires before any capture listener on the
-  //   form itself. The 'formdata' event fires synchronously inside new FormData(), so it's the
-  //   only reliable hook point — it bypasses listener registration order entirely.
-  document.addEventListener('DOMContentLoaded', function () {
+  // Updated by DK on 2026-04-08: Intercept window.fetch to inject the gift message property
+  //   directly into cart/add.js requests. This bypasses all event-ordering issues with
+  //   product-form-component's document-level capture listener and FormData construction timing.
+  (function () {
     const giftMessageBlock = document.querySelector('[data-gift-message-block]');
     if (!giftMessageBlock) return;
 
@@ -64,19 +62,24 @@
       charCount.style.color = len > maxLength * 0.9 ? '#b20000' : '';
     });
 
-    // Listen for the 'formdata' event which fires synchronously inside new FormData(form).
-    // This is the only reliable way to inject data into FormData after product-form-component
-    // has already registered its document-level capture listener.
-    const productForm = document.querySelector('form[data-type="add-to-cart-form"]');
-    if (productForm) {
-      productForm.addEventListener('formdata', function (event) {
+    // Wrap window.fetch to intercept cart/add.js calls and append the gift message.
+    // By the time fetch is called, the FormData body object still exists and can be appended to.
+    const originalFetch = window.fetch;
+    window.fetch = function (url, options) {
+      if (
+        typeof url === 'string' &&
+        url.includes('cart/add') &&
+        options &&
+        options.body instanceof FormData
+      ) {
         const msg = textarea.value.trim();
         if (msg) {
-          event.formData.append('properties[Gift Message]', msg);
+          options.body.append('properties[Gift Message]', msg);
         }
-      });
-    }
-  });
+      }
+      return originalFetch.call(this, url, options);
+    };
+  })();
 </script>
 
 {% stylesheet %}
