@@ -1,7 +1,18 @@
 {% comment %} Added by DK on 2026-05-05 — Customer reviews grid (3 columns) {% endcomment %}
+{% comment %} Updated by DK on 2026-05-05 — Added font size, color, and gap controls for eyebrow and heading {% endcomment %}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
-<div class="dk-rev section color-{{ section.settings.color_scheme }} spacing-style" style="{%- render 'spacing-style', settings: section.settings -%}">
+<div
+  class="dk-rev section color-{{ section.settings.color_scheme }} spacing-style"
+  style="
+    {%- render 'spacing-style', settings: section.settings -%}
+    --dk-rev-eyebrow-size: {{ section.settings.eyebrow_size }}px;
+    --dk-rev-eyebrow-color: {{ section.settings.eyebrow_color }};
+    --dk-rev-heading-size: {{ section.settings.heading_size }}px;
+    --dk-rev-heading-color: {{ section.settings.heading_color }};
+    --dk-rev-header-gap: {{ section.settings.header_gap }}px;
+  "
+>
   <div class="dk-rev__header">
     {%- if section.settings.eyebrow != blank -%}
       <p class="dk-rev__eyebrow">{{ section.settings.eyebrow }}</p>
@@ -30,19 +41,24 @@
   padding: 80px 72px;
   border-bottom: 0.5px solid rgba(0,0,0,0.08);
 }
-.dk-rev__header { margin-bottom: 44px; }
+.dk-rev__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dk-rev-header-gap, 10px);
+  margin-bottom: 44px;
+}
 .dk-rev__eyebrow {
-  font-size: 10px;
+  font-size: var(--dk-rev-eyebrow-size, 10px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9B2335;
-  margin-bottom: 10px;
+  color: var(--dk-rev-eyebrow-color, #9B2335);
 }
 .dk-rev__heading {
   font-family: var(--font-heading--family, Georgia, serif);
-  font-size: clamp(30px, 3.5vw, 46px);
+  font-size: var(--dk-rev-heading-size, 46px);
   font-weight: 300;
   line-height: 1.1;
+  color: var(--dk-rev-heading-color, currentColor);
 }
 .dk-rev__grid {
   display: grid;
@@ -113,16 +129,58 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow text",
       "default": "What our customers say"
     },
     {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Font size",
+      "min": 8, "max": 24, "step": 1, "unit": "px", "default": 10
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Color",
+      "default": "#9B2335"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
+      "label": "Heading text",
       "default": "Loved across the world"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Font size",
+      "min": 20, "max": 72, "step": 2, "unit": "px", "default": 46
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Color",
+      "default": "#1a1a18"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "header_gap",
+      "label": "Gap between eyebrow and heading",
+      "min": 0, "max": 40, "step": 2, "unit": "px", "default": 10
     },
     {
       "type": "color_scheme",
