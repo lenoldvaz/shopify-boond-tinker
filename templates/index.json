@@ -744,6 +744,32 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "product_list_eyebrow": {
+              "type": "_product-list-text",
+              "name": "Eyebrow",
+              "settings": {
+                "text": "<p>Most loved</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.625rem",
+                "line_height": "tight",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "nowrap",
+                "color": "#9B2335",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "product_list_text_qK4EWG": {
               "type": "_product-list-text",
               "name": "t:names.collection_title",
@@ -772,6 +798,7 @@
             }
           },
           "block_order": [
+            "product_list_eyebrow",
             "product_list_text_qK4EWG"
           ]
         },
@@ -1419,6 +1446,32 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "collection_eyebrow": {
+              "type": "text",
+              "name": "Eyebrow",
+              "settings": {
+                "text": "<p>Explore</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.625rem",
+                "line_height": "tight",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "nowrap",
+                "color": "#9B2335",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "text_6qdxfM": {
               "type": "text",
               "name": "t:names.text",
@@ -1447,6 +1500,7 @@
             }
           },
           "block_order": [
+            "collection_eyebrow",
             "text_6qdxfM"
           ]
         },
