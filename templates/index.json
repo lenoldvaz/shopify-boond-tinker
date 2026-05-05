@@ -852,8 +852,8 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap_desktop": 12,
-                "gap_mobile": 12,
+                "gap_desktop": 8,
+                "gap_mobile": 8,
                 "width": "fill",
                 "custom_width": 100,
                 "width_mobile": "fill",
@@ -938,6 +938,7 @@
                 "swatches_eYcKAz": {
                   "type": "swatches",
                   "name": "t:names.swatches",
+                  "disabled": true,
                   "settings": {
                     "product": "{{ closest.product }}",
                     "product_swatches_alignment": "flex-start",
@@ -961,6 +962,7 @@
             "buy_buttons_Pm3hHE": {
               "type": "buy-buttons",
               "name": "t:names.product_buy_buttons",
+              "disabled": true,
               "settings": {
                 "product": "{{  closest.product }}",
                 "stacking": false,
@@ -1371,6 +1373,7 @@
         "group_CDgrwW",
         "button_gLDKzx"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "conditional_metafield": "",
@@ -1417,7 +1420,7 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap_desktop": 12,
             "gap_mobile": 12,
@@ -1476,7 +1479,7 @@
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<h3>Shop by collection</h3>",
+                "text": "<h3>What are you  looking for?</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -2620,6 +2623,7 @@
         "group_bm7AWh",
         "group_kiztVL"
       ],
+      "disabled": true,
       "name": "t:names.pull_quote",
       "settings": {
         "conditional_metafield": "",
@@ -2648,6 +2652,197 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "media_with_content_R6T9zP": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/DSCF0459_11zon.jpg",
+            "link": "",
+            "video": "shopify://files/videos/APPLICATION VIDEO (3).mp4",
+            "video_loop": true,
+            "video_autoplay": true,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap_desktop": 24,
+            "gap_mobile": 24
+          },
+          "blocks": {
+            "text_biVb9b": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<p>Looking for a gift?</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_mrFyc6": {
+              "type": "text",
+              "settings": {
+                "text": "<p>A fragrance that carries a story. Every Boond gift is handcrafted, beautifully packaged, and unlike anything they've received before.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-primary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "group_htDYzY": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "link": "",
+                "open_in_new_tab": false,
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap_desktop": 12,
+                "gap_mobile": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "button_D83XEV": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Wedding gifting",
+                    "link": "shopify://pages/wedding-gifting",
+                    "open_in_new_tab": false,
+                    "style_class": "button-secondary",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                },
+                "button_LmaxQp": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Corporate gifting",
+                    "link": "shopify://pages/corporate-gifting",
+                    "open_in_new_tab": false,
+                    "style_class": "button-secondary",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                },
+                "button_mBXYjH": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Special occasions",
+                    "link": "shopify://pages/special-occasions",
+                    "open_in_new_tab": false,
+                    "style_class": "button-secondary",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "button_D83XEV",
+                "button_LmaxQp",
+                "button_mBXYjH"
+              ]
+            }
+          },
+          "block_order": [
+            "text_biVb9b",
+            "text_mrFyc6",
+            "group_htDYzY"
+          ]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "100svh",
+        "section_width": "full-width",
+        "extend_media": false,
+        "color_scheme": "scheme-e96a76ca-5672-4555-a4f6-6a372768393b",
         "padding-block-start": 80,
         "padding-block-end": 80
       }
@@ -2757,10 +2952,52 @@
       "settings": {
         "media_position": "left",
         "media_width": "medium",
-        "media_height": "auto",
-        "section_width": "page-width",
+        "media_height": "100svh",
+        "section_width": "full-width",
         "extend_media": false,
         "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "dk_reviews_8cc3c9": {
+      "type": "dk_reviews",
+      "blocks": {
+        "review_ygbHfr": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "The Maati attar is unlike anything I've ever smelled. Pure petrichor — took me straight back to monsoon in Mumbai.",
+            "reviewer_name": "Priya S. — Mumbai"
+          }
+        },
+        "review_Trwcif": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Ordered the gifting set for 60 wedding guests. Every single person asked where it was from. The packaging is stunning.",
+            "reviewer_name": "Ananya R. — Delhi"
+          }
+        },
+        "review_LgLJTM": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "The Kesar is extraordinary. You can smell why saffron costs what it costs. This is proper, old-school Indian perfumery.",
+            "reviewer_name": "Rahul M. — London"
+          }
+        }
+      },
+      "block_order": [
+        "review_ygbHfr",
+        "review_Trwcif",
+        "review_LgLJTM"
+      ],
+      "name": "DK Reviews",
+      "settings": {
+        "eyebrow": "What our customers say",
+        "heading": "Loved across the world",
+        "color_scheme": "scheme-e96a76ca-5672-4555-a4f6-6a372768393b",
         "padding-block-start": 80,
         "padding-block-end": 80
       }
@@ -2857,7 +3094,9 @@
     "collection_list_3YWqPU",
     "product_list_iMHf73",
     "section_Ee743K",
+    "media_with_content_R6T9zP",
     "media_with_content_LfPdEJ",
+    "dk_reviews_8cc3c9",
     "17530406586e3a1e5b"
   ]
 }
