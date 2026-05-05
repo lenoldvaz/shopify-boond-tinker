@@ -1,0 +1,170 @@
+{% comment %} Added by DK on 2026-05-05 — "As seen in" press logos bar {% endcomment %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="dk-press color-{{ section.settings.color_scheme }} spacing-style" style="{%- render 'spacing-style', settings: section.settings -%}">
+  {%- if section.settings.label != blank -%}
+    <p class="dk-press__label">{{ section.settings.label }}</p>
+  {%- endif -%}
+  <div class="dk-press__row">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'logo' -%}
+        <span class="dk-press__logo dk-press__logo--{{ block.settings.style }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{- block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 150, 200', class: 'dk-press__logo-img' -}}
+          {%- else -%}
+            {{ block.settings.name }}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+/* Added by DK on 2026-05-05 */
+.dk-press {
+  padding: 36px 72px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.1);
+}
+.dk-press__label {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.dk-press__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 52px;
+  flex-wrap: wrap;
+}
+.dk-press__logo {
+  font-size: 19px;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+  line-height: 1;
+  white-space: nowrap;
+}
+.dk-press__logo:hover { opacity: 0.7; }
+.dk-press__logo--serif { font-family: var(--font-heading--family, Georgia, serif); }
+.dk-press__logo--sans { font-family: var(--font-body--family, sans-serif); font-size: 13px; letter-spacing: 0.05em; }
+.dk-press__logo--bordered {
+  font-family: var(--font-body--family, sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  border: 1.5px solid currentColor;
+  padding: 3px 8px;
+  opacity: 0.4;
+}
+.dk-press__logo--large { font-size: 26px; letter-spacing: -0.02em; }
+.dk-press__logo--italic { font-style: italic; font-size: 22px; }
+.dk-press__logo-img { height: 24px; width: auto; opacity: 0.45; filter: grayscale(1); }
+@media (max-width: 768px) {
+  .dk-press { padding: 28px 22px; }
+  .dk-press__row { gap: 20px 28px; }
+  .dk-press__logo { font-size: 15px; }
+  .dk-press__logo--large { font-size: 20px; }
+  .dk-press__logo--italic { font-size: 18px; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Press Logos",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Press Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Publication name",
+          "default": "Publication"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image (optional)"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Text style",
+          "options": [
+            { "value": "serif", "label": "Serif" },
+            { "value": "sans", "label": "Sans-serif" },
+            { "value": "bordered", "label": "Bordered (e.g. NatGeo)" },
+            { "value": "large", "label": "Large (e.g. ELLE)" },
+            { "value": "italic", "label": "Italic (e.g. mint)" }
+          ],
+          "default": "serif"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label text",
+      "default": "As seen in"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Press Logos",
+      "blocks": {
+        "natgeo": {
+          "type": "logo",
+          "settings": { "name": "National Geographic", "style": "bordered" }
+        },
+        "aljazeera": {
+          "type": "logo",
+          "settings": { "name": "Al Jazeera", "style": "serif" }
+        },
+        "elle": {
+          "type": "logo",
+          "settings": { "name": "ELLE", "style": "large" }
+        },
+        "mint": {
+          "type": "logo",
+          "settings": { "name": "mint", "style": "italic" }
+        },
+        "conde": {
+          "type": "logo",
+          "settings": { "name": "Condé Nast Traveler", "style": "sans" }
+        }
+      },
+      "block_order": ["natgeo", "aljazeera", "elle", "mint", "conde"]
+    }
+  ]
+}
+{% endschema %}

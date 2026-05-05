@@ -2723,17 +2723,92 @@
         "padding-block-end": 0
       }
     }
+    ,
+    "dk_press_hp": {
+      "type": "dk_press",
+      "blocks": {
+        "natgeo": { "type": "logo", "settings": { "name": "National Geographic", "style": "bordered" }, "blocks": {} },
+        "aljazeera": { "type": "logo", "settings": { "name": "Al Jazeera", "style": "serif" }, "blocks": {} },
+        "elle": { "type": "logo", "settings": { "name": "ELLE", "style": "large" }, "blocks": {} },
+        "mint": { "type": "logo", "settings": { "name": "mint", "style": "italic" }, "blocks": {} },
+        "conde": { "type": "logo", "settings": { "name": "Condé Nast Traveler", "style": "sans" }, "blocks": {} }
+      },
+      "block_order": ["natgeo", "aljazeera", "elle", "mint", "conde"],
+      "settings": {
+        "label": "As seen in",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 36,
+        "padding-block-end": 36
+      }
+    },
+    "dk_pull_quote_hp": {
+      "type": "dk_pull-quote",
+      "blocks": {},
+      "settings": {
+        "quote_text": "\"Our mission is to revive the ancient art of Indian perfume making — and take Indian fragrances to the world.\"",
+        "link_text": "Our story →",
+        "link": "/pages/about-us",
+        "background_color": "#1D3A2F",
+        "text_color": "#ffffffdb",
+        "link_color": "#ffffff99",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "dk_reviews_hp": {
+      "type": "dk_reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "The Maati attar is unlike anything I've ever smelled. Pure petrichor — took me straight back to monsoon in Mumbai.",
+            "reviewer_name": "Priya S. — Mumbai"
+          },
+          "blocks": {}
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Ordered the gifting set for 60 wedding guests. Every single person asked where it was from. The packaging is stunning.",
+            "reviewer_name": "Ananya R. — Delhi"
+          },
+          "blocks": {}
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "The Kesar is extraordinary. You can smell why saffron costs what it costs. This is proper, old-school Indian perfumery.",
+            "reviewer_name": "Rahul M. — London"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["r1", "r2", "r3"],
+      "settings": {
+        "eyebrow": "What our customers say",
+        "heading": "Loved across the world",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    }
   },
   "order": [
     "slideshow_WdUVQF",
     "slideshow_w3wDtN",
     "marquee_UqTmmc",
+    "dk_press_hp",
     "product_list_EDUBdR",
+    "dk_pull_quote_hp",
     "section_AyNCat",
     "collection_list_3YWqPU",
     "product_list_iMHf73",
     "section_Ee743K",
     "media_with_content_LfPdEJ",
+    "dk_reviews_hp",
     "17530406586e3a1e5b"
   ]
 }

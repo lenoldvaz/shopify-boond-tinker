@@ -1,0 +1,180 @@
+{% comment %} Added by DK on 2026-05-05 — Customer reviews grid (3 columns) {% endcomment %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="dk-rev section color-{{ section.settings.color_scheme }} spacing-style" style="{%- render 'spacing-style', settings: section.settings -%}">
+  <div class="dk-rev__header">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="dk-rev__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h2 class="dk-rev__heading">{{ section.settings.heading }}</h2>
+  </div>
+  <div class="dk-rev__grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'review' -%}
+        <div class="dk-rev__card" {{ block.shopify_attributes }}>
+          <div class="dk-rev__stars">
+            {%- assign rating = block.settings.rating | default: 5 -%}
+            {%- for i in (1..rating) -%}★{%- endfor -%}
+          </div>
+          <p class="dk-rev__text">"{{ block.settings.review_text }}"</p>
+          <p class="dk-rev__name">{{ block.settings.reviewer_name }}</p>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+/* Added by DK on 2026-05-05 */
+.dk-rev {
+  padding: 80px 72px;
+  border-bottom: 0.5px solid rgba(0,0,0,0.08);
+}
+.dk-rev__header { margin-bottom: 44px; }
+.dk-rev__eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9B2335;
+  margin-bottom: 10px;
+}
+.dk-rev__heading {
+  font-family: var(--font-heading--family, Georgia, serif);
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 300;
+  line-height: 1.1;
+}
+.dk-rev__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.dk-rev__card {
+  background: rgba(0,0,0,0.04);
+  padding: 30px 26px;
+}
+.dk-rev__stars {
+  color: #9B2335;
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+.dk-rev__text {
+  font-family: var(--font-heading--family, Georgia, serif);
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.dk-rev__name {
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  opacity: 0.5;
+}
+@media (max-width: 768px) {
+  .dk-rev { padding: 52px 22px; }
+  .dk-rev__grid { grid-template-columns: 1fr; gap: 14px; }
+  .dk-rev__heading { font-size: clamp(28px, 7vw, 38px); }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Reviews",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating",
+          "min": 1, "max": 5, "step": 1, "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review text",
+          "default": "An incredible fragrance that transported me back to India."
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name & location",
+          "default": "Priya S. — Mumbai"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "What our customers say"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved across the world"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0, "max": 100, "step": 8, "unit": "px", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0, "max": 100, "step": 8, "unit": "px", "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Reviews",
+      "blocks": {
+        "r1": {
+          "type": "review",
+          "settings": {
+            "review_text": "The Maati attar is unlike anything I've ever smelled. Pure petrichor — took me straight back to monsoon in Mumbai.",
+            "reviewer_name": "Priya S. — Mumbai"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "review_text": "Ordered the gifting set for 60 wedding guests. Every single person asked where it was from. The packaging is stunning.",
+            "reviewer_name": "Ananya R. — Delhi"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "review_text": "The Kesar is extraordinary. You can smell why saffron costs what it costs. This is proper, old-school Indian perfumery.",
+            "reviewer_name": "Rahul M. — London"
+          }
+        }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    }
+  ]
+}
+{% endschema %}
