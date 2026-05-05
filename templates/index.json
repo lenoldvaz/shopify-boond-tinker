@@ -2996,7 +2996,12 @@
       "name": "DK Reviews",
       "settings": {
         "eyebrow": "What our customers say",
+        "eyebrow_size": 10,
+        "eyebrow_color": "#9b2335",
         "heading": "Loved across the world",
+        "heading_size": 46,
+        "heading_color": "#1a1a18",
+        "header_gap": 0,
         "color_scheme": "scheme-1",
         "padding-block-start": 80,
         "padding-block-end": 80
