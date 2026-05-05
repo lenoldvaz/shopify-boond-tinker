@@ -851,7 +851,7 @@
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "flex-start",
                 "gap_desktop": 8,
                 "gap_mobile": 8,
                 "width": "fill",
@@ -873,7 +873,7 @@
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
-                "padding-block-start": 24,
+                "padding-block-start": 16,
                 "padding-block-end": 24,
                 "padding-inline-start": 16,
                 "padding-inline-end": 16
@@ -1014,7 +1014,7 @@
       "name": "t:names.products_grid",
       "settings": {
         "collection": "bestsellers-homepage",
-        "layout_type": "carousel",
+        "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 8,
         "columns": 4,
@@ -2743,18 +2743,18 @@
                 "open_in_new_tab": false,
                 "content_direction": "row",
                 "vertical_on_mobile": false,
-                "horizontal_alignment": "space-between",
-                "vertical_alignment": "center",
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "flex-start",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap_desktop": 12,
                 "gap_mobile": 12,
-                "width": "fill",
+                "width": "fit-content",
                 "custom_width": 100,
-                "width_mobile": "fill",
+                "width_mobile": "fit-content",
                 "custom_width_mobile": 100,
-                "height": "fill",
+                "height": "fit",
                 "custom_height": 100,
                 "inherit_color_scheme": true,
                 "color_scheme": "",
@@ -2835,11 +2835,11 @@
           ]
         }
       },
-      "name": "t:names.media_with_text",
+      "name": "Gifting ",
       "settings": {
         "media_position": "right",
         "media_width": "medium",
-        "media_height": "100svh",
+        "media_height": "80svh",
         "section_width": "full-width",
         "extend_media": false,
         "color_scheme": "scheme-e96a76ca-5672-4555-a4f6-6a372768393b",
@@ -2952,7 +2952,7 @@
       "settings": {
         "media_position": "left",
         "media_width": "medium",
-        "media_height": "100svh",
+        "media_height": "80svh",
         "section_width": "full-width",
         "extend_media": false,
         "color_scheme": "scheme-1",
@@ -3078,7 +3078,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
+        "padding-block-start": 80,
         "padding-block-end": 0
       }
     }
