@@ -43,6 +43,58 @@
     },
     "dk_header_section": {
       "type": "dk_header",
+      "blocks": {
+        "dropdown_item_iKyYch": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "Shop by Category",
+            "title": "Attars",
+            "url": "shopify://collections/attars",
+            "image": "shopify://shop_images/185.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_Y8EL6L": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "",
+            "title": "Dhoop",
+            "url": "shopify://collections/dhoop",
+            "image": "shopify://shop_images/69_11zon.jpg",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_7J64NU": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "",
+            "title": "Gulab Jal (Rose Water)",
+            "url": "shopify://products/boond-fragrances-pure-rose-water",
+            "image": "shopify://shop_images/3_1.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_ybqdwW": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "Latest Releases",
+            "title": "RajniGandha",
+            "url": "shopify://products/रजनीगंधा-rajnigandha-natural-perfume-oil-tuberose-attar",
+            "image": "shopify://shop_images/187_d2e5a03e-952b-43ec-bd7d-1eec8a49e5ed.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        }
+      },
+      "block_order": [
+        "dropdown_item_iKyYch",
+        "dropdown_item_Y8EL6L",
+        "dropdown_item_7J64NU",
+        "dropdown_item_ybqdwW"
+      ],
       "settings": {
         "menu": "2025-menu-dk",
         "dropdown_label_1": "Browse by type",
