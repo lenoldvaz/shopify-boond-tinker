@@ -41,104 +41,26 @@
         "padding-block-end": 15
       }
     },
-    "header_section": {
-      "type": "header",
-      "blocks": {
-        "header-logo": {
-          "type": "_header-logo",
-          "static": true,
-          "settings": {
-            "hide_logo_on_home_page": false,
-            "custom_height": 60,
-            "custom_height_mobile": 45,
-            "padding-block-start": 16,
-            "padding-block-end": 16,
-            "padding-inline-start": 10,
-            "padding-inline-end": 10
-          },
-          "blocks": {}
-        },
-        "header-menu": {
-          "type": "_header-menu",
-          "static": true,
-          "settings": {
-            "menu": "2025-menu-dk",
-            "menu_style": "dk_mega_menu",
-            "featured_products_aspect_ratio": "4 / 5",
-            "featured_collections_aspect_ratio": "16 / 9",
-            "image_border_radius": 18,
-            "product_title_case": "default",
-            "collection_title_case": "default",
-            "color_scheme": "",
-            "menu_font_style": "inverse",
-            "type_font_primary_link": "body",
-            "type_font_primary_size": "1rem",
-            "type_case_primary_link": "uppercase",
-            "type_font_secondary_link": "body",
-            "type_case_secondary_link": "none",
-            "type_font_tertiary_link": "body",
-            "type_case_tertiary_link": "uppercase",
-            "navigation_bar": false,
-            "color_scheme_navigation_bar": "",
-            "drawer_accordion": false,
-            "drawer_accordion_expand_first": true,
-            "drawer_dividers": false,
-            "desktop_menu_items_limit": 3,
-            "show_nav_categories": true,
-            "nav_categories": "Satparni Attar, Best Sellers, The Process, About Us, Bulk Orders, Visit Us, Shop All",
-            "nav_category_links": "/products/satparni-natural-perfume-oil, /collections/bestsellers-homepage,/pages/the-making-of-boond-fragrances,/pages/about-us,/pages/wedding-gifting-tally-form, \n/pages/visit-us, /collections/all-products",
-            "nav_category_pills": "NEW",
-            "cat1_title": "Shop Perfumes",
-            "cat1_menu": "by-fragrances",
-            "haircare_title": "Shop Dhoop",
-            "haircare_menu": "v2-natural-incense-cones",
-            "max_links": 8,
-            "show_shop_all": false,
-            "shop_all_text": "SHOP ALL",
-            "show_featured_products": true,
-            "carousel_title": "Trending this Week",
-            "featured_collection": "bestsellers-homepage",
-            "products_to_show": 5,
-            "show_descriptions": true,
-            "show_sale_badges": true,
-            "gap_desktop": 32,
-            "gap_mobile": 24
-          },
-          "blocks": {}
-        }
-      },
+    "dk_header_section": {
+      "type": "dk_header",
+      "blocks": {},
       "settings": {
-        "logo_position": "center",
-        "menu_position": "left",
-        "menu_row": "top",
-        "show_search": true,
-        "search_position": "right",
-        "search_row": "top",
-        "show_country": false,
-        "country_selector_style": true,
-        "show_language": false,
-        "localization_position": "right",
-        "localization_row": "top",
-        "section_width": "page-width",
-        "section_height": "standard",
-        "enable_sticky_header": "scroll-up",
-        "divider_width": 0,
-        "divider_size": "page-width",
-        "border_width": 0,
-        "color_scheme_top": "scheme-1",
-        "color_scheme_bottom": "",
-        "color_scheme_transparent": "scheme-6",
-        "enable_transparent_header_home": false,
-        "home_color_scheme": "inverse",
-        "enable_transparent_header_product": false,
-        "product_color_scheme": "default",
-        "enable_transparent_header_collection": false,
-        "collection_color_scheme": "default"
+        "menu": "2025-menu-dk",
+        "dropdown_label_1": "Browse by type",
+        "dropdown_label_2": "Shop by occasion",
+        "shop_all_text": "Shop all →",
+        "shop_all_url": "/collections/all-products",
+        "logo_color": "#9B2335",
+        "bg_color": "#faf8f4",
+        "text_color": "#555550",
+        "border_color": "#e2ddd5",
+        "header_height": 72,
+        "sticky": true
       }
     }
   },
   "order": [
     "header_announcements_WbCTVz",
-    "header_section"
+    "dk_header_section"
   ]
 }

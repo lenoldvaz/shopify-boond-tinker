@@ -1,0 +1,596 @@
+{% comment %} Added by DK on 2026-05-07 — Custom header matching Boond reference design {% endcomment %}
+
+{% liquid
+  assign main_menu = linklists[section.settings.menu]
+  assign logo_color = section.settings.logo_color | default: '#9B2335'
+  assign bg_color   = section.settings.bg_color   | default: '#faf8f4'
+  assign text_color = section.settings.text_color  | default: '#555550'
+  assign border_color = section.settings.border_color | default: '#e2ddd5'
+%}
+
+{%- comment -%} ── MOBILE DRAWER OVERLAY ── {%- endcomment -%}
+<div class="dk-hdr__overlay" id="dkHdrOverlay" onclick="dkHdrClose()"></div>
+
+{%- comment -%} ── MOBILE DRAWER ── {%- endcomment -%}
+<div class="dk-hdr__drawer" id="dkHdrDrawer" aria-hidden="true">
+  <div class="dk-hdr__drawer-top">
+    <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo_image != blank -%}
+        {{- section.settings.logo_image | image_url: height: 48 | image_tag: loading: 'eager', class: 'dk-hdr__drawer-logo-img' -}}
+      {%- else -%}
+        <svg width="72" height="48" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 10 68 A 50 50 0 0 1 110 68" fill="none" stroke="{{ logo_color }}" stroke-width="1.8"/>
+          <line x1="10" y1="68" x2="110" y2="68" stroke="{{ logo_color }}" stroke-width="1.2"/>
+          <text x="21" y="64" font-size="9" fill="{{ logo_color }}" font-family="serif">✦</text>
+          <text x="88" y="64" font-size="9" fill="{{ logo_color }}" font-family="serif">✦</text>
+          <text x="60" y="62" font-size="23" fill="{{ logo_color }}" font-family="serif" text-anchor="middle">बूँद</text>
+        </svg>
+      {%- endif -%}
+    </a>
+    <button class="dk-hdr__drawer-close" onclick="dkHdrClose()" aria-label="Close menu">&#x2715;</button>
+  </div>
+
+  {%- assign drop_count = 0 -%}
+  {%- for link in main_menu.links -%}
+    {%- if link.links.size > 0 -%}
+      {%- assign drop_count = drop_count | plus: 1 -%}
+      {%- assign acc_id = 'dkAcc' | append: drop_count -%}
+      <div class="dk-hdr__mob-acc">
+        <button class="dk-hdr__mob-trigger" onclick="dkHdrToggleAcc('{{ acc_id }}')" aria-expanded="false" id="{{ acc_id }}Btn">
+          <span>{{ link.title }}</span>
+          <span class="dk-hdr__mob-arrow" aria-hidden="true">&#9662;</span>
+        </button>
+        <div class="dk-hdr__mob-body" id="{{ acc_id }}" hidden>
+          {%- if drop_count == 1 and section.settings.dropdown_label_1 != blank -%}
+            <p class="dk-hdr__mob-sublabel">{{ section.settings.dropdown_label_1 }}</p>
+          {%- elsif drop_count == 2 and section.settings.dropdown_label_2 != blank -%}
+            <p class="dk-hdr__mob-sublabel">{{ section.settings.dropdown_label_2 }}</p>
+          {%- endif -%}
+          {%- for sub in link.links -%}
+            <a href="{{ sub.url }}" class="dk-hdr__mob-item">{{ sub.title }}</a>
+          {%- endfor -%}
+          {%- if drop_count == 1 and section.settings.shop_all_text != blank -%}
+            <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__mob-shopall">
+              {{- section.settings.shop_all_text -}}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- else -%}
+      <a href="{{ link.url }}" class="dk-hdr__mob-plain">{{ link.title }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{%- comment -%} ── HEADER ── {%- endcomment -%}
+<header
+  class="dk-hdr{% if section.settings.sticky %} dk-hdr--sticky{% endif %}"
+  id="dkHdr"
+  style="
+    --dk-hdr-bg: {{ bg_color }};
+    --dk-hdr-text: {{ text_color }};
+    --dk-hdr-border: {{ border_color }};
+    --dk-hdr-logo: {{ logo_color }};
+    --dk-hdr-height: {{ section.settings.header_height }}px;
+  "
+>
+  <div class="dk-hdr__inner">
+
+    {%- comment -%} LEFT: hamburger + desktop nav {%- endcomment -%}
+    <div class="dk-hdr__left">
+      <button class="dk-hdr__hamburger" onclick="dkHdrOpen()" aria-label="Open menu" aria-controls="dkHdrDrawer">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="dk-hdr__nav" aria-label="Main navigation">
+        {%- assign drop_count = 0 -%}
+        {%- for link in main_menu.links -%}
+          {%- if link.links.size > 0 -%}
+            {%- assign drop_count = drop_count | plus: 1 -%}
+            <div class="dk-hdr__drop-wrapper">
+              <a href="{{ link.url }}" class="dk-hdr__nav-link dk-hdr__nav-link--drop">
+                {{- link.title -}}
+              </a>
+              <div class="dk-hdr__dropdown" role="region">
+                <div class="dk-hdr__dd-section">
+                  {%- if drop_count == 1 and section.settings.dropdown_label_1 != blank -%}
+                    <p class="dk-hdr__dd-label">{{ section.settings.dropdown_label_1 }}</p>
+                  {%- elsif drop_count == 2 and section.settings.dropdown_label_2 != blank -%}
+                    <p class="dk-hdr__dd-label">{{ section.settings.dropdown_label_2 }}</p>
+                  {%- endif -%}
+                  {%- for sub in link.links -%}
+                    <a href="{{ sub.url }}" class="dk-hdr__dd-item">{{ sub.title }}</a>
+                  {%- endfor -%}
+                  {%- if drop_count == 1 and section.settings.shop_all_text != blank -%}
+                    <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__dd-shopall">
+                      {{- section.settings.shop_all_text -}}
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- else -%}
+            <a href="{{ link.url }}" class="dk-hdr__nav-link">{{ link.title }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    </div>
+
+    {%- comment -%} CENTER: logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="dk-hdr__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo_image != blank -%}
+        {{
+          section.settings.logo_image
+          | image_url: height: 58
+          | image_tag: loading: 'eager', fetchpriority: 'high', class: 'dk-hdr__logo-img'
+        }}
+      {%- else -%}
+        <svg width="88" height="58" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 10 68 A 50 50 0 0 1 110 68" fill="none" stroke="{{ logo_color }}" stroke-width="1.8"/>
+          <line x1="10" y1="68" x2="110" y2="68" stroke="{{ logo_color }}" stroke-width="1.2"/>
+          <text x="21" y="64" font-size="9" fill="{{ logo_color }}" font-family="serif">✦</text>
+          <text x="88" y="64" font-size="9" fill="{{ logo_color }}" font-family="serif">✦</text>
+          <text x="60" y="62" font-size="23" fill="{{ logo_color }}" font-family="serif" text-anchor="middle" font-weight="400">बूँद</text>
+        </svg>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} RIGHT: search + cart {%- endcomment -%}
+    <div class="dk-hdr__icons">
+      <a href="{{ routes.search_url }}" class="dk-hdr__icon-btn" aria-label="Search">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="dk-hdr__icon-btn dk-hdr__cart" aria-label="Cart ({{ cart.item_count }} items)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        {%- if cart.item_count > 0 -%}
+          <span class="dk-hdr__cart-count" aria-hidden="true">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+  </div>
+</header>
+
+{% stylesheet %}
+/* Added by DK on 2026-05-07 — dk_header styles */
+
+/* ── HEADER ── */
+.dk-hdr {
+  background: var(--dk-hdr-bg, #faf8f4);
+  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+  height: var(--dk-hdr-height, 72px);
+  color: var(--dk-hdr-text, #555550);
+  position: relative;
+  z-index: 100;
+}
+.dk-hdr--sticky {
+  position: sticky;
+  top: 0;
+}
+.dk-hdr__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 56px;
+  position: relative;
+}
+.dk-hdr__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ── HAMBURGER ── */
+.dk-hdr__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.dk-hdr__hamburger span {
+  display: block;
+  height: 1.5px;
+  background: var(--dk-hdr-text, #555550);
+  border-radius: 2px;
+}
+.dk-hdr__hamburger span:nth-child(1) { width: 20px; }
+.dk-hdr__hamburger span:nth-child(2) { width: 13px; }
+.dk-hdr__hamburger span:nth-child(3) { width: 20px; }
+
+/* ── DESKTOP NAV ── */
+.dk-hdr__nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.dk-hdr__nav-link {
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  color: var(--dk-hdr-text, #555550);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.dk-hdr__nav-link:hover { color: #1a1a18; }
+.dk-hdr__nav-link--drop::after {
+  content: ' ▾';
+  font-size: 9px;
+}
+
+/* ── DROPDOWN ── */
+.dk-hdr__drop-wrapper {
+  position: relative;
+}
+.dk-hdr__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--dk-hdr-bg, #faf8f4);
+  border: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+  padding: 22px 28px;
+  min-width: 210px;
+  z-index: 200;
+  white-space: nowrap;
+}
+.dk-hdr__drop-wrapper:hover .dk-hdr__dropdown,
+.dk-hdr__drop-wrapper:focus-within .dk-hdr__dropdown { display: block; }
+/* Arrow */
+.dk-hdr__dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top: none;
+  border-bottom-color: var(--dk-hdr-border, #e2ddd5);
+}
+.dk-hdr__dropdown::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top: none;
+  border-bottom-color: var(--dk-hdr-bg, #faf8f4);
+}
+.dk-hdr__dd-label {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #9a9a92;
+  margin-bottom: 8px;
+}
+.dk-hdr__dd-item {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--dk-hdr-text, #555550);
+  text-decoration: none;
+  padding: 5px 0;
+  transition: color 0.15s;
+}
+.dk-hdr__dd-item:hover { color: #1a1a18; }
+.dk-hdr__dd-shopall {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dk-hdr-logo, #9B2335);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--dk-hdr-logo, #9B2335);
+  padding-bottom: 1px;
+  margin-top: 10px;
+}
+
+/* ── LOGO ── */
+.dk-hdr__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.dk-hdr__logo-img {
+  height: 58px;
+  width: auto;
+  display: block;
+}
+
+/* ── ICONS ── */
+.dk-hdr__icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.dk-hdr__icon-btn {
+  color: var(--dk-hdr-text, #555550);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  position: relative;
+}
+.dk-hdr__icon-btn:hover { color: #1a1a18; }
+.dk-hdr__cart-count {
+  position: absolute;
+  top: -6px;
+  right: -7px;
+  background: var(--dk-hdr-logo, #9B2335);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 500;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ── MOBILE DRAWER ── */
+.dk-hdr__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 198;
+}
+.dk-hdr__overlay.is-open { display: block; }
+
+.dk-hdr__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background: var(--dk-hdr-bg, #faf8f4);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
+  max-width: 360px;
+}
+.dk-hdr__drawer.is-open { transform: translateX(0); }
+
+.dk-hdr__drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+}
+.dk-hdr__drawer-logo-img { height: 48px; width: auto; }
+.dk-hdr__drawer-close {
+  font-size: 22px;
+  color: var(--dk-hdr-text, #555550);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+/* Mobile accordion */
+.dk-hdr__mob-acc {
+  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+}
+.dk-hdr__mob-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 22px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a18;
+}
+.dk-hdr__mob-arrow {
+  font-size: 9px;
+  color: #9a9a92;
+  transition: transform 0.2s;
+}
+.dk-hdr__mob-trigger[aria-expanded="true"] .dk-hdr__mob-arrow {
+  transform: rotate(180deg);
+}
+.dk-hdr__mob-body {
+  padding: 0 22px 16px;
+}
+.dk-hdr__mob-sublabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dk-hdr-text, #555550);
+  font-weight: 500;
+  margin: 12px 0 4px;
+}
+.dk-hdr__mob-item {
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  color: #1a1a18;
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+}
+.dk-hdr__mob-item:last-of-type { border-bottom: none; }
+.dk-hdr__mob-shopall {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dk-hdr-logo, #9B2335);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--dk-hdr-logo, #9B2335);
+  margin-top: 14px;
+}
+.dk-hdr__mob-plain {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a18;
+  text-decoration: none;
+  padding: 15px 22px;
+  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+}
+
+/* ── MOBILE BREAKPOINT ── */
+@media (max-width: 768px) {
+  .dk-hdr__inner { padding: 0 20px; }
+  .dk-hdr__hamburger { display: flex; }
+  .dk-hdr__nav { display: none; }
+  .dk-hdr__logo { position: static; transform: none; }
+  .dk-hdr__logo svg { width: 72px; height: 48px; }
+}
+{% endstylesheet %}
+
+<script>
+/* Added by DK on 2026-05-07 — Mobile drawer + accordion */
+function dkHdrOpen() {
+  document.getElementById('dkHdrDrawer').classList.add('is-open');
+  document.getElementById('dkHdrOverlay').classList.add('is-open');
+  document.getElementById('dkHdrDrawer').setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function dkHdrClose() {
+  document.getElementById('dkHdrDrawer').classList.remove('is-open');
+  document.getElementById('dkHdrOverlay').classList.remove('is-open');
+  document.getElementById('dkHdrDrawer').setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function dkHdrToggleAcc(id) {
+  var body = document.getElementById(id);
+  var btn  = document.getElementById(id + 'Btn');
+  var isOpen = !body.hidden;
+  /* close all */
+  document.querySelectorAll('.dk-hdr__mob-body').forEach(function(el) { el.hidden = true; });
+  document.querySelectorAll('.dk-hdr__mob-trigger').forEach(function(el) { el.setAttribute('aria-expanded', 'false'); });
+  /* open this one if it wasn't open */
+  if (!isOpen) {
+    body.hidden = false;
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "DK Header",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "dropdown_label_1",
+      "label": "1st dropdown section label",
+      "default": "Browse by type",
+      "info": "Label shown above the links in the first dropdown"
+    },
+    {
+      "type": "text",
+      "id": "dropdown_label_2",
+      "label": "2nd dropdown section label",
+      "default": "Shop by occasion"
+    },
+    {
+      "type": "text",
+      "id": "shop_all_text",
+      "label": "\"Shop all\" link text",
+      "default": "Shop all →",
+      "info": "Appears at the bottom of the 1st dropdown. Leave blank to hide."
+    },
+    {
+      "type": "url",
+      "id": "shop_all_url",
+      "label": "\"Shop all\" link URL"
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image",
+      "info": "Upload a logo to replace the default SVG mark"
+    },
+    {
+      "type": "color",
+      "id": "logo_color",
+      "label": "SVG logo color",
+      "default": "#9B2335",
+      "info": "Only applies when no logo image is uploaded"
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#faf8f4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Nav link color",
+      "default": "#555550"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border / divider color",
+      "default": "#e2ddd5"
+    },
+    {
+      "type": "range",
+      "id": "header_height",
+      "label": "Header height",
+      "min": 48,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky header",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Header"
+    }
+  ]
+}
+{% endschema %}
