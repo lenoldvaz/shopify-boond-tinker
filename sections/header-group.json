@@ -43,14 +43,14 @@
     },
     "dk_header_section": {
       "type": "dk_header",
-      "blocks": {},
       "settings": {
         "menu": "2025-menu-dk",
         "dropdown_label_1": "Browse by type",
         "dropdown_label_2": "Shop by occasion",
         "shop_all_text": "Shop all →",
         "shop_all_url": "/collections/all-products",
-        "logo_color": "#9B2335",
+        "logo_image": "shopify://shop_images/Logo_off_white_BG-removebg-preview.png",
+        "logo_color": "#9b2335",
         "bg_color": "#faf8f4",
         "text_color": "#555550",
         "border_color": "#e2ddd5",
