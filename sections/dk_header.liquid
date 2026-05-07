@@ -351,11 +351,11 @@
 .dk-hdr__dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 14px);
+  top: 100%;
   left: 0;
   background: #fff;
   border: 0.5px solid var(--dk-hdr-border, #e2ddd5);
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   box-shadow: 0 12px 36px rgba(0,0,0,0.10);
   padding: 10px 8px 14px;
   min-width: 240px;
@@ -363,25 +363,6 @@
 }
 .dk-hdr__drop-wrapper:hover .dk-hdr__dropdown,
 .dk-hdr__drop-wrapper:focus-within .dk-hdr__dropdown { display: block; }
-/* Arrow pointer — sits above the nav link text (~20px from left) */
-.dk-hdr__dropdown::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: 20px;
-  border: 6px solid transparent;
-  border-top: none;
-  border-bottom-color: var(--dk-hdr-border, #e2ddd5);
-}
-.dk-hdr__dropdown::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 20px;
-  border: 6px solid transparent;
-  border-top: none;
-  border-bottom-color: #fff;
-}
 
 /* Group header */
 .dk-hdr__dd-group {
