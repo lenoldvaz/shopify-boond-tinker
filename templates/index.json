@@ -2714,11 +2714,11 @@
               "type": "text",
               "settings": {
                 "text": "<ul><li>Employing 15+ local artisans to handcraft the fragrances and package them.</li></ul><p></p><ul><li>Made using traditional art forms like the Deg-Bhapka technique, handmade paper making and screen-printing.</li></ul><p></p><ul><li>Chemical and alcohol free fragrances made from pure, natural and locally sourced raw materials.</li></ul><p></p><ul><li>Conferred with the Geographical Indicator (GI) Tag by the Government of India for authentic Kannauj Perfume.</li></ul>",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
-                "font": "var(--font-primary--family)",
+                "font": "var(--font-body--family)",
                 "font_size": "",
                 "line_height": "normal",
                 "letter_spacing": "normal",
@@ -2827,7 +2827,7 @@
               "type": "text",
               "settings": {
                 "text": "<p>A fragrance that carries a story. Every Boond gift is handcrafted, beautifully packaged, and unlike anything they've received before.</p>",
-                "width": "fit-content",
+                "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
