@@ -179,18 +179,19 @@
         {%- assign drop_count = 0 -%}
         {%- for link in main_menu.links -%}
 
-          {%- comment -%} Check if this nav item has dropdown blocks {%- endcomment -%}
+          {%- comment -%} Check if this nav item has dropdown blocks — use string comparison (select values are strings) {%- endcomment -%}
           {%- assign link_index = drop_count | plus: 1 -%}
+          {%- assign link_index_str = link_index | append: '' -%}
           {%- assign has_blocks = false -%}
           {%- for block in section.blocks -%}
-            {%- if block.type == 'dropdown_item' and block.settings.parent == link_index -%}
+            {%- if block.type == 'dropdown_item' and block.settings.parent == link_index_str -%}
               {%- assign has_blocks = true -%}
             {%- endif -%}
           {%- endfor -%}
 
           {%- if link.links.size > 0 or has_blocks -%}
             {%- assign drop_count = drop_count | plus: 1 -%}
-            {%- assign current_drop = drop_count -%}
+            {%- assign current_drop_str = drop_count | append: '' -%}
             <div class="dk-hdr__drop-wrapper">
               <a href="{{ link.url }}" class="dk-hdr__nav-link dk-hdr__nav-link--drop">{{ link.title }}</a>
               <div class="dk-hdr__dropdown" role="region">
@@ -199,7 +200,7 @@
                 {%- assign prev_label = '' -%}
                 {%- assign has_block_items = false -%}
                 {%- for block in section.blocks -%}
-                  {%- if block.type == 'dropdown_item' and block.settings.parent == current_drop -%}
+                  {%- if block.type == 'dropdown_item' and block.settings.parent == current_drop_str -%}
                     {%- assign has_block_items = true -%}
                     {%- if block.settings.group_label != blank and block.settings.group_label != prev_label -%}
                       <p class="dk-hdr__dd-group">{{ block.settings.group_label }}</p>
@@ -222,21 +223,23 @@
 
                 {%- comment -%} Fallback to linklist sub-links if no blocks configured {%- endcomment -%}
                 {%- unless has_block_items -%}
-                  {%- if current_drop == 1 and section.settings.dropdown_label_1 != blank -%}
+                  {%- if current_drop_str == '1' and section.settings.dropdown_label_1 != blank -%}
                     <p class="dk-hdr__dd-group">{{ section.settings.dropdown_label_1 }}</p>
-                  {%- elsif current_drop == 2 and section.settings.dropdown_label_2 != blank -%}
+                  {%- elsif current_drop_str == '2' and section.settings.dropdown_label_2 != blank -%}
                     <p class="dk-hdr__dd-group">{{ section.settings.dropdown_label_2 }}</p>
                   {%- endif -%}
+                  {%- assign fallback_colors = '#e8e0d6,#d6e0d0,#e0d6d6,#d6d6e0,#e0dcd0,#d0dce0' | split: ',' -%}
                   {%- for sub in link.links -%}
+                    {%- assign color_idx = forloop.index0 | modulo: 6 -%}
                     <a href="{{ sub.url }}" class="dk-hdr__dd-row">
-                      <div class="dk-hdr__dd-thumb dk-hdr__dd-thumb--empty"></div>
+                      <div class="dk-hdr__dd-thumb" style="background: {{ fallback_colors[color_idx] }};"></div>
                       <span class="dk-hdr__dd-row-title">{{ sub.title }}</span>
                     </a>
                   {%- endfor -%}
                 {%- endunless -%}
 
                 {%- comment -%} Shop all link (first dropdown only) {%- endcomment -%}
-                {%- if current_drop == 1 and section.settings.shop_all_text != blank -%}
+                {%- if current_drop_str == '1' and section.settings.shop_all_text != blank -%}
                   <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__dd-shopall">
                     {{- section.settings.shop_all_text -}}
                   </a>
