@@ -352,8 +352,7 @@
   display: none;
   position: absolute;
   top: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   background: #fff;
   border: 0.5px solid var(--dk-hdr-border, #e2ddd5);
   border-radius: 10px;
@@ -364,13 +363,12 @@
 }
 .dk-hdr__drop-wrapper:hover .dk-hdr__dropdown,
 .dk-hdr__drop-wrapper:focus-within .dk-hdr__dropdown { display: block; }
-/* Arrow pointer */
+/* Arrow pointer — sits above the nav link text (~20px from left) */
 .dk-hdr__dropdown::before {
   content: '';
   position: absolute;
   top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20px;
   border: 6px solid transparent;
   border-top: none;
   border-bottom-color: var(--dk-hdr-border, #e2ddd5);
@@ -379,8 +377,7 @@
   content: '';
   position: absolute;
   top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 20px;
   border: 6px solid transparent;
   border-top: none;
   border-bottom-color: #fff;
