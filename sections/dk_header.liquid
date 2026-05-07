@@ -54,48 +54,44 @@
     </form>
   </div>
 
-  {%- comment -%} Tab pills — one per nav item that has sub-items {%- endcomment -%}
-  {%- assign drawer_tab_count = 0 -%}
+  {%- comment -%} Tabs + panels keyed by forloop.index — no counters, no drift {%- endcomment -%}
+  {%- assign has_dropdown_links = false -%}
   {%- for link in main_menu.links -%}
-    {%- if link.links.size > 0 -%}
-      {%- assign drawer_tab_count = drawer_tab_count | plus: 1 -%}
-    {%- endif -%}
+    {%- if link.links.size > 0 -%}{%- assign has_dropdown_links = true -%}{%- endif -%}
   {%- endfor -%}
 
-  {%- if drawer_tab_count > 0 -%}
+  {%- if has_dropdown_links -%}
     <div class="dk-hdr__drawer-tabs" role="tablist">
-      {%- assign tab_idx = 0 -%}
+      {%- assign first_tab = true -%}
       {%- for link in main_menu.links -%}
         {%- if link.links.size > 0 -%}
-          {%- assign tab_idx = tab_idx | plus: 1 -%}
           <button
-            class="dk-hdr__drawer-tab{% if tab_idx == 1 %} is-active{% endif %}"
-            onclick="dkHdrTab({{ tab_idx }})"
-            id="dkTab{{ tab_idx }}"
+            class="dk-hdr__drawer-tab{% if first_tab %} is-active{% endif %}"
+            onclick="dkHdrTab({{ forloop.index }})"
+            id="dkTab{{ forloop.index }}"
             role="tab"
-            aria-selected="{% if tab_idx == 1 %}true{% else %}false{% endif %}"
-            aria-controls="dkPanel{{ tab_idx }}"
+            aria-selected="{% if first_tab %}true{% else %}false{% endif %}"
+            aria-controls="dkPanel{{ forloop.index }}"
           >{{ link.title }}</button>
+          {%- assign first_tab = false -%}
         {%- endif -%}
       {%- endfor -%}
     </div>
 
-    {%- comment -%} Content panels — image thumbnail rows from blocks {%- endcomment -%}
-    {%- assign panel_idx = 0 -%}
+    {%- assign first_panel = true -%}
     {%- for link in main_menu.links -%}
       {%- if link.links.size > 0 -%}
-        {%- assign panel_idx = panel_idx | plus: 1 -%}
-        {%- assign panel_idx_str = panel_idx | append: '' -%}
+        {%- assign link_pos_str = forloop.index | append: '' -%}
         <div
-          class="dk-hdr__drawer-panel{% if panel_idx == 1 %} is-active{% endif %}"
-          id="dkPanel{{ panel_idx }}"
+          class="dk-hdr__drawer-panel{% if first_panel %} is-active{% endif %}"
+          id="dkPanel{{ forloop.index }}"
           role="tabpanel"
-          aria-labelledby="dkTab{{ panel_idx }}"
+          aria-labelledby="dkTab{{ forloop.index }}"
         >
           {%- assign prev_label = '' -%}
           {%- assign has_block_items = false -%}
           {%- for block in section.blocks -%}
-            {%- if block.type == 'dropdown_item' and block.settings.parent == panel_idx_str -%}
+            {%- if block.type == 'dropdown_item' and block.settings.parent == link_pos_str -%}
               {%- assign has_block_items = true -%}
               {%- if block.settings.group_label != blank and block.settings.group_label != prev_label -%}
                 <p class="dk-hdr__drawer-group">{{ block.settings.group_label }}</p>
@@ -116,7 +112,6 @@
             {%- endif -%}
           {%- endfor -%}
 
-          {%- comment -%} Fallback to linklist sub-links if no blocks configured — still show placeholder thumbnails {%- endcomment -%}
           {%- unless has_block_items -%}
             {%- assign fallback_colors = '#e8e0d6,#d6e0d0,#e0d6d6,#d6d6e0,#e0dcd0,#d0dce0' | split: ',' -%}
             {%- for sub in link.links -%}
@@ -128,12 +123,13 @@
             {%- endfor -%}
           {%- endunless -%}
 
-          {%- if panel_idx == 1 and section.settings.shop_all_text != blank -%}
+          {%- if first_panel and section.settings.shop_all_text != blank -%}
             <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__drawer-shopall" onclick="dkHdrClose()">
               {{- section.settings.shop_all_text -}}
             </a>
           {%- endif -%}
         </div>
+        {%- assign first_panel = false -%}
       {%- endif -%}
     {%- endfor -%}
   {%- endif -%}
@@ -176,31 +172,26 @@
       </button>
 
       <nav class="dk-hdr__nav" aria-label="Main navigation">
-        {%- assign drop_count = 0 -%}
+        {%- assign first_desktop_drop = true -%}
         {%- for link in main_menu.links -%}
+          {%- assign link_pos_str = forloop.index | append: '' -%}
 
-          {%- comment -%} Check if this nav item has dropdown blocks — use string comparison (select values are strings) {%- endcomment -%}
-          {%- assign link_index = drop_count | plus: 1 -%}
-          {%- assign link_index_str = link_index | append: '' -%}
           {%- assign has_blocks = false -%}
           {%- for block in section.blocks -%}
-            {%- if block.type == 'dropdown_item' and block.settings.parent == link_index_str -%}
+            {%- if block.type == 'dropdown_item' and block.settings.parent == link_pos_str -%}
               {%- assign has_blocks = true -%}
             {%- endif -%}
           {%- endfor -%}
 
           {%- if link.links.size > 0 or has_blocks -%}
-            {%- assign drop_count = drop_count | plus: 1 -%}
-            {%- assign current_drop_str = drop_count | append: '' -%}
             <div class="dk-hdr__drop-wrapper">
               <a href="{{ link.url }}" class="dk-hdr__nav-link dk-hdr__nav-link--drop">{{ link.title }}</a>
               <div class="dk-hdr__dropdown" role="region">
 
-                {%- comment -%} Render blocks if any are configured for this dropdown {%- endcomment -%}
                 {%- assign prev_label = '' -%}
                 {%- assign has_block_items = false -%}
                 {%- for block in section.blocks -%}
-                  {%- if block.type == 'dropdown_item' and block.settings.parent == current_drop_str -%}
+                  {%- if block.type == 'dropdown_item' and block.settings.parent == link_pos_str -%}
                     {%- assign has_block_items = true -%}
                     {%- if block.settings.group_label != blank and block.settings.group_label != prev_label -%}
                       <p class="dk-hdr__dd-group">{{ block.settings.group_label }}</p>
@@ -221,13 +212,7 @@
                   {%- endif -%}
                 {%- endfor -%}
 
-                {%- comment -%} Fallback to linklist sub-links if no blocks configured {%- endcomment -%}
                 {%- unless has_block_items -%}
-                  {%- if current_drop_str == '1' and section.settings.dropdown_label_1 != blank -%}
-                    <p class="dk-hdr__dd-group">{{ section.settings.dropdown_label_1 }}</p>
-                  {%- elsif current_drop_str == '2' and section.settings.dropdown_label_2 != blank -%}
-                    <p class="dk-hdr__dd-group">{{ section.settings.dropdown_label_2 }}</p>
-                  {%- endif -%}
                   {%- assign fallback_colors = '#e8e0d6,#d6e0d0,#e0d6d6,#d6d6e0,#e0dcd0,#d0dce0' | split: ',' -%}
                   {%- for sub in link.links -%}
                     {%- assign color_idx = forloop.index0 | modulo: 6 -%}
@@ -238,12 +223,12 @@
                   {%- endfor -%}
                 {%- endunless -%}
 
-                {%- comment -%} Shop all link (first dropdown only) {%- endcomment -%}
-                {%- if current_drop_str == '1' and section.settings.shop_all_text != blank -%}
+                {%- if first_desktop_drop and section.settings.shop_all_text != blank -%}
                   <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__dd-shopall">
                     {{- section.settings.shop_all_text -}}
                   </a>
                 {%- endif -%}
+                {%- assign first_desktop_drop = false -%}
 
               </div>
             </div>
@@ -649,13 +634,12 @@ function dkHdrClose() {
   document.body.style.overflow = '';
 }
 function dkHdrTab(n) {
-  /* Switch active tab pill */
-  document.querySelectorAll('.dk-hdr__drawer-tab').forEach(function(el, i) {
-    var active = (i + 1 === n);
+  /* Match by element ID — n is absolute nav position, not sequential index */
+  document.querySelectorAll('.dk-hdr__drawer-tab').forEach(function(el) {
+    var active = (el.id === 'dkTab' + n);
     el.classList.toggle('is-active', active);
     el.setAttribute('aria-selected', active ? 'true' : 'false');
   });
-  /* Switch visible panel */
   document.querySelectorAll('.dk-hdr__drawer-panel').forEach(function(el) {
     el.classList.remove('is-active');
   });
@@ -676,15 +660,19 @@ function dkHdrTab(n) {
         {
           "type": "select",
           "id": "parent",
-          "label": "Belongs to dropdown",
+          "label": "Belongs to nav link",
           "options": [
-            { "value": "1", "label": "1st dropdown" },
-            { "value": "2", "label": "2nd dropdown" },
-            { "value": "3", "label": "3rd dropdown" },
-            { "value": "4", "label": "4th dropdown" }
+            { "value": "1", "label": "Nav link 1" },
+            { "value": "2", "label": "Nav link 2" },
+            { "value": "3", "label": "Nav link 3" },
+            { "value": "4", "label": "Nav link 4" },
+            { "value": "5", "label": "Nav link 5" },
+            { "value": "6", "label": "Nav link 6" },
+            { "value": "7", "label": "Nav link 7" },
+            { "value": "8", "label": "Nav link 8" }
           ],
           "default": "1",
-          "info": "Match to the position of the nav link that has sub-items"
+          "info": "Count ALL nav links from left, including those without sub-items. E.g. if your nav is Shop, Journal, Gifting — Shop=1, Journal=2, Gifting=3."
         },
         {
           "type": "text",
