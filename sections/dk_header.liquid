@@ -1,9 +1,11 @@
 {% comment %} Added by DK on 2026-05-07 — Custom header matching Boond reference design {% endcomment %}
+{% comment %} Updated by DK on 2026-05-07 — Image-thumbnail dropdowns with section group headers {% endcomment %}
+{% comment %} Updated by DK on 2026-05-07 — Dossier-style mobile drawer: search bar, tab pills, image rows {% endcomment %}
 
 {% liquid
-  assign main_menu = linklists[section.settings.menu]
-  assign logo_color = section.settings.logo_color | default: '#9B2335'
-  assign bg_color   = section.settings.bg_color   | default: '#faf8f4'
+  assign main_menu  = linklists[section.settings.menu]
+  assign logo_color = section.settings.logo_color  | default: '#9B2335'
+  assign bg_color   = section.settings.bg_color    | default: '#faf8f4'
   assign text_color = section.settings.text_color  | default: '#555550'
   assign border_color = section.settings.border_color | default: '#e2ddd5'
 %}
@@ -11,14 +13,16 @@
 {%- comment -%} ── MOBILE DRAWER OVERLAY ── {%- endcomment -%}
 <div class="dk-hdr__overlay" id="dkHdrOverlay" onclick="dkHdrClose()"></div>
 
-{%- comment -%} ── MOBILE DRAWER ── {%- endcomment -%}
+{%- comment -%} ── MOBILE DRAWER — Dossier style: search + tabs + image rows ── {%- endcomment -%}
 <div class="dk-hdr__drawer" id="dkHdrDrawer" aria-hidden="true">
+
+  {%- comment -%} Top bar: logo + close {%- endcomment -%}
   <div class="dk-hdr__drawer-top">
-    <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+    <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}" onclick="dkHdrClose()">
       {%- if section.settings.logo_image != blank -%}
-        {{- section.settings.logo_image | image_url: height: 48 | image_tag: loading: 'eager', class: 'dk-hdr__drawer-logo-img' -}}
+        {{- section.settings.logo_image | image_url: height: 44 | image_tag: loading: 'eager', class: 'dk-hdr__drawer-logo-img' -}}
       {%- else -%}
-        <svg width="72" height="48" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg width="66" height="44" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M 10 68 A 50 50 0 0 1 110 68" fill="none" stroke="{{ logo_color }}" stroke-width="1.8"/>
           <line x1="10" y1="68" x2="110" y2="68" stroke="{{ logo_color }}" stroke-width="1.2"/>
           <text x="21" y="64" font-size="9" fill="{{ logo_color }}" font-family="serif">✦</text>
@@ -30,36 +34,122 @@
     <button class="dk-hdr__drawer-close" onclick="dkHdrClose()" aria-label="Close menu">&#x2715;</button>
   </div>
 
-  {%- assign drop_count = 0 -%}
+  {%- comment -%} Search bar {%- endcomment -%}
+  <div class="dk-hdr__drawer-search">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <div class="dk-hdr__drawer-search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" style="flex-shrink:0;opacity:0.45">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="search"
+          name="q"
+          placeholder="Search fragrances, attars…"
+          class="dk-hdr__drawer-search-input"
+          autocomplete="off"
+          aria-label="Search"
+        >
+      </div>
+    </form>
+  </div>
+
+  {%- comment -%} Tab pills — one per nav item that has sub-items {%- endcomment -%}
+  {%- assign drawer_tab_count = 0 -%}
   {%- for link in main_menu.links -%}
     {%- if link.links.size > 0 -%}
-      {%- assign drop_count = drop_count | plus: 1 -%}
-      {%- assign acc_id = 'dkAcc' | append: drop_count -%}
-      <div class="dk-hdr__mob-acc">
-        <button class="dk-hdr__mob-trigger" onclick="dkHdrToggleAcc('{{ acc_id }}')" aria-expanded="false" id="{{ acc_id }}Btn">
-          <span>{{ link.title }}</span>
-          <span class="dk-hdr__mob-arrow" aria-hidden="true">&#9662;</span>
-        </button>
-        <div class="dk-hdr__mob-body" id="{{ acc_id }}" hidden>
-          {%- if drop_count == 1 and section.settings.dropdown_label_1 != blank -%}
-            <p class="dk-hdr__mob-sublabel">{{ section.settings.dropdown_label_1 }}</p>
-          {%- elsif drop_count == 2 and section.settings.dropdown_label_2 != blank -%}
-            <p class="dk-hdr__mob-sublabel">{{ section.settings.dropdown_label_2 }}</p>
-          {%- endif -%}
-          {%- for sub in link.links -%}
-            <a href="{{ sub.url }}" class="dk-hdr__mob-item">{{ sub.title }}</a>
+      {%- assign drawer_tab_count = drawer_tab_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if drawer_tab_count > 0 -%}
+    <div class="dk-hdr__drawer-tabs" role="tablist">
+      {%- assign tab_idx = 0 -%}
+      {%- for link in main_menu.links -%}
+        {%- if link.links.size > 0 -%}
+          {%- assign tab_idx = tab_idx | plus: 1 -%}
+          <button
+            class="dk-hdr__drawer-tab{% if tab_idx == 1 %} is-active{% endif %}"
+            onclick="dkHdrTab({{ tab_idx }})"
+            id="dkTab{{ tab_idx }}"
+            role="tab"
+            aria-selected="{% if tab_idx == 1 %}true{% else %}false{% endif %}"
+            aria-controls="dkPanel{{ tab_idx }}"
+          >{{ link.title }}</button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Content panels — image thumbnail rows from blocks {%- endcomment -%}
+    {%- assign panel_idx = 0 -%}
+    {%- for link in main_menu.links -%}
+      {%- if link.links.size > 0 -%}
+        {%- assign panel_idx = panel_idx | plus: 1 -%}
+        {%- assign panel_idx_str = panel_idx | append: '' -%}
+        <div
+          class="dk-hdr__drawer-panel{% if panel_idx == 1 %} is-active{% endif %}"
+          id="dkPanel{{ panel_idx }}"
+          role="tabpanel"
+          aria-labelledby="dkTab{{ panel_idx }}"
+        >
+          {%- assign prev_label = '' -%}
+          {%- assign has_block_items = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'dropdown_item' and block.settings.parent == panel_idx_str -%}
+              {%- assign has_block_items = true -%}
+              {%- if block.settings.group_label != blank and block.settings.group_label != prev_label -%}
+                <p class="dk-hdr__drawer-group">{{ block.settings.group_label }}</p>
+                {%- assign prev_label = block.settings.group_label -%}
+              {%- endif -%}
+              <a href="{{ block.settings.url | default: '#' }}" class="dk-hdr__drawer-row" onclick="dkHdrClose()" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  <div class="dk-hdr__drawer-thumb">
+                    {{- block.settings.image | image_url: width: 80 | image_tag: loading: 'lazy', widths: '60, 80', class: 'dk-hdr__drawer-thumb-img' -}}
+                  </div>
+                {%- elsif block.settings.image_placeholder != blank -%}
+                  <div class="dk-hdr__drawer-thumb" style="background: {{ block.settings.image_placeholder }};"></div>
+                {%- else -%}
+                  <div class="dk-hdr__drawer-thumb dk-hdr__drawer-thumb--empty"></div>
+                {%- endif -%}
+                <span class="dk-hdr__drawer-row-title">{{ block.settings.title }}</span>
+              </a>
+            {%- endif -%}
           {%- endfor -%}
-          {%- if drop_count == 1 and section.settings.shop_all_text != blank -%}
-            <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__mob-shopall">
+
+          {%- comment -%} Fallback to linklist sub-links if no blocks configured {%- endcomment -%}
+          {%- unless has_block_items -%}
+            {%- for sub in link.links -%}
+              <a href="{{ sub.url }}" class="dk-hdr__drawer-row dk-hdr__drawer-row--text" onclick="dkHdrClose()">
+                {{ sub.title }}
+              </a>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          {%- if panel_idx == 1 and section.settings.shop_all_text != blank -%}
+            <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__drawer-shopall" onclick="dkHdrClose()">
               {{- section.settings.shop_all_text -}}
             </a>
           {%- endif -%}
         </div>
-      </div>
-    {%- else -%}
-      <a href="{{ link.url }}" class="dk-hdr__mob-plain">{{ link.title }}</a>
-    {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%} Plain links: nav items without sub-links {%- endcomment -%}
+  {%- assign has_plain = false -%}
+  {%- for link in main_menu.links -%}
+    {%- unless link.links.size > 0 -%}{%- assign has_plain = true -%}{%- endunless -%}
   {%- endfor -%}
+  {%- if has_plain -%}
+    <div class="dk-hdr__drawer-plain-links">
+      {%- for link in main_menu.links -%}
+        {%- unless link.links.size > 0 -%}
+          <a href="{{ link.url }}" class="dk-hdr__drawer-plain" onclick="dkHdrClose()">{{ link.title }}</a>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
 </div>
 
 {%- comment -%} ── HEADER ── {%- endcomment -%}
@@ -85,28 +175,70 @@
       <nav class="dk-hdr__nav" aria-label="Main navigation">
         {%- assign drop_count = 0 -%}
         {%- for link in main_menu.links -%}
-          {%- if link.links.size > 0 -%}
+
+          {%- comment -%} Check if this nav item has dropdown blocks {%- endcomment -%}
+          {%- assign link_index = drop_count | plus: 1 -%}
+          {%- assign has_blocks = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'dropdown_item' and block.settings.parent == link_index -%}
+              {%- assign has_blocks = true -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if link.links.size > 0 or has_blocks -%}
             {%- assign drop_count = drop_count | plus: 1 -%}
+            {%- assign current_drop = drop_count -%}
             <div class="dk-hdr__drop-wrapper">
-              <a href="{{ link.url }}" class="dk-hdr__nav-link dk-hdr__nav-link--drop">
-                {{- link.title -}}
-              </a>
+              <a href="{{ link.url }}" class="dk-hdr__nav-link dk-hdr__nav-link--drop">{{ link.title }}</a>
               <div class="dk-hdr__dropdown" role="region">
-                <div class="dk-hdr__dd-section">
-                  {%- if drop_count == 1 and section.settings.dropdown_label_1 != blank -%}
-                    <p class="dk-hdr__dd-label">{{ section.settings.dropdown_label_1 }}</p>
-                  {%- elsif drop_count == 2 and section.settings.dropdown_label_2 != blank -%}
-                    <p class="dk-hdr__dd-label">{{ section.settings.dropdown_label_2 }}</p>
-                  {%- endif -%}
-                  {%- for sub in link.links -%}
-                    <a href="{{ sub.url }}" class="dk-hdr__dd-item">{{ sub.title }}</a>
-                  {%- endfor -%}
-                  {%- if drop_count == 1 and section.settings.shop_all_text != blank -%}
-                    <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__dd-shopall">
-                      {{- section.settings.shop_all_text -}}
+
+                {%- comment -%} Render blocks if any are configured for this dropdown {%- endcomment -%}
+                {%- assign prev_label = '' -%}
+                {%- assign has_block_items = false -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'dropdown_item' and block.settings.parent == current_drop -%}
+                    {%- assign has_block_items = true -%}
+                    {%- if block.settings.group_label != blank and block.settings.group_label != prev_label -%}
+                      <p class="dk-hdr__dd-group">{{ block.settings.group_label }}</p>
+                      {%- assign prev_label = block.settings.group_label -%}
+                    {%- endif -%}
+                    <a href="{{ block.settings.url | default: '#' }}" class="dk-hdr__dd-row" {{ block.shopify_attributes }}>
+                      {%- if block.settings.image != blank -%}
+                        <div class="dk-hdr__dd-thumb">
+                          {{- block.settings.image | image_url: width: 80 | image_tag: loading: 'lazy', widths: '60, 80', class: 'dk-hdr__dd-thumb-img' -}}
+                        </div>
+                      {%- elsif block.settings.image_placeholder != blank -%}
+                        <div class="dk-hdr__dd-thumb dk-hdr__dd-thumb--color" style="background: {{ block.settings.image_placeholder }};"></div>
+                      {%- else -%}
+                        <div class="dk-hdr__dd-thumb dk-hdr__dd-thumb--empty"></div>
+                      {%- endif -%}
+                      <span class="dk-hdr__dd-row-title">{{ block.settings.title | default: block.settings.url }}</span>
                     </a>
                   {%- endif -%}
-                </div>
+                {%- endfor -%}
+
+                {%- comment -%} Fallback to linklist sub-links if no blocks configured {%- endcomment -%}
+                {%- unless has_block_items -%}
+                  {%- if current_drop == 1 and section.settings.dropdown_label_1 != blank -%}
+                    <p class="dk-hdr__dd-group">{{ section.settings.dropdown_label_1 }}</p>
+                  {%- elsif current_drop == 2 and section.settings.dropdown_label_2 != blank -%}
+                    <p class="dk-hdr__dd-group">{{ section.settings.dropdown_label_2 }}</p>
+                  {%- endif -%}
+                  {%- for sub in link.links -%}
+                    <a href="{{ sub.url }}" class="dk-hdr__dd-row">
+                      <div class="dk-hdr__dd-thumb dk-hdr__dd-thumb--empty"></div>
+                      <span class="dk-hdr__dd-row-title">{{ sub.title }}</span>
+                    </a>
+                  {%- endfor -%}
+                {%- endunless -%}
+
+                {%- comment -%} Shop all link (first dropdown only) {%- endcomment -%}
+                {%- if current_drop == 1 and section.settings.shop_all_text != blank -%}
+                  <a href="{{ section.settings.shop_all_url | default: routes.all_products_collection_url }}" class="dk-hdr__dd-shopall">
+                    {{- section.settings.shop_all_text -}}
+                  </a>
+                {%- endif -%}
+
               </div>
             </div>
           {%- else -%}
@@ -119,11 +251,7 @@
     {%- comment -%} CENTER: logo {%- endcomment -%}
     <a href="{{ routes.root_url }}" class="dk-hdr__logo" aria-label="{{ shop.name }}">
       {%- if section.settings.logo_image != blank -%}
-        {{
-          section.settings.logo_image
-          | image_url: height: 58
-          | image_tag: loading: 'eager', fetchpriority: 'high', class: 'dk-hdr__logo-img'
-        }}
+        {{- section.settings.logo_image | image_url: height: 58 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'dk-hdr__logo-img' -}}
       {%- else -%}
         <svg width="88" height="58" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M 10 68 A 50 50 0 0 1 110 68" fill="none" stroke="{{ logo_color }}" stroke-width="1.8"/>
@@ -160,6 +288,7 @@
 
 {% stylesheet %}
 /* Added by DK on 2026-05-07 — dk_header styles */
+/* Updated by DK on 2026-05-07 — image thumbnail dropdown rows */
 
 /* ── HEADER ── */
 .dk-hdr {
@@ -170,10 +299,7 @@
   position: relative;
   z-index: 100;
 }
-.dk-hdr--sticky {
-  position: sticky;
-  top: 0;
-}
+.dk-hdr--sticky { position: sticky; top: 0; }
 .dk-hdr__inner {
   display: flex;
   align-items: center;
@@ -182,11 +308,7 @@
   padding: 0 56px;
   position: relative;
 }
-.dk-hdr__left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+.dk-hdr__left { display: flex; align-items: center; gap: 16px; }
 
 /* ── HAMBURGER ── */
 .dk-hdr__hamburger {
@@ -209,11 +331,7 @@
 .dk-hdr__hamburger span:nth-child(3) { width: 20px; }
 
 /* ── DESKTOP NAV ── */
-.dk-hdr__nav {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-}
+.dk-hdr__nav { display: flex; align-items: center; gap: 36px; }
 .dk-hdr__nav-link {
   font-size: 12.5px;
   letter-spacing: 0.03em;
@@ -223,32 +341,27 @@
   white-space: nowrap;
 }
 .dk-hdr__nav-link:hover { color: #1a1a18; }
-.dk-hdr__nav-link--drop::after {
-  content: ' ▾';
-  font-size: 9px;
-}
+.dk-hdr__nav-link--drop::after { content: ' ▾'; font-size: 9px; }
 
 /* ── DROPDOWN ── */
-.dk-hdr__drop-wrapper {
-  position: relative;
-}
+.dk-hdr__drop-wrapper { position: relative; }
 .dk-hdr__dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 14px);
   left: 50%;
   transform: translateX(-50%);
-  background: var(--dk-hdr-bg, #faf8f4);
+  background: #fff;
   border: 0.5px solid var(--dk-hdr-border, #e2ddd5);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.10);
-  padding: 22px 28px;
-  min-width: 210px;
+  border-radius: 10px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.10);
+  padding: 10px 8px 14px;
+  min-width: 240px;
   z-index: 200;
-  white-space: nowrap;
 }
 .dk-hdr__drop-wrapper:hover .dk-hdr__dropdown,
 .dk-hdr__drop-wrapper:focus-within .dk-hdr__dropdown { display: block; }
-/* Arrow */
+/* Arrow pointer */
 .dk-hdr__dropdown::before {
   content: '';
   position: absolute;
@@ -267,25 +380,54 @@
   transform: translateX(-50%);
   border: 6px solid transparent;
   border-top: none;
-  border-bottom-color: var(--dk-hdr-bg, #faf8f4);
+  border-bottom-color: #fff;
 }
-.dk-hdr__dd-label {
+
+/* Group header */
+.dk-hdr__dd-group {
   font-size: 9px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: #9a9a92;
-  margin-bottom: 8px;
+  padding: 10px 12px 4px;
+  margin: 0;
 }
-.dk-hdr__dd-item {
-  display: block;
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--dk-hdr-text, #555550);
+
+/* Image row item */
+.dk-hdr__dd-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 8px;
   text-decoration: none;
-  padding: 5px 0;
-  transition: color 0.15s;
+  transition: background 0.15s;
+  color: #1a1a18;
 }
-.dk-hdr__dd-item:hover { color: #1a1a18; }
+.dk-hdr__dd-row:hover { background: #f5f2ee; }
+
+.dk-hdr__dd-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f0ede8;
+}
+.dk-hdr__dd-thumb--empty { background: #ede8e0; }
+.dk-hdr__dd-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.dk-hdr__dd-row-title {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Shop all link */
 .dk-hdr__dd-shopall {
   display: inline-block;
   font-size: 10.5px;
@@ -295,7 +437,7 @@
   text-decoration: none;
   border-bottom: 0.5px solid var(--dk-hdr-logo, #9B2335);
   padding-bottom: 1px;
-  margin-top: 10px;
+  margin: 8px 12px 2px;
 }
 
 /* ── LOGO ── */
@@ -307,18 +449,10 @@
   display: flex;
   align-items: center;
 }
-.dk-hdr__logo-img {
-  height: 58px;
-  width: auto;
-  display: block;
-}
+.dk-hdr__logo-img { height: 58px; width: auto; display: block; }
 
 /* ── ICONS ── */
-.dk-hdr__icons {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
+.dk-hdr__icons { display: flex; align-items: center; gap: 18px; }
 .dk-hdr__icon-btn {
   color: var(--dk-hdr-text, #555550);
   text-decoration: none;
@@ -342,10 +476,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;
 }
 
-/* ── MOBILE DRAWER ── */
+/* ── MOBILE DRAWER (Dossier style) ── */
 .dk-hdr__overlay {
   display: none;
   position: fixed;
@@ -354,103 +487,165 @@
   z-index: 198;
 }
 .dk-hdr__overlay.is-open { display: block; }
-
 .dk-hdr__drawer {
   position: fixed;
   inset: 0;
   z-index: 199;
-  background: var(--dk-hdr-bg, #faf8f4);
+  background: #fff;
   overflow-y: auto;
   transform: translateX(-100%);
   transition: transform 0.28s ease;
-  max-width: 360px;
+  max-width: 400px;
 }
 .dk-hdr__drawer.is-open { transform: translateX(0); }
 
+/* Drawer top bar */
 .dk-hdr__drawer-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 22px;
-  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+  padding: 14px 18px 14px;
 }
-.dk-hdr__drawer-logo-img { height: 48px; width: auto; }
+.dk-hdr__drawer-logo-img { height: 44px; width: auto; }
 .dk-hdr__drawer-close {
-  font-size: 22px;
+  font-size: 20px;
   color: var(--dk-hdr-text, #555550);
   background: none;
   border: none;
   cursor: pointer;
   line-height: 1;
-  padding: 4px 8px;
+  padding: 6px 8px;
 }
 
-/* Mobile accordion */
-.dk-hdr__mob-acc {
-  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
-}
-.dk-hdr__mob-trigger {
+/* Search bar */
+.dk-hdr__drawer-search { padding: 0 16px 14px; }
+.dk-hdr__drawer-search-wrap {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 22px;
-  cursor: pointer;
-  background: none;
+  gap: 10px;
+  background: #f5f2ee;
+  border-radius: 8px;
+  padding: 11px 14px;
+}
+.dk-hdr__drawer-search-input {
+  flex: 1;
   border: none;
-  width: 100%;
-  text-align: left;
+  background: none;
   font-size: 14px;
-  font-weight: 500;
+  outline: none;
   color: #1a1a18;
+  min-width: 0;
 }
-.dk-hdr__mob-arrow {
-  font-size: 9px;
-  color: #9a9a92;
-  transition: transform 0.2s;
+.dk-hdr__drawer-search-input::placeholder { color: #9a9a92; }
+
+/* Tab pills */
+.dk-hdr__drawer-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
 }
-.dk-hdr__mob-trigger[aria-expanded="true"] .dk-hdr__mob-arrow {
-  transform: rotate(180deg);
-}
-.dk-hdr__mob-body {
-  padding: 0 22px 16px;
-}
-.dk-hdr__mob-sublabel {
-  font-size: 10px;
-  letter-spacing: 0.1em;
+.dk-hdr__drawer-tab {
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: 20px;
+  border: 1px solid #e2ddd5;
+  background: none;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--dk-hdr-text, #555550);
-  font-weight: 500;
-  margin: 12px 0 4px;
+  color: #555550;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-.dk-hdr__mob-item {
-  display: block;
-  font-size: 14px;
-  font-weight: 300;
-  color: #1a1a18;
+.dk-hdr__drawer-tab.is-active {
+  background: #1a1a18;
+  color: #fff;
+  border-color: #1a1a18;
+}
+
+/* Content panels */
+.dk-hdr__drawer-panel { display: none; padding: 0 12px 24px; }
+.dk-hdr__drawer-panel.is-active { display: block; }
+
+.dk-hdr__drawer-group {
+  font-size: 9.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #9a9a92;
+  padding: 14px 6px 6px;
+  margin: 0;
+}
+
+/* Image thumbnail rows */
+.dk-hdr__drawer-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 6px;
+  border-radius: 8px;
   text-decoration: none;
-  padding: 8px 0;
-  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+  color: #1a1a18;
+  transition: background 0.15s;
 }
-.dk-hdr__mob-item:last-of-type { border-bottom: none; }
-.dk-hdr__mob-shopall {
+.dk-hdr__drawer-row:hover { background: #f5f2ee; }
+/* Text-only fallback rows (no thumbnail) */
+.dk-hdr__drawer-row--text {
+  font-size: 14.5px;
+  padding: 11px 8px;
+  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+  border-radius: 0;
+}
+.dk-hdr__drawer-row--text:hover { background: none; }
+.dk-hdr__drawer-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f0ede8;
+}
+.dk-hdr__drawer-thumb--empty { background: #ede8e0; }
+.dk-hdr__drawer-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.dk-hdr__drawer-row-title {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Shop all link inside panel */
+.dk-hdr__drawer-shopall {
   display: inline-block;
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dk-hdr-logo, #9B2335);
   text-decoration: none;
   border-bottom: 0.5px solid var(--dk-hdr-logo, #9B2335);
-  margin-top: 14px;
+  margin: 16px 8px 4px;
 }
-.dk-hdr__mob-plain {
+
+/* Plain links (no sub-items) at the bottom */
+.dk-hdr__drawer-plain-links {
+  margin-top: 8px;
+  border-top: 0.5px solid var(--dk-hdr-border, #e2ddd5);
+  padding: 8px 16px 16px;
+}
+.dk-hdr__drawer-plain {
   display: block;
   font-size: 14px;
   font-weight: 500;
   color: #1a1a18;
   text-decoration: none;
-  padding: 15px 22px;
+  padding: 12px 4px;
   border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
 }
+.dk-hdr__drawer-plain:last-child { border-bottom: none; }
 
 /* ── MOBILE BREAKPOINT ── */
 @media (max-width: 768px) {
@@ -463,7 +658,8 @@
 {% endstylesheet %}
 
 <script>
-/* Added by DK on 2026-05-07 — Mobile drawer + accordion */
+/* Added by DK on 2026-05-07 */
+/* Updated by DK on 2026-05-07 — tab switcher replaces accordion for mobile drawer */
 function dkHdrOpen() {
   document.getElementById('dkHdrDrawer').classList.add('is-open');
   document.getElementById('dkHdrOverlay').classList.add('is-open');
@@ -476,18 +672,19 @@ function dkHdrClose() {
   document.getElementById('dkHdrDrawer').setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
-function dkHdrToggleAcc(id) {
-  var body = document.getElementById(id);
-  var btn  = document.getElementById(id + 'Btn');
-  var isOpen = !body.hidden;
-  /* close all */
-  document.querySelectorAll('.dk-hdr__mob-body').forEach(function(el) { el.hidden = true; });
-  document.querySelectorAll('.dk-hdr__mob-trigger').forEach(function(el) { el.setAttribute('aria-expanded', 'false'); });
-  /* open this one if it wasn't open */
-  if (!isOpen) {
-    body.hidden = false;
-    btn.setAttribute('aria-expanded', 'true');
-  }
+function dkHdrTab(n) {
+  /* Switch active tab pill */
+  document.querySelectorAll('.dk-hdr__drawer-tab').forEach(function(el, i) {
+    var active = (i + 1 === n);
+    el.classList.toggle('is-active', active);
+    el.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  /* Switch visible panel */
+  document.querySelectorAll('.dk-hdr__drawer-panel').forEach(function(el) {
+    el.classList.remove('is-active');
+  });
+  var panel = document.getElementById('dkPanel' + n);
+  if (panel) panel.classList.add('is-active');
 }
 </script>
 
@@ -495,6 +692,56 @@ function dkHdrToggleAcc(id) {
 {
   "name": "DK Header",
   "tag": "div",
+  "blocks": [
+    {
+      "type": "dropdown_item",
+      "name": "Dropdown Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "parent",
+          "label": "Belongs to dropdown",
+          "options": [
+            { "value": "1", "label": "1st dropdown" },
+            { "value": "2", "label": "2nd dropdown" },
+            { "value": "3", "label": "3rd dropdown" },
+            { "value": "4", "label": "4th dropdown" }
+          ],
+          "default": "1",
+          "info": "Match to the position of the nav link that has sub-items"
+        },
+        {
+          "type": "text",
+          "id": "group_label",
+          "label": "Group header",
+          "info": "Uppercase label shown above this item. Leave blank to continue the current group."
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Item"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Thumbnail image"
+        },
+        {
+          "type": "color",
+          "id": "image_placeholder",
+          "label": "Placeholder color",
+          "info": "Used when no image is uploaded",
+          "default": "#e2ddd5"
+        }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "header",
@@ -509,22 +756,21 @@ function dkHdrToggleAcc(id) {
     {
       "type": "text",
       "id": "dropdown_label_1",
-      "label": "1st dropdown section label",
+      "label": "1st dropdown fallback label",
       "default": "Browse by type",
-      "info": "Label shown above the links in the first dropdown"
+      "info": "Used when no dropdown items are configured via blocks"
     },
     {
       "type": "text",
       "id": "dropdown_label_2",
-      "label": "2nd dropdown section label",
+      "label": "2nd dropdown fallback label",
       "default": "Shop by occasion"
     },
     {
       "type": "text",
       "id": "shop_all_text",
       "label": "\"Shop all\" link text",
-      "default": "Shop all →",
-      "info": "Appears at the bottom of the 1st dropdown. Leave blank to hide."
+      "default": "Shop all →"
     },
     {
       "type": "url",
@@ -539,14 +785,13 @@ function dkHdrToggleAcc(id) {
       "type": "image_picker",
       "id": "logo_image",
       "label": "Logo image",
-      "info": "Upload a logo to replace the default SVG mark"
+      "info": "Replaces the default SVG mark"
     },
     {
       "type": "color",
       "id": "logo_color",
       "label": "SVG logo color",
-      "default": "#9B2335",
-      "info": "Only applies when no logo image is uploaded"
+      "default": "#9B2335"
     },
     {
       "type": "header",
@@ -555,7 +800,7 @@ function dkHdrToggleAcc(id) {
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Background color",
+      "label": "Background",
       "default": "#faf8f4"
     },
     {
@@ -567,18 +812,14 @@ function dkHdrToggleAcc(id) {
     {
       "type": "color",
       "id": "border_color",
-      "label": "Border / divider color",
+      "label": "Border color",
       "default": "#e2ddd5"
     },
     {
       "type": "range",
       "id": "header_height",
       "label": "Header height",
-      "min": 48,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "default": 72
+      "min": 48, "max": 100, "step": 4, "unit": "px", "default": 72
     },
     {
       "type": "checkbox",
