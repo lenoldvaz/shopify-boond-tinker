@@ -116,11 +116,14 @@
             {%- endif -%}
           {%- endfor -%}
 
-          {%- comment -%} Fallback to linklist sub-links if no blocks configured {%- endcomment -%}
+          {%- comment -%} Fallback to linklist sub-links if no blocks configured — still show placeholder thumbnails {%- endcomment -%}
           {%- unless has_block_items -%}
+            {%- assign fallback_colors = '#e8e0d6,#d6e0d0,#e0d6d6,#d6d6e0,#e0dcd0,#d0dce0' | split: ',' -%}
             {%- for sub in link.links -%}
-              <a href="{{ sub.url }}" class="dk-hdr__drawer-row dk-hdr__drawer-row--text" onclick="dkHdrClose()">
-                {{ sub.title }}
+              {%- assign color_idx = forloop.index0 | modulo: 6 -%}
+              <a href="{{ sub.url }}" class="dk-hdr__drawer-row" onclick="dkHdrClose()">
+                <div class="dk-hdr__drawer-thumb" style="background: {{ fallback_colors[color_idx] }};"></div>
+                <span class="dk-hdr__drawer-row-title">{{ sub.title }}</span>
               </a>
             {%- endfor -%}
           {%- endunless -%}
@@ -589,14 +592,6 @@
   transition: background 0.15s;
 }
 .dk-hdr__drawer-row:hover { background: #f5f2ee; }
-/* Text-only fallback rows (no thumbnail) */
-.dk-hdr__drawer-row--text {
-  font-size: 14.5px;
-  padding: 11px 8px;
-  border-bottom: 0.5px solid var(--dk-hdr-border, #e2ddd5);
-  border-radius: 0;
-}
-.dk-hdr__drawer-row--text:hover { background: none; }
 .dk-hdr__drawer-thumb {
   width: 52px;
   height: 52px;
