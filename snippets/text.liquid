@@ -34,6 +34,9 @@
       if block.settings.font_size != ''
         echo ' custom-font-size '
       endif
+    endif
+    if block.settings.font_size_override > 0
+      echo ' custom-font-size '
       if block.settings.color != ''
         echo ' custom-color '
       endif
@@ -57,6 +60,9 @@
     {% render 'typography-style', settings: block.settings %}
     --width: {{ text_width }};
     --max-width: var(--max-width--{{ type }}-{{ block.settings.max_width }});
+    {% if block.settings.font_size_override > 0 %}
+      --font-size: {{ block.settings.font_size_override }}px;
+    {% endif %}
     {% if text_width == "100%" %}
       --text-align: {{ block.settings.alignment }};
     {% endif %}
