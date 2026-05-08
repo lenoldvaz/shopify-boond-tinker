@@ -17,7 +17,7 @@
           "name": "t:names.slide",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "shopify://products/रजनीगंधा-rajnigandha-natural-perfume-oil-tuberose-attar",
+            "slide_link": "",
             "image_1": "shopify://shop_images/Rajni_gandha_Banner_Desktop.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -397,7 +397,7 @@
           "name": "t:names.slide",
           "settings": {
             "media_type_1": "image",
-            "slide_link": "shopify://products/रजनीगंधा-rajnigandha-natural-perfume-oil-tuberose-attar",
+            "slide_link": "",
             "image_1": "shopify://shop_images/Rajni_gandha_banner_mobile.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
