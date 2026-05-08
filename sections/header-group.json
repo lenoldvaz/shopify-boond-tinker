@@ -51,7 +51,7 @@
             "group_label": "Shop by Category",
             "title": "Attars",
             "url": "shopify://collections/attars",
-            "image": "shopify://shop_images/185.png",
+            "image": "shopify://shop_images/1_9d707e03-e8a5-49ca-8e44-85294c1805dd.png",
             "image_placeholder": "#e2ddd5"
           }
         },
@@ -62,7 +62,7 @@
             "group_label": "",
             "title": "Dhoop",
             "url": "shopify://collections/dhoop",
-            "image": "shopify://shop_images/69_11zon.jpg",
+            "image": "shopify://shop_images/5_59990480-7ee2-40c9-a098-6871489d6a71.png",
             "image_placeholder": "#e2ddd5"
           }
         },
@@ -81,10 +81,32 @@
           "type": "dropdown_item",
           "settings": {
             "parent": "1",
-            "group_label": "Latest Releases",
+            "group_label": "New Releases",
             "title": "RajniGandha",
             "url": "shopify://products/रजनीगंधा-rajnigandha-natural-perfume-oil-tuberose-attar",
-            "image": "shopify://shop_images/187_d2e5a03e-952b-43ec-bd7d-1eec8a49e5ed.png",
+            "image": "shopify://shop_images/4_6aecbd43-39e2-4b8e-8afc-c40514d0f135.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_jqnzrg": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "",
+            "title": "Ghaas",
+            "url": "shopify://products/घास-ghaas-natural-perfume-oil-grass-attar",
+            "image": "shopify://shop_images/2_0cba9bed-e2f6-41d3-a459-dd1cfb765f51.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_AccYpx": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "",
+            "title": "Shamama",
+            "url": "shopify://products/शमामा-shamama-natural-perfume-oil-150-spices-attar",
+            "image": "shopify://shop_images/3_33d4ac6c-707a-49bf-97f8-d289b603ed2c.png",
             "image_placeholder": "#e2ddd5"
           }
         }
@@ -93,7 +115,9 @@
         "dropdown_item_iKyYch",
         "dropdown_item_Y8EL6L",
         "dropdown_item_7J64NU",
-        "dropdown_item_ybqdwW"
+        "dropdown_item_ybqdwW",
+        "dropdown_item_jqnzrg",
+        "dropdown_item_AccYpx"
       ],
       "settings": {
         "menu": "2025-menu-dk",
