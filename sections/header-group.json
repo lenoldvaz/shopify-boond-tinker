@@ -44,6 +44,50 @@
     "dk_header_section": {
       "type": "dk_header",
       "blocks": {
+        "dropdown_item_6jNqmk": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "3",
+            "group_label": "",
+            "title": "Gifts & Bundles",
+            "url": "shopify://collections/gifting",
+            "image": "shopify://shop_images/Untitled_design_1.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_kfJkP6": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "3",
+            "group_label": "",
+            "title": "Wedding Gifting",
+            "url": "shopify://pages/wedding-gifting",
+            "image": "shopify://shop_images/6_4a1fd422-9366-4cc1-b93c-c9e8f434f92e.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_gTCQqn": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "3",
+            "group_label": "",
+            "title": "Corporate Gifting",
+            "url": "shopify://pages/corporate-gifting",
+            "image": "shopify://shop_images/7_a91a4fa9-a0bd-49f4-9617-6f7b8c30b5b3.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
+        "dropdown_item_NEPBjG": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "3",
+            "group_label": "",
+            "title": "Special Occasions",
+            "url": "shopify://pages/special-occasions",
+            "image": "shopify://shop_images/8_c5464373-557e-43b4-b68f-2b3ad998579f.png",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
         "dropdown_item_iKyYch": {
           "type": "dropdown_item",
           "settings": {
@@ -112,6 +156,10 @@
         }
       },
       "block_order": [
+        "dropdown_item_6jNqmk",
+        "dropdown_item_kfJkP6",
+        "dropdown_item_gTCQqn",
+        "dropdown_item_NEPBjG",
         "dropdown_item_iKyYch",
         "dropdown_item_Y8EL6L",
         "dropdown_item_7J64NU",
