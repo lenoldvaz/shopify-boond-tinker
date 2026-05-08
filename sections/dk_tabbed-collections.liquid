@@ -36,7 +36,7 @@
     {%- endfor -%}
   </div>
 
-  {%- comment -%} ── PANELS ── {%- endcomment -%}
+  {%- comment -%} ── PANELS — use same content_for pattern as product-list section ── {%- endcomment -%}
   {%- assign first_panel = true -%}
   {%- assign max_products = section.settings.max_products -%}
   {%- for block in section.blocks -%}
@@ -49,30 +49,19 @@
       >
         {%- assign col = block.settings.collection -%}
         {%- if col != blank -%}
-          <div class="dk-tabs-section__grid">
+          <div
+            class="resource-list resource-list--grid dk-tabs-section__grid"
+            style="
+              --resource-list-columns: repeat({{ section.settings.columns }}, 1fr);
+              --resource-list-columns-mobile: repeat({{ section.settings.mobile_columns }}, 1fr);
+              --resource-list-column-gap-desktop: {{ section.settings.columns_gap }}px;
+              --resource-list-row-gap-desktop: {{ section.settings.rows_gap }}px;
+            "
+          >
             {%- for product in col.products limit: max_products -%}
-              <a href="{{ product.url }}" class="dk-tabs-section__card">
-                <div class="dk-tabs-section__card-img-wrap">
-                  {%- if product.featured_media -%}
-                    {{- product.featured_media | image_url: width: 500 | image_tag:
-                      loading: 'lazy',
-                      widths: '300, 400, 500',
-                      class: 'dk-tabs-section__card-img'
-                    -}}
-                  {%- else -%}
-                    <div class="dk-tabs-section__card-img-placeholder"></div>
-                  {%- endif -%}
-                </div>
-                <div class="dk-tabs-section__card-info">
-                  <p class="dk-tabs-section__card-title">{{ product.title }}</p>
-                  <p class="dk-tabs-section__card-price">
-                    {%- if product.compare_at_price > product.price -%}
-                      <s class="dk-tabs-section__card-compare">{{ product.compare_at_price | money }}</s>
-                    {%- endif -%}
-                    {{ product.price | money }}
-                  </p>
-                </div>
-              </a>
+              <div class="resource-list__item">
+                {%- content_for 'block', type: 'product-card', id: 'static-product-card', closest.product: product -%}
+              </div>
             {%- endfor -%}
           </div>
           {%- if block.settings.view_all_url != blank or col.url != blank -%}
@@ -167,61 +156,6 @@
 .dk-tabs-section__panel { display: none; }
 .dk-tabs-section__panel.is-active { display: block; }
 
-/* Product grid */
-.dk-tabs-section__grid {
-  display: grid;
-  grid-template-columns: repeat(var(--dk-tabs-cols, 4), 1fr);
-  gap: 20px;
-}
-
-/* Product card */
-.dk-tabs-section__card {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-}
-.dk-tabs-section__card-img-wrap {
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  border-radius: 6px;
-  background: #f0ede8;
-  margin-bottom: 12px;
-}
-.dk-tabs-section__card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
-}
-.dk-tabs-section__card:hover .dk-tabs-section__card-img { transform: scale(1.03); }
-.dk-tabs-section__card-img-placeholder {
-  width: 100%;
-  height: 100%;
-  background: #e8e2d8;
-}
-.dk-tabs-section__card-info { padding: 0 2px; }
-.dk-tabs-section__card-title {
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.35;
-  margin: 0 0 4px;
-  color: #1a1a18;
-}
-.dk-tabs-section__card-price {
-  font-size: 13px;
-  color: #555550;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.dk-tabs-section__card-compare {
-  opacity: 0.45;
-  font-size: 12px;
-}
-
 /* View all footer */
 .dk-tabs-section__footer {
   margin-top: 32px;
@@ -248,12 +182,8 @@
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
-  .dk-tabs-section__grid { --dk-tabs-cols: 3; }
-}
 @media (max-width: 768px) {
   .dk-tabs-section { padding: 44px 20px; }
-  .dk-tabs-section__grid { --dk-tabs-cols: 2; gap: 14px; }
   .dk-tabs-section__tab { padding: 12px 20px 12px 0; margin-right: 20px; font-size: 10px; }
   .dk-tabs-section__tab-img-wrap { width: 40px; height: 32px; }
 }
@@ -337,6 +267,48 @@ function dkTabsSwitch(sectionId, n) {
       "max": 16,
       "step": 4,
       "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns (desktop)",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "label": "Columns (mobile)",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "label": "Column gap",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "rows_gap",
+      "label": "Row gap",
+      "min": 8,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "default": 32
     },
     {
       "type": "text",
