@@ -1,5 +1,6 @@
 {% comment %} Added by DK on 2026-05-07 — Tabbed collections section (Dossier-style) {% endcomment %}
 {% comment %} Updated by DK on 2026-05-07 — Tabs moved to section settings (no schema blocks) to allow content_for product-card {% endcomment %}
+{% comment %} Updated by DK on 2026-05-08 — Configurable active tab highlight colours + per-tab badges {% endcomment %}
 
 {% liquid
   comment
@@ -13,7 +14,12 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
   class="dk-tabs-section color-{{ section.settings.color_scheme }} spacing-style"
-  style="{%- render 'spacing-style', settings: section.settings -%}"
+  style="
+    {%- render 'spacing-style', settings: section.settings -%}
+    --dk-tab-active-bg: {{ section.settings.tab_active_bg }};
+    --dk-tab-active-color: {{ section.settings.tab_active_color }};
+    --dk-tab-indicator-color: {{ section.settings.tab_indicator_color }};
+  "
 >
 
   {%- if section.settings.heading != blank -%}
@@ -25,12 +31,16 @@
   {%- assign first_tab_idx = 0 -%}
   <div class="dk-tabs-section__tabs" role="tablist">
     {%- for i in (1..max_tabs) -%}
-      {%- assign col_key   = 'tab_' | append: i | append: '_collection' -%}
-      {%- assign label_key = 'tab_' | append: i | append: '_label' -%}
-      {%- assign img_key   = 'tab_' | append: i | append: '_image' -%}
-      {%- assign tab_col   = section.settings[col_key] -%}
-      {%- assign tab_label = section.settings[label_key] -%}
-      {%- assign tab_img   = section.settings[img_key] -%}
+      {%- assign col_key        = 'tab_' | append: i | append: '_collection' -%}
+      {%- assign label_key      = 'tab_' | append: i | append: '_label' -%}
+      {%- assign img_key        = 'tab_' | append: i | append: '_image' -%}
+      {%- assign badge_key      = 'tab_' | append: i | append: '_badge' -%}
+      {%- assign badge_color_key = 'tab_' | append: i | append: '_badge_color' -%}
+      {%- assign tab_col        = section.settings[col_key] -%}
+      {%- assign tab_label      = section.settings[label_key] -%}
+      {%- assign tab_img        = section.settings[img_key] -%}
+      {%- assign tab_badge      = section.settings[badge_key] -%}
+      {%- assign tab_badge_color = section.settings[badge_color_key] -%}
       {%- if tab_col != blank -%}
         {%- if first_tab -%}{%- assign first_tab_idx = i -%}{%- endif -%}
         <button
@@ -47,6 +57,12 @@
             </span>
           {%- endif -%}
           <span class="dk-tabs-section__tab-label">{{ tab_label | default: tab_col.title }}</span>
+          {%- if tab_badge != blank -%}
+            <span
+              class="dk-tabs-section__badge"
+              style="background: {{ tab_badge_color | default: '#9B2335' }};"
+            >{{ tab_badge }}</span>
+          {%- endif -%}
         </button>
         {%- assign first_tab = false -%}
       {%- endif -%}
@@ -129,12 +145,13 @@
 .dk-tabs-section__tab {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 28px 14px 0;
-  margin-right: 36px;
+  gap: 10px;
+  padding: 8px 16px;
+  margin-right: 8px;
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
+  border-radius: 6px 6px 0 0;
   cursor: pointer;
   color: rgba(0,0,0,0.4);
   font-size: 11px;
@@ -142,13 +159,29 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
   margin-bottom: -1px;
 }
 .dk-tabs-section__tab:hover { color: rgba(0,0,0,0.7); }
 .dk-tabs-section__tab.is-active {
-  color: #1a1a18;
-  border-bottom-color: #1a1a18;
+  color: var(--dk-tab-active-color, #1a1a18);
+  background: var(--dk-tab-active-bg, transparent);
+  border-bottom-color: var(--dk-tab-indicator-color, #1a1a18);
+}
+
+/* Per-tab badge pill */
+.dk-tabs-section__badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 20px;
+  line-height: 1.4;
+  flex-shrink: 0;
 }
 
 /* Tab image thumbnail */
@@ -230,6 +263,28 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "header",
+      "content": "Active tab style"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_bg",
+      "label": "Active tab background",
+      "default": "#f5f2ee"
+    },
+    {
+      "type": "color",
+      "id": "tab_active_color",
+      "label": "Active tab text color",
+      "default": "#1a1a18"
+    },
+    {
+      "type": "color",
+      "id": "tab_indicator_color",
+      "label": "Active tab underline color",
+      "default": "#9B2335"
+    },
+    {
+      "type": "header",
       "content": "Tab 1"
     },
     {
@@ -255,8 +310,20 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "text",
-      "id": "tab_1_view_all_text",
+      "id": "tab_{n}_view_all_text",
       "label": "\"View all\" text"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_badge",
+      "label": "Badge text",
+      "info": "e.g. New, Hot, Sale — leave blank for no badge"
+    },
+    {
+      "type": "color",
+      "id": "tab_1_badge_color",
+      "label": "Badge color",
+      "default": "#9B2335"
     },
     {
       "type": "header",
@@ -285,8 +352,20 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "text",
-      "id": "tab_2_view_all_text",
+      "id": "tab_{n}_view_all_text",
       "label": "\"View all\" text"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_badge",
+      "label": "Badge text",
+      "info": "e.g. New, Hot, Sale — leave blank for no badge"
+    },
+    {
+      "type": "color",
+      "id": "tab_2_badge_color",
+      "label": "Badge color",
+      "default": "#9B2335"
     },
     {
       "type": "header",
@@ -315,8 +394,20 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "text",
-      "id": "tab_3_view_all_text",
+      "id": "tab_{n}_view_all_text",
       "label": "\"View all\" text"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_badge",
+      "label": "Badge text",
+      "info": "e.g. New, Hot, Sale — leave blank for no badge"
+    },
+    {
+      "type": "color",
+      "id": "tab_3_badge_color",
+      "label": "Badge color",
+      "default": "#9B2335"
     },
     {
       "type": "header",
@@ -344,8 +435,20 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "text",
-      "id": "tab_4_view_all_text",
+      "id": "tab_{n}_view_all_text",
       "label": "\"View all\" text"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_badge",
+      "label": "Badge text",
+      "info": "e.g. New, Hot, Sale — leave blank for no badge"
+    },
+    {
+      "type": "color",
+      "id": "tab_4_badge_color",
+      "label": "Badge color",
+      "default": "#9B2335"
     },
     {
       "type": "header",
@@ -373,8 +476,20 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "text",
-      "id": "tab_5_view_all_text",
+      "id": "tab_{n}_view_all_text",
       "label": "\"View all\" text"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_badge",
+      "label": "Badge text",
+      "info": "e.g. New, Hot, Sale — leave blank for no badge"
+    },
+    {
+      "type": "color",
+      "id": "tab_5_badge_color",
+      "label": "Badge color",
+      "default": "#9B2335"
     },
     {
       "type": "header",
@@ -402,8 +517,20 @@ function dkTabsSwitch(sectionId, n) {
     },
     {
       "type": "text",
-      "id": "tab_6_view_all_text",
+      "id": "tab_{n}_view_all_text",
       "label": "\"View all\" text"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_badge",
+      "label": "Badge text",
+      "info": "e.g. New, Hot, Sale — leave blank for no badge"
+    },
+    {
+      "type": "color",
+      "id": "tab_6_badge_color",
+      "label": "Badge color",
+      "default": "#9B2335"
     },
     {
       "type": "header",
