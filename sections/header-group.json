@@ -93,7 +93,7 @@
           "settings": {
             "parent": "1",
             "group_label": "Shop by Category",
-            "title": "Attars",
+            "title": "Attars (Natural Perfume Oils)",
             "url": "shopify://collections/attars",
             "image": "shopify://shop_images/1_9d707e03-e8a5-49ca-8e44-85294c1805dd.png",
             "image_placeholder": "#e2ddd5"
@@ -104,7 +104,7 @@
           "settings": {
             "parent": "1",
             "group_label": "",
-            "title": "Dhoop",
+            "title": "Dhoop (Incense Cones)",
             "url": "shopify://collections/dhoop",
             "image": "shopify://shop_images/Untitled_design_2_652c409b-fda6-4fe4-ab89-ff7812755b2f.png",
             "image_placeholder": "#e2ddd5"
