@@ -1,4 +1,14 @@
 {% comment %} Added by DK on 2026-05-07 — Tabbed collections section (Dossier-style) {% endcomment %}
+{% comment %} Updated by DK on 2026-05-07 — Tabs moved to section settings (no schema blocks) to allow content_for product-card {% endcomment %}
+
+{% liquid
+  comment
+    Tabs are driven by section settings (tab_1_* … tab_6_*) rather than blocks.
+    This is required because content_for 'block' (theme blocks) and schema-defined
+    blocks cannot coexist in the same section.
+  endcomment
+  assign max_tabs = 6
+%}
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
@@ -12,73 +22,78 @@
 
   {%- comment -%} ── TAB BAR ── {%- endcomment -%}
   {%- assign first_tab = true -%}
+  {%- assign first_tab_idx = 0 -%}
   <div class="dk-tabs-section__tabs" role="tablist">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'tab' -%}
+    {%- for i in (1..max_tabs) -%}
+      {%- assign col_key   = 'tab_' | append: i | append: '_collection' -%}
+      {%- assign label_key = 'tab_' | append: i | append: '_label' -%}
+      {%- assign img_key   = 'tab_' | append: i | append: '_image' -%}
+      {%- assign tab_col   = section.settings[col_key] -%}
+      {%- assign tab_label = section.settings[label_key] -%}
+      {%- assign tab_img   = section.settings[img_key] -%}
+      {%- if tab_col != blank -%}
+        {%- if first_tab -%}{%- assign first_tab_idx = i -%}{%- endif -%}
         <button
           class="dk-tabs-section__tab{% if first_tab %} is-active{% endif %}"
-          onclick="dkTabsSwitch('{{ section.id }}', {{ forloop.index }})"
-          id="dkTab-{{ section.id }}-{{ forloop.index }}"
+          onclick="dkTabsSwitch('{{ section.id }}', {{ i }})"
+          id="dkTab-{{ section.id }}-{{ i }}"
           role="tab"
           aria-selected="{% if first_tab %}true{% else %}false{% endif %}"
-          aria-controls="dkPanel-{{ section.id }}-{{ forloop.index }}"
-          {{ block.shopify_attributes }}
+          aria-controls="dkPanel-{{ section.id }}-{{ i }}"
         >
-          {%- if block.settings.tab_image != blank -%}
+          {%- if tab_img != blank -%}
             <span class="dk-tabs-section__tab-img-wrap">
-              {{- block.settings.tab_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '80, 120', class: 'dk-tabs-section__tab-img' -}}
+              {{- tab_img | image_url: width: 120 | image_tag: loading: 'lazy', widths: '80, 120', class: 'dk-tabs-section__tab-img' -}}
             </span>
           {%- endif -%}
-          <span class="dk-tabs-section__tab-label">{{ block.settings.label }}</span>
+          <span class="dk-tabs-section__tab-label">{{ tab_label | default: tab_col.title }}</span>
         </button>
         {%- assign first_tab = false -%}
       {%- endif -%}
     {%- endfor -%}
   </div>
 
-  {%- comment -%} ── PANELS — use same content_for pattern as product-list section ── {%- endcomment -%}
-  {%- assign first_panel = true -%}
+  {%- comment -%} ── PANELS — content_for renders native product cards ── {%- endcomment -%}
   {%- assign max_products = section.settings.max_products -%}
-  {%- for block in section.blocks -%}
-    {%- if block.type == 'tab' -%}
+  {%- for i in (1..max_tabs) -%}
+    {%- assign col_key        = 'tab_' | append: i | append: '_collection' -%}
+    {%- assign view_all_key   = 'tab_' | append: i | append: '_view_all_url' -%}
+    {%- assign view_text_key  = 'tab_' | append: i | append: '_view_all_text' -%}
+    {%- assign tab_col        = section.settings[col_key] -%}
+    {%- assign tab_view_url   = section.settings[view_all_key] -%}
+    {%- assign tab_view_text  = section.settings[view_text_key] -%}
+    {%- if tab_col != blank -%}
       <div
-        class="dk-tabs-section__panel{% if first_panel %} is-active{% endif %}"
-        id="dkPanel-{{ section.id }}-{{ forloop.index }}"
+        class="dk-tabs-section__panel{% if i == first_tab_idx %} is-active{% endif %}"
+        id="dkPanel-{{ section.id }}-{{ i }}"
         role="tabpanel"
-        aria-labelledby="dkTab-{{ section.id }}-{{ forloop.index }}"
+        aria-labelledby="dkTab-{{ section.id }}-{{ i }}"
       >
-        {%- assign col = block.settings.collection -%}
-        {%- if col != blank -%}
-          <div
-            class="resource-list resource-list--grid dk-tabs-section__grid"
-            style="
-              --resource-list-columns: repeat({{ section.settings.columns }}, 1fr);
-              --resource-list-columns-mobile: repeat({{ section.settings.mobile_columns }}, 1fr);
-              --resource-list-column-gap-desktop: {{ section.settings.columns_gap }}px;
-              --resource-list-row-gap-desktop: {{ section.settings.rows_gap }}px;
-            "
-          >
-            {%- for product in col.products limit: max_products -%}
-              <div class="resource-list__item">
-                {%- content_for 'block', type: 'product-card', id: 'static-product-card', closest.product: product -%}
-              </div>
-            {%- endfor -%}
-          </div>
-          {%- if block.settings.view_all_url != blank or col.url != blank -%}
-            <div class="dk-tabs-section__footer">
-              <a
-                href="{{ block.settings.view_all_url | default: col.url }}"
-                class="dk-tabs-section__view-all"
-              >
-                {{- block.settings.view_all_text | default: section.settings.view_all_text -}}
-              </a>
+        <div
+          class="resource-list resource-list--grid"
+          style="
+            --resource-list-columns: repeat({{ section.settings.columns }}, 1fr);
+            --resource-list-columns-mobile: repeat({{ section.settings.mobile_columns }}, 1fr);
+            --resource-list-column-gap-desktop: {{ section.settings.columns_gap }}px;
+            --resource-list-row-gap-desktop: {{ section.settings.rows_gap }}px;
+          "
+        >
+          {%- for product in tab_col.products limit: max_products -%}
+            <div class="resource-list__item">
+              {%- content_for 'block', type: 'product-card', id: 'static-product-card', closest.product: product -%}
             </div>
-          {%- endif -%}
-        {%- else -%}
-          <p class="dk-tabs-section__empty">Select a collection for this tab.</p>
+          {%- endfor -%}
+        </div>
+
+        {%- assign footer_url = tab_view_url | default: tab_col.url -%}
+        {%- if footer_url != blank -%}
+          <div class="dk-tabs-section__footer">
+            <a href="{{ footer_url }}" class="dk-tabs-section__view-all">
+              {{- tab_view_text | default: section.settings.view_all_text -}}
+            </a>
+          </div>
         {%- endif -%}
       </div>
-      {%- assign first_panel = false -%}
     {%- endif -%}
   {%- endfor -%}
 
@@ -90,7 +105,7 @@
   padding: 60px 72px;
 }
 
-/* Eyebrow / section heading */
+/* Eyebrow */
 .dk-tabs-section__eyebrow {
   font-size: 10px;
   letter-spacing: 0.14em;
@@ -175,12 +190,6 @@
 }
 .dk-tabs-section__view-all:hover { opacity: 0.6; }
 
-.dk-tabs-section__empty {
-  font-size: 13px;
-  opacity: 0.4;
-  padding: 40px 0;
-}
-
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .dk-tabs-section { padding: 44px 20px; }
@@ -192,19 +201,17 @@
 <script>
 /* Added by DK on 2026-05-07 */
 function dkTabsSwitch(sectionId, n) {
-  var prefix = 'dkTab-' + sectionId + '-';
-  /* Update tab buttons */
-  document.querySelectorAll('[id^="' + prefix + '"]').forEach(function(el) {
-    var active = el.id === prefix + n;
+  var tabPrefix   = 'dkTab-'   + sectionId + '-';
+  var panelPrefix = 'dkPanel-' + sectionId + '-';
+  document.querySelectorAll('[id^="' + tabPrefix + '"]').forEach(function(el) {
+    var active = el.id === tabPrefix + n;
     el.classList.toggle('is-active', active);
     el.setAttribute('aria-selected', active ? 'true' : 'false');
   });
-  /* Update panels */
-  var panelPrefix = 'dkPanel-' + sectionId + '-';
   document.querySelectorAll('[id^="' + panelPrefix + '"]').forEach(function(el) {
     el.classList.remove('is-active');
   });
-  var panel = document.getElementById('dkPanel-' + sectionId + '-' + n);
+  var panel = document.getElementById(panelPrefix + n);
   if (panel) panel.classList.add('is-active');
 }
 </script>
@@ -214,50 +221,193 @@ function dkTabsSwitch(sectionId, n) {
   "name": "DK Tabbed Collections",
   "tag": "section",
   "disabled_on": { "groups": ["header", "footer"] },
-  "blocks": [
-    {
-      "type": "tab",
-      "name": "Tab",
-      "limit": 6,
-      "settings": [
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Tab label",
-          "default": "Bestsellers"
-        },
-        {
-          "type": "collection",
-          "id": "collection",
-          "label": "Collection"
-        },
-        {
-          "type": "image_picker",
-          "id": "tab_image",
-          "label": "Tab image",
-          "info": "Optional thumbnail shown in the tab button"
-        },
-        {
-          "type": "url",
-          "id": "view_all_url",
-          "label": "\"View all\" link",
-          "info": "Leave blank to use the collection URL"
-        },
-        {
-          "type": "text",
-          "id": "view_all_text",
-          "label": "\"View all\" link text",
-          "info": "Leave blank to use the section default"
-        }
-      ]
-    }
-  ],
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Eyebrow label",
       "default": "Shop our collections"
+    },
+    {
+      "type": "header",
+      "content": "Tab 1"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_label",
+      "label": "Label",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "collection",
+      "id": "tab_1_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_1_image",
+      "label": "Tab image"
+    },
+    {
+      "type": "url",
+      "id": "tab_1_view_all_url",
+      "label": "\"View all\" URL"
+    },
+    {
+      "type": "text",
+      "id": "tab_1_view_all_text",
+      "label": "\"View all\" text"
+    },
+    {
+      "type": "header",
+      "content": "Tab 2"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_label",
+      "label": "Label",
+      "default": "New Releases"
+    },
+    {
+      "type": "collection",
+      "id": "tab_2_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_2_image",
+      "label": "Tab image"
+    },
+    {
+      "type": "url",
+      "id": "tab_2_view_all_url",
+      "label": "\"View all\" URL"
+    },
+    {
+      "type": "text",
+      "id": "tab_2_view_all_text",
+      "label": "\"View all\" text"
+    },
+    {
+      "type": "header",
+      "content": "Tab 3"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_label",
+      "label": "Label",
+      "default": "Staff Picks"
+    },
+    {
+      "type": "collection",
+      "id": "tab_3_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_3_image",
+      "label": "Tab image"
+    },
+    {
+      "type": "url",
+      "id": "tab_3_view_all_url",
+      "label": "\"View all\" URL"
+    },
+    {
+      "type": "text",
+      "id": "tab_3_view_all_text",
+      "label": "\"View all\" text"
+    },
+    {
+      "type": "header",
+      "content": "Tab 4"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_label",
+      "label": "Label"
+    },
+    {
+      "type": "collection",
+      "id": "tab_4_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_4_image",
+      "label": "Tab image"
+    },
+    {
+      "type": "url",
+      "id": "tab_4_view_all_url",
+      "label": "\"View all\" URL"
+    },
+    {
+      "type": "text",
+      "id": "tab_4_view_all_text",
+      "label": "\"View all\" text"
+    },
+    {
+      "type": "header",
+      "content": "Tab 5"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_label",
+      "label": "Label"
+    },
+    {
+      "type": "collection",
+      "id": "tab_5_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_5_image",
+      "label": "Tab image"
+    },
+    {
+      "type": "url",
+      "id": "tab_5_view_all_url",
+      "label": "\"View all\" URL"
+    },
+    {
+      "type": "text",
+      "id": "tab_5_view_all_text",
+      "label": "\"View all\" text"
+    },
+    {
+      "type": "header",
+      "content": "Tab 6"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_label",
+      "label": "Label"
+    },
+    {
+      "type": "collection",
+      "id": "tab_6_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "tab_6_image",
+      "label": "Tab image"
+    },
+    {
+      "type": "url",
+      "id": "tab_6_view_all_url",
+      "label": "\"View all\" URL"
+    },
+    {
+      "type": "text",
+      "id": "tab_6_view_all_text",
+      "label": "\"View all\" text"
+    },
+    {
+      "type": "header",
+      "content": "Products"
     },
     {
       "type": "range",
@@ -267,6 +417,12 @@ function dkTabsSwitch(sectionId, n) {
       "max": 16,
       "step": 4,
       "default": 8
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "Default \"View all\" text",
+      "default": "View all →"
     },
     {
       "type": "header",
@@ -311,10 +467,8 @@ function dkTabsSwitch(sectionId, n) {
       "default": 32
     },
     {
-      "type": "text",
-      "id": "view_all_text",
-      "label": "Default \"View all\" text",
-      "default": "View all →"
+      "type": "header",
+      "content": "Style"
     },
     {
       "type": "color_scheme",
@@ -350,21 +504,11 @@ function dkTabsSwitch(sectionId, n) {
   "presets": [
     {
       "name": "DK Tabbed Collections",
-      "blocks": {
-        "tab1": {
-          "type": "tab",
-          "settings": { "label": "Bestsellers" }
-        },
-        "tab2": {
-          "type": "tab",
-          "settings": { "label": "New Releases" }
-        },
-        "tab3": {
-          "type": "tab",
-          "settings": { "label": "Staff Picks" }
-        }
-      },
-      "block_order": ["tab1", "tab2", "tab3"]
+      "settings": {
+        "tab_1_label": "Bestsellers",
+        "tab_2_label": "New Releases",
+        "tab_3_label": "Staff Picks"
+      }
     }
   ]
 }
