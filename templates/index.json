@@ -12,9 +12,39 @@
     "slideshow_WdUVQF": {
       "type": "slideshow",
       "blocks": {
+        "slide_qHFdCG": {
+          "type": "_slide",
+          "name": "Rajnigandha",
+          "settings": {
+            "media_type_1": "image",
+            "slide_link": "shopify://products/रजनीगंधा-rajnigandha-natural-perfume-oil-tuberose-attar",
+            "image_1": "shopify://shop_images/Rajnigandha_Banner_desktop.png",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap_desktop": 12,
+            "gap_mobile": 12,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "slide_h9c6cw": {
           "type": "_slide",
           "name": "t:names.slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "",
@@ -365,6 +395,7 @@
         }
       },
       "block_order": [
+        "slide_qHFdCG",
         "slide_h9c6cw",
         "slide_xB3fep",
         "slide_f9PNn6",
@@ -392,9 +423,39 @@
     "slideshow_w3wDtN": {
       "type": "slideshow",
       "blocks": {
+        "slide_74UjF6": {
+          "type": "_slide",
+          "name": "Rajnigandha",
+          "settings": {
+            "media_type_1": "image",
+            "slide_link": "shopify://products/रजनीगंधा-rajnigandha-natural-perfume-oil-tuberose-attar",
+            "image_1": "shopify://shop_images/Rajnigandha_Banner_Mobile.png",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap_desktop": 12,
+            "gap_mobile": 12,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "slide_qEPWNc": {
           "type": "_slide",
           "name": "t:names.slide",
+          "disabled": true,
           "settings": {
             "media_type_1": "image",
             "slide_link": "",
@@ -714,6 +775,7 @@
         }
       },
       "block_order": [
+        "slide_74UjF6",
         "slide_qEPWNc",
         "slide_jw6346",
         "slide_aa4VrE",
