@@ -3033,7 +3033,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "When will I get my order?",
+                "heading": "Do I get a discount for custom orders?",
                 "open_by_default": false
               },
               "blocks": {
@@ -3041,7 +3041,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+                    "text": "<p>Definitely, we do give discount on custom orders.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -3073,7 +3073,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_dash_row",
               "settings": {
-                "heading": "How much does shipping cost?",
+                "heading": "What’s the MOQ for getting a discount?",
                 "open_by_default": false
               },
               "blocks": {
@@ -3081,7 +3081,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
+                    "text": "<p>We can offer a discount on orders starting at 10 or more items.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -3108,13 +3108,95 @@
               "block_order": [
                 "text_Bg7AQ9"
               ]
+            },
+            "accordion_row_TXYiX8": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "Do you ship bulk orders outside India?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_WggqAd": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes, we do ship bulk orders internationally.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "font_size_override": 0,
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WggqAd"
+              ]
+            },
+            "accordion_row_mdVX3x": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_dash_row",
+              "settings": {
+                "heading": "What if some of my products get damaged in shipping?",
+                "open_by_default": false
+              },
+              "blocks": {
+                "text_kPgtKw": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>We do our best to ensure that our products reach your safely. Please inspect your order within 36 hours of delivery and reach out to us at team@boondfragrances.com in case of any defects, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "font_size_override": 0,
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_kPgtKw"
+              ]
             }
           },
           "block_order": [
             "accordion_row_xyXbT9",
             "accordion_row_PKHH3U",
             "accordion_row_mLgA3q",
-            "accordion_row_eqXVTD"
+            "accordion_row_eqXVTD",
+            "accordion_row_TXYiX8",
+            "accordion_row_mdVX3x"
           ]
         }
       },
