@@ -4,7 +4,8 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
-<!-- Added by DK on 2026-03-15 — Geo-redirect US/CA visitors to boond.ca -->
+<!-- Added by DK on 2026-03-15 — Geo-redirect US/CA visitors to boondnaturals.com -->
+<!-- Updated by DK on 2026-05-21 — Changed redirect target from boond.ca to boondnaturals.com -->
 <!-- Updated by DK on 2026-03-19 — ?geo=in param bypasses redirect and persists for the session -->
 <script>
 (function() {
@@ -27,7 +28,7 @@
       if (!data || !data.country) return;
       if (['CA', 'US'].includes(data.country)) {
         sessionStorage.setItem('boond_geo_redirected', 'true');
-        window.location.replace('https://boond.ca');
+        window.location.replace('https://boondnaturals.com');
       }
     })
     .catch(function() {});
