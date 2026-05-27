@@ -110,6 +110,17 @@
             "image_placeholder": "#e2ddd5"
           }
         },
+        "dropdown_item_LiNPKy": {
+          "type": "dropdown_item",
+          "settings": {
+            "parent": "1",
+            "group_label": "Shop by Category",
+            "title": "Multi Packs (Attars & Dhoop)",
+            "url": "shopify://collections/gifting",
+            "image": "shopify://shop_images/DSCF0459_1.jpg",
+            "image_placeholder": "#e2ddd5"
+          }
+        },
         "dropdown_item_7J64NU": {
           "type": "dropdown_item",
           "settings": {
@@ -162,6 +173,7 @@
         "dropdown_item_NEPBjG",
         "dropdown_item_iKyYch",
         "dropdown_item_Y8EL6L",
+        "dropdown_item_LiNPKy",
         "dropdown_item_7J64NU",
         "dropdown_item_ybqdwW",
         "dropdown_item_jqnzrg",
