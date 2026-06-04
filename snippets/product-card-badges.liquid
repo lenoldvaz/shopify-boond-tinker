@@ -42,14 +42,14 @@
           {{ 'content.product_badge_sold_out' | t }}
         </div>
 
-      {%- when 'coming_soon' -%}
+      {%- when 'giftable' -%}
         {%- comment -%}Added by DK on 2026-06-03: label pulled from theme customizer (badge_coming_soon_text), defaults to "Giftable"{%- endcomment -%}
         <div class="product-badges__badge product-badges__badge--rectangle "
           style="background-color: {{ settings.badge_coming_soon_color_background }}; color: {{ settings.badge_coming_soon_color_text }};">
           {{ settings.badge_coming_soon_text | default: 'Giftable' }}
         </div>
 
-      {%- when 'limited_edition' -%}
+      {%- when 'rare' -%}
         {%- comment -%}Added by DK on 2026-06-03: label pulled from theme customizer (badge_limited_edition_text), defaults to "✨ Rare"{%- endcomment -%}
         <div class="product-badges__badge product-badges__badge--rectangle "
           style="background-color: {{ settings.badge_limited_edition_color_background }}; color: {{ settings.badge_limited_edition_color_text }};">
