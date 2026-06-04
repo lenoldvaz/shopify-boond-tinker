@@ -43,15 +43,17 @@
         </div>
 
       {%- when 'coming_soon' -%}
+        {{- /* Added by DK on 2026-06-03: label pulled from theme customizer (badge_coming_soon_text), defaults to "Giftable" */ -}}
         <div class="product-badges__badge product-badges__badge--rectangle "
           style="background-color: {{ settings.badge_coming_soon_color_background }}; color: {{ settings.badge_coming_soon_color_text }};">
-          Coming&nbsp;soon
+          {{ settings.badge_coming_soon_text | default: 'Giftable' }}
         </div>
 
       {%- when 'limited_edition' -%}
-        <div class="product-badges__badge product-badges__badge--rectangle " 
+        {{- /* Added by DK on 2026-06-03: label pulled from theme customizer (badge_limited_edition_text), defaults to "✨ Rare" */ -}}
+        <div class="product-badges__badge product-badges__badge--rectangle "
           style="background-color: {{ settings.badge_limited_edition_color_background }}; color: {{ settings.badge_limited_edition_color_text }};">
-          Limited&nbsp;edition
+          {{ settings.badge_limited_edition_text | default: '✨ Rare' }}
         </div>
 
       {%- when 'percent' -%}
@@ -68,15 +70,31 @@
         </div>
 
       {%- when 'new' -%}
-        <div class="product-badges__badge product-badges__badge--rectangle " 
+        {{- /* Added by DK on 2026-06-03: label pulled from theme customizer (badge_new_text) */ -}}
+        <div class="product-badges__badge product-badges__badge--rectangle "
           style="background-color: {{ settings.badge_new_color_background }}; color: {{ settings.badge_new_color_text }};">
-          New
+          {{ settings.badge_new_text | default: 'New' }}
         </div>
 
       {%- when 'bestseller' -%}
-        <div class="product-badges__badge product-badges__badge--rectangle " 
+        {{- /* Added by DK on 2026-06-03: label pulled from theme customizer (badge_bestseller_text) */ -}}
+        <div class="product-badges__badge product-badges__badge--rectangle "
           style="background-color: {{ settings.badge_bestseller_color_background }}; color: {{ settings.badge_bestseller_color_text }};">
-          Bestseller
+          {{ settings.badge_bestseller_text | default: 'Bestseller' }}
+        </div>
+
+      {%- when 'staff_pick' -%}
+        {{- /* Added by DK on 2026-06-03: new Staff Pick badge, label from theme customizer */ -}}
+        <div class="product-badges__badge product-badges__badge--rectangle "
+          style="background-color: {{ settings.badge_staff_pick_color_background }}; color: {{ settings.badge_staff_pick_color_text }};">
+          {{ settings.badge_staff_pick_text | default: 'Staff Pick' }}
+        </div>
+
+      {%- when 'classic' -%}
+        {{- /* Added by DK on 2026-06-03: new Classic badge, label from theme customizer */ -}}
+        <div class="product-badges__badge product-badges__badge--rectangle "
+          style="background-color: {{ settings.badge_classic_color_background }}; color: {{ settings.badge_classic_color_text }};">
+          {{ settings.badge_classic_text | default: 'Classic' }}
         </div>
 
       {%- when 'custom' -%}

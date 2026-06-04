@@ -1503,34 +1503,46 @@
       },
        {
         "type": "header",
-        "content": "Limited Edition"
+        "content": "Rare Badge"
+      },
+      {
+        "type": "text",
+        "id": "badge_limited_edition_text",
+        "label": "Rare Badge Label",
+        "default": "✨ Rare"
       },
       {
         "type": "color",
         "id": "badge_limited_edition_color_background",
-        "label": "Limited Edition BG",
+        "label": "Rare BG",
         "default": "#000"
       },
       {
         "type": "color",
         "id": "badge_limited_edition_color_text",
-        "label": "Limited Edition Text",
+        "label": "Rare Text",
         "default": "#fff"
       },
-       {
+      {
         "type": "header",
-        "content": "Coming Soon"
+        "content": "Giftable Badge"
+      },
+      {
+        "type": "text",
+        "id": "badge_coming_soon_text",
+        "label": "Giftable Badge Label",
+        "default": "Giftable"
       },
       {
         "type": "color",
         "id": "badge_coming_soon_color_background",
-        "label": "Coming Soon BG",
+        "label": "Giftable BG",
         "default": "#000"
       },
       {
         "type": "color",
         "id": "badge_coming_soon_color_text",
-        "label": "Coming Soon Text",
+        "label": "Giftable Text",
         "default": "#fff"
       },
        {
@@ -1554,6 +1566,12 @@
         "content": "New Badge"
       },
       {
+        "type": "text",
+        "id": "badge_new_text",
+        "label": "New Badge Label",
+        "default": "New"
+      },
+      {
         "type": "color",
         "id": "badge_new_color_background",
         "label": "New Background",
@@ -1570,6 +1588,12 @@
         "content": "Bestseller Badge"
       },
       {
+        "type": "text",
+        "id": "badge_bestseller_text",
+        "label": "Bestseller Badge Label",
+        "default": "Bestseller"
+      },
+      {
         "type": "color",
         "id": "badge_bestseller_color_background",
         "label": "Bestseller Background",
@@ -1579,6 +1603,50 @@
         "type": "color",
         "id": "badge_bestseller_color_text",
         "label": "Bestseller Text",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Staff Pick Badge"
+      },
+      {
+        "type": "text",
+        "id": "badge_staff_pick_text",
+        "label": "Staff Pick Badge Label",
+        "default": "Staff Pick"
+      },
+      {
+        "type": "color",
+        "id": "badge_staff_pick_color_background",
+        "label": "Staff Pick Background",
+        "default": "#6366f1"
+      },
+      {
+        "type": "color",
+        "id": "badge_staff_pick_color_text",
+        "label": "Staff Pick Text",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Classic Badge"
+      },
+      {
+        "type": "text",
+        "id": "badge_classic_text",
+        "label": "Classic Badge Label",
+        "default": "Classic"
+      },
+      {
+        "type": "color",
+        "id": "badge_classic_color_background",
+        "label": "Classic Background",
+        "default": "#78716c"
+      },
+      {
+        "type": "color",
+        "id": "badge_classic_color_text",
+        "label": "Classic Text",
         "default": "#fff"
       },
       {
