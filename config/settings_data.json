@@ -39,6 +39,7 @@
     "badge_bestseller_color_text": "#fff",
     "badge_staff_pick_color_background": "#7a4e41",
     "badge_classic_color_background": "#fff",
+    "badge_classic_color_text": "#000000",
     "badge_text_transform": "none",
     "button_border_radius_primary": 4,
     "secondary_button_border_width": 0,
