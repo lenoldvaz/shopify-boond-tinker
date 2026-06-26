@@ -17,7 +17,7 @@
 {%- assign gender_refs = product.metafields.shopify['target-gender'].value -%}
 {%- assign gender = '' -%}
 {%- if gender_refs != blank -%}
-  {%- assign gender = gender_refs.first.label -%}
+  {%- assign gender = gender_refs.first.display_name -%}
 {%- endif -%}
 
 {%- if show_gender_badge and gender != blank -%}
