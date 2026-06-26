@@ -429,7 +429,6 @@
                   "type": "dk_scent-family",
                   "name": "DK Scent Family",
                   "settings": {
-                    "display_mode": "compact",
                     "show_static_pill": false,
                     "static_pill_text": "Handcrafted by artisans in Kannauj",
                     "pill_color_fresh": "#0ea5e9",
