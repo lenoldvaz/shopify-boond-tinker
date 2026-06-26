@@ -1,56 +1,61 @@
 {% comment %}
   DK Scent Family Pills
-  Added by DK on 2026-06-25: static "handcrafted by artisans" pill plus a
-  clickable scent-family pill driven by product.metafields.custom.scent_family.
-  Links to the all-products collection pre-filtered by that scent family
-  (requires the scent_family metafield to have storefront filtering enabled).
+  Added by DK on 2026-06-25: static "handcrafted by artisans" pill plus one
+  clickable pill per value in product.metafields.custom.scent_family (a
+  list metafield, since a product can belong to multiple scent families).
+  Each pill links to the all-products collection pre-filtered to that scent
+  family (requires the scent_family metafield to have storefront filtering enabled).
 {% endcomment %}
-
-{% liquid
-  assign scent_family = product.metafields.custom.scent_family.value | strip | downcase
-
-  case scent_family
-    when 'fresh'
-      assign pill_color = block.settings.pill_color_fresh
-      assign pill_icon = 'snowflake'
-    when 'floral'
-      assign pill_color = block.settings.pill_color_floral
-      assign pill_icon = 'perfume'
-    when 'earthy'
-      assign pill_color = block.settings.pill_color_earthy
-      assign pill_icon = 'leaf'
-    when 'spicy'
-      assign pill_color = block.settings.pill_color_spicy
-      assign pill_icon = 'fire'
-    when 'grassy'
-      assign pill_color = block.settings.pill_color_grassy
-      assign pill_icon = 'plant'
-    when 'musky'
-      assign pill_color = block.settings.pill_color_musky
-      assign pill_icon = 'star'
-    when 'sweet'
-      assign pill_color = block.settings.pill_color_sweet
-      assign pill_icon = 'price_tag'
-  endcase
-%}
 
 <div class="dk-scent-family" {{ block.shopify_attributes }}>
   <span class="dk-scent-family__pill dk-scent-family__pill--static">
     {{ block.settings.static_pill_text }}
   </span>
 
-  {%- if scent_family != blank and pill_color != blank -%}
-    <a
-      href="{{ routes.all_products_collection_url }}?filter.v.metafield.custom.scent_family={{ scent_family | url_encode }}"
-      class="dk-scent-family__pill dk-scent-family__pill--scent"
-      style="--pill-color: {{ pill_color }};"
-    >
-      <svg class="dk-scent-family__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
-        {%- render 'icon', icon: pill_icon -%}
-      </svg>
-      Scent Family: {{ product.metafields.custom.scent_family.value }}
-    </a>
-  {%- endif -%}
+  {%- for scent_family_value in product.metafields.custom.scent_family.value -%}
+    {% liquid
+      assign scent_family = scent_family_value | strip | downcase
+      assign pill_color = blank
+      assign pill_icon = blank
+
+      case scent_family
+        when 'fresh'
+          assign pill_color = block.settings.pill_color_fresh
+          assign pill_icon = 'snowflake'
+        when 'floral'
+          assign pill_color = block.settings.pill_color_floral
+          assign pill_icon = 'perfume'
+        when 'earthy'
+          assign pill_color = block.settings.pill_color_earthy
+          assign pill_icon = 'leaf'
+        when 'spicy'
+          assign pill_color = block.settings.pill_color_spicy
+          assign pill_icon = 'fire'
+        when 'grassy'
+          assign pill_color = block.settings.pill_color_grassy
+          assign pill_icon = 'plant'
+        when 'musky'
+          assign pill_color = block.settings.pill_color_musky
+          assign pill_icon = 'star'
+        when 'sweet'
+          assign pill_color = block.settings.pill_color_sweet
+          assign pill_icon = 'price_tag'
+      endcase
+    %}
+
+    {%- if scent_family != blank and pill_color != blank -%}
+      <a
+        href="{{ routes.all_products_collection_url }}?filter.v.metafield.custom.scent_family={{ scent_family | url_encode }}"
+        class="dk-scent-family__pill dk-scent-family__pill--scent"
+        style="--pill-color: {{ pill_color }};"
+      >
+        <svg class="dk-scent-family__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
+          {%- render 'icon', icon: pill_icon -%}
+        </svg>
+        Scent Family: {{ scent_family_value }}
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
 </div>
 
 {% stylesheet %}
