@@ -5,14 +5,14 @@
   so it can coexist with the main badge (e.g. top-left badge + top-right
   gender pill). Position and visibility are controlled by the calling
   block's settings, not hardcoded, so it's switchable per-instance from
-  the theme customizer.
+  the theme customizer. Markup/CSS structure mirrors product-card-badges.liquid.
 {%- endcomment -%}
 
 {%- comment -%}
   Bracket notation required: Liquid dot notation can't parse a key
   containing a hyphen (target-gender). The metafield's .value is a
   MetaobjectListDrop (a list of shopify--target-gender metaobjects), so
-  it must be dereferenced via .label on each entry, not printed directly.
+  it must be dereferenced via .display_name on each entry, not printed directly.
 {%- endcomment -%}
 {%- assign gender_refs = product.metafields.shopify['target-gender'].value -%}
 {%- assign gender = '' -%}
@@ -20,19 +20,16 @@
   {%- assign gender = gender_refs.first.display_name -%}
 {%- endif -%}
 
-{%- comment -%}TEMP DEBUG — remove after diagnosing{%- endcomment -%}
-<div style="position:absolute;bottom:0;left:0;z-index:999;background:lime;color:black;font-size:10px;padding:2px;max-width:100%;word-break:break-all;">
-  show={{ show_gender_badge }} |
-  pos={{ gender_badge_position }} |
-  raw_mf={{ product.metafields.shopify['target-gender'] }} |
-  refs_blank={{ gender_refs == blank }} |
-  refs_size={{ gender_refs.size }} |
-  first={{ gender_refs.first }} |
-  gender="{{ gender }}"
-</div>
-
 {%- if show_gender_badge and gender != blank -%}
-  <div class="product-badges product-badges--{{ gender_badge_position }}">
+  <div
+    class="product-badges product-badges--{{ gender_badge_position }}"
+    style="
+      --badge-border-radius: {{ settings.badge_corner_radius }}px;
+      --badge-font-family: var(--font-{{ settings.badge_font_family }}--family);
+      --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight);
+      --badge-text-transform: {{ settings.badge_text_transform }};
+    "
+  >
     <div class="product-badges__badge product-badges__badge--rectangle product-badges__badge--outline">
       {{ gender }}
     </div>
