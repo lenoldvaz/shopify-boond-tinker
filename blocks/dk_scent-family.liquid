@@ -6,16 +6,28 @@
   Each pill links to the all-products collection pre-filtered to that scent
   family (requires the scent_family metafield to have storefront filtering enabled).
   Unmapped values (e.g. a stray "Rare" data entry) are silently skipped.
+
+  Updated by DK on 2026-06-25: added a "Compact" display_mode for use inside
+  product cards on collection/grid pages, where space is tight. Compact mode
+  drops the static pill and only shows the first scent family, in a smaller pill.
 {% endcomment %}
 
-<div class="dk-scent-family" {{ block.shopify_attributes }}>
-  {%- if block.settings.show_static_pill -%}
+{% liquid
+  assign is_compact = block.settings.display_mode == 'compact'
+  assign scent_family_values = product.metafields.custom.scent_family.value
+  if is_compact and scent_family_values != blank
+    assign scent_family_values = scent_family_values | slice: 0, 1
+  endif
+%}
+
+<div class="dk-scent-family {% if is_compact %}dk-scent-family--compact{% endif %}" {{ block.shopify_attributes }}>
+  {%- if block.settings.show_static_pill and is_compact == false -%}
     <span class="dk-scent-family__pill dk-scent-family__pill--static">
       {{ block.settings.static_pill_text }}
     </span>
   {%- endif -%}
 
-  {%- for scent_family_value in product.metafields.custom.scent_family.value -%}
+  {%- for scent_family_value in scent_family_values -%}
     {% liquid
       assign scent_family = scent_family_value | strip | downcase
       assign pill_color = blank
@@ -70,7 +82,11 @@
         <svg class="dk-scent-family__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
           {%- render 'icon', icon: pill_icon -%}
         </svg>
-        Scent Family: {{ scent_family_value }}
+        {%- if is_compact -%}
+          {{ scent_family_value }}
+        {%- else -%}
+          Scent Family: {{ scent_family_value }}
+        {%- endif -%}
       </a>
     {%- endif -%}
   {%- endfor -%}
@@ -95,6 +111,17 @@
     line-height: 1.4;
     text-decoration: none;
     white-space: nowrap;
+  }
+
+  .dk-scent-family--compact .dk-scent-family__pill {
+    padding: 2px 7px;
+    font-size: 0.6875rem;
+    gap: 4px;
+  }
+
+  .dk-scent-family--compact .dk-scent-family__icon {
+    width: 11px;
+    height: 11px;
   }
 
   .dk-scent-family__pill--static {
@@ -126,17 +153,35 @@
   "tag": null,
   "settings": [
     {
+      "type": "select",
+      "id": "display_mode",
+      "label": "Display mode",
+      "options": [
+        {
+          "value": "full",
+          "label": "Full (product page)"
+        },
+        {
+          "value": "compact",
+          "label": "Compact (product card)"
+        }
+      ],
+      "default": "full",
+      "info": "Compact mode hides the static pill and shows only the first scent family, sized for product cards."
+    },
+    {
       "type": "checkbox",
       "id": "show_static_pill",
       "label": "Show static pill",
-      "default": true
+      "default": true,
+      "visible_if": "{{ block.settings.display_mode == 'full' }}"
     },
     {
       "type": "text",
       "id": "static_pill_text",
       "label": "Static pill text",
       "default": "Handcrafted by artisans in Karnoj",
-      "visible_if": "{{ block.settings.show_static_pill }}"
+      "visible_if": "{{ block.settings.display_mode == 'full' and block.settings.show_static_pill }}"
     },
     {
       "type": "header",
@@ -219,6 +264,13 @@
     {
       "name": "DK Scent Family",
       "category": "t:categories.basic"
+    },
+    {
+      "name": "DK Scent Family (Compact)",
+      "category": "t:categories.basic",
+      "settings": {
+        "display_mode": "compact"
+      }
     }
   ]
 }
