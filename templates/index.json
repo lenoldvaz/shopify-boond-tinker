@@ -1096,7 +1096,7 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "product": "{{ closest.product }}",
-                "show_gender_badge": false,
+                "show_gender_badge": true,
                 "gender_badge_position": "top-right",
                 "image_ratio": "square",
                 "border": "none",
@@ -1156,14 +1156,14 @@
                     "product": "{{ closest.product }}"
                   }
                 },
-                "dk_scent_family_tab1": {
+                "dk_scent_family_w7AY9D": {
                   "type": "dk_scent-family",
-                  "name": "DK Scent Family",
+                  "name": "DK Scent Family (Compact)",
                   "settings": {
                     "display_mode": "compact",
-                    "show_static_pill": false,
+                    "show_static_pill": true,
                     "static_pill_text": "Handcrafted by artisans in Kannauj",
-                    "filter_collection": "attars",
+                    "filter_collection": "",
                     "pill_color_fresh": "#0ea5e9",
                     "pill_color_floral": "#db2777",
                     "pill_color_earthy": "#78350f",
@@ -1248,7 +1248,7 @@
               },
               "block_order": [
                 "judge_me_reviews_preview_badge_homepage_Nam6eg",
-                "dk_scent_family_tab1",
+                "dk_scent_family_w7AY9D",
                 "product_title_9h4HCz",
                 "price_96YMh3",
                 "swatches_nqFR88"
