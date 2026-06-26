@@ -82,11 +82,7 @@
         <svg class="dk-scent-family__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
           {%- render 'icon', icon: pill_icon -%}
         </svg>
-        {%- if is_compact -%}
-          {{ scent_family_value }}
-        {%- else -%}
-          Scent Family: {{ scent_family_value }}
-        {%- endif -%}
+        {{ scent_family_value }}
       </a>
     {%- endif -%}
   {%- endfor -%}

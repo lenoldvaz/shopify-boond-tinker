@@ -1204,6 +1204,27 @@
                   },
                   "blocks": {}
                 },
+                "dk_scent_family_L3jK6Q": {
+                  "type": "dk_scent-family",
+                  "name": "DK Scent Family",
+                  "settings": {
+                    "show_static_pill": false,
+                    "static_pill_text": "Handcrafted by artisans in Karnoj",
+                    "pill_color_fresh": "#0ea5e9",
+                    "pill_color_floral": "#db2777",
+                    "pill_color_earthy": "#78350f",
+                    "pill_color_spicy": "#b91c1c",
+                    "pill_color_grassy": "#15803d",
+                    "pill_color_musky": "#57534e",
+                    "pill_color_mild_sweet": "#d97706",
+                    "pill_color_woody": "#5c4033",
+                    "pill_color_balsamic": "#92400e",
+                    "pill_color_smoky": "#44403c",
+                    "pill_color_warm": "#ea580c",
+                    "pill_color_green": "#059669"
+                  },
+                  "blocks": {}
+                },
                 "swatches_nqFR88": {
                   "type": "swatches",
                   "name": "t:names.swatches",
@@ -1225,6 +1246,7 @@
                 "judge_me_reviews_preview_badge_homepage_Nam6eg",
                 "product_title_9h4HCz",
                 "price_96YMh3",
+                "dk_scent_family_L3jK6Q",
                 "swatches_nqFR88"
               ]
             }
