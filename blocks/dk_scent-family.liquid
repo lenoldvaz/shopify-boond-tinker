@@ -63,7 +63,7 @@
 
     {%- if scent_family != blank and pill_color != blank -%}
       <a
-        href="{{ routes.collections_url }}?filter.p.m.custom.scent_family={{ scent_family | url_encode }}&sort_by=manual&grid=default"
+        href="/collections/attars?filter.p.m.custom.scent_family={{ scent_family | url_encode }}&sort_by=manual&grid=default"
         class="dk-scent-family__pill dk-scent-family__pill--scent"
         style="--pill-color: {{ pill_color }};"
       >
