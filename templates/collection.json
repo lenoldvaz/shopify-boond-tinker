@@ -432,6 +432,7 @@
                     "display_mode": "compact",
                     "show_static_pill": false,
                     "static_pill_text": "Handcrafted by artisans in Kannauj",
+                    "filter_collection": "attars",
                     "pill_color_fresh": "#0ea5e9",
                     "pill_color_floral": "#db2777",
                     "pill_color_earthy": "#78350f",

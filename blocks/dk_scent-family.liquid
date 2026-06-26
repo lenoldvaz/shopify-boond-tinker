@@ -3,13 +3,20 @@
   Added by DK on 2026-06-25: static "handcrafted by artisans" pill plus one
   clickable pill per value in product.metafields.custom.scent_family (a
   list metafield, since a product can belong to multiple scent families).
-  Each pill links to the all-products collection pre-filtered to that scent
-  family (requires the scent_family metafield to have storefront filtering enabled).
-  Unmapped values (e.g. a stray "Rare" data entry) are silently skipped.
+  Each pill links to filter_collection (or all-products if unset) pre-filtered
+  to that scent family. Requires the scent_family metafield to have storefront
+  filtering enabled. Unmapped values (e.g. a stray "Rare" data entry) are
+  silently skipped.
 
   Updated by DK on 2026-06-25: added a "Compact" display_mode for use inside
   product cards on collection/grid pages, where space is tight. Compact mode
   drops the static pill and only shows the first scent family, in a smaller pill.
+
+  Updated by DK on 2026-06-25: fixed the filter URL param - Shopify generates
+  filter.p.m.{namespace}.{key} for list-type product metafields, not
+  filter.v.metafield.{namespace}.{key} as originally assumed. Confirmed by
+  inspecting the URL Shopify's own filter UI produces. Also uses the original
+  (non-downcased) metafield value, since the filter match is case-sensitive.
 {% endcomment %}
 
 {% liquid
@@ -75,7 +82,7 @@
 
     {%- if scent_family != blank and pill_color != blank -%}
       <a
-        href="{{ routes.all_products_collection_url }}?filter.v.metafield.custom.scent_family={{ scent_family | url_encode }}"
+        href="{{ block.settings.filter_collection.url | default: routes.all_products_collection_url }}?filter.p.m.custom.scent_family={{ scent_family_value | url_encode }}"
         class="dk-scent-family__pill dk-scent-family__pill--scent"
         style="--pill-color: {{ pill_color }};"
       >
@@ -178,6 +185,12 @@
       "label": "Static pill text",
       "default": "Handcrafted by artisans in Karnoj",
       "visible_if": "{{ block.settings.display_mode == 'full' and block.settings.show_static_pill }}"
+    },
+    {
+      "type": "collection",
+      "id": "filter_collection",
+      "label": "Collection to filter when a pill is clicked",
+      "info": "Defaults to the all-products collection if left blank."
     },
     {
       "type": "header",
