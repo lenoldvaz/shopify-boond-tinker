@@ -10,14 +10,16 @@
 
 {%- comment -%}
   Bracket notation required: Liquid dot notation can't parse a key
-  containing a hyphen (target-gender). The metafield's .value is a
-  MetaobjectListDrop (a list of shopify--target-gender metaobjects), so
-  it must be dereferenced via .display_name on each entry, not printed directly.
+  containing a hyphen (target-gender). The metafield's .value is a list of
+  shopify--target-gender metaobjects. Per Shopify's metaobject Liquid docs,
+  each field on a metaobject is accessed as metaobject.<field_key>.value -
+  so the "label" field needs its own .value, not just .label or
+  .display_name as a bare property.
 {%- endcomment -%}
 {%- assign gender_refs = product.metafields.shopify['target-gender'].value -%}
 {%- assign gender = '' -%}
 {%- if gender_refs != blank -%}
-  {%- assign gender = gender_refs.first.display_name -%}
+  {%- assign gender = gender_refs.first.label.value -%}
 {%- endif -%}
 
 {%- if show_gender_badge and gender != blank -%}
