@@ -5,6 +5,7 @@
   list metafield, since a product can belong to multiple scent families).
   Each pill links to the all-products collection pre-filtered to that scent
   family (requires the scent_family metafield to have storefront filtering enabled).
+  Unmapped values (e.g. a stray "Rare" data entry) are silently skipped.
 {% endcomment %}
 
 <div class="dk-scent-family" {{ block.shopify_attributes }}>
@@ -30,16 +31,31 @@
           assign pill_icon = 'leaf'
         when 'spicy'
           assign pill_color = block.settings.pill_color_spicy
-          assign pill_icon = 'fire'
+          assign pill_icon = 'pepper'
         when 'grassy'
           assign pill_color = block.settings.pill_color_grassy
           assign pill_icon = 'plant'
         when 'musky'
           assign pill_color = block.settings.pill_color_musky
-          assign pill_icon = 'star'
-        when 'sweet'
-          assign pill_color = block.settings.pill_color_sweet
+          assign pill_icon = 'paw_print'
+        when 'mild sweet'
+          assign pill_color = block.settings.pill_color_mild_sweet
           assign pill_icon = 'price_tag'
+        when 'woody'
+          assign pill_color = block.settings.pill_color_woody
+          assign pill_icon = 'leather'
+        when 'balsamic'
+          assign pill_color = block.settings.pill_color_balsamic
+          assign pill_icon = 'bottle'
+        when 'smoky'
+          assign pill_color = block.settings.pill_color_smoky
+          assign pill_icon = 'fire'
+        when 'warm'
+          assign pill_color = block.settings.pill_color_warm
+          assign pill_icon = 'lightning_bolt'
+        when 'green'
+          assign pill_color = block.settings.pill_color_green
+          assign pill_icon = 'recycle'
       endcase
     %}
 
@@ -155,9 +171,39 @@
     },
     {
       "type": "color",
-      "id": "pill_color_sweet",
-      "label": "Sweet",
+      "id": "pill_color_mild_sweet",
+      "label": "Mild Sweet",
       "default": "#d97706"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_woody",
+      "label": "Woody",
+      "default": "#5c4033"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_balsamic",
+      "label": "Balsamic",
+      "default": "#92400e"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_smoky",
+      "label": "Smoky",
+      "default": "#44403c"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_warm",
+      "label": "Warm",
+      "default": "#ea580c"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_green",
+      "label": "Green",
+      "default": "#059669"
     }
   ],
   "presets": [
