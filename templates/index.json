@@ -1154,6 +1154,28 @@
                     "product": "{{ closest.product }}"
                   }
                 },
+                "dk_scent_family_tab1": {
+                  "type": "dk_scent-family",
+                  "name": "DK Scent Family",
+                  "settings": {
+                    "display_mode": "compact",
+                    "show_static_pill": false,
+                    "filter_collection": "attars",
+                    "pill_color_fresh": "#0ea5e9",
+                    "pill_color_floral": "#db2777",
+                    "pill_color_earthy": "#78350f",
+                    "pill_color_spicy": "#b91c1c",
+                    "pill_color_grassy": "#15803d",
+                    "pill_color_musky": "#57534e",
+                    "pill_color_mild_sweet": "#d97706",
+                    "pill_color_woody": "#5c4033",
+                    "pill_color_balsamic": "#92400e",
+                    "pill_color_smoky": "#44403c",
+                    "pill_color_warm": "#ea580c",
+                    "pill_color_green": "#059669"
+                  },
+                  "blocks": {}
+                },
                 "product_title_9h4HCz": {
                   "type": "product-title",
                   "name": "t:names.product_title",
@@ -1223,6 +1245,7 @@
               },
               "block_order": [
                 "judge_me_reviews_preview_badge_homepage_Nam6eg",
+                "dk_scent_family_tab1",
                 "product_title_9h4HCz",
                 "price_96YMh3",
                 "swatches_nqFR88"

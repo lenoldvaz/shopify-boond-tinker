@@ -3,6 +3,12 @@
 {% capture children %}
   {% unless block.settings.product == blank %}
     {% render 'product-card-badges', product: block.settings.product %}
+    {%- comment -%}Added by DK on 2026-06-26: gender pill, toggleable/repositionable via this block's settings{%- endcomment -%}
+    {% render 'product-card-gender-badge',
+      product: block.settings.product,
+      show_gender_badge: block.settings.show_gender_badge,
+      gender_badge_position: block.settings.gender_badge_position
+    %}
     {%  if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add', product: block.settings.product, section_id: section.id %}
     {% endif %}
@@ -34,6 +40,37 @@
       "type": "product",
       "id": "product",
       "label": "t:settings.product"
+    },
+    {
+      "type": "header",
+      "content": "Gender badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gender_badge",
+      "label": "Show gender badge",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "gender_badge_position",
+      "label": "Gender badge position",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        }
+      ],
+      "default": "top-right",
+      "visible_if": "{{ block.settings.show_gender_badge }}"
     },
     {
       "type": "select",

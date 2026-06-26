@@ -1,0 +1,31 @@
+{%- comment -%}
+  Added by DK on 2026-06-26: gender badge pill for product cards, sourced
+  from Shopify's standard target-gender metafield. Renders alongside (not
+  instead of) the existing product-card-badges pill, in its own position
+  so it can coexist with the main badge (e.g. top-left badge + top-right
+  gender pill). Position and visibility are controlled by the calling
+  block's settings, not hardcoded, so it's switchable per-instance from
+  the theme customizer.
+{%- endcomment -%}
+
+{%- comment -%}
+  Bracket notation required: Liquid dot notation can't parse a key
+  containing a hyphen (target-gender).
+{%- endcomment -%}
+{%- assign gender = product.metafields.shopify['target-gender'].value -%}
+
+{%- if show_gender_badge and gender != blank -%}
+  <div class="product-badges product-badges--{{ gender_badge_position }}">
+    <div class="product-badges__badge product-badges__badge--rectangle product-badges__badge--outline">
+      {{ gender }}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .product-badges__badge--outline {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+  }
+{% endstylesheet %}
