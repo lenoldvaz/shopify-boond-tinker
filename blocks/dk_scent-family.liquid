@@ -9,9 +9,11 @@
 {% endcomment %}
 
 <div class="dk-scent-family" {{ block.shopify_attributes }}>
-  <span class="dk-scent-family__pill dk-scent-family__pill--static">
-    {{ block.settings.static_pill_text }}
-  </span>
+  {%- if block.settings.show_static_pill -%}
+    <span class="dk-scent-family__pill dk-scent-family__pill--static">
+      {{ block.settings.static_pill_text }}
+    </span>
+  {%- endif -%}
 
   {%- for scent_family_value in product.metafields.custom.scent_family.value -%}
     {% liquid
@@ -124,10 +126,17 @@
   "tag": null,
   "settings": [
     {
+      "type": "checkbox",
+      "id": "show_static_pill",
+      "label": "Show static pill",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "static_pill_text",
       "label": "Static pill text",
-      "default": "Handcrafted by artisans in Karnoj"
+      "default": "Handcrafted by artisans in Karnoj",
+      "visible_if": "{{ block.settings.show_static_pill }}"
     },
     {
       "type": "header",
