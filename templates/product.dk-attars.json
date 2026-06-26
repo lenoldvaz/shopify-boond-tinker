@@ -678,6 +678,21 @@
               },
               "blocks": {}
             },
+            "dk_scent_family_001": {
+              "type": "dk_scent-family",
+              "name": "Scent Family Pills",
+              "settings": {
+                "static_pill_text": "Handcrafted by artisans in Karnoj",
+                "pill_color_fresh": "#0ea5e9",
+                "pill_color_floral": "#db2777",
+                "pill_color_earthy": "#78350f",
+                "pill_color_spicy": "#b91c1c",
+                "pill_color_grassy": "#15803d",
+                "pill_color_musky": "#57534e",
+                "pill_color_sweet": "#d97706"
+              },
+              "blocks": {}
+            },
             "group_X39hBc": {
               "type": "group",
               "name": "Values",
@@ -1303,6 +1318,7 @@
             "dk_upsell_product_DK2025",
             "gift_message_QHnptM",
             "product_description_LfDYCg",
+            "dk_scent_family_001",
             "group_X39hBc",
             "accordion_g8EVVp"
           ]

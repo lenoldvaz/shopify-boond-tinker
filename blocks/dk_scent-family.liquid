@@ -1,0 +1,165 @@
+{% comment %}
+  DK Scent Family Pills
+  Added by DK on 2026-06-25: static "handcrafted by artisans" pill plus a
+  clickable scent-family pill driven by product.metafields.custom.scent_family.
+  Links to the all-products collection pre-filtered by that scent family
+  (requires the scent_family metafield to have storefront filtering enabled).
+{% endcomment %}
+
+{% liquid
+  assign scent_family = product.metafields.custom.scent_family.value | strip | downcase
+
+  case scent_family
+    when 'fresh'
+      assign pill_color = block.settings.pill_color_fresh
+      assign pill_icon = 'snowflake'
+    when 'floral'
+      assign pill_color = block.settings.pill_color_floral
+      assign pill_icon = 'perfume'
+    when 'earthy'
+      assign pill_color = block.settings.pill_color_earthy
+      assign pill_icon = 'leaf'
+    when 'spicy'
+      assign pill_color = block.settings.pill_color_spicy
+      assign pill_icon = 'fire'
+    when 'grassy'
+      assign pill_color = block.settings.pill_color_grassy
+      assign pill_icon = 'plant'
+    when 'musky'
+      assign pill_color = block.settings.pill_color_musky
+      assign pill_icon = 'star'
+    when 'sweet'
+      assign pill_color = block.settings.pill_color_sweet
+      assign pill_icon = 'price_tag'
+  endcase
+%}
+
+<div class="dk-scent-family" {{ block.shopify_attributes }}>
+  <span class="dk-scent-family__pill dk-scent-family__pill--static">
+    {{ block.settings.static_pill_text }}
+  </span>
+
+  {%- if scent_family != blank and pill_color != blank -%}
+    <a
+      href="{{ routes.all_products_collection_url }}?filter.v.metafield.custom.scent_family={{ scent_family | url_encode }}"
+      class="dk-scent-family__pill dk-scent-family__pill--scent"
+      style="--pill-color: {{ pill_color }};"
+    >
+      <svg class="dk-scent-family__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
+        {%- render 'icon', icon: pill_icon -%}
+      </svg>
+      Scent Family: {{ product.metafields.custom.scent_family.value }}
+    </a>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .dk-scent-family {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dk-scent-family__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .dk-scent-family__pill--static {
+    background: var(--color-border);
+    color: var(--color-foreground);
+  }
+
+  .dk-scent-family__pill--scent {
+    background: color-mix(in srgb, var(--pill-color) 15%, white);
+    color: var(--pill-color);
+    border: 1px solid color-mix(in srgb, var(--pill-color) 35%, white);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .dk-scent-family__pill--scent:hover {
+    background: color-mix(in srgb, var(--pill-color) 25%, white);
+  }
+
+  .dk-scent-family__icon {
+    fill: currentcolor;
+    flex-shrink: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Scent Family",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "static_pill_text",
+      "label": "Static pill text",
+      "default": "Handcrafted by artisans in Karnoj"
+    },
+    {
+      "type": "header",
+      "content": "Scent family colors"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_fresh",
+      "label": "Fresh",
+      "default": "#0ea5e9"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_floral",
+      "label": "Floral",
+      "default": "#db2777"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_earthy",
+      "label": "Earthy",
+      "default": "#78350f"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_spicy",
+      "label": "Spicy",
+      "default": "#b91c1c"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_grassy",
+      "label": "Grassy",
+      "default": "#15803d"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_musky",
+      "label": "Musky",
+      "default": "#57534e"
+    },
+    {
+      "type": "color",
+      "id": "pill_color_sweet",
+      "label": "Sweet",
+      "default": "#d97706"
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Scent Family",
+      "category": "t:categories.basic"
+    }
+  ]
+}
+{% endschema %}
