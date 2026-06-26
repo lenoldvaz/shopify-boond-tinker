@@ -22,7 +22,11 @@
 {% endcomment %}
 
 {% liquid
-  assign is_compact = block.settings.display_mode == 'compact'
+  assign is_compact = false
+  if block.settings.display_mode == 'compact'
+    assign is_compact = true
+  endif
+
   assign scent_family_values = product.metafields.custom.scent_family.value
   if is_compact and scent_family_values != blank
     assign scent_family_values = scent_family_values | slice: 0, 1
