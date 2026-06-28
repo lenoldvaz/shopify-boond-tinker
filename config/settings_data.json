@@ -57,7 +57,7 @@
     "card_corner_radius": 10,
     "variant_button_radius": 4,
     "variant_button_width": "default-width-buttons",
-    "enable_geo_redirect": false,
+    "enable_geo_redirect": true,
     "content_for_index": [],
     "blocks": {
       "15683396631634586217": {
