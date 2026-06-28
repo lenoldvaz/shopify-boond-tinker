@@ -1,26 +1,19 @@
 {%- comment -%}
   Added by DK on 2026-06-26: gender badge pill for product cards, sourced
-  from Shopify's standard target-gender metafield. Renders alongside (not
-  instead of) the existing product-card-badges pill, in its own position
-  so it can coexist with the main badge (e.g. top-left badge + top-right
-  gender pill). Position and visibility are controlled by the calling
-  block's settings, not hardcoded, so it's switchable per-instance from
-  the theme customizer. Markup/CSS structure mirrors product-card-badges.liquid.
-{%- endcomment -%}
+  from a custom.gender metafield (single line text, e.g. "Men", "Women",
+  "Unisex"). Renders alongside (not instead of) the existing
+  product-card-badges pill, in its own position so it can coexist with the
+  main badge (e.g. top-left badge + top-right gender pill). Position and
+  visibility are controlled by the calling block's settings, not hardcoded,
+  so it's switchable per-instance from the theme customizer. Markup/CSS
+  structure mirrors product-card-badges.liquid.
 
-{%- comment -%}
-  Bracket notation required: Liquid dot notation can't parse a key
-  containing a hyphen (target-gender). The metafield's .value is a list of
-  shopify--target-gender metaobjects. Per Shopify's metaobject Liquid docs,
-  each field on a metaobject is accessed as metaobject.<field_key>.value -
-  so the "label" field needs its own .value, not just .label or
-  .display_name as a bare property.
+  Updated by DK on 2026-06-26: switched from Shopify's standard
+  shopify.target-gender metaobject to a plain custom.gender text field,
+  matching the simpler approach used in shopify-boond-canada - avoids the
+  metaobject dereferencing complexity entirely.
 {%- endcomment -%}
-{%- assign gender_refs = product.metafields.shopify['target-gender'].value -%}
-{%- assign gender = '' -%}
-{%- if gender_refs != blank -%}
-  {%- assign gender = gender_refs.first.label.value -%}
-{%- endif -%}
+{%- assign gender = product.metafields.custom.gender.value | default: product.metafields.custom.gender -%}
 
 {%- if show_gender_badge and gender != blank -%}
   <div

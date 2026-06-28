@@ -1,0 +1,118 @@
+{% comment %}
+  DK Gender Badge
+  Added by DK on 2026-06-26: ported from shopify-boond-canada. Renders a
+  small pill showing product.metafields.custom.gender (e.g. Men, Women,
+  Unisex). Works in three contexts depending on where it's dropped in the
+  theme editor:
+  - Inside a product card's image block (_product-card-gallery): use
+    "Overlay on image" position to pin it to a corner of the media.
+  - Inside a product card's title/group block: use "Inline" position to sit
+    next to the title text.
+  - On the PDP, inside the product details group next to product-title: use
+    "Inline" position.
+  Requires a custom.gender metafield (single line text) on Products.
+{% endcomment %}
+
+{%- liquid
+  assign current_product = closest.product | default: product
+  assign gender_value = current_product.metafields.custom.gender.value | default: current_product.metafields.custom.gender
+-%}
+
+{%- if gender_value != blank -%}
+  <span
+    class="dk-gender-badge dk-gender-badge--{{ block.settings.position }}"
+    style="
+      background-color: {{ block.settings.background_color }};
+      color: {{ block.settings.text_color }};
+      border-radius: {{ block.settings.corner_radius }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+    {{ gender_value }}
+  </span>
+{%- endif -%}
+
+{% stylesheet %}
+  .dk-gender-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 10px;
+    font-size: var(--font-size--xs);
+    font-weight: 400;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .dk-gender-badge--overlay {
+    position: absolute;
+    top: calc(var(--padding-xs) + var(--padding-block-start, 0px));
+    right: calc(var(--padding-xs) + var(--padding-inline-end, 0px));
+    z-index: var(--layer-flat);
+  }
+
+  @media screen and (min-width: 750px) {
+    .dk-gender-badge--overlay {
+      top: calc(var(--padding-md) + var(--padding-block-start, 0px));
+      right: calc(var(--padding-md) + var(--padding-inline-end, 0px));
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Gender Badge",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        {
+          "value": "inline",
+          "label": "Inline (next to title)"
+        },
+        {
+          "value": "overlay",
+          "label": "Overlay on image (top right)"
+        }
+      ],
+      "default": "inline",
+      "info": "Use \"Overlay on image\" when this block is placed inside the product image/gallery block."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "Corner radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Gender Badge",
+      "category": "DK Blocks"
+    }
+  ]
+}
+{% endschema %}

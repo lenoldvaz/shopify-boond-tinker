@@ -69,9 +69,23 @@
         {% render 'product-grid', section: section, children: children, products: products, paginate: paginate %}
       {% endpaginate %}
     {% else %}
+      {% liquid
+        assign promo_tile_blocks = section.blocks | where: 'type', 'dk_collection-promo-tile'
+      %}
       {% paginate collection.products by 24 %}
         {% capture children %}
           {% for product in collection.products %}
+          {%- comment -%}Added by DK on 2026-06-26: interleave promo tiles at their configured grid position{%- endcomment -%}
+          {% for promo_block in promo_tile_blocks %}
+            {% if promo_block.settings.position == forloop.index %}
+              <li
+                class="product-grid__item product-grid__item--promo"
+                ref="cards[]"
+              >
+                {% content_for 'block', type: promo_block.type, id: promo_block.id %}
+              </li>
+            {% endif %}
+          {% endfor %}
           <li
             id="{{ section.id }}-{{ product.id }}"
             class="product-grid__item product-grid__item--{{ forloop.index0 }}"
@@ -168,6 +182,11 @@
   "enabled_on": {
     "templates": ["collection"]
   },
+  "blocks": [
+    {
+      "type": "dk_collection-promo-tile"
+    }
+  ],
   "settings": [
     {
       "type": "select",
