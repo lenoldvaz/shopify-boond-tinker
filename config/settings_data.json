@@ -57,20 +57,21 @@
     "card_corner_radius": 10,
     "variant_button_radius": 4,
     "variant_button_width": "default-width-buttons",
+    "enable_geo_redirect": false,
     "content_for_index": [],
     "blocks": {
       "15683396631634586217": {
         "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
         "disabled": true,
         "settings": {
+          "greeting_message": "",
           "button_color": "#000000",
           "secondary_color": "#FFFFFF",
           "ternary_color": "#6A6A6A",
           "button_icon": "chat_bubble",
           "button_text": "chat_with_us",
           "button_horizontal_position": "bottom_right",
-          "button_vertical_position": "lowest",
-          "greeting_message": ""
+          "button_vertical_position": "lowest"
         }
       },
       "6065014864672580889": {
@@ -87,10 +88,10 @@
         "type": "shopify://apps/vwo/blocks/vwo-smartcode/2ce905b2-3842-4d20-b6b0-8c51fc208426",
         "disabled": false,
         "settings": {
+          "enableThemeTesting": false,
           "vwoAccountId": "957114",
           "codeType": "ASYNC",
-          "settingsTolerance": 2000,
-          "enableThemeTesting": false
+          "settingsTolerance": 2000
         }
       },
       "2567389343055140935": {
