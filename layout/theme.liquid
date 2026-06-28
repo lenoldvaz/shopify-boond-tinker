@@ -4,7 +4,39 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
-<!-- Removed by DK on 2026-06-15 — Geo-redirect for US/CA disabled -->
+<!-- Added by DK on 2026-03-15 — Geo-redirect US/CA visitors to boondnaturals.com -->
+<!-- Updated by DK on 2026-05-21 — Changed redirect target from boond.ca to boondnaturals.com -->
+<!-- Updated by DK on 2026-03-19 — ?geo=in param bypasses redirect and persists for the session -->
+<!-- Updated by DK on 2026-06-26 — Moved on/off toggle and destination URL into theme settings (Geo Redirect section) -->
+{%- if settings.enable_geo_redirect -%}
+<script>
+(function() {
+  if (window.Shopify && window.Shopify.designMode) return;
+  if (/bot|crawl|spider|slurp|googlebot/i.test(navigator.userAgent)) return;
+
+  // If ?geo=in is in the URL, mark this session as bypassed and skip redirect
+  if (new URLSearchParams(window.location.search).get('geo') === 'in') {
+    sessionStorage.setItem('boond_geo_bypass', 'true');
+    return;
+  }
+
+  // Persist bypass for the entire session once set
+  if (sessionStorage.getItem('boond_geo_bypass')) return;
+  if (sessionStorage.getItem('boond_geo_redirected')) return;
+
+  fetch('https://api.country.is/')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data || !data.country) return;
+      if (['CA', 'US'].includes(data.country)) {
+        sessionStorage.setItem('boond_geo_redirected', 'true');
+        window.location.replace({{ settings.geo_redirect_url | json }});
+      }
+    })
+    .catch(function() {});
+})();
+</script>
+{%- endif -%}
 
 <script> window.Shopflo = { ...(window.Shopflo ?? {}), autoOnboarding: true} </script>
 

@@ -2500,5 +2500,24 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Geo Redirect",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_geo_redirect",
+        "label": "Redirect US/CA visitors",
+        "default": true,
+        "info": "Redirects visitors detected in the US or Canada to the URL below. Bots and theme editor preview are never redirected. A visitor can bypass this for their session by visiting with ?geo=in in the URL."
+      },
+      {
+        "type": "url",
+        "id": "geo_redirect_url",
+        "label": "Redirect destination",
+        "default": "https://boondnaturals.com",
+        "visible_if": "{{ settings.enable_geo_redirect }}"
+      }
+    ]
   }
 ]
