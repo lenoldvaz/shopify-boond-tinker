@@ -2512,10 +2512,11 @@
         "info": "Redirects visitors detected in the US or Canada to the URL below. Bots and theme editor preview are never redirected. A visitor can bypass this for their session by visiting with ?geo=in in the URL."
       },
       {
-        "type": "url",
+        "type": "text",
         "id": "geo_redirect_url",
         "label": "Redirect destination",
         "default": "https://boondnaturals.com",
+        "info": "Full URL, including https://",
         "visible_if": "{{ settings.enable_geo_redirect }}"
       }
     ]
