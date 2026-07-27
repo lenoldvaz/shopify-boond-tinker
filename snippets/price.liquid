@@ -47,7 +47,13 @@
     <s class="compare-at-price"><span class="compare-at-price__label">MRP</span> {{ compare_at_price }}</s>
   {% endif %}
 
-  <span class="price">{{ price | default: '&nbsp;' }}</span>
+  <span class="price">
+    {%- comment -%}Updated by DK on 2026-07-27: when there's no compare-at price, still show MRP (equal to price) so every product displays MRP{%- endcomment -%}
+    {%- if show_compare_price == false -%}
+      <span class="compare-at-price__label">MRP</span>
+    {%- endif -%}
+    {{ price | default: '&nbsp;' }}
+  </span>
 
   {% if show_sale_price_first == true and show_compare_price %}
     {%- comment -%}Added by DK on 2026-07-27: prefix compare-at price with MRP label per Indian e-commerce convention{%- endcomment -%}
