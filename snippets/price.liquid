@@ -43,13 +43,15 @@
 
 <div ref="priceContainer">
   {% if show_sale_price_first == false and show_compare_price %}
-    <s class="compare-at-price">{{ compare_at_price }}</s>
+    {%- comment -%}Added by DK on 2026-07-27: prefix compare-at price with MRP label per Indian e-commerce convention{%- endcomment -%}
+    <s class="compare-at-price"><span class="compare-at-price__label">MRP</span> {{ compare_at_price }}</s>
   {% endif %}
 
   <span class="price">{{ price | default: '&nbsp;' }}</span>
 
   {% if show_sale_price_first == true and show_compare_price %}
-    <s class="compare-at-price">{{ compare_at_price }}</s>
+    {%- comment -%}Added by DK on 2026-07-27: prefix compare-at price with MRP label per Indian e-commerce convention{%- endcomment -%}
+    <s class="compare-at-price"><span class="compare-at-price__label">MRP</span> {{ compare_at_price }}</s>
   {% endif %}
 
   {%- if selected_variant.unit_price and show_unit_price %}

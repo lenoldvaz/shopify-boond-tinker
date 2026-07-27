@@ -213,7 +213,9 @@
                       <span class="visually-hidden">{{ 'content.price_sale' | t }}</span>
                       <span>{{ item.final_price | money }}</span>
                       <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+                      {%- comment -%}Added by DK on 2026-07-27: prefix compare-at price with MRP label per Indian e-commerce convention{%- endcomment -%}
                       <s class="compare-at-price">
+                        <span class="compare-at-price__label">MRP</span>
                         {% if item.variant.compare_at_price > item.original_price %}
                           {{ item.variant.compare_at_price | money }}
                         {% else %}
@@ -231,7 +233,8 @@
 
                       {% if item.variant.compare_at_price > item.original_price %}
                         <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
-                        <s class="compare-at-price">{{ item.variant.compare_at_price | money }}</s>
+                        {%- comment -%}Added by DK on 2026-07-27: MRP label for cart compare-at price{%- endcomment -%}
+                        <s class="compare-at-price"><span class="compare-at-price__label">MRP</span> {{ item.variant.compare_at_price | money }}</s>
                       {% endif %}
                     {% endif %}
                   </div>

@@ -1970,6 +1970,12 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   text-decoration-thickness: 1.5px;
 }
 
+/* Added by DK on 2026-07-27: MRP label inside compare-at price strikethrough */
+.compare-at-price__label {
+  font-size: 0.85em;
+  letter-spacing: 0.03em;
+}
+
 .tax-note,
 .unit-price {
   color: rgb(from var(--color-foreground) r g b / var(--opacity-subdued-text));

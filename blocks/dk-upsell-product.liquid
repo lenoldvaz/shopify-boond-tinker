@@ -79,11 +79,12 @@
             {% endif %}
             
             <div class="also-see-price">
+              {%- comment -%}Added by DK on 2026-07-27: prefix compare-at price with MRP label per Indian e-commerce convention{%- endcomment -%}
               {% if upsell_variant and upsell_variant.compare_at_price > upsell_variant.price %}
-                <span class="compare-price">{{ upsell_variant.compare_at_price | money }}</span>
+                <span class="compare-price"><span class="compare-at-price__label">MRP</span> {{ upsell_variant.compare_at_price | money }}</span>
                 <span class="price">{{ upsell_variant.price | money }}</span>
               {% elsif also_product.compare_at_price > also_product.price %}
-                <span class="compare-price">{{ also_product.compare_at_price | money }}</span>
+                <span class="compare-price"><span class="compare-at-price__label">MRP</span> {{ also_product.compare_at_price | money }}</span>
                 <span class="price">{{ also_product.price | money }}</span>
               {% else %}
                 <span class="price">
