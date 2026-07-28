@@ -46,8 +46,9 @@
     "
     {{ block.shopify_attributes }}
   >
+    {%- comment -%}Added by DK on 2026-07-28: hide the price title (e.g. "BEST PRICE:") when there's no discount to show against, since the label only makes sense next to a lower sale price{%- endcomment -%}
     <div style="display: flex; align-items: center; gap: 0.5em;">
-      {% if block.settings.price_title != blank %}
+      {% if block.settings.price_title != blank and selected_variant.compare_at_price > selected_variant.price %}
         <span style="
           font-family: {{ block.settings.price_title_font | default: 'inherit' }};
           font-size: {{ block.settings.price_title_size | default: '1.3em' }};
