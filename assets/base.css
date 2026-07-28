@@ -1976,8 +1976,9 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   letter-spacing: 0.03em;
 }
 
-/* Added by DK on 2026-07-28: MRP label wraps to its own line on product cards only (PDP keeps it inline) */
-.product-card .compare-at-price {
+/* Updated by DK on 2026-07-28: the whole "MRP <compare-at-price>" line wraps onto its own line on
+   product cards only (PDP keeps it inline alongside the sale price) */
+.product-card .compare-at-price-wrap {
   display: block;
 }
 

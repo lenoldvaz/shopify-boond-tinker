@@ -231,12 +231,23 @@
 }
 
 /* Added by DK on 2026-07-28: full-width, edge-to-edge section on mobile (no horizontal padding anywhere in the container) */
+/* Updated by DK on 2026-07-28: eyebrow and tab bar were clipping off-screen because 100vw + zero
+   padding left no room for text/tabs to render before hitting the viewport edge; also 100vw can
+   overshoot the visible width when a vertical scrollbar is present, causing horizontal overflow
+   that clips content. Switched to 100% width (no vw) and gave text/tab elements back a small
+   inline padding so labels aren't flush against the screen edge, while the product grid and
+   panel backgrounds remain edge-to-edge. */
 @media (max-width: 768px) {
   .dk-tabs-section {
-    width: 100vw;
-    max-width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
     padding-inline: 0;
+  }
+
+  .dk-tabs-section__eyebrow,
+  .dk-tabs-section__tabs {
+    padding-inline: 20px;
   }
 }
 {% endstylesheet %}
