@@ -1972,8 +1972,13 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
 
 /* Added by DK on 2026-07-27: MRP label inside compare-at price strikethrough */
 .compare-at-price__label {
-  
+  font-size: 0.85em;
   letter-spacing: 0.03em;
+}
+
+/* Added by DK on 2026-07-28: MRP label wraps to its own line on product cards only (PDP keeps it inline) */
+.product-card .compare-at-price__label {
+  display: block;
 }
 
 .tax-note,
