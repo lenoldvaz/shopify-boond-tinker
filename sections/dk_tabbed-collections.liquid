@@ -229,6 +229,16 @@
   .dk-tabs-section__tab { padding: 12px 20px 12px 0; margin-right: 20px; font-size: 10px; }
   .dk-tabs-section__tab-img-wrap { width: 40px; height: 32px; }
 }
+
+/* Added by DK on 2026-07-28: full-width, edge-to-edge section on mobile (no horizontal padding anywhere in the container) */
+@media (max-width: 768px) {
+  .dk-tabs-section {
+    width: 100vw;
+    max-width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: 0;
+  }
+}
 {% endstylesheet %}
 
 <script>
