@@ -73,6 +73,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "h3",
                 "font": "var(--font-primary--family)",
                 "font_size": "",
@@ -156,6 +157,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -274,6 +276,7 @@
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -358,6 +361,7 @@
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -442,6 +446,7 @@
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -526,6 +531,7 @@
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -845,6 +851,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -928,6 +935,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -1057,6 +1065,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -1140,6 +1149,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -1195,6 +1205,45 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "accordion_row_BLyVT8": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "How to use",
+                    "open_by_default": false
+                  },
+                  "blocks": {
+                    "text_7iTMmT": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.metafields.custom.how_to_use | metafield_tag }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "font_size_override": 0,
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_7iTMmT"
+                  ]
+                },
                 "accordion_row_VyFryh": {
                   "type": "_accordion-row",
                   "settings": {
@@ -1209,6 +1258,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-primary--family)",
                         "font_size": "",
@@ -1246,6 +1296,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-primary--family)",
                         "font_size": "",
@@ -1271,6 +1322,7 @@
                 }
               },
               "block_order": [
+                "accordion_row_BLyVT8",
                 "accordion_row_VyFryh",
                 "accordion_row_aaFerA"
               ]
@@ -1340,6 +1392,8 @@
       ],
       "name": "t:names.video_section",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1419,6 +1473,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "custom",
                 "font": "var(--font-subheading--family)",
                 "font_size": "0.875rem",
@@ -1445,6 +1500,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -1471,6 +1527,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -1569,6 +1626,8 @@
       ],
       "name": "Comparison",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1690,6 +1749,8 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "product": "{{ closest.product }}",
+                "show_gender_badge": true,
+                "gender_badge_position": "top-right",
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
