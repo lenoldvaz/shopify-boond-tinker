@@ -121,9 +121,19 @@ function closeCartDrawer() {
   </script>
 
 {% comment %} adding script for timezone based redirection {% endcomment %}
+{% comment %} Added by DK on 2026-07-28: ?flo=in query param forces the India/Shopflo checkout path for testing from outside India. Persists for the session via sessionStorage, mirrors the existing ?geo=in bypass pattern above. {% endcomment %}
  <script>
+  function isFloIndia() {
+    if (new URLSearchParams(window.location.search).get('flo') === 'in') {
+      sessionStorage.setItem('boond_flo_india_override', 'true');
+    }
+    if (sessionStorage.getItem('boond_flo_india_override')) return true;
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return tz === 'Asia/Calcutta' || tz === 'Asia/Kolkata';
+  }
+
   function openCheckout() {
-    if ((Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata')){   
+    if (isFloIndia()) {
       handleFloCheckoutBtn();
     } else {     // conditions for other checkouts
       window.location.href = '/checkout';
@@ -131,7 +141,7 @@ function closeCartDrawer() {
   }
 
   function setBuyNowButton() {
-      if ((Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata')){  
+    if (isFloIndia()) {
       document.querySelector('#flo-buy-now-button').style.setProperty('display', 'block', 'important');
       document.querySelector('#shopify_buy_now_button_wrapper').style.setProperty('display', 'none', 'important');
       return
