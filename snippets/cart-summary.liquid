@@ -96,7 +96,8 @@
   </button> {% endcomment %}
 
   {% comment %} adding shopflo checkout btn {% endcomment %}
-  <button type="button" id="checkout2" onclick="handleFloCheckoutBtn() closeCartDrawer()" class="cart__checkout-button button" name="checkout2">
+  {% comment %} Updated by DK on 2026-07-28: was calling handleFloCheckoutBtn() unconditionally for every visitor, bypassing the isFloIndia() timezone/?flo=in check used everywhere else. Now routes through openCheckout() so this button respects the same India-only gating (and the ?flo=in test override). {% endcomment %}
+  <button type="button" id="checkout2" onclick="openCheckout(); closeCartDrawer();" class="cart__checkout-button button" name="checkout2">
 		{{ 'Checkout' }}
 </button>
 {% comment %} ends here {% endcomment %}

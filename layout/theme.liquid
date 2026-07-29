@@ -96,7 +96,8 @@ function closeCartDrawer() {
 
 <script>
 	    let targetNode = document.querySelector("html");
-      let floCheckoutBtn = `<button type="button" id="checkout2"  onclick="handleFloCheckoutBtn()" class="button full" name="checkout2">Checkout</button>`;
+      {% comment %} Updated by DK on 2026-07-28: was calling handleFloCheckoutBtn() unconditionally, bypassing the isFloIndia() timezone/?flo=in gating used everywhere else {% endcomment %}
+      let floCheckoutBtn = `<button type="button" id="checkout2"  onclick="openCheckout()" class="button full" name="checkout2">Checkout</button>`;
       let parsedFloBtn = new DOMParser().parseFromString(floCheckoutBtn, "text/html").querySelectorAll("#checkout2")[0];
       let isFloBtnAdded = false;
       const stickyCartCb = function (mutationList) {
