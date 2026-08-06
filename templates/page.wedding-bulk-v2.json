@@ -1176,9 +1176,182 @@
         "quote_text": "Most wedding gifts are forgotten. Choose a gift your guests will actually use and remember your special day by.",
         "link_text": "",
         "link": "",
-        "background_color": "#4E141E",
+        "background_color": "#4e141e",
         "text_color": "#ffffffdb",
         "link_color": "#ffffff99",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
+    "dk_comparison_table_nTNXXh": {
+      "type": "dk_comparison-table",
+      "blocks": {
+        "dk_comparison_column_FG46eV": {
+          "type": "_dk-comparison-column",
+          "settings": {
+            "label": "Boond Fragrances",
+            "highlight": true,
+            "highlight_color": "#f0e6d2"
+          },
+          "blocks": {}
+        },
+        "dk_comparison_column_BgUzLF": {
+          "type": "_dk-comparison-column",
+          "settings": {
+            "label": "Sweets",
+            "highlight": false,
+            "highlight_color": "#f0e6d2"
+          },
+          "blocks": {}
+        },
+        "dk_comparison_column_whK4Er": {
+          "type": "_dk-comparison-column",
+          "settings": {
+            "label": "Generic gifts",
+            "highlight": false,
+            "highlight_color": "#f0e6d2"
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_xayKYz": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Guests keep it",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_3dCYKy": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Actually used",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_mDXtak": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Handmade",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_3eGG8B": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Personalized",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_ac4wrX": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Gift-ready",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_qzc43C": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Small & portable",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_8M67NC": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Easy to pack",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        },
+        "dk_comparison_row_zw3ycR": {
+          "type": "_dk-comparison-row",
+          "settings": {
+            "label": "Memorable keepsake",
+            "cell_1_type": "check",
+            "cell_1_text": "",
+            "cell_2_type": "cross",
+            "cell_2_text": "",
+            "cell_3_type": "cross",
+            "cell_3_text": "",
+            "cell_4_type": "blank",
+            "cell_4_text": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "dk_comparison_column_FG46eV",
+        "dk_comparison_column_BgUzLF",
+        "dk_comparison_column_whK4Er",
+        "dk_comparison_row_xayKYz",
+        "dk_comparison_row_3dCYKy",
+        "dk_comparison_row_mDXtak",
+        "dk_comparison_row_3eGG8B",
+        "dk_comparison_row_ac4wrX",
+        "dk_comparison_row_qzc43C",
+        "dk_comparison_row_8M67NC",
+        "dk_comparison_row_zw3ycR"
+      ],
+      "name": "DK Comparison table",
+      "settings": {
+        "eyebrow": "Why choose us",
+        "heading": "Most wedding gifts are forgotten. Choose one guests will actually use.",
+        "color_scheme": "",
         "padding-block-start": 80,
         "padding-block-end": 80
       }
@@ -1189,6 +1362,7 @@
     "hero_ynQnUL",
     "marquee_dQ7tRi",
     "section_7nppjx",
-    "dk_pull_quote_9MyetC"
+    "dk_pull_quote_9MyetC",
+    "dk_comparison_table_nTNXXh"
   ]
 }
