@@ -1,31 +1,25 @@
 /*
  * ------------------------------------------------------------
- * Added by DK on 2026-08-06 — Wedding Bulk V2 landing page.
- * Phase A: built entirely from existing sections/blocks (hero,
- * section/group compositions, dk_pull-quote, product-list,
- * dk_reviews, accordion). The comparison-table and 3-easy-steps
- * sections are simple "coming soon" placeholders pending Phase B
- * custom section builds (dk_comparison-table, dk_steps).
+ * IMPORTANT: The contents of this file are auto-generated.
  *
- * IMPORTANT: The contents of this file are auto-generated after
- * the first Shopify admin save. This file may be updated by the
- * Shopify admin theme editor or related systems. Please exercise
- * caution as any changes made to this file may be overwritten.
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
   "sections": {
-    "hero_wedding_v2": {
+    "hero_GaXqef": {
       "type": "hero",
       "blocks": {
-        "text_whv2h1": {
+        "text_EFmBAp": {
           "type": "text",
-          "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Make Your Wedding Unforgettable.</h1>",
+            "text": "<h1>New arrivals</h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
+            "font_size_override": 0,
             "type_preset": "h1",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -44,15 +38,15 @@
           },
           "blocks": {}
         },
-        "text_whv2h2": {
+        "text_zCaTXN": {
           "type": "text",
-          "name": "t:names.text",
           "settings": {
-            "text": "<p>Premium Indian attars in elegant gift boxes, crafted for unforgettable weddings and bulk gifting.</p>",
+            "text": "<p>Made with care and unconditionally loved by our customers.</p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
-            "type_preset": "h6",
+            "font_size_override": 0,
+            "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
             "line_height": "normal",
@@ -70,12 +64,12 @@
           },
           "blocks": {}
         },
-        "button_whv2cta": {
+        "button_kqihVR": {
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Enquire Now",
-            "link": "shopify://pages/wedding-gifting-tally-form",
+            "label": "Shop Now",
+            "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -87,33 +81,33 @@
         }
       },
       "block_order": [
-        "text_whv2h1",
-        "text_whv2h2",
-        "button_whv2cta"
+        "text_EFmBAp",
+        "text_zCaTXN",
+        "button_kqihVR"
       ],
-      "name": "Hero",
+      "name": "t:names.hero",
       "settings": {
         "visibility_option": "both",
         "link": "",
         "open_in_new_tab": false,
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/DSCF0459.jpg",
+        "image_1": "shopify://shop_images/Banner_Desktop_2.png",
         "media_type_2": "image",
-        "content_direction": "row",
+        "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
         "section_height": "large",
         "section_height_custom": 50,
-        "color_scheme": "scheme-7",
-        "toggle_overlay": false,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
         "overlay_color": "#00000026",
-        "overlay_style": "solid",
+        "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
         "reflection_opacity": 75,
@@ -132,6 +126,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
@@ -158,6 +153,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "h2",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -287,6 +283,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -313,6 +310,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.75rem",
@@ -409,6 +407,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -435,6 +434,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.75rem",
@@ -531,6 +531,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -557,6 +558,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.75rem",
@@ -653,6 +655,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -679,6 +682,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.75rem",
@@ -720,6 +724,8 @@
       ],
       "name": "Occasions",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -773,6 +779,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -797,6 +804,8 @@
       ],
       "name": "Comparison Table (Placeholder)",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -836,6 +845,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
@@ -862,6 +872,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "h2",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -964,7 +975,6 @@
                   "type": "image",
                   "name": "t:names.image",
                   "settings": {
-                    "image": "shopify://shop_images/IMG_20220920112042.jpg",
                     "link": "",
                     "image_ratio": "square",
                     "width": "fill",
@@ -991,6 +1001,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.85rem",
@@ -1086,6 +1097,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.85rem",
@@ -1181,6 +1193,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.85rem",
@@ -1276,6 +1289,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.85rem",
@@ -1371,6 +1385,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.85rem",
@@ -1412,6 +1427,8 @@
       ],
       "name": "Why Boond Is A Perfect Gift",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -1451,6 +1468,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
@@ -1477,6 +1495,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "h2",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -1583,6 +1602,7 @@
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "h4",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -1609,6 +1629,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -1635,6 +1656,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.9rem",
@@ -1708,6 +1730,7 @@
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "h4",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -1734,6 +1757,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -1760,6 +1784,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.9rem",
@@ -1833,6 +1858,7 @@
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "h4",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -1859,6 +1885,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "h5",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -1885,6 +1912,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
+                    "font_size_override": 0,
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
                     "font_size": "0.9rem",
@@ -1925,6 +1953,8 @@
       ],
       "name": "3 Easy Steps (Placeholder Layout)",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -2073,6 +2103,8 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "product": "{{ closest.product }}",
+                "show_gender_badge": true,
+                "gender_badge_position": "top-right",
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
@@ -2210,7 +2242,6 @@
     },
     "dk_reviews_wedding": {
       "type": "dk_reviews",
-      "name": "DK Reviews",
       "blocks": {
         "r1": {
           "type": "review",
@@ -2242,6 +2273,7 @@
         "r2",
         "r3"
       ],
+      "name": "DK Reviews",
       "settings": {
         "eyebrow": "FROM REAL WEDDINGS",
         "eyebrow_size": 10,
@@ -2404,6 +2436,8 @@
       ],
       "name": "Photo Strip",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -2443,6 +2477,7 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
+            "font_size_override": 0,
             "type_preset": "h2",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -2494,6 +2529,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -2531,6 +2567,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -2568,6 +2605,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -2605,6 +2643,7 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
+                    "font_size_override": 0,
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
@@ -2643,6 +2682,8 @@
       ],
       "name": "FAQ",
       "settings": {
+        "conditional_metafield": "",
+        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -2685,7 +2726,7 @@
     }
   },
   "order": [
-    "hero_wedding_v2",
+    "hero_GaXqef",
     "section_occasions",
     "dk_pull_quote_wedding",
     "section_comparison_placeholder",
