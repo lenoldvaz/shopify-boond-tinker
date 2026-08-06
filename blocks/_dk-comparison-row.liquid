@@ -1,26 +1,9 @@
 {% comment %} Added by DK on 2026-08-06 — Row block for the comparison table section (sections/dk_comparison-table.liquid). One instance per feature row (e.g. "Guests keep it", "Handmade"). Supports up to 4 cells — cell 1 maps to the 1st comparison column block, cell 2 to the 2nd, and so on, in the order the column blocks are arranged in the section. Each cell can render a checkmark, a cross, or custom text. If the section has fewer than 4 columns, the extra cell settings are simply ignored — see references/dk-comparison-table-usage-guide.md {% endcomment %}
+{% comment %} Updated by DK on 2026-08-06 — Reading section.blocks from inside this block did not reliably return sibling column blocks' settings in the live theme editor (highlight/column-count always came back empty), so this row now always renders all 4 cells unconditionally; the section (sections/dk_comparison-table.liquid) hides extras and applies the highlight via CSS attribute selectors instead. {% endcomment %}
 
-{% liquid
-  # This block can't see its own position among sibling column blocks
-  # directly, so it re-derives which column (if any) is flagged
-  # "highlight" from the shared parent section object, and stamps that
-  # 1-based index on the row as a data attribute so the section
-  # stylesheet's nth-child rule shades the matching cell. It also reads
-  # the actual column count so it only renders that many cells — extra
-  # cell settings are ignored if the section has fewer than 4 columns.
-  assign column_blocks = section.blocks | where: 'type', '_dk-comparison-column'
-  assign column_count = column_blocks.size | at_least: 1 | at_most: 4
-  assign highlight_col = 0
-  for column_block in column_blocks
-    if column_block.settings.highlight and highlight_col == 0
-      assign highlight_col = forloop.index
-    endif
-  endfor
-%}
-
-<div class="dk-comp__row" data-highlight-col="{{ highlight_col }}" {{ block.shopify_attributes }}>
+<div class="dk-comp__row" {{ block.shopify_attributes }}>
   <div class="dk-comp__row-label">{{ block.settings.label }}</div>
-  {%- for i in (1..column_count) -%}
+  {%- for i in (1..4) -%}
     {%- liquid
       case i
         when 1

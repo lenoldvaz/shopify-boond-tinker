@@ -1,16 +1,22 @@
 {% comment %} Added by DK on 2026-08-06 — Configurable comparison table section. Renders a feature-comparison grid (e.g. "Boond Fragrances vs. Sweets vs. Generic gifts") with merchant-configurable columns (blocks/_dk-comparison-column.liquid) and rows (blocks/_dk-comparison-row.liquid). Addable on any template, including product pages — see references/dk-comparison-table-usage-guide.md {% endcomment %}
 
 {% liquid
+  # Reading section.blocks from *inside* a child block (see
+  # _dk-comparison-row.liquid) does not reliably return sibling blocks'
+  # settings — Shopify's theme-block rendering context doesn't guarantee
+  # it. So all cross-column logic (column count, which column is
+  # highlighted) is computed once, here, in the section, and handed down
+  # to every row purely via CSS — a data-col-count/data-highlight-col
+  # attribute on the section wrapper, matched with attribute + nth-child
+  # selectors in the stylesheet below. Rows never need to re-derive this.
   assign column_blocks = section.blocks | where: 'type', '_dk-comparison-column'
-  assign column_count = column_blocks.size | at_least: 1
+  assign column_count = column_blocks.size | at_least: 1 | at_most: 4
 
-  # Find the first highlighted column's color, if any. The 1-based index
-  # itself is re-derived independently inside _dk-comparison-row.liquid
-  # (row blocks render standalone and can't receive it as a param), but
-  # the color is only needed once here for the shared CSS variable.
+  assign highlight_index = 0
   assign highlight_color = ''
   for column_block in column_blocks
-    if column_block.settings.highlight and highlight_color == ''
+    if column_block.settings.highlight and highlight_index == 0
+      assign highlight_index = forloop.index
       assign highlight_color = column_block.settings.highlight_color
     endif
   endfor
@@ -19,6 +25,8 @@
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
   class="dk-comp section color-{{ section.settings.color_scheme }} spacing-style"
+  data-col-count="{{ column_count }}"
+  data-highlight-col="{{ highlight_index }}"
   style="
     {%- render 'spacing-style', settings: section.settings -%}
     --dk-comp-col-count: {{ column_count }};
@@ -113,27 +121,29 @@
 
   /* Highlighted column background spans the full grid height. The column
      header shades itself via the .dk-comp__col-header--highlight class
-     (set from its own block setting). Each row block independently
-     re-derives which column is highlighted and stamps a matching
-     data-highlight-col attribute on itself (see _dk-comparison-row.liquid)
-     — these rules shade the corresponding cell, one per supported column
-     position (max 4 columns). +1 accounts for the row-label cell that
-     precedes the value cells in each row. */
+     (set from its own block setting). Row cells can't reliably read
+     sibling column blocks' settings (see the comment at the top of this
+     file), so the highlighted column's 1-based position is computed once
+     here in the section and exposed as data-highlight-col on the .dk-comp
+     wrapper — these rules shade the matching cell in every row via an
+     ancestor + nth-child selector, one rule per supported column position
+     (max 4 columns). +1 accounts for the row-label cell that precedes the
+     value cells in each row. */
   .dk-comp__col-header--highlight {
     background-color: var(--dk-comp-highlight-color, #f0e6d2);
     border-radius: 12px 12px 0 0;
   }
-  .dk-comp__row[data-highlight-col="1"] .dk-comp__cell:nth-child(2),
-  .dk-comp__row[data-highlight-col="2"] .dk-comp__cell:nth-child(3),
-  .dk-comp__row[data-highlight-col="3"] .dk-comp__cell:nth-child(4),
-  .dk-comp__row[data-highlight-col="4"] .dk-comp__cell:nth-child(5) {
+  .dk-comp[data-highlight-col="1"] .dk-comp__cell:nth-child(2),
+  .dk-comp[data-highlight-col="2"] .dk-comp__cell:nth-child(3),
+  .dk-comp[data-highlight-col="3"] .dk-comp__cell:nth-child(4),
+  .dk-comp[data-highlight-col="4"] .dk-comp__cell:nth-child(5) {
     background-color: var(--dk-comp-highlight-color, #f0e6d2);
   }
 
   /* Rows */
   .dk-comp__row {
     display: grid;
-    grid-template-columns: minmax(160px, 1.4fr) repeat(var(--dk-comp-col-count), minmax(110px, 1fr));
+    grid-template-columns: minmax(160px, 1.4fr) repeat(4, minmax(110px, 1fr));
     grid-column: 1 / -1;
     border-top: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
   }
@@ -148,6 +158,14 @@
     align-items: center;
     justify-content: center;
     padding: 16px 12px;
+  }
+  /* Row blocks always render 4 cells regardless of actual column count
+     (for the same "can't read sibling blocks" reason as the highlight
+     above); hide whichever trailing cells don't have a real column. */
+  .dk-comp[data-col-count="1"] .dk-comp__cell:nth-child(n + 3),
+  .dk-comp[data-col-count="2"] .dk-comp__cell:nth-child(n + 4),
+  .dk-comp[data-col-count="3"] .dk-comp__cell:nth-child(n + 5) {
+    display: none;
   }
   .dk-comp__icon svg {
     width: 18px;
@@ -168,8 +186,8 @@
   @media (max-width: 768px) {
     .dk-comp { padding: 52px 22px; }
     .dk-comp__heading { font-size: clamp(26px, 7vw, 32px); }
-    .dk-comp__grid,
-    .dk-comp__row { grid-template-columns: minmax(140px, 1.2fr) repeat(var(--dk-comp-col-count), minmax(96px, 1fr)); }
+    .dk-comp__grid { grid-template-columns: minmax(140px, 1.2fr) repeat(var(--dk-comp-col-count), minmax(96px, 1fr)); }
+    .dk-comp__row { grid-template-columns: minmax(140px, 1.2fr) repeat(4, minmax(96px, 1fr)); }
   }
 {% endstylesheet %}
 
