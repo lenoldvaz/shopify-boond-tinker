@@ -484,9 +484,9 @@
       },
       "scheme-e96a76ca-5672-4555-a4f6-6a372768393b": {
         "settings": {
-          "background": "#f7f1eb",
+          "background": "#4E141E",
           "foreground_heading": "#111111",
-          "foreground": "#111111",
+          "foreground": "#CCA375",
           "primary": "#cf8b64",
           "primary_hover": "#7a4e41",
           "border": "#e0dad4",
