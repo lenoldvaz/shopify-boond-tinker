@@ -132,7 +132,137 @@
         "text_QfjagY": {
           "type": "text",
           "settings": {
-            "text": "<p>We make things that work better and last longer.</p>",
+            "text": "<p>✨Wedding & festive Gifting</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "font_size_override": 0,
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_jbx4jN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✨16+ Indian Scents</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "font_size_override": 0,
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_zPYGwB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✨Cruelty-Free, Always</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "font_size_override": 0,
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_bq6Mt6": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✨Alcohol-Free, Attars</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "font_size_override": 0,
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_4qAUEn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✨Hand Poured Perfumes</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "font_size_override": 0,
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_GqfHGC": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✨All Natural Ingredients</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -157,16 +287,21 @@
         }
       },
       "block_order": [
-        "text_QfjagY"
+        "text_QfjagY",
+        "text_jbx4jN",
+        "text_zPYGwB",
+        "text_bq6Mt6",
+        "text_4qAUEn",
+        "text_GqfHGC"
       ],
       "name": "t:names.marquee_section",
       "settings": {
         "movement_direction": "normal",
-        "speed_factor": 10,
-        "color_scheme": "scheme-e96a76ca-5672-4555-a4f6-6a372768393b",
+        "speed_factor": 5,
+        "color_scheme": "scheme-a583e155-3bc5-4e90-83c7-47b474a84bff",
         "padding-block-start": 24,
         "padding-block-end": 24,
-        "gap_between_elements": 24
+        "gap_between_elements": 50
       }
     }
   },
