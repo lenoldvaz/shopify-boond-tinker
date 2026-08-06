@@ -22,6 +22,9 @@
   endfor
 %}
 
+{% comment %} TEMP DEBUG — Added by DK on 2026-08-06, remove after diagnosing column_count bug {% endcomment %}
+<div style="background:#fee;border:2px solid red;padding:8px;font-family:monospace;font-size:11px;white-space:pre-wrap;">DEBUG section.blocks.size={{ section.blocks.size }} | types={% for b in section.blocks %}[{{ b.type }}]{% endfor %} | column_blocks.size={{ column_blocks.size }}</div>
+
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
   class="dk-comp section color-{{ section.settings.color_scheme }} spacing-style"
