@@ -1186,33 +1186,6 @@
     "dk_comparison_table_nTNXXh": {
       "type": "dk_comparison-table",
       "blocks": {
-        "dk_comparison_column_FG46eV": {
-          "type": "_dk-comparison-column",
-          "settings": {
-            "label": "Boond Fragrances",
-            "highlight": true,
-            "highlight_color": "#f0e6d2"
-          },
-          "blocks": {}
-        },
-        "dk_comparison_column_BgUzLF": {
-          "type": "_dk-comparison-column",
-          "settings": {
-            "label": "Sweets",
-            "highlight": false,
-            "highlight_color": "#f0e6d2"
-          },
-          "blocks": {}
-        },
-        "dk_comparison_column_whK4Er": {
-          "type": "_dk-comparison-column",
-          "settings": {
-            "label": "Generic gifts",
-            "highlight": false,
-            "highlight_color": "#f0e6d2"
-          },
-          "blocks": {}
-        },
         "dk_comparison_row_xayKYz": {
           "type": "_dk-comparison-row",
           "settings": {
@@ -1335,9 +1308,6 @@
         }
       },
       "block_order": [
-        "dk_comparison_column_FG46eV",
-        "dk_comparison_column_BgUzLF",
-        "dk_comparison_column_whK4Er",
         "dk_comparison_row_xayKYz",
         "dk_comparison_row_3dCYKy",
         "dk_comparison_row_mDXtak",
@@ -1351,6 +1321,16 @@
       "settings": {
         "eyebrow": "Why choose us",
         "heading": "Most wedding gifts are forgotten. Choose one guests will actually use.",
+        "columns_count": "3",
+        "col_1_label": "Boond Fragrances",
+        "col_1_highlight": true,
+        "col_1_highlight_color": "#f0e6d2",
+        "col_2_label": "Sweets",
+        "col_2_highlight": false,
+        "col_2_highlight_color": "#f0e6d2",
+        "col_3_label": "Generic gifts",
+        "col_3_highlight": false,
+        "col_3_highlight_color": "#f0e6d2",
         "color_scheme": "",
         "padding-block-start": 80,
         "padding-block-end": 80
