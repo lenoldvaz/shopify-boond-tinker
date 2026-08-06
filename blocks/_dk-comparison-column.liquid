@@ -1,0 +1,64 @@
+{% comment %} Added by DK on 2026-08-06 — Column header block for the comparison table section (sections/dk_comparison-table.liquid). One instance per column (e.g. "Boond Fragrances", "Sweets", "Generic gifts"). Renders an optional image, a label, and can be flagged as the "highlighted" column to get a shaded background running the full column height. {% endcomment %}
+
+{% liquid
+  assign highlight_color = block.settings.highlight_color | default: '#f0e6d2'
+%}
+
+<div
+  class="dk-comp__col-header{% if block.settings.highlight %} dk-comp__col-header--highlight{% endif %}"
+  style="--dk-comp-highlight-color: {{ highlight_color }};"
+  {{ block.shopify_attributes }}
+>
+  {%- if block.settings.image != blank -%}
+    <div class="dk-comp__col-image">
+      {{
+        block.settings.image
+        | image_url: width: 200
+        | image_tag: widths: '100, 150, 200, 300', sizes: '80px', loading: 'lazy', alt: block.settings.label
+      }}
+    </div>
+  {%- endif -%}
+  <p class="dk-comp__col-label">{{ block.settings.label }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Comparison column",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Column label",
+      "default": "Column name"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Column image (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "highlight",
+      "label": "Highlight this column",
+      "info": "Adds a shaded background running the full column height, e.g. to call out your own product vs. alternatives.",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight color",
+      "default": "#f0e6d2",
+      "visible_if": "{{ block.settings.highlight }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison column",
+      "settings": {
+        "label": "Column name"
+      }
+    }
+  ]
+}
+{% endschema %}

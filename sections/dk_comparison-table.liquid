@@ -1,0 +1,290 @@
+{% comment %} Added by DK on 2026-08-06 — Configurable comparison table section. Renders a feature-comparison grid (e.g. "Boond Fragrances vs. Sweets vs. Generic gifts") with merchant-configurable columns (blocks/_dk-comparison-column.liquid) and rows (blocks/_dk-comparison-row.liquid). Addable on any template, including product pages — see references/dk-comparison-table-usage-guide.md {% endcomment %}
+
+{% liquid
+  assign column_blocks = section.blocks | where: 'type', '_dk-comparison-column'
+  assign column_count = column_blocks.size | at_least: 1
+
+  # Find the first highlighted column's color, if any. The 1-based index
+  # itself is re-derived independently inside _dk-comparison-row.liquid
+  # (row blocks render standalone and can't receive it as a param), but
+  # the color is only needed once here for the shared CSS variable.
+  assign highlight_color = ''
+  for column_block in column_blocks
+    if column_block.settings.highlight and highlight_color == ''
+      assign highlight_color = column_block.settings.highlight_color
+    endif
+  endfor
+%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="dk-comp section color-{{ section.settings.color_scheme }} spacing-style"
+  style="
+    {%- render 'spacing-style', settings: section.settings -%}
+    --dk-comp-col-count: {{ column_count }};
+    --dk-comp-highlight-color: {{ highlight_color | default: '#f0e6d2' }};
+  "
+>
+  <div class="dk-comp__header">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="dk-comp__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="dk-comp__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="dk-comp__scroll">
+    <div class="dk-comp__grid">
+      {%- comment -%}
+        Column headers, then rows. content_for 'blocks' renders every
+        child block (both column and row types) in block_order, routing
+        each to its own file (_dk-comparison-column.liquid /
+        _dk-comparison-row.liquid). Merchants must keep all column
+        blocks ordered before row blocks in the editor — see
+        references/dk-comparison-table-usage-guide.md.
+        The leading spacer cell sits above the row-label column.
+      {%- endcomment -%}
+      <div class="dk-comp__col-header dk-comp__col-header--spacer"></div>
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .dk-comp {
+    padding: 80px 72px;
+  }
+  .dk-comp__header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 44px;
+    text-align: center;
+  }
+  .dk-comp__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-foreground, #9B2335);
+    opacity: 0.7;
+  }
+  .dk-comp__heading {
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .dk-comp__scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .dk-comp__grid {
+    display: grid;
+    grid-template-columns: minmax(160px, 1.4fr) repeat(var(--dk-comp-col-count), minmax(110px, 1fr));
+    min-width: 560px;
+    row-gap: 0;
+  }
+
+  /* Column headers */
+  .dk-comp__col-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 12px 24px;
+    text-align: center;
+  }
+  .dk-comp__col-header--spacer {
+    background: transparent;
+  }
+  .dk-comp__col-image img {
+    display: block;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+  }
+  .dk-comp__col-label {
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-size: 15px;
+    margin: 0;
+  }
+
+  /* Highlighted column background spans the full grid height. The column
+     header shades itself via the .dk-comp__col-header--highlight class
+     (set from its own block setting). Each row block independently
+     re-derives which column is highlighted and stamps a matching
+     data-highlight-col attribute on itself (see _dk-comparison-row.liquid)
+     — these rules shade the corresponding cell, one per supported column
+     position (max 4 columns). +1 accounts for the row-label cell that
+     precedes the value cells in each row. */
+  .dk-comp__col-header--highlight {
+    background-color: var(--dk-comp-highlight-color, #f0e6d2);
+    border-radius: 12px 12px 0 0;
+  }
+  .dk-comp__row[data-highlight-col="1"] .dk-comp__cell:nth-child(2),
+  .dk-comp__row[data-highlight-col="2"] .dk-comp__cell:nth-child(3),
+  .dk-comp__row[data-highlight-col="3"] .dk-comp__cell:nth-child(4),
+  .dk-comp__row[data-highlight-col="4"] .dk-comp__cell:nth-child(5) {
+    background-color: var(--dk-comp-highlight-color, #f0e6d2);
+  }
+
+  /* Rows */
+  .dk-comp__row {
+    display: grid;
+    grid-template-columns: minmax(160px, 1.4fr) repeat(var(--dk-comp-col-count), minmax(110px, 1fr));
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+  }
+  .dk-comp__row-label {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px 16px 0;
+    font-size: 14px;
+  }
+  .dk-comp__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 12px;
+  }
+  .dk-comp__icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  .dk-comp__icon--check svg {
+    color: #2e7d32;
+  }
+  .dk-comp__icon--cross svg {
+    color: #c62828;
+  }
+  .dk-comp__cell-text {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .dk-comp { padding: 52px 22px; }
+    .dk-comp__heading { font-size: clamp(26px, 7vw, 32px); }
+    .dk-comp__grid,
+    .dk-comp__row { grid-template-columns: minmax(140px, 1.2fr) repeat(var(--dk-comp-col-count), minmax(96px, 1fr)); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Comparison table",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "blocks": [
+    {
+      "type": "_dk-comparison-column"
+    },
+    {
+      "type": "_dk-comparison-row"
+    }
+  ],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Why choose us"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading text",
+      "default": "See how we compare"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0, "max": 100, "step": 4, "unit": "px", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0, "max": 100, "step": 4, "unit": "px", "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Comparison table",
+      "settings": {
+        "eyebrow": "Why choose us",
+        "heading": "Most wedding gifts are forgotten. Choose one guests will actually use."
+      },
+      "blocks": {
+        "col-1": {
+          "type": "_dk-comparison-column",
+          "settings": { "label": "Boond Fragrances", "highlight": true }
+        },
+        "col-2": {
+          "type": "_dk-comparison-column",
+          "settings": { "label": "Sweets" }
+        },
+        "col-3": {
+          "type": "_dk-comparison-column",
+          "settings": { "label": "Generic gifts" }
+        },
+        "row-1": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Guests keep it", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-2": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Actually used", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-3": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Handmade", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-4": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Personalized", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-5": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Gift-ready", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-6": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Small & portable", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-7": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Easy to pack", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        },
+        "row-8": {
+          "type": "_dk-comparison-row",
+          "settings": { "label": "Memorable keepsake", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
+        }
+      },
+      "block_order": ["col-1", "col-2", "col-3", "row-1", "row-2", "row-3", "row-4", "row-5", "row-6", "row-7", "row-8"]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,165 @@
+{% comment %} Added by DK on 2026-08-06 — Row block for the comparison table section (sections/dk_comparison-table.liquid). One instance per feature row (e.g. "Guests keep it", "Handmade"). Supports up to 4 cells — cell 1 maps to the 1st comparison column block, cell 2 to the 2nd, and so on, in the order the column blocks are arranged in the section. Each cell can render a checkmark, a cross, or custom text. If the section has fewer than 4 columns, the extra cell settings are simply ignored — see references/dk-comparison-table-usage-guide.md {% endcomment %}
+
+{% liquid
+  # This block can't see its own position among sibling column blocks
+  # directly, so it re-derives which column (if any) is flagged
+  # "highlight" from the shared parent section object, and stamps that
+  # 1-based index on the row as a data attribute so the section
+  # stylesheet's nth-child rule shades the matching cell. It also reads
+  # the actual column count so it only renders that many cells — extra
+  # cell settings are ignored if the section has fewer than 4 columns.
+  assign column_blocks = section.blocks | where: 'type', '_dk-comparison-column'
+  assign column_count = column_blocks.size | at_least: 1 | at_most: 4
+  assign highlight_col = 0
+  for column_block in column_blocks
+    if column_block.settings.highlight and highlight_col == 0
+      assign highlight_col = forloop.index
+    endif
+  endfor
+%}
+
+<div class="dk-comp__row" data-highlight-col="{{ highlight_col }}" {{ block.shopify_attributes }}>
+  <div class="dk-comp__row-label">{{ block.settings.label }}</div>
+  {%- for i in (1..column_count) -%}
+    {%- liquid
+      case i
+        when 1
+          assign cell_type = block.settings.cell_1_type
+          assign cell_text = block.settings.cell_1_text
+        when 2
+          assign cell_type = block.settings.cell_2_type
+          assign cell_text = block.settings.cell_2_text
+        when 3
+          assign cell_type = block.settings.cell_3_type
+          assign cell_text = block.settings.cell_3_text
+        when 4
+          assign cell_type = block.settings.cell_4_type
+          assign cell_text = block.settings.cell_4_text
+      endcase
+    -%}
+    <div class="dk-comp__cell" data-col="{{ i }}">
+      {%- if cell_type == 'check' -%}
+        <span class="dk-comp__icon dk-comp__icon--check">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
+      {%- elsif cell_type == 'cross' -%}
+        <span class="dk-comp__icon dk-comp__icon--cross">{{ 'icon-close.svg' | inline_asset_content }}</span>
+      {%- elsif cell_type == 'custom' and cell_text != blank -%}
+        <span class="dk-comp__cell-text">{{ cell_text }}</span>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Comparison row",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Row label",
+      "default": "Feature name"
+    },
+    {
+      "type": "header",
+      "content": "Column 1 cell"
+    },
+    {
+      "type": "select",
+      "id": "cell_1_type",
+      "label": "Value",
+      "options": [
+        { "value": "check", "label": "Checkmark" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "custom", "label": "Custom text" },
+        { "value": "blank", "label": "Blank" }
+      ],
+      "default": "check"
+    },
+    {
+      "type": "text",
+      "id": "cell_1_text",
+      "label": "Custom text",
+      "visible_if": "{{ block.settings.cell_1_type == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Column 2 cell"
+    },
+    {
+      "type": "select",
+      "id": "cell_2_type",
+      "label": "Value",
+      "options": [
+        { "value": "check", "label": "Checkmark" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "custom", "label": "Custom text" },
+        { "value": "blank", "label": "Blank" }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "cell_2_text",
+      "label": "Custom text",
+      "visible_if": "{{ block.settings.cell_2_type == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Column 3 cell"
+    },
+    {
+      "type": "select",
+      "id": "cell_3_type",
+      "label": "Value",
+      "options": [
+        { "value": "check", "label": "Checkmark" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "custom", "label": "Custom text" },
+        { "value": "blank", "label": "Blank" }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "text",
+      "id": "cell_3_text",
+      "label": "Custom text",
+      "visible_if": "{{ block.settings.cell_3_type == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Column 4 cell"
+    },
+    {
+      "type": "select",
+      "id": "cell_4_type",
+      "label": "Value",
+      "options": [
+        { "value": "check", "label": "Checkmark" },
+        { "value": "cross", "label": "Cross" },
+        { "value": "custom", "label": "Custom text" },
+        { "value": "blank", "label": "Blank" }
+      ],
+      "default": "blank",
+      "info": "Only used if a 4th comparison column exists."
+    },
+    {
+      "type": "text",
+      "id": "cell_4_text",
+      "label": "Custom text",
+      "visible_if": "{{ block.settings.cell_4_type == 'custom' }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison row",
+      "settings": {
+        "label": "Feature name",
+        "cell_1_type": "check",
+        "cell_2_type": "cross",
+        "cell_3_type": "cross"
+      }
+    }
+  ]
+}
+{% endschema %}
