@@ -1,5 +1,5 @@
-{% comment %} Added by DK on 2026-08-06 — Row block for the comparison table section (sections/dk_comparison-table.liquid). One instance per feature row (e.g. "Guests keep it", "Handmade"). Supports up to 4 cells — cell 1 maps to the 1st comparison column block, cell 2 to the 2nd, and so on, in the order the column blocks are arranged in the section. Each cell can render a checkmark, a cross, or custom text. If the section has fewer than 4 columns, the extra cell settings are simply ignored — see references/dk-comparison-table-usage-guide.md {% endcomment %}
-{% comment %} Updated by DK on 2026-08-06 — Reading section.blocks from inside this block did not reliably return sibling column blocks' settings in the live theme editor (highlight/column-count always came back empty), so this row now always renders all 4 cells unconditionally; the section (sections/dk_comparison-table.liquid) hides extras and applies the highlight via CSS attribute selectors instead. {% endcomment %}
+{% comment %} Added by DK on 2026-08-06 — Row block for the comparison table section (sections/dk_comparison-table.liquid). One instance per feature row (e.g. "Guests keep it", "Handmade"). Supports up to 4 cells — cell 1 maps to the section's Column 1 setting, cell 2 to Column 2, and so on. Each cell can render a checkmark, a cross, or custom text. If the section has fewer than 4 columns, the extra cell settings are simply ignored — see references/dk-comparison-table-usage-guide.md {% endcomment %}
+{% comment %} Updated by DK on 2026-08-06 — Reading section.blocks (sibling column blocks) from inside this block never reliably worked in the live theme editor, so columns are no longer blocks at all (see sections/dk_comparison-table.liquid) — this row now only reads section.settings directly, which was never unreliable. Check/cross icons now render the section's merchant-uploaded check_icon/cross_icon images when set, falling back to the theme's built-in SVGs. {% endcomment %}
 
 <div class="dk-comp__row" {{ block.shopify_attributes }}>
   <div class="dk-comp__row-label">{{ block.settings.label }}</div>
@@ -22,9 +22,21 @@
     -%}
     <div class="dk-comp__cell" data-col="{{ i }}">
       {%- if cell_type == 'check' -%}
-        <span class="dk-comp__icon dk-comp__icon--check">{{ 'icon-checkmark.svg' | inline_asset_content }}</span>
+        <span class="dk-comp__icon dk-comp__icon--check">
+          {%- if section.settings.check_icon != blank -%}
+            {{ section.settings.check_icon | image_url: width: 40 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'icon-checkmark.svg' | inline_asset_content }}
+          {%- endif -%}
+        </span>
       {%- elsif cell_type == 'cross' -%}
-        <span class="dk-comp__icon dk-comp__icon--cross">{{ 'icon-close.svg' | inline_asset_content }}</span>
+        <span class="dk-comp__icon dk-comp__icon--cross">
+          {%- if section.settings.cross_icon != blank -%}
+            {{ section.settings.cross_icon | image_url: width: 40 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'icon-close.svg' | inline_asset_content }}
+          {%- endif -%}
+        </span>
       {%- elsif cell_type == 'custom' and cell_text != blank -%}
         <span class="dk-comp__cell-text">{{ cell_text }}</span>
       {%- endif -%}
@@ -89,7 +101,8 @@
     },
     {
       "type": "header",
-      "content": "Column 3 cell"
+      "content": "Column 3 cell",
+      "info": "Only used if the section's Number of columns is 3 or more."
     },
     {
       "type": "select",
@@ -111,7 +124,8 @@
     },
     {
       "type": "header",
-      "content": "Column 4 cell"
+      "content": "Column 4 cell",
+      "info": "Only used if the section's Number of columns is 4."
     },
     {
       "type": "select",
@@ -123,8 +137,7 @@
         { "value": "custom", "label": "Custom text" },
         { "value": "blank", "label": "Blank" }
       ],
-      "default": "blank",
-      "info": "Only used if a 4th comparison column exists."
+      "default": "blank"
     },
     {
       "type": "text",

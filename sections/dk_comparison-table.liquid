@@ -1,29 +1,44 @@
-{% comment %} Added by DK on 2026-08-06 — Configurable comparison table section. Renders a feature-comparison grid (e.g. "Boond Fragrances vs. Sweets vs. Generic gifts") with merchant-configurable columns (blocks/_dk-comparison-column.liquid) and rows (blocks/_dk-comparison-row.liquid). Addable on any template, including product pages — see references/dk-comparison-table-usage-guide.md {% endcomment %}
+{% comment %} Added by DK on 2026-08-06 — Configurable comparison table section. Renders a feature-comparison grid (e.g. "Boond Fragrances vs. Sweets vs. Generic gifts") with merchant-configurable columns and rows. Addable on any template, including product pages — see references/dk-comparison-table-usage-guide.md {% endcomment %}
+{% comment %}
+  Rebuilt by DK on 2026-08-06 — Columns are now fixed section settings
+  (Columns count + Column 1-4 label/image/highlight) instead of
+  repeatable column blocks. Reading section.blocks from inside a child
+  block never reliably returned sibling blocks' settings in the live
+  theme editor (confirmed via inspector: data-col-count kept resolving
+  to 1 despite 3 real column blocks existing), so this removes that
+  entire class of bug — the section now reads only its own settings,
+  which was never unreliable. Rows remain repeatable blocks (they only
+  ever read their own settings, never siblings). Check/cross icons are
+  now merchant-uploadable images (with the theme's built-in SVGs as
+  fallback), matching the reference design's brand-styled icons.
+{% endcomment %}
 
 {% liquid
-  # Reading section.blocks from *inside* a child block (see
-  # _dk-comparison-row.liquid) does not reliably return sibling blocks'
-  # settings — Shopify's theme-block rendering context doesn't guarantee
-  # it. So all cross-column logic (column count, which column is
-  # highlighted) is computed once, here, in the section, and handed down
-  # to every row purely via CSS — a data-col-count/data-highlight-col
-  # attribute on the section wrapper, matched with attribute + nth-child
-  # selectors in the stylesheet below. Rows never need to re-derive this.
-  assign column_blocks = section.blocks | where: 'type', '_dk-comparison-column'
-  assign column_count = column_blocks.size | at_least: 1 | at_most: 4
+  assign column_count = section.settings.columns_count | plus: 0
 
   assign highlight_index = 0
   assign highlight_color = ''
-  for column_block in column_blocks
-    if column_block.settings.highlight and highlight_index == 0
-      assign highlight_index = forloop.index
-      assign highlight_color = column_block.settings.highlight_color
+  for i in (1..column_count)
+    case i
+      when 1
+        assign is_highlighted = section.settings.col_1_highlight
+        assign this_highlight_color = section.settings.col_1_highlight_color
+      when 2
+        assign is_highlighted = section.settings.col_2_highlight
+        assign this_highlight_color = section.settings.col_2_highlight_color
+      when 3
+        assign is_highlighted = section.settings.col_3_highlight
+        assign this_highlight_color = section.settings.col_3_highlight_color
+      when 4
+        assign is_highlighted = section.settings.col_4_highlight
+        assign this_highlight_color = section.settings.col_4_highlight_color
+    endcase
+    if is_highlighted and highlight_index == 0
+      assign highlight_index = i
+      assign highlight_color = this_highlight_color
     endif
   endfor
 %}
-
-{% comment %} TEMP DEBUG — Added by DK on 2026-08-06, remove after diagnosing column_count bug {% endcomment %}
-<div style="background:#fee;border:2px solid red;padding:8px;font-family:monospace;font-size:11px;white-space:pre-wrap;">DEBUG section.blocks.size={{ section.blocks.size }} | types={% for b in section.blocks %}[{{ b.type }}]{% endfor %} | column_blocks.size={{ column_blocks.size }}</div>
 
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <div
@@ -47,16 +62,42 @@
 
   <div class="dk-comp__scroll">
     <div class="dk-comp__grid">
-      {%- comment -%}
-        Column headers, then rows. content_for 'blocks' renders every
-        child block (both column and row types) in block_order, routing
-        each to its own file (_dk-comparison-column.liquid /
-        _dk-comparison-row.liquid). Merchants must keep all column
-        blocks ordered before row blocks in the editor — see
-        references/dk-comparison-table-usage-guide.md.
-        The leading spacer cell sits above the row-label column.
-      {%- endcomment -%}
       <div class="dk-comp__col-header dk-comp__col-header--spacer"></div>
+      {%- for i in (1..column_count) -%}
+        {%- liquid
+          case i
+            when 1
+              assign col_label = section.settings.col_1_label
+              assign col_image = section.settings.col_1_image
+              assign col_highlight = section.settings.col_1_highlight
+            when 2
+              assign col_label = section.settings.col_2_label
+              assign col_image = section.settings.col_2_image
+              assign col_highlight = section.settings.col_2_highlight
+            when 3
+              assign col_label = section.settings.col_3_label
+              assign col_image = section.settings.col_3_image
+              assign col_highlight = section.settings.col_3_highlight
+            when 4
+              assign col_label = section.settings.col_4_label
+              assign col_image = section.settings.col_4_image
+              assign col_highlight = section.settings.col_4_highlight
+          endcase
+        -%}
+        <div class="dk-comp__col-header{% if col_highlight %} dk-comp__col-header--highlight{% endif %}">
+          {%- if col_image != blank -%}
+            <div class="dk-comp__col-image">
+              {{ col_image | image_url: width: 200 | image_tag: widths: '100, 150, 200, 300', sizes: '80px', loading: 'lazy', alt: col_label }}
+            </div>
+          {%- endif -%}
+          <p class="dk-comp__col-label">{{ col_label }}</p>
+        </div>
+      {%- endfor -%}
+
+      {%- comment -%}
+        Rows are still repeatable theme blocks — content_for 'blocks'
+        renders each one via blocks/_dk-comparison-row.liquid, in order.
+      {%- endcomment -%}
       {% content_for 'blocks' %}
     </div>
   </div>
@@ -115,6 +156,7 @@
     width: 64px;
     height: 64px;
     object-fit: contain;
+    margin: 0 auto;
   }
   .dk-comp__col-label {
     font-family: var(--font-heading--family, Georgia, serif);
@@ -123,15 +165,14 @@
   }
 
   /* Highlighted column background spans the full grid height. The column
-     header shades itself via the .dk-comp__col-header--highlight class
-     (set from its own block setting). Row cells can't reliably read
-     sibling column blocks' settings (see the comment at the top of this
-     file), so the highlighted column's 1-based position is computed once
-     here in the section and exposed as data-highlight-col on the .dk-comp
-     wrapper — these rules shade the matching cell in every row via an
-     ancestor + nth-child selector, one rule per supported column position
-     (max 4 columns). +1 accounts for the row-label cell that precedes the
-     value cells in each row. */
+     header shades itself directly (col_highlight is read straight from
+     section settings above, no cross-block lookups). Row cells don't
+     know their own column index at render time, so the highlighted
+     column's 1-based position is exposed as data-highlight-col on the
+     .dk-comp wrapper and these rules shade the matching cell in every
+     row via an ancestor + nth-child selector — one rule per supported
+     column position (max 4 columns). +1 accounts for the row-label
+     cell that precedes the value cells in each row. */
   .dk-comp__col-header--highlight {
     background-color: var(--dk-comp-highlight-color, #f0e6d2);
     border-radius: 12px 12px 0 0;
@@ -162,13 +203,19 @@
     justify-content: center;
     padding: 16px 12px;
   }
-  /* Row blocks always render 4 cells regardless of actual column count
-     (for the same "can't read sibling blocks" reason as the highlight
-     above); hide whichever trailing cells don't have a real column. */
+  /* Row blocks always render 4 cells regardless of the section's actual
+     column count; hide whichever trailing cells don't have a real
+     column to line up with. */
   .dk-comp[data-col-count="1"] .dk-comp__cell:nth-child(n + 3),
   .dk-comp[data-col-count="2"] .dk-comp__cell:nth-child(n + 4),
   .dk-comp[data-col-count="3"] .dk-comp__cell:nth-child(n + 5) {
     display: none;
+  }
+  .dk-comp__icon img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
   }
   .dk-comp__icon svg {
     width: 18px;
@@ -201,9 +248,6 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "blocks": [
     {
-      "type": "_dk-comparison-column"
-    },
-    {
       "type": "_dk-comparison-row"
     }
   ],
@@ -227,6 +271,153 @@
       "id": "heading",
       "label": "Heading text",
       "default": "See how we compare"
+    },
+    {
+      "type": "header",
+      "content": "Columns"
+    },
+    {
+      "type": "select",
+      "id": "columns_count",
+      "label": "Number of columns",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "image_picker",
+      "id": "check_icon",
+      "label": "Checkmark icon (optional)",
+      "info": "Uses the theme's default checkmark if none is set."
+    },
+    {
+      "type": "image_picker",
+      "id": "cross_icon",
+      "label": "Cross icon (optional)",
+      "info": "Uses the theme's default cross if none is set."
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "text",
+      "id": "col_1_label",
+      "label": "Label",
+      "default": "Your brand"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_1_image",
+      "label": "Image (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col_1_highlight",
+      "label": "Highlight this column",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "col_1_highlight_color",
+      "label": "Highlight color",
+      "default": "#f0e6d2",
+      "visible_if": "{{ section.settings.col_1_highlight }}"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "text",
+      "id": "col_2_label",
+      "label": "Label",
+      "default": "Competitor"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_2_image",
+      "label": "Image (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "col_2_highlight",
+      "label": "Highlight this column",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "col_2_highlight_color",
+      "label": "Highlight color",
+      "default": "#f0e6d2",
+      "visible_if": "{{ section.settings.col_2_highlight }}"
+    },
+    {
+      "type": "header",
+      "content": "Column 3",
+      "info": "Only shown if Number of columns is 3 or more."
+    },
+    {
+      "type": "text",
+      "id": "col_3_label",
+      "label": "Label",
+      "default": "Alternative",
+      "visible_if": "{{ section.settings.columns_count == '3' or section.settings.columns_count == '4' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_3_image",
+      "label": "Image (optional)",
+      "visible_if": "{{ section.settings.columns_count == '3' or section.settings.columns_count == '4' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "col_3_highlight",
+      "label": "Highlight this column",
+      "default": false,
+      "visible_if": "{{ section.settings.columns_count == '3' or section.settings.columns_count == '4' }}"
+    },
+    {
+      "type": "color",
+      "id": "col_3_highlight_color",
+      "label": "Highlight color",
+      "default": "#f0e6d2",
+      "visible_if": "{{ section.settings.col_3_highlight and section.settings.columns_count != '2' }}"
+    },
+    {
+      "type": "header",
+      "content": "Column 4",
+      "info": "Only shown if Number of columns is 4."
+    },
+    {
+      "type": "text",
+      "id": "col_4_label",
+      "label": "Label",
+      "default": "Generic",
+      "visible_if": "{{ section.settings.columns_count == '4' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_4_image",
+      "label": "Image (optional)",
+      "visible_if": "{{ section.settings.columns_count == '4' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "col_4_highlight",
+      "label": "Highlight this column",
+      "default": false,
+      "visible_if": "{{ section.settings.columns_count == '4' }}"
+    },
+    {
+      "type": "color",
+      "id": "col_4_highlight_color",
+      "label": "Highlight color",
+      "default": "#f0e6d2",
+      "visible_if": "{{ section.settings.col_4_highlight and section.settings.columns_count == '4' }}"
     },
     {
       "type": "color_scheme",
@@ -256,21 +447,16 @@
       "name": "DK Comparison table",
       "settings": {
         "eyebrow": "Why choose us",
-        "heading": "Most wedding gifts are forgotten. Choose one guests will actually use."
+        "heading": "Most wedding gifts are forgotten. Choose one guests will actually use.",
+        "columns_count": "3",
+        "col_1_label": "Boond Fragrances",
+        "col_1_highlight": true,
+        "col_2_label": "Sweets",
+        "col_2_highlight": false,
+        "col_3_label": "Generic gifts",
+        "col_3_highlight": false
       },
       "blocks": {
-        "col-1": {
-          "type": "_dk-comparison-column",
-          "settings": { "label": "Boond Fragrances", "highlight": true }
-        },
-        "col-2": {
-          "type": "_dk-comparison-column",
-          "settings": { "label": "Sweets" }
-        },
-        "col-3": {
-          "type": "_dk-comparison-column",
-          "settings": { "label": "Generic gifts" }
-        },
         "row-1": {
           "type": "_dk-comparison-row",
           "settings": { "label": "Guests keep it", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
@@ -304,7 +490,7 @@
           "settings": { "label": "Memorable keepsake", "cell_1_type": "check", "cell_2_type": "cross", "cell_3_type": "cross" }
         }
       },
-      "block_order": ["col-1", "col-2", "col-3", "row-1", "row-2", "row-3", "row-4", "row-5", "row-6", "row-7", "row-8"]
+      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6", "row-7", "row-8"]
     }
   ]
 }
