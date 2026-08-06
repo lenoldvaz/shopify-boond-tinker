@@ -1168,12 +1168,27 @@
         "padding-block-start": 40,
         "padding-block-end": 40
       }
+    },
+    "dk_pull_quote_9MyetC": {
+      "type": "dk_pull-quote",
+      "name": "DK Pull Quote",
+      "settings": {
+        "quote_text": "Most wedding gifts are forgotten. Choose a gift your guests will actually use and remember your special day by.",
+        "link_text": "",
+        "link": "",
+        "background_color": "#4E141E",
+        "text_color": "#ffffffdb",
+        "link_color": "#ffffff99",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
     }
   },
   "order": [
     "main",
     "hero_ynQnUL",
     "marquee_dQ7tRi",
-    "section_7nppjx"
+    "section_7nppjx",
+    "dk_pull_quote_9MyetC"
   ]
 }
