@@ -16,9 +16,8 @@
       "blocks": {
         "announcement_mxxhta": {
           "type": "_announcement",
-          "disabled": true,
           "settings": {
-            "text": "<strong>We Ship Globally</strong>",
+            "text": "Use code<strong> BOOND200</strong> for Rs.200 OFF your 1st order",
             "link": "",
             "font": "var(--font-primary--family)",
             "font_size": "var(--font-size--body-md)",
@@ -32,7 +31,6 @@
       "block_order": [
         "announcement_mxxhta"
       ],
-      "disabled": true,
       "name": "t:names.announcement_bar",
       "settings": {
         "speed": 5,
