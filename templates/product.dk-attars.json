@@ -119,6 +119,18 @@
               },
               "blocks": {}
             },
+            "divider_kYArEk": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
             "variant_picker_R3rGDr": {
               "type": "variant-picker",
               "settings": {
@@ -205,17 +217,16 @@
               },
               "block_order": []
             },
-            "divider_kYArEk": {
-              "type": "_divider",
-              "name": "t:names.divider",
+            "quinn_shoppable_reel_app_cards_block_7xDGay": {
+              "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
               "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
+                "custom_metaobject_handle": "null",
+                "background_color": "#ffffff",
+                "margin_desktop": "10px 0px 0px 0px",
+                "margin_mobile": "5px 0px 0px 0px",
+                "padding_desktop": "10px 10px 10px 10px",
+                "padding_mobile": "10px 5px 10px 5px"
+              }
             },
             "dk_text_96FEjd": {
               "type": "dk_text",
@@ -1329,10 +1340,11 @@
             "heading_m7KmQQ",
             "judge_me_reviews_preview_badge_qPH6jY",
             "dk_scent_family_aY66MG",
+            "divider_kYArEk",
             "variant_picker_R3rGDr",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
-            "divider_kYArEk",
+            "quinn_shoppable_reel_app_cards_block_7xDGay",
             "dk_text_96FEjd",
             "group_CfKHjP",
             "dk_upsell_product_DK2025",
