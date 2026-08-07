@@ -221,11 +221,11 @@
               "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
               "settings": {
                 "custom_metaobject_handle": "null",
-                "background_color": "#ffffff",
-                "margin_desktop": "10px 0px 0px 0px",
-                "margin_mobile": "5px 0px 0px 0px",
-                "padding_desktop": "10px 10px 10px 10px",
-                "padding_mobile": "10px 5px 10px 5px"
+                "background_color": "rgba(0,0,0,0)",
+                "margin_desktop": "0px",
+                "margin_mobile": "0px",
+                "padding_desktop": "0px",
+                "padding_mobile": "0px"
               }
             },
             "dk_text_96FEjd": {
