@@ -128,6 +128,11 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "14167655181940180261": {
+        "type": "shopify://apps/quinn-shoppable-reel/blocks/app-embed/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
@@ -523,9 +528,9 @@
       },
       "scheme-a583e155-3bc5-4e90-83c7-47b474a84bff": {
         "settings": {
-          "background": "#4E141E",
+          "background": "#4e141e",
           "foreground_heading": "#000000",
-          "foreground": "#EACE86",
+          "foreground": "#eace86",
           "primary": "#000000",
           "primary_hover": "#7a4e41",
           "border": "#e6e6e6",
