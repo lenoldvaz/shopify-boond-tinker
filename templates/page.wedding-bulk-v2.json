@@ -1145,147 +1145,57 @@
         "padding-block-end": 80
       }
     },
-    "dk_comparison_table_nTNXXh": {
-      "type": "dk_comparison-table",
+    "178633958879bc8d5e": {
+      "type": "_blocks",
       "blocks": {
-        "dk_comparison_row_xayKYz": {
-          "type": "_dk-comparison-row",
+        "instafeed_app_block_h6QfLd": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
           "settings": {
-            "label": "Guests keep it",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_3dCYKy": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Actually used",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_mDXtak": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Handmade",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_3eGG8B": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Personalized",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_ac4wrX": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Gift-ready",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_qzc43C": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Small & portable",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_8M67NC": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Easy to pack",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
-        },
-        "dk_comparison_row_zw3ycR": {
-          "type": "_dk-comparison-row",
-          "settings": {
-            "label": "Memorable keepsake",
-            "cell_1_type": "check",
-            "cell_1_text": "",
-            "cell_2_type": "cross",
-            "cell_2_text": "",
-            "cell_3_type": "cross",
-            "cell_3_text": "",
-            "cell_4_type": "blank",
-            "cell_4_text": ""
-          },
-          "blocks": {}
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
         }
       },
       "block_order": [
-        "dk_comparison_row_xayKYz",
-        "dk_comparison_row_3dCYKy",
-        "dk_comparison_row_mDXtak",
-        "dk_comparison_row_3eGG8B",
-        "dk_comparison_row_ac4wrX",
-        "dk_comparison_row_qzc43C",
-        "dk_comparison_row_8M67NC",
-        "dk_comparison_row_zw3ycR"
+        "instafeed_app_block_h6QfLd"
       ],
-      "name": "DK Comparison table",
       "settings": {
-        "eyebrow": "Why choose us",
-        "heading": "Most wedding gifts are forgotten. Choose one guests will actually use.",
-        "color_scheme": "",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-a583e155-3bc5-4e90-83c7-47b474a84bff",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     }
   },
@@ -1296,6 +1206,6 @@
     "marquee_dQ7tRi",
     "section_7nppjx",
     "dk_pull_quote_9MyetC",
-    "dk_comparison_table_nTNXXh"
+    "178633958879bc8d5e"
   ]
 }
