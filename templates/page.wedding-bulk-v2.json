@@ -1737,7 +1737,7 @@
       "name": "Infographic",
       "settings": {
         "conditional_metafield": "",
-        "visibility_option": "both",
+        "visibility_option": "mobile",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
