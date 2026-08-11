@@ -1500,7 +1500,6 @@
       "name": "Infographic",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1737,7 +1736,6 @@
       "name": "16+ Fragrances",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
