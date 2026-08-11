@@ -886,6 +886,7 @@
       "block_order": [
         "video_PthMbP"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
         "conditional_metafield": "",
