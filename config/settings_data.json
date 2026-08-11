@@ -107,11 +107,6 @@
         "disabled": false,
         "settings": {}
       },
-      "15132424025755801183": {
-        "type": "shopify://apps/upload-lift/blocks/app-embed/3c98bdcb-7587-4ade-bfe4-7d8af00d05ca",
-        "disabled": true,
-        "settings": {}
-      },
       "3720565183479497137": {
         "type": "shopify://apps/globo-product-options/blocks/app-embed-block/fdc9fad5-1a0f-4bd4-9c8a-1af6a6eef6b8",
         "disabled": true,
@@ -129,6 +124,11 @@
       },
       "14167655181940180261": {
         "type": "shopify://apps/quinn-shoppable-reel/blocks/app-embed/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+        "disabled": false,
+        "settings": {}
+      },
+      "15132424025755801183": {
+        "type": "shopify://apps/upload-lift/blocks/app-embed/3c98bdcb-7587-4ade-bfe4-7d8af00d05ca",
         "disabled": false,
         "settings": {}
       }
