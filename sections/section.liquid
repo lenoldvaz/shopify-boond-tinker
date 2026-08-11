@@ -1,8 +1,11 @@
 
 
+{% comment %} Added by DK on 2026-08-06 — Replaced hide_on_desktop (desktop-only toggle) with visibility_option, matching sections/hero.liquid's "Display on" select (Desktop only / Mobile only / Both) for consistency across the theme. {% endcomment %}
+{% assign visibility = section.settings.visibility_option %}
+
 {% liquid
   assign show_section = true
-  
+
   if section.settings.conditional_metafield != blank
     assign metafield_parts = section.settings.conditional_metafield | split: '.'
     if metafield_parts.size == 2
@@ -28,7 +31,7 @@
 %}
 
 {% if show_section %}
-  <div class="section-wrapper{% if section.settings.hide_on_desktop %} hide-on-desktop{% endif %}">
+  <div class="section-wrapper visibility-{{ visibility }}-{{ section.id }}">
     {% capture children %}
       {% content_for 'blocks' %}
     {% endcapture %}
@@ -37,19 +40,18 @@
   </div>
 {% endif %}
 
-{% if section.settings.hide_on_desktop %}
-  <style>
-    .hide-on-desktop {
+<style>
+  @media screen and (min-width: 768px) {
+    .visibility-mobile-{{ section.id }} {
       display: none !important;
     }
-    
-    @media screen and (max-width: 749px) {
-      .hide-on-desktop {
-        display: block !important;
-      }
+  }
+  @media screen and (max-width: 767px) {
+    .visibility-desktop-{{ section.id }} {
+      display: none !important;
     }
-  </style>
-{% endif %}
+  }
+</style>
 
 {% schema %}
 {
@@ -82,10 +84,15 @@
       "placeholder": "custom.product_video"
     },
     {
-      "type": "checkbox",
-      "id": "hide_on_desktop",
-      "label": "Hide on desktop",
-      "default": false
+      "type": "select",
+      "id": "visibility_option",
+      "label": "Display on",
+      "default": "both",
+      "options": [
+        {"value": "desktop", "label": "Desktop only"},
+        {"value": "mobile", "label": "Mobile only"},
+        {"value": "both", "label": "Mobile & Desktop both"}
+      ]
     },
     {
       "type": "header",

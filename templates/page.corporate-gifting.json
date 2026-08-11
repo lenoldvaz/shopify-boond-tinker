@@ -308,7 +308,6 @@
       "name": "t:names.custom_section",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -983,7 +982,6 @@
       "name": "Occasions",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1482,7 +1480,6 @@
       "name": "Occasions",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -2426,7 +2423,6 @@
       "name": "Suggested Products",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -3152,7 +3148,6 @@
       "name": "t:names.icons_with_text",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -3482,7 +3477,6 @@
       "name": "t:names.faq_section",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",

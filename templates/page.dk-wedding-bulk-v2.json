@@ -725,7 +725,6 @@
       "name": "Occasions",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -805,7 +804,6 @@
       "name": "Comparison Table (Placeholder)",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -1428,7 +1426,6 @@
       "name": "Why Boond Is A Perfect Gift",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -1954,7 +1951,6 @@
       "name": "3 Easy Steps (Placeholder Layout)",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -2437,7 +2433,6 @@
       "name": "Photo Strip",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",
@@ -2683,7 +2678,6 @@
       "name": "FAQ",
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "center",

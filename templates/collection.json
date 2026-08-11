@@ -253,7 +253,6 @@
       "disabled": true,
       "settings": {
         "conditional_metafield": "",
-        "hide_on_desktop": false,
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "space-between",
