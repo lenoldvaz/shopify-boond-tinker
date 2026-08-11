@@ -66,8 +66,6 @@
         "settings": {
           "greeting_message": "",
           "button_color": "#000000",
-          "secondary_color": "#FFFFFF",
-          "ternary_color": "#6A6A6A",
           "button_icon": "chat_bubble",
           "button_text": "chat_with_us",
           "button_horizontal_position": "bottom_right",
@@ -451,7 +449,7 @@
       "scheme-933a4105-2122-491e-9769-a1afe67ef389": {
         "settings": {
           "background": "#f7f7f7",
-          "foreground_heading": "#000000",
+          "foreground_heading": "#B20000",
           "foreground": "#363636",
           "primary": "#b20000",
           "primary_hover": "#b20000",
