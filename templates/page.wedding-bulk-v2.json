@@ -1734,6 +1734,7 @@
         "group_GamcPe",
         "image_mVmGGK"
       ],
+      "disabled": true,
       "name": "16+ Fragrances",
       "settings": {
         "conditional_metafield": "",
@@ -1762,6 +1763,17 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "custom_liquid_VaNEzz": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
+      "settings": {
+        "custom_liquid": "<iframe data-tally-src=\"https://tally.so/embed/w8ybDr?transparentBackground=1&dynamicHeight=1&formEventsForwarding=1\" loading=\"lazy\" width=\"100%\" height=\"991\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" title=\"Enquire about bulk orders\n\"></iframe>\n<script>var d=document,w=\"https://tally.so/widgets/embed.js\",v=function(){\"undefined\"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll(\"iframe[data-tally-src]:not([src])\").forEach((function(e){e.src=e.dataset.tallySrc}))};if(\"undefined\"!=typeof Tally)v();else if(d.querySelector('script[src=\"'+w+'\"]')==null){var s=d.createElement(\"script\");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>",
+        "color_scheme": "",
+        "section_width": "page-width",
         "padding-block-start": 40,
         "padding-block-end": 40
       }
@@ -1829,6 +1841,7 @@
     "dk_pull_quote_9MyetC",
     "section_Kb4BNr",
     "section_eQHACB",
+    "custom_liquid_VaNEzz",
     "178633958879bc8d5e"
   ]
 }
