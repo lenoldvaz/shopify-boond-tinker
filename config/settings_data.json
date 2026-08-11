@@ -57,7 +57,7 @@
     "card_corner_radius": 10,
     "variant_button_radius": 4,
     "variant_button_width": "default-width-buttons",
-    "enable_geo_redirect": false,
+    "enable_geo_redirect": true,
     "content_for_index": [],
     "blocks": {
       "15683396631634586217": {
@@ -449,7 +449,7 @@
       "scheme-933a4105-2122-491e-9769-a1afe67ef389": {
         "settings": {
           "background": "#f7f7f7",
-          "foreground_heading": "#B20000",
+          "foreground_heading": "#b20000",
           "foreground": "#363636",
           "primary": "#b20000",
           "primary_hover": "#b20000",
