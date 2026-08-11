@@ -131,6 +131,103 @@
               },
               "blocks": {}
             },
+            "variant_picker_R3rGDr": {
+              "type": "variant-picker",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "alignment": "left",
+                "padding-block-start": 12,
+                "padding-block-end": 12,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "dk_price_DakaxW": {
+              "type": "dk-price",
+              "name": "DK Custom Price",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "price_title": "BEST PRICE:",
+                "price_title_font": "var(--font-body--family)",
+                "price_title_size": "1em",
+                "price_title_color": "#8c837a",
+                "show_discount_tag": true,
+                "discount_tag_type": "percent",
+                "discount_tag_color": "#b71c1c",
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_eYQEYi": {
+              "type": "buy-buttons",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "stacking": false,
+                "show_pickup_availability": false,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {
+                    "product": "{{ closest.product }}"
+                  },
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "product": "{{ closest.product }}",
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "product": "{{ closest.product }}"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "quinn_shoppable_reel_app_cards_block_7xDGay": {
+              "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+              "settings": {
+                "custom_metaobject_handle": "null",
+                "background_color": "rgba(0,0,0,0)",
+                "margin_desktop": "0px",
+                "margin_mobile": "0px",
+                "padding_desktop": "0px",
+                "padding_mobile": "0px"
+              }
+            },
             "dk_text_96FEjd": {
               "type": "dk_text",
               "name": "DK Text",
@@ -546,91 +643,6 @@
                 "group_Fg8fKR",
                 "group_NaptEj"
               ]
-            },
-            "variant_picker_R3rGDr": {
-              "type": "variant-picker",
-              "settings": {
-                "product": "{{ closest.product }}",
-                "variant_style": "buttons",
-                "show_swatches": true,
-                "alignment": "left",
-                "padding-block-start": 12,
-                "padding-block-end": 12,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "dk_price_DakaxW": {
-              "type": "dk-price",
-              "name": "DK Custom Price",
-              "settings": {
-                "product": "{{ closest.product }}",
-                "price_title": "BEST PRICE:",
-                "price_title_font": "var(--font-body--family)",
-                "price_title_size": "1em",
-                "price_title_color": "#8c837a",
-                "show_discount_tag": true,
-                "discount_tag_type": "percent",
-                "discount_tag_color": "#b71c1c",
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "buy_buttons_eYQEYi": {
-              "type": "buy-buttons",
-              "settings": {
-                "product": "{{ closest.product }}",
-                "stacking": false,
-                "show_pickup_availability": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "static": true,
-                  "settings": {
-                    "product": "{{ closest.product }}"
-                  },
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true,
-                  "settings": {
-                    "product": "{{ closest.product }}",
-                    "style_class": "button"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "static": true,
-                  "settings": {
-                    "product": "{{ closest.product }}"
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": []
             },
             "dk_upsell_product_DK2025": {
               "type": "dk-upsell-product",
@@ -1329,11 +1341,12 @@
             "judge_me_reviews_preview_badge_qPH6jY",
             "dk_scent_family_aY66MG",
             "divider_kYArEk",
-            "dk_text_96FEjd",
-            "group_CfKHjP",
             "variant_picker_R3rGDr",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
+            "quinn_shoppable_reel_app_cards_block_7xDGay",
+            "dk_text_96FEjd",
+            "group_CfKHjP",
             "dk_upsell_product_DK2025",
             "gift_message_QHnptM",
             "product_description_LfDYCg",
