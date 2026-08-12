@@ -598,6 +598,7 @@
       "name": "Occasions",
       "settings": {
         "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1097,6 +1098,7 @@
       "name": "Occasions",
       "settings": {
         "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1285,6 +1287,8 @@
                       "type": "_product-card-gallery",
                       "settings": {
                         "product": "{{ closest.product }}",
+                        "show_gender_badge": true,
+                        "gender_badge_position": "top-right",
                         "image_ratio": "square",
                         "border": "none",
                         "border_width": 1,
@@ -1468,6 +1472,8 @@
                       "type": "_product-card-gallery",
                       "settings": {
                         "product": "{{ closest.product }}",
+                        "show_gender_badge": true,
+                        "gender_badge_position": "top-right",
                         "image_ratio": "square",
                         "border": "none",
                         "border_width": 1,
@@ -1606,6 +1612,8 @@
                       "type": "_product-card-gallery",
                       "settings": {
                         "product": "{{ closest.product }}",
+                        "show_gender_badge": true,
+                        "gender_badge_position": "top-right",
                         "image_ratio": "square",
                         "border": "none",
                         "border_width": 1,
@@ -1930,6 +1938,8 @@
                       "type": "_product-card-gallery",
                       "settings": {
                         "product": "{{ closest.product }}",
+                        "show_gender_badge": true,
+                        "gender_badge_position": "top-right",
                         "image_ratio": "square",
                         "border": "none",
                         "border_width": 1,
@@ -2108,9 +2118,11 @@
         "text_ka9B6C",
         "button_VRejtw"
       ],
+      "disabled": true,
       "name": "Suggested Products",
       "settings": {
         "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -2833,6 +2845,7 @@
       "name": "t:names.icons_with_text",
       "settings": {
         "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -3203,6 +3216,7 @@
       "name": "t:names.faq_section",
       "settings": {
         "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",

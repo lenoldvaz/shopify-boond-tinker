@@ -73,6 +73,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "h3",
                 "font": "var(--font-primary--family)",
                 "font_size": "",
@@ -198,6 +199,7 @@
               "blocks": {
                 "quantity": {
                   "type": "quantity",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "product": "{{ closest.product }}"
@@ -209,12 +211,13 @@
                   "static": true,
                   "settings": {
                     "product": "{{ closest.product }}",
-                    "style_class": "button-secondary"
+                    "style_class": "button"
                   },
                   "blocks": {}
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
+                  "disabled": true,
                   "static": true,
                   "settings": {
                     "product": "{{ closest.product }}"
@@ -389,6 +392,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -472,6 +476,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -601,6 +606,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -684,6 +690,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -753,6 +760,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-primary--family)",
                         "font_size": "",
@@ -790,6 +798,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-primary--family)",
                         "font_size": "",
@@ -877,8 +886,11 @@
       "block_order": [
         "video_PthMbP"
       ],
+      "disabled": true,
       "name": "t:names.video_section",
       "settings": {
+        "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1000,6 +1012,8 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "product": "{{ closest.product }}",
+                "show_gender_badge": true,
+                "gender_badge_position": "top-right",
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
