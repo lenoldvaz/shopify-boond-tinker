@@ -73,6 +73,7 @@
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "h3",
                 "font": "var(--font-primary--family)",
                 "font_size": "",
@@ -244,6 +245,17 @@
               },
               "block_order": []
             },
+            "quinn_shoppable_reel_app_cards_block_qCXkha": {
+              "type": "shopify://apps/quinn-shoppable-reel/blocks/app-cards-block/483fa771-9c4d-49e4-8c0d-0155f4b872d6",
+              "settings": {
+                "custom_metaobject_handle": "null",
+                "background_color": "#ffffff",
+                "margin_desktop": "10px 0px 0px 0px",
+                "margin_mobile": "5px 0px 0px 0px",
+                "padding_desktop": "10px 10px 10px 10px",
+                "padding_mobile": "10px 5px 10px 5px"
+              }
+            },
             "product_description_LfDYCg": {
               "type": "product-description",
               "name": "t:names.product_description",
@@ -409,6 +421,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -492,6 +505,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -621,6 +635,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -704,6 +719,7 @@
                             "width": "100%",
                             "max_width": "normal",
                             "alignment": "center",
+                            "font_size_override": 0,
                             "type_preset": "h6",
                             "font": "var(--font-primary--family)",
                             "font_size": "",
@@ -775,6 +791,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-body--family)",
                         "font_size": "1rem",
@@ -812,6 +829,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-primary--family)",
                         "font_size": "",
@@ -849,6 +867,7 @@
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
+                        "font_size_override": 0,
                         "type_preset": "rte",
                         "font": "var(--font-primary--family)",
                         "font_size": "",
@@ -889,6 +908,7 @@
             "variant_picker_R3rGDr",
             "dk_price_DakaxW",
             "buy_buttons_eYQEYi",
+            "quinn_shoppable_reel_app_cards_block_qCXkha",
             "product_description_LfDYCg",
             "group_X39hBc",
             "accordion_g8EVVp"
@@ -958,6 +978,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "custom",
                 "font": "var(--font-subheading--family)",
                 "font_size": "0.875rem",
@@ -984,6 +1005,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -1010,6 +1032,7 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
+                "font_size_override": 0,
                 "type_preset": "paragraph",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
@@ -1108,6 +1131,8 @@
       ],
       "name": "Comparison",
       "settings": {
+        "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "row",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1169,6 +1194,8 @@
       "disabled": true,
       "name": "t:names.video_section",
       "settings": {
+        "conditional_metafield": "",
+        "visibility_option": "both",
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -1204,7 +1231,9 @@
           "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "sample_data",
-            "max_width": 1200
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
           }
         }
       },
@@ -1332,6 +1361,8 @@
               "name": "t:names.product_card_media",
               "settings": {
                 "product": "{{ closest.product }}",
+                "show_gender_badge": true,
+                "gender_badge_position": "top-right",
                 "image_ratio": "square",
                 "border": "none",
                 "border_width": 1,
