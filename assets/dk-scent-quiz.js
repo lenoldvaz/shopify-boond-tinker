@@ -53,6 +53,8 @@ export class ScentQuiz extends HTMLElement {
   #scoringConfig = {};
   /** @type {Object.<string, *>} */
   #answers = {};
+  /** @type {Object.<string, string|string[]>} Raw label(s) selected per step id, keyed by step.id — recorded for every step including cosmeticOnly ones, so the webhook payload reflects exactly what was clicked, not just the derived scoring fields. */
+  #rawAnswers = {};
   /** @type {number} */
   #currentIndex = 0;
   /** @type {Array<Object>} */
@@ -124,6 +126,7 @@ export class ScentQuiz extends HTMLElement {
       if (!raw) return;
       const saved = JSON.parse(raw);
       this.#answers = saved.answers || {};
+      this.#rawAnswers = saved.rawAnswers || {};
       this.#currentIndex = saved.currentIndex || 0;
       // A restored session with progress beyond step 0 is a resume, not a
       // fresh start — quiz_start shouldn't fire again for it (see #render).
@@ -139,7 +142,7 @@ export class ScentQuiz extends HTMLElement {
     try {
       localStorage.setItem(
         this.#storageKey,
-        JSON.stringify({ answers: this.#answers, currentIndex: this.#currentIndex })
+        JSON.stringify({ answers: this.#answers, rawAnswers: this.#rawAnswers, currentIndex: this.#currentIndex })
       );
     } catch (error) {
       // Storage full/unavailable (private browsing, etc.) — quiz still works, just won't resume.
@@ -343,7 +346,15 @@ export class ScentQuiz extends HTMLElement {
   }
 
   /**
-   * Merges the `sets` object of every chosen option into #answers.
+   * Records the raw label(s) chosen on a step and merges the `sets`
+   * object of every chosen option into #answers.
+   *
+   * The raw labels (#rawAnswers, keyed by step id) are recorded for
+   * every step, including cosmeticOnly ones — this is what lets the
+   * webhook payload show exactly what was clicked on each question, not
+   * just the derived scoring fields. #answers, by contrast, only holds
+   * the merged scoring-oriented values and skips cosmeticOnly steps
+   * entirely, since those never feed the scoring engine.
    *
    * For `type: "multi"` steps, list-valued fields (e.g. scent_family)
    * accumulate as a de-duplicated union across all chosen options, and
@@ -360,6 +371,9 @@ export class ScentQuiz extends HTMLElement {
    * @param {QuizOption[]} chosenOptions
    */
   #applyOptionAnswers(step, chosenOptions) {
+    const labels = chosenOptions.map((option) => option.label);
+    this.#rawAnswers[step.id] = step.type === 'multi' ? labels : (labels[0] ?? null);
+
     if (step.cosmeticOnly) return;
 
     if (step.type !== 'multi') {
@@ -659,6 +673,13 @@ export class ScentQuiz extends HTMLElement {
    * POSTs the full answer + result payload to the merchant-configured
    * webhook URL (Make.com/Zapier/n8n/etc.) — fire-and-forget, a webhook
    * failure should never block the shopper from seeing their results.
+   *
+   * Sends both `answers` (the merged, scoring-oriented values used to
+   * rank products — scent_family/intensity/occasion/gender/path) and
+   * `rawAnswers` (every step's literal selected label(s), keyed by step
+   * id, including cosmeticOnly steps like "personality" that never feed
+   * scoring) — so the webhook reflects exactly what the shopper clicked
+   * on every question, not just the derived values.
    * @param {Array<Object>} results
    */
   #fireWebhook(results) {
@@ -667,6 +688,7 @@ export class ScentQuiz extends HTMLElement {
 
     const payload = {
       answers: this.#answers,
+      rawAnswers: this.#rawAnswers,
       results: results.map((r) => ({ id: r.product.id, handle: r.product.handle, score: r.score })),
       email: this.#answers.email,
       phone: this.#answers.phone,
