@@ -1,15 +1,10 @@
 /*
  * ------------------------------------------------------------
- * Added by DK on 2026-08-11 — Scent Discovery Quiz page template.
- * Assign this template to a Page in Shopify admin (Pages > Add page >
- * Template: scent-quiz) to publish the quiz. See
- * references/dk-scent-quiz-usage-guide.md for full setup instructions
- * (collection, fallback products, webhook URL, coupon).
+ * IMPORTANT: The contents of this file are auto-generated.
  *
- * IMPORTANT: The contents of this file are auto-generated after
- * the first Shopify admin save. This file may be updated by the
- * Shopify admin theme editor or related systems. Please exercise
- * caution as any changes made to this file may be overwritten.
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
 {
@@ -18,8 +13,20 @@
       "type": "dk_scent-quiz",
       "name": "DK Scent Quiz",
       "settings": {
+        "collection": "",
+        "fallback_product_1": "",
+        "fallback_product_2": "",
+        "fallback_product_3": "",
+        "config_url": "",
+        "webhook_url": "https://webhook.site/102703f4-ee18-48b7-bea7-1e66959aa9a0",
+        "coupon_code": "",
+        "coupon_discount_amount": 10,
+        "coupon_discount_type": "percentage",
+        "coupon_border_color": "#1f5f3b",
+        "coupon_background_color": "#f4fbf3",
+        "coupon_text_color": "#163c28",
+        "accent_color": "#9b2335",
         "color_scheme": "scheme-1",
-        "accent_color": "#9B2335",
         "padding-block-start": 60,
         "padding-block-end": 60
       }
