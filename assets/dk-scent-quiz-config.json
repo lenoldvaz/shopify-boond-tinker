@@ -28,11 +28,29 @@
       "type": "interstitial",
       "heading": "You're not the only one looking for \"your\" scent",
       "body": "Over 4,000 customers have found their signature attar through Boond.",
-      "testimonial": {
-        "quote": "I've never had a fragrance that felt this much like me. The quiz nailed it.",
-        "name": "Ananya R. — Delhi",
-        "rating": 5
-      },
+      "testimonials": [
+        {
+          "quote": "I've never had a fragrance that felt this much like me. The quiz nailed it.",
+          "name": "Ananya",
+          "age": 29,
+          "rating": 5,
+          "verified": true
+        },
+        {
+          "quote": "Ordered the Maati after this quiz and it's now my everyday scent. Exactly what I wanted.",
+          "name": "Priya",
+          "age": 34,
+          "rating": 5,
+          "verified": true
+        },
+        {
+          "quote": "The recommendation was spot on for a gift — my mother loved it.",
+          "name": "Rahul",
+          "age": 41,
+          "rating": 5,
+          "verified": true
+        }
+      ],
       "ctaLabel": "Continue"
     },
     {
@@ -110,5 +128,16 @@
     ],
     "minScoreThreshold": 3,
     "resultCount": 3
+  },
+  "loading": {
+    "heading": "Building your personalized profile",
+    "items": [
+      "Reading the {{mood}} you selected",
+      "Matching your answers to Boond's scent families",
+      "Weighing intensity and occasion",
+      "Pinpointing your closest attar match"
+    ],
+    "footer": "Cross-referencing your answers with patterns from thousands of Boond customers...",
+    "durationMs": 2600
   }
 }

@@ -36,7 +36,8 @@
  * @property {number} [minSelections]
  * @property {string} [heading]
  * @property {string} [body]
- * @property {{quote: string, name: string, rating: number}} [testimonial]
+ * @property {{quote: string, name: string, age?: number|string, rating?: number, verified?: boolean}} [testimonial] Single testimonial (legacy/simple shape) — for multiple, use `testimonials`.
+ * @property {Array<{quote: string, name: string, age?: number|string, rating?: number, verified?: boolean}>} [testimonials] Multiple stacked review cards, per the reference "review wall" design.
  * @property {string} [ctaLabel]
  * @property {string[]} [fields]
  * @property {boolean} [phoneOptional]
@@ -51,6 +52,8 @@ export class ScentQuiz extends HTMLElement {
   #steps = [];
   /** @type {Object.<string, *>} */
   #scoringConfig = {};
+  /** @type {{heading?: string, items?: string[], footer?: string, durationMs?: number}|null} The "Building your personalized profile" transitional screen config, shown between contact submission and results — null if the config omits it. */
+  #loadingConfig = null;
   /** @type {Object.<string, *>} */
   #answers = {};
   /** @type {Object.<string, string|string[]>} Raw label(s) selected per step id, keyed by step.id — recorded for every step including cosmeticOnly ones, so the webhook payload reflects exactly what was clicked, not just the derived scoring fields. */
@@ -116,6 +119,7 @@ export class ScentQuiz extends HTMLElement {
 
     this.#steps = config.steps;
     this.#scoringConfig = config.scoring || {};
+    this.#loadingConfig = config.loading || null;
     this.#render();
   }
 
@@ -429,31 +433,20 @@ export class ScentQuiz extends HTMLElement {
       wrap.appendChild(body);
     }
 
-    if (step.testimonial) {
-      const card = document.createElement('div');
-      card.className = 'dk-scent-quiz__testimonial';
+    // Accept either a single `testimonial` object (legacy/simple config)
+    // or a `testimonials` array (multiple stacked review cards, per the
+    // reference design) — normalize to an array either way.
+    const testimonials = step.testimonials || (step.testimonial ? [step.testimonial] : []);
 
-      if (step.testimonial.rating) {
-        const stars = document.createElement('div');
-        stars.className = 'dk-scent-quiz__testimonial-stars';
-        stars.setAttribute('aria-hidden', 'true');
-        stars.textContent = '★'.repeat(Math.round(step.testimonial.rating));
-        card.appendChild(stars);
+    if (testimonials.length > 0) {
+      const list = document.createElement('div');
+      list.className = 'dk-scent-quiz__testimonial-list';
+
+      for (const testimonial of testimonials) {
+        list.appendChild(this.#renderTestimonialCard(testimonial));
       }
 
-      const quote = document.createElement('p');
-      quote.className = 'dk-scent-quiz__testimonial-quote';
-      quote.textContent = `"${step.testimonial.quote}"`;
-      card.appendChild(quote);
-
-      if (step.testimonial.name) {
-        const name = document.createElement('p');
-        name.className = 'dk-scent-quiz__testimonial-name';
-        name.textContent = step.testimonial.name;
-        card.appendChild(name);
-      }
-
-      wrap.appendChild(card);
+      wrap.appendChild(list);
     }
 
     const cta = document.createElement('button');
@@ -464,6 +457,68 @@ export class ScentQuiz extends HTMLElement {
     wrap.appendChild(cta);
 
     return wrap;
+  }
+
+  /**
+   * Renders one review card: avatar initial, name (+ optional age),
+   * an optional "Verified" badge, a star rating, and the quote.
+   * @param {{quote: string, name: string, age?: number|string, rating?: number, verified?: boolean}} testimonial
+   * @returns {HTMLElement}
+   */
+  #renderTestimonialCard(testimonial) {
+    const card = document.createElement('div');
+    card.className = 'dk-scent-quiz__testimonial';
+
+    const header = document.createElement('div');
+    header.className = 'dk-scent-quiz__testimonial-header';
+
+    const person = document.createElement('div');
+    person.className = 'dk-scent-quiz__testimonial-person';
+
+    if (testimonial.name) {
+      const avatar = document.createElement('div');
+      avatar.className = 'dk-scent-quiz__testimonial-avatar';
+      avatar.setAttribute('aria-hidden', 'true');
+      avatar.textContent = testimonial.name.trim().charAt(0).toUpperCase();
+      person.appendChild(avatar);
+    }
+
+    const identity = document.createElement('div');
+    identity.className = 'dk-scent-quiz__testimonial-identity';
+
+    if (testimonial.name) {
+      const nameLine = document.createElement('p');
+      nameLine.className = 'dk-scent-quiz__testimonial-name';
+      nameLine.textContent = testimonial.age ? `${testimonial.name}, ${testimonial.age}` : testimonial.name;
+      identity.appendChild(nameLine);
+    }
+
+    if (testimonial.verified) {
+      const verified = document.createElement('p');
+      verified.className = 'dk-scent-quiz__testimonial-verified';
+      verified.textContent = '✓ Verified';
+      identity.appendChild(verified);
+    }
+
+    person.appendChild(identity);
+    header.appendChild(person);
+
+    if (testimonial.rating) {
+      const stars = document.createElement('div');
+      stars.className = 'dk-scent-quiz__testimonial-stars';
+      stars.setAttribute('aria-hidden', 'true');
+      stars.textContent = '★'.repeat(Math.round(testimonial.rating));
+      header.appendChild(stars);
+    }
+
+    card.appendChild(header);
+
+    const quote = document.createElement('p');
+    quote.className = 'dk-scent-quiz__testimonial-quote';
+    quote.textContent = `"${testimonial.quote}"`;
+    card.appendChild(quote);
+
+    return card;
   }
 
   /**
@@ -595,7 +650,113 @@ export class ScentQuiz extends HTMLElement {
     this.#fireWebhook(results);
     this.#fireAnalytics(results);
     this.#clearState();
+
+    if (this.#loadingConfig) {
+      await this.#renderLoadingScreen(this.#loadingConfig);
+    }
+
     this.#renderResults(results);
+  }
+
+  /**
+   * Renders the "Building your personalized profile" transitional
+   * screen shown after contact info is submitted and before results
+   * reveal — a fixed short delay with a spinner and a checklist of
+   * lines that tick off one at a time, purely a UX device (scoring
+   * itself already finished instantly, client-side, before this runs).
+   * Resolves once the delay has elapsed, so #completeQuiz can await it
+   * before moving on to results.
+   * @param {{heading?: string, items?: string[], footer?: string, durationMs?: number}} config
+   * @returns {Promise<void>}
+   */
+  #renderLoadingScreen(config) {
+    const container = this.#getStepContainer();
+    container.innerHTML = '';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'dk-scent-quiz__step dk-scent-quiz__loading';
+
+    const spinner = document.createElement('div');
+    spinner.className = 'dk-scent-quiz__loading-spinner';
+    spinner.setAttribute('aria-hidden', 'true');
+    wrap.appendChild(spinner);
+
+    if (config.heading) {
+      const heading = document.createElement('h2');
+      heading.className = 'dk-scent-quiz__prompt';
+      heading.textContent = config.heading;
+      wrap.appendChild(heading);
+    }
+
+    const items = config.items || [];
+    const checklist = document.createElement('ul');
+    checklist.className = 'dk-scent-quiz__loading-checklist';
+
+    const itemElements = items.map((itemTemplate) => {
+      const li = document.createElement('li');
+      li.className = 'dk-scent-quiz__loading-item';
+
+      const check = document.createElement('span');
+      check.className = 'dk-scent-quiz__loading-check';
+      check.setAttribute('aria-hidden', 'true');
+      check.textContent = '✓';
+      li.appendChild(check);
+
+      const text = document.createElement('span');
+      text.innerHTML = this.#renderLoadingItemText(itemTemplate);
+      li.appendChild(text);
+
+      checklist.appendChild(li);
+      return li;
+    });
+
+    wrap.appendChild(checklist);
+
+    if (config.footer) {
+      const footer = document.createElement('p');
+      footer.className = 'dk-scent-quiz__loading-footer';
+      footer.textContent = config.footer;
+      wrap.appendChild(footer);
+    }
+
+    container.appendChild(wrap);
+
+    const durationMs = config.durationMs ?? 2600;
+    const perItemDelay = itemElements.length > 0 ? durationMs / (itemElements.length + 1) : durationMs;
+
+    return new Promise((resolve) => {
+      itemElements.forEach((li, index) => {
+        setTimeout(() => li.classList.add('is-checked'), perItemDelay * (index + 1));
+      });
+      setTimeout(resolve, durationMs);
+    });
+  }
+
+  /**
+   * Fills a `{{answerKey}}` template in a loading-checklist line with
+   * the shopper's own raw answer label(s) (from #rawAnswers, matched by
+   * step id — e.g. "{{mood}} you selected" → "Fresh & clean, Floral &
+   * romantic you selected"), so the screen references their actual
+   * quiz picks rather than generic copy. Falls back to leaving the
+   * placeholder text out entirely if no matching answer is found,
+   * rather than showing a broken "{{mood}}" literal.
+   * @param {string} template
+   * @returns {string}
+   */
+  #renderLoadingItemText(template) {
+    return template.replace(/\{\{\s*([\w-]+)\s*\}\}/g, (match, stepId) => {
+      const raw = this.#rawAnswers[stepId];
+      if (raw == null) return '';
+      const label = Array.isArray(raw) ? raw.join(', ') : raw;
+      return `<mark class="dk-scent-quiz__loading-highlight">${ScentQuiz.#escapeHtml(label)}</mark>`;
+    });
+  }
+
+  /** @param {string} value @returns {string} */
+  static #escapeHtml(value) {
+    const div = document.createElement('div');
+    div.textContent = value;
+    return div.innerHTML;
   }
 
   /**
