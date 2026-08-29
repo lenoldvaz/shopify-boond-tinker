@@ -680,6 +680,19 @@ export class ScentQuiz extends HTMLElement {
    * id, including cosmeticOnly steps like "personality" that never feed
    * scoring) — so the webhook reflects exactly what the shopper clicked
    * on every question, not just the derived values.
+   *
+   * Uses Content-Type: text/plain rather than application/json — the
+   * body is still valid JSON text, but application/json makes this a
+   * CORS "non-simple" request, which forces the browser to send an
+   * OPTIONS preflight first and silently drop the actual POST if the
+   * receiving endpoint doesn't answer that preflight with the right
+   * CORS headers (confirmed via DevTools: webhook.site returned a CORS
+   * error and only the OPTIONS request ever arrived, never the POST).
+   * text/plain is a CORS "simple request" and skips preflight entirely,
+   * so the POST reaches any endpoint — including ones that don't handle
+   * CORS preflight, which many webhook receivers (Make.com, Zapier,
+   * webhook.site) don't. Parse the body as JSON on the receiving end
+   * regardless of the header — the content is unchanged.
    * @param {Array<Object>} results
    */
   #fireWebhook(results) {
@@ -698,7 +711,7 @@ export class ScentQuiz extends HTMLElement {
 
     fetch(webhookUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(payload),
     }).catch((error) => {
       console.error('[dk-scent-quiz] Webhook submission failed', error);
