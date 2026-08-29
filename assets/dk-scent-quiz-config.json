@@ -1,0 +1,114 @@
+{
+  "_comment": "Added by DK on 2026-08-11 — Boond Scent Discovery Quiz question/scoring config. See references/dk-scent-quiz-usage-guide.md for the full field reference. Edit this file to add/remove/reword questions or retune scoring weights — no Liquid or JS changes needed for that.",
+  "steps": [
+    {
+      "id": "who_for",
+      "type": "choice",
+      "prompt": "Who are you shopping for?",
+      "options": [
+        { "label": "Myself", "icon": "🧑", "sets": { "path": "self" } },
+        { "label": "A gift for someone", "icon": "🎁", "sets": { "path": "gift" } },
+        { "label": "Not sure yet", "icon": "🤔", "sets": { "path": "browse" } }
+      ]
+    },
+    {
+      "id": "mood",
+      "type": "multi",
+      "prompt": "What kind of mood pulls you in? (pick as many as you like)",
+      "minSelections": 1,
+      "options": [
+        { "label": "Fresh & clean", "icon": "🌿", "sets": { "scent_family": ["fresh", "grassy", "green"] }, "weight": 3 },
+        { "label": "Floral & romantic", "icon": "🌸", "sets": { "scent_family": ["floral"] }, "weight": 3 },
+        { "label": "Warm & earthy", "icon": "🪵", "sets": { "scent_family": ["earthy", "woody", "balsamic"] }, "weight": 3 },
+        { "label": "Rich & spicy", "icon": "🔥", "sets": { "scent_family": ["spicy", "smoky", "warm"] }, "weight": 3 }
+      ]
+    },
+    {
+      "id": "social_proof_1",
+      "type": "interstitial",
+      "heading": "You're not the only one looking for \"your\" scent",
+      "body": "Over 4,000 customers have found their signature attar through Boond.",
+      "testimonial": {
+        "quote": "I've never had a fragrance that felt this much like me. The quiz nailed it.",
+        "name": "Ananya R. — Delhi",
+        "rating": 5
+      },
+      "ctaLabel": "Continue"
+    },
+    {
+      "id": "intensity",
+      "type": "choice",
+      "prompt": "How bold should it feel?",
+      "options": [
+        { "label": "Barely-there, close to skin", "icon": "🤍", "sets": { "intensity": "subtle" }, "weight": 2 },
+        { "label": "Noticeable but soft", "icon": "💫", "sets": { "intensity": "moderate" }, "weight": 2 },
+        { "label": "Make a statement", "icon": "✨", "sets": { "intensity": "strong" }, "weight": 2 }
+      ]
+    },
+    {
+      "id": "occasion_gift",
+      "type": "choice",
+      "showIf": { "path": "gift" },
+      "prompt": "What's the occasion?",
+      "options": [
+        { "label": "Wedding / festive season", "icon": "💍", "sets": { "occasion": "festive/wedding" }, "weight": 2 },
+        { "label": "Birthday", "icon": "🎂", "sets": { "occasion": "gifting" }, "weight": 2 },
+        { "label": "Just because", "icon": "💝", "sets": { "occasion": "gifting" }, "weight": 2 },
+        { "label": "Housewarming / thank-you", "icon": "🏠", "sets": { "occasion": "gifting" }, "weight": 2 }
+      ]
+    },
+    {
+      "id": "occasion_self",
+      "type": "choice",
+      "showIf": { "path": "self" },
+      "prompt": "When would you wear this most?",
+      "options": [
+        { "label": "Everyday", "icon": "☀️", "sets": { "occasion": "daily wear" }, "weight": 2 },
+        { "label": "Date night / evenings out", "icon": "🌙", "sets": { "occasion": "date night" }, "weight": 2 },
+        { "label": "Rituals / puja time", "icon": "🪔", "sets": { "occasion": "ritual/puja" }, "weight": 2 },
+        { "label": "Special occasions", "icon": "🎉", "sets": { "occasion": "festive/wedding" }, "weight": 2 }
+      ]
+    },
+    {
+      "id": "recipient_gender",
+      "type": "choice",
+      "showIf": { "path": "gift" },
+      "prompt": "Who's the gift for?",
+      "options": [
+        { "label": "Her", "icon": "💐", "sets": { "gender": "Women" }, "weight": 1 },
+        { "label": "Him", "icon": "🎩", "sets": { "gender": "Men" }, "weight": 1 },
+        { "label": "Either / no preference", "icon": "🤝", "sets": { "gender": "Unisex" }, "weight": 1 }
+      ]
+    },
+    {
+      "id": "personality",
+      "type": "choice",
+      "prompt": "One more thing — pick the word that feels most \"you\" right now:",
+      "cosmeticOnly": true,
+      "skippable": true,
+      "options": [
+        { "label": "Grounded", "icon": "🌍" },
+        { "label": "Romantic", "icon": "💕" },
+        { "label": "Adventurous", "icon": "🧭" },
+        { "label": "Nostalgic", "icon": "📜" }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "fields": ["email", "phone", "name"],
+      "phoneOptional": true,
+      "incentiveText": "We'll include a 10% off code for your first order"
+    }
+  ],
+  "scoring": {
+    "match": [
+      { "answerKey": "scent_family", "productField": "scent_family", "mode": "intersect", "weight": 3 },
+      { "answerKey": "intensity", "productField": "intensity", "mode": "equals", "weight": 2 },
+      { "answerKey": "occasion", "productField": "occasion", "mode": "intersect", "weight": 2 },
+      { "answerKey": "gender", "productField": "gender", "mode": "equals-or-unisex", "weight": 1 }
+    ],
+    "minScoreThreshold": 3,
+    "resultCount": 3
+  }
+}

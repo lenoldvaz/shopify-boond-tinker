@@ -1,0 +1,491 @@
+{% comment %}
+  Added by DK on 2026-08-11 — Boond Scent Discovery Quiz section.
+  Renders one <dk-scent-quiz> custom element (assets/dk-scent-quiz.js).
+  This section deliberately does NOT hardcode any question markup — the
+  entire question flow, options, and scoring weights are read at runtime
+  from assets/dk-scent-quiz-config.json (or an external config, via the
+  "Config file URL" setting). Adding/editing questions later is a JSON
+  edit, not a change to this file. See
+  references/dk-scent-quiz-usage-guide.md for the full config schema and
+  merchant setup instructions.
+
+  Product data for scoring is pre-rendered here (server-side, from the
+  chosen collection) into a JSON script tag the JS reads directly — no
+  client-side API calls needed, matching this theme's existing pattern
+  (e.g. blocks/dk_scent-family.liquid's server-rendered mapping).
+{% endcomment %}
+
+<script src="{{ 'dk-scent-quiz.js' | asset_url }}" type="module"></script>
+
+{% liquid
+  assign source_collection = section.settings.collection
+  assign quiz_id = section.id
+
+  assign config_url = section.settings.config_url
+  if config_url == blank
+    assign config_url = 'dk-scent-quiz-config.json' | asset_url
+  endif
+
+  assign coupon_code = section.settings.coupon_code
+  assign coupon_amount = section.settings.coupon_discount_amount
+  assign coupon_type = section.settings.coupon_discount_type
+
+  if coupon_type == 'percentage'
+    assign coupon_text = coupon_amount | append: '% off your first order' | prepend: 'Use code below for '
+  else
+    assign coupon_text = coupon_amount | prepend: '$' | append: ' off your first order' | prepend: 'Use code below for '
+  endif
+%}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div
+  class="dk-scent-quiz-section section color-{{ section.settings.color_scheme }} spacing-style"
+  style="
+    {%- render 'spacing-style', settings: section.settings -%}
+    --dk-scent-quiz-accent: {{ section.settings.accent_color | default: '#9B2335' }};
+    --dk-scent-quiz-coupon-border: {{ section.settings.coupon_border_color | default: '#1f5f3b' }};
+    --dk-scent-quiz-coupon-bg: {{ section.settings.coupon_background_color | default: '#f4fbf3' }};
+    --dk-scent-quiz-coupon-text: {{ section.settings.coupon_text_color | default: '#163c28' }};
+  "
+>
+  <dk-scent-quiz
+    data-quiz-id="{{ quiz_id }}"
+    data-webhook-url="{{ section.settings.webhook_url | escape }}"
+    data-config-url="{{ config_url | escape }}"
+  >
+    <div class="dk-scent-quiz__progress-track">
+      <div class="dk-scent-quiz__progress-bar" data-quiz-progress-bar></div>
+    </div>
+
+    <div data-quiz-step-container></div>
+
+    {%- comment -%} Product pool the scoring engine matches against. {%- endcomment -%}
+    <script type="application/json" data-quiz-products>
+      [
+        {%- for product in source_collection.products -%}
+          {
+            "id": {{ product.id | json }},
+            "handle": {{ product.handle | json }},
+            "title": {{ product.title | json }},
+            "image": {{ product.featured_image | image_url: width: 600 | json }},
+            "price": {{ product.price | money | json }},
+            "scent_family": {{ product.metafields.custom.scent_family.value | json }},
+            "gender": {{ product.metafields.custom.gender.value | json }},
+            "occasion": {{ product.metafields.custom.occasion.value | json }},
+            "intensity": {{ product.metafields.custom.intensity.value | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {%- endfor -%}
+      ]
+    </script>
+
+    {%- comment -%}
+      Merchant-curated fallback shown when nothing scores above the
+      config's minScoreThreshold (e.g. an under-tagged catalog). Each
+      fallback slot is its own "product" schema setting (not a list
+      setting type), so they're emitted individually rather than looped.
+    {%- endcomment -%}
+    {%- liquid
+      assign fallback_count = 0
+      if section.settings.fallback_product_1 != blank
+        assign fallback_count = fallback_count | plus: 1
+      endif
+      if section.settings.fallback_product_2 != blank
+        assign fallback_count = fallback_count | plus: 1
+      endif
+      if section.settings.fallback_product_3 != blank
+        assign fallback_count = fallback_count | plus: 1
+      endif
+      assign fallback_index = 0
+    -%}
+    <script type="application/json" data-quiz-fallback-products>
+      [
+        {%- if section.settings.fallback_product_1 != blank -%}
+          {%- assign fallback_index = fallback_index | plus: 1 -%}
+          {
+            "id": {{ section.settings.fallback_product_1.id | json }},
+            "handle": {{ section.settings.fallback_product_1.handle | json }},
+            "title": {{ section.settings.fallback_product_1.title | json }},
+            "image": {{ section.settings.fallback_product_1.featured_image | image_url: width: 600 | json }},
+            "price": {{ section.settings.fallback_product_1.price | money | json }}
+          }{% if fallback_index < fallback_count %},{% endif %}
+        {%- endif -%}
+        {%- if section.settings.fallback_product_2 != blank -%}
+          {%- assign fallback_index = fallback_index | plus: 1 -%}
+          {
+            "id": {{ section.settings.fallback_product_2.id | json }},
+            "handle": {{ section.settings.fallback_product_2.handle | json }},
+            "title": {{ section.settings.fallback_product_2.title | json }},
+            "image": {{ section.settings.fallback_product_2.featured_image | image_url: width: 600 | json }},
+            "price": {{ section.settings.fallback_product_2.price | money | json }}
+          }{% if fallback_index < fallback_count %},{% endif %}
+        {%- endif -%}
+        {%- if section.settings.fallback_product_3 != blank -%}
+          {%- assign fallback_index = fallback_index | plus: 1 -%}
+          {
+            "id": {{ section.settings.fallback_product_3.id | json }},
+            "handle": {{ section.settings.fallback_product_3.handle | json }},
+            "title": {{ section.settings.fallback_product_3.title | json }},
+            "image": {{ section.settings.fallback_product_3.featured_image | image_url: width: 600 | json }},
+            "price": {{ section.settings.fallback_product_3.price | money | json }}
+          }{% if fallback_index < fallback_count %},{% endif %}
+        {%- endif -%}
+      ]
+    </script>
+
+    {%- if coupon_code != blank -%}
+      <script type="application/json" data-quiz-coupon>
+        {
+          "code": {{ coupon_code | json }},
+          "amount": {{ coupon_amount | json }},
+          "type": {{ coupon_type | json }},
+          "text": {{ coupon_text | json }}
+        }
+      </script>
+    {%- endif -%}
+  </dk-scent-quiz>
+</div>
+
+{% stylesheet %}
+  .dk-scent-quiz-section {
+    padding: 60px 24px;
+  }
+
+  .dk-scent-quiz__progress-track {
+    height: 4px;
+    background: var(--color-border, rgba(0, 0, 0, 0.08));
+    border-radius: 4px;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    overflow: hidden;
+  }
+  .dk-scent-quiz__progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--dk-scent-quiz-accent, #9B2335);
+    transition: width 0.3s ease;
+  }
+
+  .dk-scent-quiz__step {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .dk-scent-quiz__prompt {
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 0 32px;
+  }
+
+  .dk-scent-quiz__options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .dk-scent-quiz__option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.12));
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .dk-scent-quiz__option:hover {
+    border-color: var(--dk-scent-quiz-accent, #9B2335);
+  }
+  .dk-scent-quiz__option[aria-checked="true"],
+  .dk-scent-quiz__option.is-selected {
+    border-color: var(--dk-scent-quiz-accent, #9B2335);
+    background: color-mix(in srgb, var(--dk-scent-quiz-accent, #9B2335) 8%, transparent);
+  }
+  .dk-scent-quiz__option-icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .dk-scent-quiz__continue {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 999px;
+    border: none;
+    background: var(--dk-scent-quiz-accent, #9B2335);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .dk-scent-quiz__continue:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .dk-scent-quiz__continue:not(:disabled):hover {
+    opacity: 0.9;
+  }
+
+  .dk-scent-quiz__skip {
+    display: block;
+    margin: 16px auto 0;
+    background: none;
+    border: none;
+    font-size: 13px;
+    text-decoration: underline;
+    opacity: 0.6;
+    cursor: pointer;
+  }
+
+  .dk-scent-quiz__interstitial-body {
+    font-size: 15px;
+    opacity: 0.75;
+    margin-bottom: 24px;
+  }
+  .dk-scent-quiz__testimonial {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+  .dk-scent-quiz__testimonial-stars {
+    color: var(--dk-scent-quiz-accent, #9B2335);
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .dk-scent-quiz__testimonial-quote {
+    font-family: var(--font-heading--family, Georgia, serif);
+    font-style: italic;
+    font-size: 16px;
+    margin: 0 0 10px;
+  }
+  .dk-scent-quiz__testimonial-name {
+    font-size: 12px;
+    opacity: 0.6;
+    margin: 0;
+  }
+
+  .dk-scent-quiz__contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .dk-scent-quiz__incentive {
+    font-size: 13px;
+    opacity: 0.7;
+    margin: -20px 0 24px;
+  }
+  .dk-scent-quiz__input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.15));
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .dk-scent-quiz__results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .dk-scent-quiz__result-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  .dk-scent-quiz__result-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .dk-scent-quiz__result-card.is-hero img {
+    border: 2px solid var(--dk-scent-quiz-accent, #9B2335);
+  }
+  .dk-scent-quiz__result-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .dk-scent-quiz__result-price {
+    font-size: 13px;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .dk-scent-quiz__coupon {
+    border: 1px dashed var(--dk-scent-quiz-coupon-border, #1f5f3b);
+    background: var(--dk-scent-quiz-coupon-bg, #f4fbf3);
+    color: var(--dk-scent-quiz-coupon-text, #163c28);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .dk-scent-quiz__coupon-text {
+    font-size: 13px;
+    margin: 0 0 8px;
+  }
+  .dk-scent-quiz__coupon-link {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: inherit;
+  }
+
+  @media (max-width: 768px) {
+    .dk-scent-quiz-section { padding: 40px 16px; }
+    .dk-scent-quiz__prompt { font-size: 21px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "DK Scent Quiz",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Products from this collection are scored against the shopper's answers using their Scent Family, Gender, Occasion, and Intensity metafields."
+    },
+    {
+      "type": "header",
+      "content": "Fallback (shown if nothing scores well)"
+    },
+    {
+      "type": "product",
+      "id": "fallback_product_1",
+      "label": "Fallback product 1"
+    },
+    {
+      "type": "product",
+      "id": "fallback_product_2",
+      "label": "Fallback product 2"
+    },
+    {
+      "type": "product",
+      "id": "fallback_product_3",
+      "label": "Fallback product 3"
+    },
+    {
+      "type": "header",
+      "content": "Config"
+    },
+    {
+      "type": "url",
+      "id": "config_url",
+      "label": "Config file URL (optional)",
+      "info": "Leave blank to use the built-in assets/dk-scent-quiz-config.json. Set this to load questions from an external JSON file instead."
+    },
+    {
+      "type": "text",
+      "id": "webhook_url",
+      "label": "Webhook URL",
+      "info": "Where completed quiz responses are POSTed (e.g. a Make.com, Zapier, or n8n webhook). Leave blank to disable."
+    },
+    {
+      "type": "header",
+      "content": "Coupon (optional)"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code",
+      "label": "Coupon code",
+      "info": "Must already exist as a discount in Shopify admin. Leave blank to hide the coupon callout entirely."
+    },
+    {
+      "type": "range",
+      "id": "coupon_discount_amount",
+      "label": "Discount amount",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "select",
+      "id": "coupon_discount_type",
+      "label": "Discount type",
+      "options": [
+        { "value": "percentage", "label": "Percentage" },
+        { "value": "fixed_amount", "label": "Fixed amount" }
+      ],
+      "default": "percentage"
+    },
+    {
+      "type": "color",
+      "id": "coupon_border_color",
+      "label": "Coupon border color",
+      "default": "#1f5f3b"
+    },
+    {
+      "type": "color",
+      "id": "coupon_background_color",
+      "label": "Coupon background color",
+      "default": "#f4fbf3"
+    },
+    {
+      "type": "color",
+      "id": "coupon_text_color",
+      "label": "Coupon text color",
+      "default": "#163c28"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#9B2335"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0, "max": 100, "step": 4, "unit": "px", "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "DK Scent Quiz"
+    }
+  ]
+}
+{% endschema %}
