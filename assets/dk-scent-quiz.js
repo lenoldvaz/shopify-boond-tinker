@@ -655,7 +655,15 @@ export class ScentQuiz extends HTMLElement {
 
     switch (mode) {
       case 'intersect':
-        return answerList.some((a) => productList.includes(a));
+        // Case-insensitive, like 'equals' below — metafield values as
+        // typed in Shopify admin (e.g. "Floral") won't match the
+        // lowercase values used in dk-scent-quiz-config.json (e.g.
+        // "floral") under a strict Array.includes() comparison, which
+        // silently zeroed every product's score on this rule and forced
+        // every quiz completion into the fallback products.
+        return answerList.some((a) =>
+          productList.some((p) => String(a).toLowerCase() === String(p).toLowerCase())
+        );
       case 'equals':
         return answerList.some((a) => productList.some((p) => String(a).toLowerCase() === String(p).toLowerCase()));
       case 'equals-or-unisex':
