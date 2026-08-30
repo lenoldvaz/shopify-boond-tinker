@@ -763,7 +763,7 @@ export class ScentQuiz extends HTMLElement {
    * Scores every product against the collected answers using the
    * config's scoring.match rules — generic, not hardcoded per-attribute,
    * so a new rule in the config is picked up automatically.
-   * @returns {Array<Object>}
+   * @returns {Array<{product: Object, score: number, isFallback?: boolean}>}
    */
   #scoreProducts() {
     const rules = this.#scoringConfig.match || [];
@@ -862,7 +862,7 @@ export class ScentQuiz extends HTMLElement {
    * CORS preflight, which many webhook receivers (Make.com, Zapier,
    * webhook.site) don't. Parse the body as JSON on the receiving end
    * regardless of the header — the content is unchanged.
-   * @param {Array<Object>} results
+   * @param {Array<{product: Object, score: number, isFallback?: boolean}>} results
    */
   #fireWebhook(results) {
     const webhookUrl = this.dataset.webhookUrl;
@@ -894,7 +894,7 @@ export class ScentQuiz extends HTMLElement {
    * funnel's final event, paired with dk_scent_quiz_start and
    * dk_scent_quiz_step_view (fired per-step in #trackStepView) so a GA4
    * funnel exploration can show starts → each question → completions.
-   * @param {Array<Object>} results
+   * @param {Array<{product: Object, score: number, isFallback?: boolean}>} results
    */
   #fireAnalytics(results) {
     const topResult = results[0]?.product;
@@ -911,7 +911,7 @@ export class ScentQuiz extends HTMLElement {
     }
   }
 
-  /** @param {Array<Object>} [results] */
+  /** @param {Array<{product: Object, score: number, isFallback?: boolean}>} [results] */
   #renderResults(results) {
     const container = this.#getStepContainer();
     container.innerHTML = '';
@@ -928,6 +928,21 @@ export class ScentQuiz extends HTMLElement {
     heading.className = 'dk-scent-quiz__prompt';
     heading.textContent = this.#answers.name ? `Your matches, ${this.#answers.name}` : 'Your matches';
     wrap.appendChild(heading);
+
+    // Bundle card renders first (above the individual results grid) so
+    // the combined offer is the first thing seen on the results screen.
+    const bundleScript = this.querySelector('script[data-quiz-bundle]');
+    if (bundleScript && results.length >= 2) {
+      try {
+        const bundleConfig = JSON.parse(bundleScript.textContent || 'null');
+        if (bundleConfig && bundleConfig.enabled) {
+          const [first, second] = results;
+          wrap.appendChild(this.#renderBundleCard(first.product, second.product, bundleConfig));
+        }
+      } catch (error) {
+        console.error('[dk-scent-quiz] Failed to parse bundle config', error);
+      }
+    }
 
     const grid = document.createElement('div');
     grid.className = 'dk-scent-quiz__results-grid';
@@ -975,19 +990,6 @@ export class ScentQuiz extends HTMLElement {
     });
 
     wrap.appendChild(grid);
-
-    const bundleScript = this.querySelector('script[data-quiz-bundle]');
-    if (bundleScript && results.length >= 2) {
-      try {
-        const bundleConfig = JSON.parse(bundleScript.textContent || 'null');
-        if (bundleConfig && bundleConfig.enabled) {
-          const [first, second] = results;
-          wrap.appendChild(this.#renderBundleCard(first.product, second.product, bundleConfig));
-        }
-      } catch (error) {
-        console.error('[dk-scent-quiz] Failed to parse bundle config', error);
-      }
-    }
 
     const couponScript = this.querySelector('script[data-quiz-coupon]');
     if (couponScript) {
