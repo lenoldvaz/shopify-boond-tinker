@@ -933,35 +933,61 @@ export class ScentQuiz extends HTMLElement {
     grid.className = 'dk-scent-quiz__results-grid';
 
     results.forEach(({ product }, index) => {
-      const card = document.createElement('a');
+      const card = document.createElement('div');
       card.className = 'dk-scent-quiz__result-card';
       if (index === 0) card.classList.add('is-hero');
-      card.href = `/products/${product.handle}`;
+
+      if (index === 0) {
+        const badge = document.createElement('span');
+        badge.className = 'dk-scent-quiz__result-badge';
+        badge.textContent = 'Your match';
+        card.appendChild(badge);
+      }
+
+      const link = document.createElement('a');
+      link.className = 'dk-scent-quiz__result-link';
+      link.href = `/products/${product.handle}`;
 
       if (product.image) {
         const img = document.createElement('img');
         img.src = product.image;
         img.alt = product.title;
         img.loading = 'lazy';
-        card.appendChild(img);
+        link.appendChild(img);
       }
 
       const title = document.createElement('p');
       title.className = 'dk-scent-quiz__result-title';
       title.textContent = product.title;
-      card.appendChild(title);
+      link.appendChild(title);
 
       if (product.price) {
         const price = document.createElement('p');
         price.className = 'dk-scent-quiz__result-price';
         price.textContent = product.price;
-        card.appendChild(price);
+        link.appendChild(price);
       }
+
+      card.appendChild(link);
+      card.appendChild(this.#renderAddToCartButton(product));
 
       grid.appendChild(card);
     });
 
     wrap.appendChild(grid);
+
+    const bundleScript = this.querySelector('script[data-quiz-bundle]');
+    if (bundleScript && results.length >= 2) {
+      try {
+        const bundleConfig = JSON.parse(bundleScript.textContent || 'null');
+        if (bundleConfig && bundleConfig.enabled) {
+          const [first, second] = results;
+          wrap.appendChild(this.#renderBundleCard(first.product, second.product, bundleConfig));
+        }
+      } catch (error) {
+        console.error('[dk-scent-quiz] Failed to parse bundle config', error);
+      }
+    }
 
     const couponScript = this.querySelector('script[data-quiz-coupon]');
     if (couponScript) {
@@ -974,6 +1000,213 @@ export class ScentQuiz extends HTMLElement {
     }
 
     container.appendChild(wrap);
+  }
+
+  /**
+   * Renders a "Bundle & save" card offering the quiz's #1 and #2 scored
+   * products together with a single "Add both to cart" button. Adds
+   * both as separate line items via one /cart/add.js request (Shopify's
+   * cart endpoint natively accepts multiple `items` in one call), then
+   * — if a discount code is configured — redirects to
+   * /discount/{code}?redirect=/cart so Shopify applies the discount to
+   * the session and lands the shopper on their cart with both items and
+   * the discount active (the same mechanism #renderCoupon's plain
+   * callout link uses, just redirecting to /cart instead of a
+   * collection since there's already something to check out). No
+   * discount price math happens client-side — Shopify's own discount
+   * engine computes the actual total.
+   * @param {Object} productA
+   * @param {Object} productB
+   * @param {{discountCode?: string, discountAmount?: number, discountType?: 'percentage'|'fixed_amount'}} bundleConfig
+   * @returns {HTMLElement}
+   */
+  #renderBundleCard(productA, productB, bundleConfig) {
+    const card = document.createElement('div');
+    card.className = 'dk-scent-quiz__bundle';
+
+    const heading = document.createElement('p');
+    heading.className = 'dk-scent-quiz__bundle-heading';
+    heading.textContent = 'Bundle & save';
+    card.appendChild(heading);
+
+    const pair = document.createElement('div');
+    pair.className = 'dk-scent-quiz__bundle-pair';
+
+    [productA, productB].forEach((product, index) => {
+      if (index > 0) {
+        const plus = document.createElement('span');
+        plus.className = 'dk-scent-quiz__bundle-plus';
+        plus.setAttribute('aria-hidden', 'true');
+        plus.textContent = '+';
+        pair.appendChild(plus);
+      }
+
+      const item = document.createElement('div');
+      item.className = 'dk-scent-quiz__bundle-item';
+
+      if (product.image) {
+        const img = document.createElement('img');
+        img.src = product.image;
+        img.alt = product.title;
+        img.loading = 'lazy';
+        item.appendChild(img);
+      }
+
+      const title = document.createElement('p');
+      title.textContent = product.title;
+      item.appendChild(title);
+
+      pair.appendChild(item);
+    });
+
+    card.appendChild(pair);
+
+    if (bundleConfig.discountCode) {
+      const discountText = document.createElement('p');
+      discountText.className = 'dk-scent-quiz__bundle-discount-text';
+      const amountText =
+        bundleConfig.discountType === 'fixed_amount'
+          ? `$${bundleConfig.discountAmount} off`
+          : `${bundleConfig.discountAmount}% off`;
+      discountText.textContent = `Add both together and get ${amountText}`;
+      card.appendChild(discountText);
+    }
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'dk-scent-quiz__bundle-add-to-cart';
+    const defaultLabel = 'Add both to cart';
+    button.textContent = defaultLabel;
+
+    const bothAvailable =
+      productA.variantId && productA.available !== false && productB.variantId && productB.available !== false;
+
+    if (!bothAvailable) {
+      button.textContent = 'Bundle unavailable';
+      button.disabled = true;
+      return card;
+    }
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      button.textContent = 'Adding…';
+
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            items: [
+              { id: productA.variantId, quantity: 1 },
+              { id: productB.variantId, quantity: 1 },
+            ],
+          }),
+        });
+
+        if (!response.ok) {
+          const errorBody = await response.json().catch(() => null);
+          throw new Error(errorBody?.message || `Cart add failed (${response.status})`);
+        }
+
+        const addedItems = await response.json();
+
+        document.dispatchEvent(
+          new CustomEvent('cart:update', {
+            bubbles: true,
+            detail: { resource: addedItems, sourceId: 'dk-scent-quiz-bundle', data: { source: 'dk-scent-quiz-bundle' } },
+          })
+        );
+
+        if (bundleConfig.discountCode) {
+          // Redirect so Shopify applies the discount to this session and
+          // lands the shopper on their cart with both items + the
+          // discount active — the cart already has both items from the
+          // /cart/add.js call above.
+          window.location.href = `/discount/${encodeURIComponent(bundleConfig.discountCode)}?redirect=%2Fcart`;
+          return;
+        }
+
+        button.textContent = 'Added ✓';
+        setTimeout(() => {
+          button.textContent = defaultLabel;
+          button.disabled = false;
+        }, 2000);
+      } catch (error) {
+        console.error('[dk-scent-quiz] Bundle add to cart failed', error);
+        button.textContent = 'Try again';
+        button.disabled = false;
+      }
+    });
+
+    card.appendChild(button);
+    return card;
+  }
+
+  /**
+   * Builds an "Add to cart" button for a result card that POSTs
+   * directly to Shopify's cart AJAX endpoint (/cart/add.js) — no page
+   * navigation needed. On success, dispatches a `cart:update` event
+   * (the same event name the theme's own cart-drawer component
+   * listens for — see assets/cart-drawer.js / assets/events.js
+   * ThemeEvents.cartUpdate) so the site's existing cart drawer opens
+   * automatically, exactly as it would from anywhere else on the site.
+   * Falls back to a disabled "Sold out" state if the product has no
+   * variant id or is unavailable.
+   * @param {Object} product
+   * @returns {HTMLElement}
+   */
+  #renderAddToCartButton(product) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'dk-scent-quiz__result-add-to-cart';
+
+    if (!product.variantId || product.available === false) {
+      button.textContent = 'Sold out';
+      button.disabled = true;
+      return button;
+    }
+
+    const defaultLabel = 'Add to cart';
+    button.textContent = defaultLabel;
+
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      button.textContent = 'Adding…';
+
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ id: product.variantId, quantity: 1 }),
+        });
+
+        if (!response.ok) {
+          const errorBody = await response.json().catch(() => null);
+          throw new Error(errorBody?.message || `Cart add failed (${response.status})`);
+        }
+
+        const addedItem = await response.json();
+
+        document.dispatchEvent(
+          new CustomEvent('cart:update', {
+            bubbles: true,
+            detail: { resource: addedItem, sourceId: 'dk-scent-quiz', data: { source: 'dk-scent-quiz' } },
+          })
+        );
+
+        button.textContent = 'Added ✓';
+        setTimeout(() => {
+          button.textContent = defaultLabel;
+          button.disabled = false;
+        }, 2000);
+      } catch (error) {
+        console.error('[dk-scent-quiz] Add to cart failed', error);
+        button.textContent = 'Try again';
+        button.disabled = false;
+      }
+    });
+
+    return button;
   }
 
   /**

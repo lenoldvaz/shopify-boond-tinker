@@ -68,7 +68,9 @@
             "handle": {{ product.handle | json }},
             "title": {{ product.title | json }},
             "image": {{ product.featured_image | image_url: width: 600 | json }},
-            "price": {{ product.price | money | json }},
+            "price": {{ product.price | money | strip_html | json }},
+            "variantId": {{ product.selected_or_first_available_variant.id | json }},
+            "available": {{ product.selected_or_first_available_variant.available | json }},
             "scent_family": {{ product.metafields.custom.scent_family.value | json }},
             "gender": {{ product.metafields.custom.gender.value | json }},
             "occasion": {{ product.metafields.custom.occasion.value | json }},
@@ -106,7 +108,9 @@
             "handle": {{ section.settings.fallback_product_1.handle | json }},
             "title": {{ section.settings.fallback_product_1.title | json }},
             "image": {{ section.settings.fallback_product_1.featured_image | image_url: width: 600 | json }},
-            "price": {{ section.settings.fallback_product_1.price | money | json }}
+            "price": {{ section.settings.fallback_product_1.price | money | strip_html | json }},
+            "variantId": {{ section.settings.fallback_product_1.selected_or_first_available_variant.id | json }},
+            "available": {{ section.settings.fallback_product_1.selected_or_first_available_variant.available | json }}
           }{% if fallback_index < fallback_count %},{% endif %}
         {%- endif -%}
         {%- if section.settings.fallback_product_2 != blank -%}
@@ -116,7 +120,9 @@
             "handle": {{ section.settings.fallback_product_2.handle | json }},
             "title": {{ section.settings.fallback_product_2.title | json }},
             "image": {{ section.settings.fallback_product_2.featured_image | image_url: width: 600 | json }},
-            "price": {{ section.settings.fallback_product_2.price | money | json }}
+            "price": {{ section.settings.fallback_product_2.price | money | strip_html | json }},
+            "variantId": {{ section.settings.fallback_product_2.selected_or_first_available_variant.id | json }},
+            "available": {{ section.settings.fallback_product_2.selected_or_first_available_variant.available | json }}
           }{% if fallback_index < fallback_count %},{% endif %}
         {%- endif -%}
         {%- if section.settings.fallback_product_3 != blank -%}
@@ -126,7 +132,9 @@
             "handle": {{ section.settings.fallback_product_3.handle | json }},
             "title": {{ section.settings.fallback_product_3.title | json }},
             "image": {{ section.settings.fallback_product_3.featured_image | image_url: width: 600 | json }},
-            "price": {{ section.settings.fallback_product_3.price | money | json }}
+            "price": {{ section.settings.fallback_product_3.price | money | strip_html | json }},
+            "variantId": {{ section.settings.fallback_product_3.selected_or_first_available_variant.id | json }},
+            "available": {{ section.settings.fallback_product_3.selected_or_first_available_variant.available | json }}
           }{% if fallback_index < fallback_count %},{% endif %}
         {%- endif -%}
       ]
@@ -139,6 +147,23 @@
           "amount": {{ coupon_amount | json }},
           "type": {{ coupon_type | json }},
           "text": {{ coupon_text | json }}
+        }
+      </script>
+    {%- endif -%}
+
+    {%- comment -%}
+      Bundle settings — the "Suggest a bundle of the top 2 matches"
+      toggle. When enabled, the JS shows a combined "Add both to cart"
+      card for the quiz's #1 and #2 scored results (no separate product
+      pool needed here, since it always reuses the same scored results).
+    {%- endcomment -%}
+    {%- if section.settings.bundle_enabled -%}
+      <script type="application/json" data-quiz-bundle>
+        {
+          "enabled": true,
+          "discountCode": {{ section.settings.bundle_discount_code | json }},
+          "discountAmount": {{ section.settings.bundle_discount_amount | json }},
+          "discountType": {{ section.settings.bundle_discount_type | json }}
         }
       </script>
     {%- endif -%}
@@ -423,6 +448,28 @@
     text-align: left;
   }
   .dk-scent-quiz__result-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .dk-scent-quiz__result-card.is-hero {
+    background: color-mix(in srgb, var(--dk-scent-quiz-accent, #9B2335) 5%, transparent);
+    border-radius: 16px;
+    padding: 10px;
+  }
+  .dk-scent-quiz__result-badge {
+    align-self: flex-start;
+    background: var(--dk-scent-quiz-accent, #9B2335);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .dk-scent-quiz__result-link {
     display: block;
     text-decoration: none;
     color: inherit;
@@ -434,9 +481,6 @@
     border-radius: 12px;
     margin-bottom: 10px;
   }
-  .dk-scent-quiz__result-card.is-hero img {
-    border: 2px solid var(--dk-scent-quiz-accent, #9B2335);
-  }
   .dk-scent-quiz__result-title {
     font-size: 14px;
     font-weight: 600;
@@ -445,7 +489,102 @@
   .dk-scent-quiz__result-price {
     font-size: 13px;
     opacity: 0.7;
+    margin: 0 0 12px;
+  }
+  .dk-scent-quiz__result-add-to-cart {
+    margin-top: auto;
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--dk-scent-quiz-accent, #9B2335);
+    background: transparent;
+    color: var(--dk-scent-quiz-accent, #9B2335);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .dk-scent-quiz__result-card.is-hero .dk-scent-quiz__result-add-to-cart {
+    background: var(--dk-scent-quiz-accent, #9B2335);
+    color: #fff;
+  }
+  .dk-scent-quiz__result-add-to-cart:not(:disabled):hover {
+    opacity: 0.85;
+  }
+  .dk-scent-quiz__result-add-to-cart:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .dk-scent-quiz__bundle {
+    background: var(--color-background, #fff);
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .dk-scent-quiz__bundle-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dk-scent-quiz-accent, #9B2335);
+    margin: 0 0 16px;
+  }
+  .dk-scent-quiz__bundle-pair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .dk-scent-quiz__bundle-item {
+    flex: 1;
+    max-width: 140px;
+  }
+  .dk-scent-quiz__bundle-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .dk-scent-quiz__bundle-item p {
+    font-size: 12px;
+    font-weight: 600;
     margin: 0;
+  }
+  .dk-scent-quiz__bundle-plus {
+    flex-shrink: 0;
+    font-size: 18px;
+    opacity: 0.4;
+  }
+  .dk-scent-quiz__bundle-discount-text {
+    font-size: 13px;
+    opacity: 0.75;
+    margin: 0 0 16px;
+  }
+  .dk-scent-quiz__bundle-add-to-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 999px;
+    border: none;
+    background: var(--dk-scent-quiz-accent, #9B2335);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+  }
+  .dk-scent-quiz__bundle-add-to-cart:not(:disabled):hover {
+    opacity: 0.9;
+  }
+  .dk-scent-quiz__bundle-add-to-cart:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
   .dk-scent-quiz__coupon {
@@ -570,6 +709,45 @@
       "id": "coupon_text_color",
       "label": "Coupon text color",
       "default": "#163c28"
+    },
+    {
+      "type": "header",
+      "content": "Bundle (optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "bundle_enabled",
+      "label": "Suggest a bundle of the top 2 matches",
+      "info": "Shows a combined \"Add both to cart\" card below the individual results, offering the shopper's #1 and #2 highest-scoring products together.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "bundle_discount_code",
+      "label": "Bundle discount code",
+      "info": "Must already exist as a discount in Shopify admin. Leave blank to show the bundle without a discount (add-both at full price).",
+      "visible_if": "{{ section.settings.bundle_enabled }}"
+    },
+    {
+      "type": "range",
+      "id": "bundle_discount_amount",
+      "label": "Bundle discount amount",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 10,
+      "visible_if": "{{ section.settings.bundle_enabled }}"
+    },
+    {
+      "type": "select",
+      "id": "bundle_discount_type",
+      "label": "Bundle discount type",
+      "options": [
+        { "value": "percentage", "label": "Percentage" },
+        { "value": "fixed_amount", "label": "Fixed amount" }
+      ],
+      "default": "percentage",
+      "visible_if": "{{ section.settings.bundle_enabled }}"
     },
     {
       "type": "header",
