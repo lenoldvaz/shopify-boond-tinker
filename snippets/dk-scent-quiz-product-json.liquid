@@ -1,0 +1,27 @@
+{% comment %}
+  Added by DK on 2026-08-30 — Renders one product's JSON object for the
+  DK Scent Quiz (sections/dk_scent-quiz.liquid), including whatever
+  custom metafields the section's "Product metafields" setting lists.
+  Shared by the main collection loop and all fallback product slots so
+  the field list only needs to be maintained in one place.
+
+  Usage: {% render 'dk-scent-quiz-product-json', product: product, metafield_keys: metafield_keys %}
+
+  @param {product} product - the product to render
+  @param {array} metafield_keys - list of product.metafields.custom.{key} names to include
+{% endcomment %}
+{
+  "id": {{ product.id | json }},
+  "handle": {{ product.handle | json }},
+  "title": {{ product.title | json }},
+  "image": {{ product.featured_image | image_url: width: 600 | json }},
+  "price": {{ product.price | money | strip_html | json }},
+  "variantId": {{ product.selected_or_first_available_variant.id | json }},
+  "available": {{ product.selected_or_first_available_variant.available | json }}
+  {%- for key in metafield_keys -%}
+    {%- assign key = key | strip -%}
+    {%- if key != blank -%}
+      ,"{{ key }}": {{ product.metafields.custom[key].value | json }}
+    {%- endif -%}
+  {%- endfor -%}
+}

@@ -26,6 +26,13 @@
     assign config_url = 'dk-scent-quiz-config.json' | asset_url
   endif
 
+  # Which product.metafields.custom.{key} values to emit per product, so
+  # the quiz config's scoring.match rules can reference them by
+  # productField. Store-specific (e.g. "scent_family,gender,occasion,
+  # intensity") — a comma-separated list in one setting, since Liquid
+  # can't read the JS config file at render time to discover this itself.
+  assign metafield_keys = section.settings.product_metafields | split: ','
+
   assign coupon_code = section.settings.coupon_code
   assign coupon_amount = section.settings.coupon_discount_amount
   assign coupon_type = section.settings.coupon_discount_type
@@ -63,19 +70,8 @@
     <script type="application/json" data-quiz-products>
       [
         {%- for product in source_collection.products -%}
-          {
-            "id": {{ product.id | json }},
-            "handle": {{ product.handle | json }},
-            "title": {{ product.title | json }},
-            "image": {{ product.featured_image | image_url: width: 600 | json }},
-            "price": {{ product.price | money | strip_html | json }},
-            "variantId": {{ product.selected_or_first_available_variant.id | json }},
-            "available": {{ product.selected_or_first_available_variant.available | json }},
-            "scent_family": {{ product.metafields.custom.scent_family.value | json }},
-            "gender": {{ product.metafields.custom.gender.value | json }},
-            "occasion": {{ product.metafields.custom.occasion.value | json }},
-            "intensity": {{ product.metafields.custom.intensity.value | json }}
-          }{% unless forloop.last %},{% endunless %}
+          {%- render 'dk-scent-quiz-product-json', product: product, metafield_keys: metafield_keys -%}
+          {%- unless forloop.last -%},{%- endunless -%}
         {%- endfor -%}
       ]
     </script>
@@ -103,39 +99,18 @@
       [
         {%- if section.settings.fallback_product_1 != blank -%}
           {%- assign fallback_index = fallback_index | plus: 1 -%}
-          {
-            "id": {{ section.settings.fallback_product_1.id | json }},
-            "handle": {{ section.settings.fallback_product_1.handle | json }},
-            "title": {{ section.settings.fallback_product_1.title | json }},
-            "image": {{ section.settings.fallback_product_1.featured_image | image_url: width: 600 | json }},
-            "price": {{ section.settings.fallback_product_1.price | money | strip_html | json }},
-            "variantId": {{ section.settings.fallback_product_1.selected_or_first_available_variant.id | json }},
-            "available": {{ section.settings.fallback_product_1.selected_or_first_available_variant.available | json }}
-          }{% if fallback_index < fallback_count %},{% endif %}
+          {%- render 'dk-scent-quiz-product-json', product: section.settings.fallback_product_1, metafield_keys: metafield_keys -%}
+          {%- if fallback_index < fallback_count -%},{%- endif -%}
         {%- endif -%}
         {%- if section.settings.fallback_product_2 != blank -%}
           {%- assign fallback_index = fallback_index | plus: 1 -%}
-          {
-            "id": {{ section.settings.fallback_product_2.id | json }},
-            "handle": {{ section.settings.fallback_product_2.handle | json }},
-            "title": {{ section.settings.fallback_product_2.title | json }},
-            "image": {{ section.settings.fallback_product_2.featured_image | image_url: width: 600 | json }},
-            "price": {{ section.settings.fallback_product_2.price | money | strip_html | json }},
-            "variantId": {{ section.settings.fallback_product_2.selected_or_first_available_variant.id | json }},
-            "available": {{ section.settings.fallback_product_2.selected_or_first_available_variant.available | json }}
-          }{% if fallback_index < fallback_count %},{% endif %}
+          {%- render 'dk-scent-quiz-product-json', product: section.settings.fallback_product_2, metafield_keys: metafield_keys -%}
+          {%- if fallback_index < fallback_count -%},{%- endif -%}
         {%- endif -%}
         {%- if section.settings.fallback_product_3 != blank -%}
           {%- assign fallback_index = fallback_index | plus: 1 -%}
-          {
-            "id": {{ section.settings.fallback_product_3.id | json }},
-            "handle": {{ section.settings.fallback_product_3.handle | json }},
-            "title": {{ section.settings.fallback_product_3.title | json }},
-            "image": {{ section.settings.fallback_product_3.featured_image | image_url: width: 600 | json }},
-            "price": {{ section.settings.fallback_product_3.price | money | strip_html | json }},
-            "variantId": {{ section.settings.fallback_product_3.selected_or_first_available_variant.id | json }},
-            "available": {{ section.settings.fallback_product_3.selected_or_first_available_variant.available | json }}
-          }{% if fallback_index < fallback_count %},{% endif %}
+          {%- render 'dk-scent-quiz-product-json', product: section.settings.fallback_product_3, metafield_keys: metafield_keys -%}
+          {%- if fallback_index < fallback_count -%},{%- endif -%}
         {%- endif -%}
       ]
     </script>
@@ -626,7 +601,14 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection",
-      "info": "Products from this collection are scored against the shopper's answers using their Scent Family, Gender, Occasion, and Intensity metafields."
+      "info": "Products from this collection are scored against the shopper's answers using the metafields listed below."
+    },
+    {
+      "type": "text",
+      "id": "product_metafields",
+      "label": "Product metafields",
+      "default": "scent_family,gender,occasion,intensity",
+      "info": "Comma-separated list of product.metafields.custom.{key} names to pull per product (e.g. scent_family,gender). Must match the productField values used in your quiz config's scoring.match rules."
     },
     {
       "type": "header",
