@@ -44,7 +44,7 @@
     "button_border_radius_primary": 4,
     "secondary_button_border_width": 0,
     "button_border_radius_secondary": 4,
-    "cart_type": "page",
+    "cart_type": "drawer",
     "auto_open_cart_drawer": true,
     "show_accelerated_checkout_buttons": false,
     "popover_border": "none",
@@ -71,11 +71,6 @@
           "button_horizontal_position": "bottom_right",
           "button_vertical_position": "lowest"
         }
-      },
-      "6065014864672580889": {
-        "type": "shopify://apps/amp-slide-cart-drawer/blocks/app-embed/0a410b8d-7dc4-4f2d-b4e8-c12d34fd2255",
-        "disabled": false,
-        "settings": {}
       },
       "12973772748516043749": {
         "type": "shopify://apps/bitespeed-whatsapp-marketing/blocks/app-embed/9efdb9ca-2d01-4a12-b1ac-02679fe0f6fc",
@@ -140,6 +135,11 @@
       "10840395464443086010": {
         "type": "shopify://apps/alia/blocks/customer-app-frame/51f1d398-3e41-44da-b81e-defd5804b292",
         "disabled": false,
+        "settings": {}
+      },
+      "6065014864672580889": {
+        "type": "shopify://apps/amp-slide-cart-drawer/blocks/app-embed/0a410b8d-7dc4-4f2d-b4e8-c12d34fd2255",
+        "disabled": true,
         "settings": {}
       }
     },
