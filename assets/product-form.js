@@ -87,8 +87,6 @@ export class AddToCartComponent extends Component {
       addToCartButton.classList.add('atc-added');
     }
 
-    handleFloCartBtn();
-
     this.#animationTimeout = setTimeout(() => {
       this.#cleanupTimeout = setTimeout(() => {
         this.refs.addToCartButton.classList.remove('atc-added');
