@@ -115,7 +115,7 @@
           "settings": {
             "parent": "1",
             "group_label": "Shop by Category",
-            "title": "Multi Packs (Attars & Dhoop)",
+            "title": "Combos (Attars & Dhoop)",
             "url": "shopify://collections/gifting",
             "image": "shopify://shop_images/DSCF0459_1.jpg",
             "image_placeholder": "#e2ddd5"
