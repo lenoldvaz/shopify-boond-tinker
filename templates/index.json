@@ -45,11 +45,10 @@
         "slide_h9c6cw": {
           "type": "_slide",
           "name": "t:names.slide",
-          "disabled": true,
           "settings": {
             "media_type_1": "image",
-            "slide_link": "",
-            "image_1": "shopify://shop_images/Rajni_gandha_Banner_Desktop.png",
+            "slide_link": "shopify://collections/gifting",
+            "image_1": "shopify://shop_images/Banner_Desktop_6.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
@@ -457,11 +456,10 @@
         "slide_qEPWNc": {
           "type": "_slide",
           "name": "t:names.slide",
-          "disabled": true,
           "settings": {
             "media_type_1": "image",
-            "slide_link": "",
-            "image_1": "shopify://shop_images/Rajni_gandha_banner_mobile.png",
+            "slide_link": "shopify://collections/gifting",
+            "image_1": "shopify://shop_images/Banner_Mobile_4.png",
             "content_direction": "column",
             "vertical_on_mobile": true,
             "horizontal_alignment": "flex-start",
