@@ -235,6 +235,8 @@ class ProductFormComponent extends Component {
             }, 5000);
           }
 
+          handleFloCartBtn();
+
           this.dispatchEvent(
             new CartAddEvent({}, id.toString(), {
               source: 'product-form-component',
