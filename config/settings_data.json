@@ -47,6 +47,7 @@
     "cart_type": "drawer",
     "auto_open_cart_drawer": true,
     "show_accelerated_checkout_buttons": false,
+    "drawer_drop_shadow": true,
     "popover_border": "none",
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
@@ -130,11 +131,6 @@
       "10840395464443086010": {
         "type": "shopify://apps/alia/blocks/customer-app-frame/51f1d398-3e41-44da-b81e-defd5804b292",
         "disabled": false,
-        "settings": {}
-      },
-      "6065014864672580889": {
-        "type": "shopify://apps/amp-slide-cart-drawer/blocks/app-embed/0a410b8d-7dc4-4f2d-b4e8-c12d34fd2255",
-        "disabled": true,
         "settings": {}
       },
       "12973772748516043749": {
