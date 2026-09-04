@@ -537,6 +537,8 @@
             this.style.background = '#10b981';
             this.style.borderColor = '#10b981';
             this.style.color = '#fff';
+
+            handleFloCartBtn();
             
             // Trigger cart update event
             document.dispatchEvent(new CustomEvent('cart:updated'));
