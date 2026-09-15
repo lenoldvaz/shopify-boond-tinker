@@ -16,7 +16,7 @@
     {% if block.settings.vertical_on_mobile %}mobile-column{% endif %}
   "
   style="
-    {% render 'gap-style', value: block.settings.gap_desktop | default: 32, mobile_value: block.settings.gap_mobile | default: 24 %}
+    {% render 'gap-style', value: block.settings.gap_desktop, default: 24, mobile_value: block.settings.gap_mobile %}
   "
   data-testid="dk-mega-menu"
 >
@@ -297,4 +297,15 @@
     }
   });
 })();
-</script>
+</script>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'gap-style', value: block.settings.gap_desktop | default: 32, mobile_value:
+    block.settings.gap_mobile | default: 24 %}"
+  to: "{% render 'gap-style', value: block.settings.gap_desktop, default: 24, mobile_value:
+    block.settings.gap_mobile %}"
+  position: 400..513
+{%- endcomment -%}

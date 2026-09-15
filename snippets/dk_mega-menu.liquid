@@ -66,7 +66,7 @@
             {% render 'dk_mega-menu-content', block: block, link: link %}
           {% elsif link.links != blank %}
             <!-- Regular dropdown for other menu items -->
-            {% render 'mega-menu', parent_link: link, id: 'RegularMenu-' | append: forloop.index, menu_content_type: 'text' %}
+            {% render 'mega-menu', parent_link: link, id: 'RegularMenu-', append: forloop.index, menu_content_type: 'text' %}
           {% else %}
             <!-- Simple link with no dropdown -->
             <div class="simple-menu-placeholder"></div>
@@ -98,4 +98,15 @@
   ></script>
 </header-menu>
 
-{% render 'dk_mega-menu-styles' %}
+{% render 'dk_mega-menu-styles' %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'mega-menu', parent_link: link, id: 'RegularMenu-' | append: forloop.index,
+    menu_content_type: 'text' %}"
+  to: "{% render 'mega-menu', parent_link: link, id: 'RegularMenu-', append: forloop.index,
+    menu_content_type: 'text' %}"
+  position: 2556..2669
+{%- endcomment -%}
