@@ -200,7 +200,7 @@
                     <a href="{{ block.settings.url | default: '#' }}" class="dk-hdr__dd-row" {{ block.shopify_attributes }}>
                       {%- if block.settings.image != blank -%}
                         <div class="dk-hdr__dd-thumb">
-                          {{- block.settings.image | image_url: width: 80 | image_tag: loading: 'lazy', widths: '60, 80', class: 'dk-hdr__dd-thumb-img', alt: block.settings.image -}}
+                          {{- block.settings.image | image_url: width: 80 | image_tag: loading: 'lazy', widths: '60, 80', class: 'dk-hdr__dd-thumb-img', alt: block.settings.image.alt -}}
                         </div>
                       {%- elsif block.settings.image_placeholder != blank -%}
                         <div class="dk-hdr__dd-thumb dk-hdr__dd-thumb--color" style="background: {{ block.settings.image_placeholder }};"></div>
