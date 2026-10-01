@@ -242,7 +242,7 @@
     {%- comment -%} CENTER: logo {%- endcomment -%}
     <a href="{{ routes.root_url }}" class="dk-hdr__logo" aria-label="{{ shop.name }}">
       {%- if section.settings.logo_image != blank -%}
-        {{- section.settings.logo_image | image_url: height: 58 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'dk-hdr__logo-img' -}}
+        {{- section.settings.logo_image | image_url: height: 58 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'dk-hdr__logo-img', alt: "Boond Fragrances" -}}
       {%- else -%}
         <svg width="88" height="58" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M 10 68 A 50 50 0 0 1 110 68" fill="none" stroke="{{ logo_color }}" stroke-width="1.8"/>
