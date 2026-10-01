@@ -20,7 +20,7 @@
   <div class="dk-hdr__drawer-top">
     <a href="{{ routes.root_url }}" aria-label="{{ shop.name }}" onclick="dkHdrClose()">
       {%- if section.settings.logo_image != blank -%}
-        {{- section.settings.logo_image | image_url: height: 44 | image_tag: loading: 'eager', class: 'dk-hdr__drawer-logo-img' -}}
+        {{- section.settings.logo_image | image_url: height: 44 | alt: "boondfragrances" | image_tag: loading: 'eager', class: 'dk-hdr__drawer-logo-img' -}}
       {%- else -%}
         <svg width="66" height="44" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M 10 68 A 50 50 0 0 1 110 68" fill="none" stroke="{{ logo_color }}" stroke-width="1.8"/>
