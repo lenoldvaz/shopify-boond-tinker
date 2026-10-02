@@ -64,3 +64,43 @@
   }
   </script>
 {%- endif -%}
+
+
+{%- if request.page_type == 'collection' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": "{{ shop.url }}{{ collection.url }}#webpage",
+        "url": "{{ shop.url }}{{ collection.url }}",
+        "name": {{ collection.title | json }},
+        "description": {{ collection.description | strip_html | json }},
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "{{ shop.url }}/#website",
+          "name": {{ shop.name | json }},
+          "url": "{{ shop.url }}"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "{{ shop.url }}{{ collection.url }}#itemlist",
+        "name": {{ collection.title | json }},
+        "numberOfItems": {{ collection.products_count }},
+        "itemListElement": [
+          {%- for product in collection.products -%}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.index }},
+              "url": "{{ shop.url }}{{ product.url }}",
+              "name": {{ product.title | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {%- endfor -%}
+        ]
+      }
+    ]
+  }
+  </script>
+{%- endif -%}
