@@ -313,6 +313,10 @@
                 "padding-inline-end": 24
               },
               "blocks": {
+                "judge_me_reviews_preview_badge_DUHkf4": {
+                  "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+                  "settings": {}
+                },
                 "dk_scent_family_C0LL01": {
                   "type": "dk_scent-family",
                   "name": "DK Scent Family",
@@ -402,6 +406,7 @@
                 }
               },
               "block_order": [
+                "judge_me_reviews_preview_badge_DUHkf4",
                 "dk_scent_family_C0LL01",
                 "product_title_NzQUxN",
                 "price",
