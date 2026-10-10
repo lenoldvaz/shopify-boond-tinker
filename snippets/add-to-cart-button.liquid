@@ -15,7 +15,7 @@
   assign default_add_to_cart_text = 'actions.add_to_cart' | t
   
   assign is_preorder = false
-  if current_variant.inventory_policy == 'continue' 
+  if current_variant.inventory_policy == 'continue' and product.handle == 'satparni-natural-perfume-oil'
     assign is_preorder = true
     assign default_add_to_cart_text = 'Pre-order'
   endif
