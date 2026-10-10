@@ -15,7 +15,7 @@
   assign default_add_to_cart_text = 'actions.add_to_cart' | t
   
   assign is_preorder = false
-  if current_variant.inventory_policy == 'continue' and current_variant.inventory_quantity <= 0
+  if current_variant.inventory_policy == 'continue' 
     assign is_preorder = true
     assign default_add_to_cart_text = 'Pre-order'
   endif
