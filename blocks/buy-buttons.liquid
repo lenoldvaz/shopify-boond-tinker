@@ -70,6 +70,15 @@
           value=""
           disabled
         >
+
+          {%- liquid
+              assign current_variant = product.selected_or_first_available_variant
+              
+              assign is_preorder = false
+              if current_variant.inventory_policy == 'continue' and product.handle == 'satparni-natural-perfume-oil'
+                assign is_preorder = true
+              endif
+          %}
         <div
           class="product-form-buttons spacing-style{% if block.settings.stacking %} product-form-buttons--stacked{% endif %}"
           style="{% render 'spacing-style', settings: block.settings %}"
@@ -95,6 +104,9 @@
             can_add_to_cart: can_add_to_cart
           %}
         </div>
+        {%  if is_preorder %}
+          <p>Pre-Order | Get it Delivered by Nov 5th</p>
+        {% endif %}
       {%- endform -%}
     </product-form-component>
   {%- else -%}
