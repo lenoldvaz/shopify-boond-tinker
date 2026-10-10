@@ -9,7 +9,11 @@
     right: 40px; 
     z-index: 1000;
 }
-
+p.preordertext {
+    color: #b20000;
+    font-size: 15px;
+    font-weight: 500;
+}
 
 @media screen and (max-width: 768px) {
   
