@@ -2,18 +2,26 @@
   This snippet is used to display the add to cart button.
   Intended for add-to-cart.liquid block.
 
-  @param {string} can_add_to_cart - Whether the product can be added to the cart
-  @param {string} add_to_cart_text - The text of the add to cart button
-  @param {string} product - The product to add to the cart
-  @param {boolean} [icon_only_on_mobile] - Whether the icon is only visible on mobile
-  @param {string} class - The class of the button
-  @param {string} [id] - The id of the button
+-   @param {string} can_add_to_cart Whether the product can be added to the cart
+-   @param {string} add_to_cart_text The text of the add to cart button
+-   @param {string} product The product to add to the cart
+-   @param {boolean} [icon_only_on_mobile] Whether the icon is only visible on mobile
+-   @param {string} class The class of the button
+-   @param {string} [id] The id of the button
 {% enddoc %}
 
 {%- liquid
+  assign current_variant = product.selected_or_first_available_variant
   assign default_add_to_cart_text = 'actions.add_to_cart' | t
-  assign product_variant_media = product.selected_or_first_available_variant.featured_media.preview_image | image_url: width: 100
-  if product.selected_or_first_available_variant.featured_media.preview_image == blank
+  
+  assign is_preorder = false
+  if current_variant.inventory_policy == 'continue' and current_variant.inventory_quantity <= 0
+    assign is_preorder = true
+    assign default_add_to_cart_text = 'Pre-order'
+  endif
+
+  assign product_variant_media = current_variant.featured_media.preview_image | image_url: width: 100
+  if current_variant.featured_media.preview_image == blank
     assign product_variant_media = product.featured_media.preview_image | image_url: width: 100
   endif
 -%}
@@ -28,7 +36,7 @@
     name="add"
     ref="addToCartButton"
     on:click="/handleClick"
-    class="button {{ class }}"
+    class="button {{ class }}{% if is_preorder %} button--pre-order{% endif %}"
     {% unless can_add_to_cart %}
       disabled
     {% endunless %}
@@ -41,8 +49,13 @@
           {{- 'icon-add-to-cart.svg' | inline_asset_content -}}
         </span>
       {% endif %}
+      
       <span class="add-to-cart-text__content{% if icon_only_on_mobile %} is-visually-hidden-mobile{% endif %}">
-        {{- add_to_cart_text | default: default_add_to_cart_text -}}
+        {%- if add_to_cart_text != blank -%}
+          {{- add_to_cart_text -}}
+        {%- else -%}
+          {{- default_add_to_cart_text -}}
+        {%- endif -%}
       </span>
     </span>
     <span
