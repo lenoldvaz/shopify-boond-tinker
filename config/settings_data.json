@@ -459,11 +459,11 @@
       },
       "scheme-b3a25b27-d4c8-405d-9ec9-3c58ee7a060c": {
         "settings": {
-          "background": "#B20000",
-          "foreground_heading": "#FFFFFF",
-          "foreground": "#FFFFFF",
-          "primary": "#FFFFFF",
-          "primary_hover": "#FFFFFF",
+          "background": "#861F1F",
+          "foreground_heading": "#ffffff",
+          "foreground": "#ffffff",
+          "primary": "#ffffff",
+          "primary_hover": "#ffffff",
           "border": "#e6e6e6",
           "shadow": "#000000",
           "primary_button_background": "#b20000",
