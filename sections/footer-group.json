@@ -541,7 +541,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4>Get in touch</h4>",
+                    "text": "<h5>Get in touch</h5>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
