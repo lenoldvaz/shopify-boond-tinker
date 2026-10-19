@@ -26,7 +26,7 @@
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap_desktop": 12,
+            "gap_desktop": 20,
             "gap_mobile": 12,
             "width": "fill",
             "custom_width": 67,
