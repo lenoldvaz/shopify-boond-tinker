@@ -397,6 +397,9 @@
         "group_WrnKGL",
         "group_dHmNgL"
       ],
+      "custom_css": [
+        ".group-block.group-block--height-fit.group-block--width-custom.border-style.spacing-style.size-style {border-radius: 20px; overflow: hidden;}"
+      ],
       "name": "t:names.image_with_text",
       "settings": {
         "content_direction": "row",
