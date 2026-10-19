@@ -449,7 +449,7 @@
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -468,11 +468,11 @@
           },
           "blocks": {}
         },
-        "image_7qCRF9": {
+        "image_PDgbnT": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -491,11 +491,11 @@
           },
           "blocks": {}
         },
-        "image_w9FPXb": {
+        "image_bPA8tT": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -514,11 +514,11 @@
           },
           "blocks": {}
         },
-        "image_g9gweT": {
+        "image_q3YhFF": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -537,11 +537,11 @@
           },
           "blocks": {}
         },
-        "image_DtQtd4": {
+        "image_9QV6FC": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -560,11 +560,11 @@
           },
           "blocks": {}
         },
-        "image_WaTBfe": {
+        "image_ppnbLG": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -583,11 +583,11 @@
           },
           "blocks": {}
         },
-        "image_4HaQPQ": {
+        "image_TGjMUh": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -606,11 +606,11 @@
           },
           "blocks": {}
         },
-        "image_rzcEGx": {
+        "image_8XQUMt": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -629,11 +629,80 @@
           },
           "blocks": {}
         },
-        "image_gr8nEp": {
+        "image_aVAXgz": {
           "type": "image",
           "name": "t:names.image",
           "settings": {
-            "image": "shopify://shop_images/VOGUE_LOGO_svg.png",
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
+          },
+          "blocks": {}
+        },
+        "image_3paCAB": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
+          },
+          "blocks": {}
+        },
+        "image_THYNmh": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
+            "link": "",
+            "image_ratio": "adapt",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 10,
+            "padding-inline-end": 10
+          },
+          "blocks": {}
+        },
+        "image_D7fk94": {
+          "type": "image",
+          "name": "t:names.image",
+          "settings": {
+            "image": "shopify://shop_images/VOGUE_LOGO_svg-white.png",
             "link": "",
             "image_ratio": "adapt",
             "width": "fit-content",
@@ -655,14 +724,17 @@
       },
       "block_order": [
         "image_JRmEW3",
-        "image_7qCRF9",
-        "image_w9FPXb",
-        "image_g9gweT",
-        "image_DtQtd4",
-        "image_WaTBfe",
-        "image_4HaQPQ",
-        "image_rzcEGx",
-        "image_gr8nEp"
+        "image_PDgbnT",
+        "image_bPA8tT",
+        "image_q3YhFF",
+        "image_9QV6FC",
+        "image_ppnbLG",
+        "image_TGjMUh",
+        "image_8XQUMt",
+        "image_aVAXgz",
+        "image_3paCAB",
+        "image_THYNmh",
+        "image_D7fk94"
       ],
       "name": "Logo Carousel",
       "settings": {
