@@ -1,7 +1,4 @@
-{% doc %}
-  @prompt
-    a logo carousel showing the various publications we have been featured on, the title and subtitle should be centered on the page and the carousel should take the color scheme from the section
-{% enddoc %}
+
 
 {%- liquid
   assign section_id = section.id | replace: '_', '' | downcase
@@ -31,7 +28,6 @@
   .fresh-logo-carousel__wrapper-{{ section_id }} {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
   }
 
   .fresh-logo-carousel__header-{{ section_id }} {
