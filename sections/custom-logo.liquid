@@ -9,7 +9,6 @@
   assign logo_width = section.settings.logo_width
   assign logo_height = section.settings.logo_height
   assign logo_spacing = section.settings.logo_spacing
-  assign logo_padding = section.settings.logo_padding
   assign section_padding = section.settings.section_padding
   assign header_spacing = section.settings.header_spacing
   assign logo_background = section.settings.logo_background
@@ -79,7 +78,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: {{ logo_padding }}px;
     background-color: {{ logo_background }};
     border-radius: {{ logo_border_radius }}px;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -318,16 +316,7 @@
       "label": "Logo Spacing Gap",
       "default": 30
     },
-    {
-      "type": "range",
-      "id": "logo_padding",
-      "min": 0,
-      "max": 30,
-      "step": 5,
-      "unit": "px",
-      "label": "Logo Box Inner Padding",
-      "default": 15
-    },
+  
     {
       "type": "range",
       "id": "section_padding",
