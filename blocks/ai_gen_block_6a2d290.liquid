@@ -3,7 +3,7 @@
     a logo carousel showing the various publications we have been featured on, the title and subtitle should be centered on the page and the carousel should take the color scheme from the section
 
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign ai_gen_id = block.id | replace: '_' | downcase %}
 
 {% style %}
   .ai-logo-carousel-{{ ai_gen_id }} {
@@ -17,6 +17,7 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 20px;
   }
 
   .ai-logo-carousel__title-{{ ai_gen_id }} {
@@ -32,6 +33,7 @@
     margin: 0;
   }
 
+  /* Desktop Continuous Track */
   .ai-logo-carousel__track-{{ ai_gen_id }} {
     display: flex;
     align-items: center;
@@ -40,6 +42,7 @@
       animation: ai-logo-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
     {% endif %}
   }
+  
   .ai-logo-carousel__track-{{ ai_gen_id }}.ai-logo-carousel__track--static {
     animation: none !important;
     justify-content: center;
@@ -99,10 +102,36 @@
     animation-play-state: paused;
   }
 
+  /* Mobile / Small Screen Slider Override */
   @media screen and (max-width: 749px) {
+    .ai-logo-carousel__track-wrapper-{{ ai_gen_id }} {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      padding: 0 20px 15px;
+    }
+    .ai-logo-carousel__track-wrapper-{{ ai_gen_id }}::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+
+    .ai-logo-carousel__track-{{ ai_gen_id }} {
+      display: flex !important;
+      animation: none !important; /* Disable infinite scroll animation on mobile */
+      width: max-content;
+      gap: 15px;
+      justify-content: flex-start !important;
+      transform: none !important;
+    }
+
     .ai-logo-carousel__item-{{ ai_gen_id }} {
       width: {{ block.settings.logo_width | times: 0.8 }}px;
       height: {{ block.settings.logo_height | times: 0.8 }}px;
+      scroll-snap-align: start;
+    }
+    
+    .ai-logo-carousel__track-wrapper-{{ ai_gen_id }} {
+      scroll-snap-type: x mandatory;
     }
   }
 {% endstyle %}
@@ -128,32 +157,17 @@
     </div>
   {% endif %}
 
-  <div class="ai-logo-carousel__track-{{ ai_gen_id }}{% if block.settings.carousel_mode == 'static' %} ai-logo-carousel__track--static{% endif %}">
-    {% assign logo_count = 0 %}
-    {% for i in (1..16) %}
-      {% assign logo_key = 'logo_' | append: i %}
-      {% assign logo = block.settings[logo_key] %}
-      {% if logo != blank %}
-        {% assign logo_count = logo_count | plus: 1 %}
-      {% endif %}
-    {% endfor %}
-    {% for i in (1..16) %}
-      {% assign logo_key = 'logo_' | append: i %}
-      {% assign logo = block.settings[logo_key] %}
-      {% if logo != blank %}
-        <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
-          <img
-            src="{{ logo | image_url: width: 300 }}"
-            alt="{{ logo.alt | escape }}"
-            class="ai-logo-carousel__logo-{{ ai_gen_id }}"
-            loading="lazy"
-            width="300"
-            height="200"
-          >
-        </div>
-      {% endif %}
-    {% endfor %}
-    {% if block.settings.carousel_mode == 'scrolling' %}
+  <div class="ai-logo-carousel__track-wrapper-{{ ai_gen_id }}">
+    <div class="ai-logo-carousel__track-{{ ai_gen_id }}{% if block.settings.carousel_mode == 'static' %} ai-logo-carousel__track--static{% endif %}">
+      {% assign logo_count = 0 %}
+      {% for i in (1..16) %}
+        {% assign logo_key = 'logo_' | append: i %}
+        {% assign logo = block.settings[logo_key] %}
+        {% if logo != blank %}
+          {% assign logo_count = logo_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      
       {% for i in (1..16) %}
         {% assign logo_key = 'logo_' | append: i %}
         {% assign logo = block.settings[logo_key] %}
@@ -170,7 +184,26 @@
           </div>
         {% endif %}
       {% endfor %}
-    {% endif %}
+      
+      {% if block.settings.carousel_mode == 'scrolling' %}
+        {% for i in (1..16) %}
+          {% assign logo_key = 'logo_' | append: i %}
+          {% assign logo = block.settings[logo_key] %}
+          {% if logo != blank %}
+            <div class="ai-logo-carousel__item-{{ ai_gen_id }}">
+              <img
+                src="{{ logo | image_url: width: 300 }}"
+                alt="{{ logo.alt | escape }}"
+                class="ai-logo-carousel__logo-{{ ai_gen_id }}"
+                loading="lazy"
+                width="300"
+                height="200"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
   </div>
 </logo-carousel-{{ ai_gen_id }}>
 
