@@ -9,7 +9,7 @@
   assign logo_width = section.settings.logo_width
   assign logo_height = section.settings.logo_height
   assign logo_spacing = section.settings.logo_spacing
-  assign section_padding = section.settings.section_padding
+  assign logo_padding = section.settings.logo_padding
   assign header_spacing = section.settings.header_spacing
   assign logo_background = section.settings.logo_background
   assign logo_border_radius = section.settings.logo_border_radius
@@ -19,7 +19,6 @@
 
 {%- style -%}
   .fresh-logo-carousel-{{ section_id }} {
-    padding: {{ section_padding }}px 0;
     overflow: hidden;
     width: 100%;
   }
@@ -78,6 +77,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: {{ logo_padding }}px;
     background-color: {{ logo_background }};
     border-radius: {{ logo_border_radius }}px;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -316,17 +316,17 @@
       "label": "Logo Spacing Gap",
       "default": 30
     },
-  
     {
       "type": "range",
-      "id": "section_padding",
-      "min": 20,
-      "max": 100,
-      "step": 10,
+      "id": "logo_padding",
+      "min": 0,
+      "max": 30,
+      "step": 5,
       "unit": "px",
-      "label": "Section Vertical Padding",
-      "default": 50
+      "label": "Logo Box Inner Padding",
+      "default": 15
     },
+  
     {
       "type": "range",
       "id": "header_spacing",
