@@ -58,7 +58,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<h2>New arrivals</h2>",
+                "text": "<h3>From Kannauj,<br/>the city of attars</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -84,7 +84,7 @@
               "type": "text",
               "name": "t:names.heading",
               "settings": {
-                "text": "<p>Made with care and unconditionally loved by our customers, this signature bestseller exceeds all expectations.</p>",
+                "text": "<p>Distilled the slow way in copper degs. Come smell the process at our distillery, or get it delivered home.</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -288,7 +288,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h6>New arrivals</h6>",
+                    "text": "<h6>visit us</h6>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -314,7 +314,7 @@
                   "type": "dk_text",
                   "name": "DK Heading",
                   "settings": {
-                    "text": "<h2>New arrivals</h2>",
+                    "text": "<h3>Boond distillery, Kannauj</h3>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -341,7 +341,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Made with care and unconditionally loved by our customers, this signature bestseller exceeds all expectations.</p>",
+                    "text": "<p>Khasra no. 208, Vill and PO Behrin, Tirwa Road, Kannauj (UP) 209727</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -367,7 +367,7 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Shop now",
+                    "label": "Get directions",
                     "link": "shopify://collections/all",
                     "open_in_new_tab": true,
                     "style_class": "link",
@@ -640,7 +640,7 @@
                       "type": "menu",
                       "name": "t:names.menu",
                       "settings": {
-                        "menu": "footer",
+                        "menu": "shop",
                         "heading": "",
                         "menu_spacing": 12,
                         "show_as_accordion": false,
@@ -707,7 +707,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<h4>Shop</h4>",
+                        "text": "<h4>GIFTING</h4>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -733,7 +733,7 @@
                       "type": "menu",
                       "name": "t:names.menu",
                       "settings": {
-                        "menu": "footer",
+                        "menu": "gifting-1",
                         "heading": "",
                         "menu_spacing": 12,
                         "show_as_accordion": false,
@@ -800,7 +800,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<h4>Shop</h4>",
+                        "text": "<h4>HELP</h4>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -826,7 +826,7 @@
                       "type": "menu",
                       "name": "t:names.menu",
                       "settings": {
-                        "menu": "footer",
+                        "menu": "help",
                         "heading": "",
                         "menu_spacing": 12,
                         "show_as_accordion": false,
@@ -893,7 +893,7 @@
                       "type": "text",
                       "name": "t:names.heading",
                       "settings": {
-                        "text": "<h4>Shop</h4>",
+                        "text": "<h4>BOOND</h4>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -919,7 +919,7 @@
                       "type": "menu",
                       "name": "t:names.menu",
                       "settings": {
-                        "menu": "footer",
+                        "menu": "boond",
                         "heading": "",
                         "menu_spacing": 12,
                         "show_as_accordion": false,
@@ -1178,7 +1178,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p><a href=\"https://api.whatsapp.com/send?phone=+917307953240&text=Hello\">+91 73079 53240</a></p>",
+                        "text": "<p>91 73079 53240</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1261,7 +1261,7 @@
                       "type": "text",
                       "name": "t:names.text",
                       "settings": {
-                        "text": "<p><a href=\"mailto:team@boondfragrances.com\">team@boondfragrances.com</a></p>",
+                        "text": "<p>team@boondfragrances.com</p>",
                         "width": "fit-content",
                         "max_width": "normal",
                         "alignment": "left",
