@@ -4,6 +4,44 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+<!-- Added by DK on 2026-03-15 — Geo-redirect US/CA visitors to boondnaturals.com -->
+<!-- Updated by DK on 2026-05-21 — Changed redirect target from boond.ca to boondnaturals.com -->
+<!-- Updated by DK on 2026-03-19 — ?geo=in param bypasses redirect and persists for the session -->
+<!-- Updated by DK on 2026-06-26 — Moved on/off toggle and destination URL into theme settings (Geo Redirect section) -->
+{%- if settings.enable_geo_redirect -%}
+<script>
+(function() {
+  if (window.Shopify && window.Shopify.designMode) return;
+  if (/bot|crawl|spider|slurp|googlebot/i.test(navigator.userAgent)) return;
+
+  // If ?geo=in is in the URL, mark this session as bypassed and skip redirect
+  if (new URLSearchParams(window.location.search).get('geo') === 'in') {
+    sessionStorage.setItem('boond_geo_bypass', 'true');
+    return;
+  }
+
+  // Persist bypass for the entire session once set
+  if (sessionStorage.getItem('boond_geo_bypass')) return;
+  if (sessionStorage.getItem('boond_geo_redirected')) return;
+
+  fetch('https://api.country.is/')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data || !data.country) return;
+      if (['CA', 'US'].includes(data.country)) {
+        sessionStorage.setItem('boond_geo_redirected', 'true');
+        window.location.replace({{ settings.geo_redirect_url | json }});
+      }
+    })
+    .catch(function() {});
+})();
+</script>
+{%- endif -%}
+
+<script> window.Shopflo = { ...(window.Shopflo ?? {}), autoOnboarding: true} </script>
+
+<script src='https://d24sh1msnqkirc.cloudfront.net/shopflo.bundle.js' async></script>
+
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
 
@@ -34,6 +72,8 @@
     {% endif %}
 
     {{ content_for_header }}
+
+    {% render 'schema' %}
     
   </head>
 <script src='https://bridge.shopflo.com/js/shopflo.bundle.js' async></script>
@@ -58,7 +98,8 @@ function closeCartDrawer() {
 
 <script>
 	    let targetNode = document.querySelector("html");
-      let floCheckoutBtn = `<button type="button" id="checkout2"  onclick="handleFloCheckoutBtn()" class="button full" name="checkout2">Checkout</button>`;
+      {% comment %} Updated by DK on 2026-07-28: was calling handleFloCheckoutBtn() unconditionally, bypassing the isFloIndia() timezone/?flo=in gating used everywhere else {% endcomment %}
+      let floCheckoutBtn = `<button type="button" id="checkout2"  onclick="openCheckout()" class="button full" name="checkout2">Checkout</button>`;
       let parsedFloBtn = new DOMParser().parseFromString(floCheckoutBtn, "text/html").querySelectorAll("#checkout2")[0];
       let isFloBtnAdded = false;
       const stickyCartCb = function (mutationList) {
@@ -83,9 +124,19 @@ function closeCartDrawer() {
   </script>
 
 {% comment %} adding script for timezone based redirection {% endcomment %}
+{% comment %} Added by DK on 2026-07-28: ?flo=in query param forces the India/Shopflo checkout path for testing from outside India. Persists for the session via sessionStorage, mirrors the existing ?geo=in bypass pattern above. {% endcomment %}
  <script>
+  function isFloIndia() {
+    if (new URLSearchParams(window.location.search).get('flo') === 'in') {
+      sessionStorage.setItem('boond_flo_india_override', 'true');
+    }
+    if (sessionStorage.getItem('boond_flo_india_override')) return true;
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return tz === 'Asia/Calcutta' || tz === 'Asia/Kolkata';
+  }
+
   function openCheckout() {
-    if ((Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata')){   
+    if (isFloIndia()) {
       handleFloCheckoutBtn();
     } else {     // conditions for other checkouts
       window.location.href = '/checkout';
@@ -93,7 +144,7 @@ function closeCartDrawer() {
   }
 
   function setBuyNowButton() {
-      if ((Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Calcutta') || (Intl.DateTimeFormat().resolvedOptions().timeZone === 'Asia/Kolkata')){  
+    if (isFloIndia()) {
       document.querySelector('#flo-buy-now-button').style.setProperty('display', 'block', 'important');
       document.querySelector('#shopify_buy_now_button_wrapper').style.setProperty('display', 'none', 'important');
       return
@@ -109,7 +160,7 @@ function closeCartDrawer() {
 </script>
 {% comment %} ends here {% endcomment %}
 
-  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
+  <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}" data-card-image-cycling-desktop="{{ settings.card_image_cycling_desktop }}" data-card-image-cycling-mobile="{{ settings.card_image_cycling_mobile }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
       {% sections 'header-group' %}
@@ -139,8 +190,91 @@ function closeCartDrawer() {
     <script src="{{ 'critical.js' | asset_url }}"></script>
     {% # theme-check-enable ParserBlockingScript %}
 
+
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
   </body>
+
+  
 </html>
+<style>
+#header-group,
+#header-group > .shopify-section {
+  display: contents;
+}
+header.dk-hdr.dk-hdr--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow .25s ease, transform .3s ease, height .25s ease;
+}
+header.dk-hdr.is-scrolled {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .08);
+  {% comment %} --dk-hdr-height: 60px !important; /* inline style sets 72px, so !important is needed */ {% endcomment %}
+}
+header.dk-hdr.is-hidden {
+  transform: translateY(-100%);
+}
+html {
+  scroll-padding-top: calc(var(--dk-hdr-offset, 72px) + 8px);
+}
+.wa-custom-float {
+  z-index: 900;
+}
+</style>
+<script>
+  window.addEventListener('load', (event) => {
+(function () {
+  var HIDE_ON_SCROLL_DOWN = false;   // set true for the slide-away behaviour
+  var SHRINK_AFTER = 10;             // px scrolled before the shadow appears
+  var HIDE_AFTER = 200;              // px before hiding is allowed
+
+  var header, lastY = window.scrollY, ticking = false;
+
+  function drawerOpen() {
+    var d = document.getElementById('dkHdrDrawer');
+    return d && d.getAttribute('aria-hidden') === 'false';
+  }
+
+  function setOffset() {
+    if (!header) return;
+    document.documentElement.style.setProperty('--dk-hdr-offset', header.offsetHeight + 'px');
+  }
+
+  function update() {
+    var y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > SHRINK_AFTER);
+
+    if (HIDE_ON_SCROLL_DOWN) {
+      var goingDown = y > lastY;
+      var hide = goingDown && y > HIDE_AFTER && !drawerOpen();
+      header.classList.toggle('is-hidden', hide);
+    }
+    lastY = y;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+
+  function init() {
+    header = document.getElementById('dkHdr');
+    if (!header) return;
+    setOffset();
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', setOffset);
+  }
+
+  init();
+  // Re-run if the theme editor re-renders the header section
+  document.addEventListener('shopify:section:load', function () {
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', setOffset);
+    init();
+  });
+})();
+});
+</script>
