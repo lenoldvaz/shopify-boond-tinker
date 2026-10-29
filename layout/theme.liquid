@@ -126,46 +126,22 @@ function closeCartDrawer() {
 {% comment %} adding script for timezone based redirection {% endcomment %}
 {% comment %} Added by DK on 2026-07-28: ?flo=in query param forces the India/Shopflo checkout path for testing from outside India. Persists for the session via sessionStorage, mirrors the existing ?geo=in bypass pattern above. {% endcomment %}
  <script>
-function isFloIndia() {
-    var q = new URLSearchParams(window.location.search).get('flo');
-    // test overrides: ?flo=in forces Shopflo, ?flo=out forces Shopify checkout
-    if (q === 'in') { sessionStorage.setItem('boond_flo_route', 'in'); }
-    if (q === 'out') { sessionStorage.setItem('boond_flo_route', 'out'); }
-    var forced = sessionStorage.getItem('boond_flo_route');
-    if (forced === 'in') return true;
-    if (forced === 'out') return false;
-    // Decide by the visitor's country, detected by Shopify from their internet
-    // connection (fix 29 Oct 2026). India = Shopflo, any other country = Shopify checkout.
-    var country = (window.Shopify && Shopify.country) || '';
-    if (country) return country === 'IN';
-    // Only if Shopify could not detect a country, fall back to the old timezone check
+  function isFloIndia() {
+    if (new URLSearchParams(window.location.search).get('flo') === 'in') {
+      sessionStorage.setItem('boond_flo_india_override', 'true');
+    }
+    if (sessionStorage.getItem('boond_flo_india_override')) return true;
     var tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     return tz === 'Asia/Calcutta' || tz === 'Asia/Kolkata';
   }
 
   function openCheckout() {
-    if (!isFloIndia()) {     // international visitors keep Shopify checkout
-      window.location.href = '/checkout';
-      return;
-    }
-    if (typeof handleFloCheckoutBtn === 'function') {
+    if (isFloIndia()) {
       handleFloCheckoutBtn();
-      return;
+    } else {     // conditions for other checkouts
+      window.location.href = '/checkout';
     }
-    // Shopflo script still loading (slow Instagram browser): wait up to 6 seconds
-    var tries = 0;
-    var waitFlo = setInterval(function () {
-      tries++;
-      if (typeof handleFloCheckoutBtn === 'function') {
-        clearInterval(waitFlo);
-        handleFloCheckoutBtn();
-      } else if (tries > 30) {
-        clearInterval(waitFlo);
-        window.location.href = '/checkout';
-      }
-    }, 200);
   }
-
 
   function setBuyNowButton() {
     if (isFloIndia()) {
